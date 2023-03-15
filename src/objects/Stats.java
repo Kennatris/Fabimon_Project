@@ -1,3 +1,5 @@
+package objects;
+
 public class Stats {
 
     //Iv werte noch
