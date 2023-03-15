@@ -3,13 +3,12 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="-1169.0" y="143.5">objects.Fabimon</node>
-    <node x="-1161.0" y="-16.5">objects.object</node>
-    <node x="-917.0" y="463.5">objects.Stats</node>
-    <node x="-1175.0" y="249.0">main.GUI</node>
-    <node x="-1026.5" y="143.5">main.GameHandler</node>
-    <node x="-1159.5" y="430.0">main.KeyHandler</node>
-    <node x="-992.0" y="272.0">main.Main</node>
+    <node x="-1460.0" y="153.5">objects.Fabimon</node>
+    <node x="-1452.0" y="-6.5">objects.object</node>
+    <node x="-1463.0" y="249.0">objects.Stats</node>
+    <node x="-1317.5" y="153.5">main.GameHandler</node>
+    <node x="-1190.5" y="391.5">main.KeyHandler</node>
+    <node x="-943.0" y="502.0">main.Main</node>
   </nodes>
   <notes />
   <edges>
@@ -18,14 +17,12 @@
       <point x="0.0" y="26.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Compact" zoom="0.9233390119250426" showDependencies="false" x="-990.0" y="276.9151291512915" />
+  <settings layout="Hierarchic Compact" zoom="0.6317016317016317" showDependencies="false" x="-1111.9999999999998" y="671.9151291512915" />
   <SelectedNodes />
   <Categories>
     <Category>Constructors</Category>
     <Category>Fields</Category>
-    <Category>Inner Classes</Category>
     <Category>Methods</Category>
-    <Category>Properties</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
