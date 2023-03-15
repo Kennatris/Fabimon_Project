@@ -5,7 +5,7 @@ public class GUI {
     public boolean fullscreen;
     private int width;
     private int height;
-    // this is a test
+    // this is a test afdsaf
     public GUI() {
         this.fullscreen = true;
         this.width = 1152;
