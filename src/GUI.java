@@ -10,6 +10,7 @@ public class GUI {
         this.fullscreen = true;
         this.width = 1152;
         this.height = 576;
+        // du Pflaume
     }
 
     public void openWindow() {
