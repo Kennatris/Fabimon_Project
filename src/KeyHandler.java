@@ -3,7 +3,7 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    public boolean wPressed, aPressed, dPressed, sPressed, escPressed, spacePressed, iPressed;
+    public boolean wPressed, aPressed, dPressed, sPressed, escPressed, spacePressed, iPressed, f12Pressed;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -43,6 +43,9 @@ public class KeyHandler implements KeyListener {
             iPressed = true;
         }
 
+        if (code == KeyEvent.VK_F12) {
+            f12Pressed = true;
+        }
     }
 
     @Override
@@ -78,5 +81,8 @@ public class KeyHandler implements KeyListener {
             iPressed = false;
         }
 
+        if (code == KeyEvent.VK_F12) {
+            f12Pressed = false;
+        }
     }
 }

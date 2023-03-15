@@ -5,12 +5,11 @@ public class GUI {
     public boolean fullscreen;
     private int width;
     private int height;
-    // this is a test afdsaf/awdawdad
+
     public GUI() {
         this.fullscreen = true;
         this.width = 1152;
         this.height = 576;
-        // du Pflaume
     }
 
     public void openWindow() {
