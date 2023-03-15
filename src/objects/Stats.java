@@ -2,10 +2,13 @@ package objects;
 
 public class Stats {
 
-    //Iv werte noch
-    //Ev sclaing
+    //multiplier stat
+    public final double multiplier = 1.1;
 
-    //Healt stats
+    //Iv werte noch
+    //Ev scaling
+
+    //Health stats
     private double health_raw;
     private double health;
     private double health_current;
@@ -36,12 +39,16 @@ public class Stats {
     private double speed_current;
 
     //Elemente zuweisung
+
+    // Fabio ?? wofür diese Variablen
+
+    // private int element;
+    // element 1 = fire | 2 = water | 3 = grass | 4 = flight
     private double element_fire = 1;
     private double element_water = 2;
     private double element_grass = 3;
     private double element_flight = 4;
-    private double element_bunny;
+    private double element_bunny; // -,-
 
-    //multiplyer stat
-    public double final_multiplyer = 1.1;
+
 }
