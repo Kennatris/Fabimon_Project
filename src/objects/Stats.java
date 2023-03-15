@@ -50,5 +50,4 @@ public class Stats {
     private double element_flight = 4;
     private double element_bunny; // -,-
 
-
 }

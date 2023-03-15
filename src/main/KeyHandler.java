@@ -6,7 +6,6 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
 
     public boolean wPressed, aPressed, dPressed, sPressed, escPressed, spacePressed, iPressed, f12Pressed;
-
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -87,4 +86,5 @@ public class KeyHandler implements KeyListener {
             f12Pressed = false;
         }
     }
+
 }
