@@ -18,10 +18,12 @@ public class GUI {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Fabimon");
-        frame.getContentPane().setBackground(new Color(34, 139, 34)); // set background color to green
+        frame.getContentPane().setBackground(new Color(214, 72, 217)); // set background color to green
 
         if (fullscreen) {
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // maximize the window
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
+            frame.setUndecorated(true); // <-- the title bar is removed here
         } else {
             frame.setSize(width, height); // set window size to height x width
             frame.setLocationRelativeTo(null); // center the window

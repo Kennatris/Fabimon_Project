@@ -8,7 +8,7 @@ public class GameHandler {
     // start the code
     public void start_setup() {
         // open a new Instance of GUI
-        GUI myGUI = new GUI(true, 1152, 576);
+        GUI myGUI = new GUI(false, 1152, 576);
         myGUI.openWindow();
 
         // starts the internal Delta-Timer ()
