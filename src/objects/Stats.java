@@ -1,6 +1,6 @@
 package objects;
 
-public class Stats {
+public class Stats extends Fabimon{
 
     //multiplier stat
     public final double multiplier = 1.1;

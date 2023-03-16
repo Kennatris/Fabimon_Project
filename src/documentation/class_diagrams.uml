@@ -3,22 +3,16 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="-1460.0" y="153.5">objects.Fabimon</node>
-    <node x="-1452.0" y="-6.5">objects.object</node>
-    <node x="-1463.0" y="249.0">objects.Stats</node>
-    <node x="-1317.5" y="153.5">main.GameHandler</node>
-    <node x="-1190.5" y="391.5">main.KeyHandler</node>
-    <node x="-943.0" y="502.0">main.Main</node>
+    <node x="-51.5" y="-22.5">main.Main</node>
+    <node x="279.125" y="-22.5">main.KeyHandler</node>
+    <node x="111.8125" y="-22.5">main.GUI</node>
   </nodes>
   <notes />
-  <edges>
-    <edge source="objects.Fabimon" target="objects.object" relationship="GENERALIZATION">
-      <point x="0.0" y="-26.5" />
-      <point x="0.0" y="26.5" />
-    </edge>
-  </edges>
-  <settings layout="Hierarchic Compact" zoom="0.6317016317016317" showDependencies="false" x="-1111.9999999999998" y="671.9151291512915" />
-  <SelectedNodes />
+  <edges />
+  <settings layout="Hierarchic Compact" zoom="0.768" showDependencies="false" x="489.65104166666663" y="21.369791666666686" />
+  <SelectedNodes>
+    <node>main.KeyHandler</node>
+  </SelectedNodes>
   <Categories>
     <Category>Constructors</Category>
     <Category>Fields</Category>

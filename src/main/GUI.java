@@ -8,10 +8,10 @@ public class GUI {
     private int width;
     private int height;
 
-    public GUI() {
-        this.fullscreen = true;
-        this.width = 1152;
-        this.height = 576;
+    public GUI(boolean fullscreen, int width, int height) {
+        this.fullscreen = fullscreen;
+        this.width = width;
+        this.height = height;
     }
 
     public void openWindow() {

@@ -2,7 +2,7 @@ package main;
 
 public class Main {
     public static void main(String[] args) {
-        GUI myGUI = new GUI();
-        myGUI.openWindow();
+        GameHandler gameH = new GameHandler();
+        gameH.start_setup();
     }
 }
