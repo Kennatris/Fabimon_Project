@@ -1,5 +1,5 @@
 package objects;
 
-public class Fabimon extends object{
+public class Fabimon extends Entity {
 
 }

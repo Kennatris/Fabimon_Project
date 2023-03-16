@@ -1,4 +1,5 @@
 package main;
+
 public class GameHandler {
     // var_delta-timer
     private int FPS = 60;
@@ -35,5 +36,9 @@ public class GameHandler {
             }
 
         }
+    }
+
+    public void update() {
+
     }
 }
