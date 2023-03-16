@@ -1,11 +1,14 @@
 package main;
 
+import objects.Player;
+
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.security.Key;
 
 public class GameHandler {
     // var_delta-timer
-    private int FPS = 60;
+    int FPS = 60;
     public long timer = 0;
     // Integration
     KeyHandler keyH = new KeyHandler();
@@ -13,7 +16,7 @@ public class GameHandler {
     // start the code
     public void start_setup() {
             // open a new Instance of GUI
-            GUI myGUI = new GUI(false, 1152, 576);
+            GUI myGUI = new GUI(true, 1152, 576);
             myGUI.openWindow();
 
             // starts the internal Delta-Timer ()
@@ -37,6 +40,7 @@ public class GameHandler {
             if (delta >= 1) {
                 // code to update stuff
                 // ...
+
                 update();
                 delta--;
             }

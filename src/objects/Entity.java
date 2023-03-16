@@ -3,9 +3,9 @@ import main.GameHandler;
 
 public class Entity extends GameHandler {
 
-    private boolean CollisionOn;
-    private int pos_x;
-    private int pos_y;
+    public boolean CollisionOn;
+    public int pos_x;
+    public int pos_y;
 
     public Entity() {
 

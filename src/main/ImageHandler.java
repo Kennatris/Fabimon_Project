@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class ImageHandler {
     public BufferedImage[] image = new BufferedImage[50]; // max_Images
-    public void ImageInitialiser(int imageNumber, String imageName, String imageDataTyp) {
+    public void ImageInitialiser(int imageNumber, String imageLocation, String imageName, String imageDataTyp) {
         try {
-            image[imageNumber] = ImageIO.read(new File("./res/main/" + imageName + "." + imageDataTyp));
+            image[imageNumber] = ImageIO.read(new File("./res/" + imageLocation + "/" + imageName + "." + imageDataTyp));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

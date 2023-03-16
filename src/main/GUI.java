@@ -19,8 +19,8 @@ public class GUI {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Fabimon");
-        frame.getContentPane().setBackground(new Color(214, 72, 217)); // set background color to green
-        imageH.ImageInitialiser(0, "Fabimon_Icon_Main", "png");
+        frame.getContentPane().setBackground(new Color(25, 100, 46)); // set background color to green
+        imageH.ImageInitialiser(0, "main","Fabimon_Icon_Main", "png");
         frame.setIconImage(imageH.image[0]);
 
         if (fullscreen) {
