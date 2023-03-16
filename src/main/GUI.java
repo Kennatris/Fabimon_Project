@@ -7,6 +7,7 @@ public class GUI {
     public boolean fullscreen;
     private int width;
     private int height;
+    ImageHandler imageH = new ImageHandler();
 
     public GUI(boolean fullscreen, int width, int height) {
         this.fullscreen = fullscreen;
@@ -19,6 +20,8 @@ public class GUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Fabimon");
         frame.getContentPane().setBackground(new Color(214, 72, 217)); // set background color to green
+        imageH.ImageInitialiser(0, "Fabimon_Icon_Main", "png");
+        frame.setIconImage(imageH.image[0]);
 
         if (fullscreen) {
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // maximize the window
