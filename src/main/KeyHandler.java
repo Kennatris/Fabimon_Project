@@ -12,7 +12,7 @@ public class KeyHandler implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {    // Wenn eine Taste gedrückt wird wird diese Methode aufgerufen.
+    public void keyPressed(KeyEvent e) {    // Wenn eine Taste gedrückt wurde wird diese Methode aufgerufen.
 
         int code = e.getKeyCode();  // Speichert den Code der Taste die gedrückt wird in einer Variable ab.
 

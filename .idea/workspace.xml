@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.1.3.7">
+    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.1.3.8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Kontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Kontroller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,9 +77,50 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ReadAllEvents" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.java.games.input.example.ReadAllEvents" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.java.games.input.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RumbleTest (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.java.games.input.test.RumbleTest" />
+      <module name="Fabimon" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.java.games.input.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RumbleTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.java.games.input.test.RumbleTest" />
+      <module name="Fabimon" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.java.games.input.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.RumbleTest (1)" />
+        <item itemvalue="Application.RumbleTest" />
+        <item itemvalue="Application.ReadAllEvents" />
         <item itemvalue="Application.GameHandler" />
       </list>
     </recent_temporary>
@@ -94,7 +135,8 @@
       <updated>1678910081166</updated>
       <workItem from="1678910082575" duration="1455000" />
       <workItem from="1678988996350" duration="718000" />
-      <workItem from="1679057409528" duration="9261000" />
+      <workItem from="1679057409528" duration="9399000" />
+      <workItem from="1679077126009" duration="8862000" />
     </task>
     <task id="LOCAL-00001" summary="V0.1.3.2">
       <created>1678914242900</created>
@@ -173,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678988902331</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="V0.1.3.8">
+      <created>1679066823516</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1679066823516</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +274,8 @@
     <MESSAGE value="V0.1.3.5" />
     <MESSAGE value="V0.1.3.6" />
     <MESSAGE value="V0.1.3.7" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.1.3.7" />
+    <MESSAGE value="V0.1.3.8" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.1.3.8" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
