@@ -1,7 +1,5 @@
 package main;
 
-import net.java.games.input.Controller;
-import net.java.games.input.ControllerEnvironment;
 
 public class GameHandler {
     public long timer = 0;
@@ -48,7 +46,7 @@ public class GameHandler {
 
     public void update() {
 
-            kontroller.KontrollerEvent();
+            kontroller.KontrollerCheck();
 
 
 
