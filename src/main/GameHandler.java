@@ -74,12 +74,11 @@ public class GameHandler {
             player.update(keyH);
 
             repaint();
-
-
     }
 
     public void repaint() {
         // Player
         player.draw(g2D);
+
     }
 }

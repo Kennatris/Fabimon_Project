@@ -1,7 +1,8 @@
 package main;
 
 import java.awt.*;
-import javax.swing.JFrame;
+import javax.swing.*;
+
 import main.KeyHandler;
 
 public class GUI {
@@ -45,4 +46,5 @@ public class GUI {
     public JFrame getFrame() {
         return frame;
     }
+
 }
