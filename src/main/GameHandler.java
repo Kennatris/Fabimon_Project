@@ -15,7 +15,6 @@ public class GameHandler {
     // settings
     int FPS = 60;
     final int tile_size = 96;
-
     boolean fullscreen = false;
     private Graphics graphics;
     private Graphics2D g2D;
@@ -58,8 +57,9 @@ public class GameHandler {
             if (delta >= 1) {
                 // code to update stuff
                 // ...
-
                 update();
+
+                repaint();
                 delta--;
             }
 

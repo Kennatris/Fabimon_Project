@@ -15,13 +15,19 @@ import java.io.IOException;
 public class Player extends Entity {
     private ImageHandler imageHandler;
     private int imageIndex = 2;
+    private boolean imageSwitch = false;
     ImageHandler imageH = new ImageHandler();
+
     public Player(int x, int y, int speed, int tile_size) {
         // Load images
         imageH.ImageInitialiser(1, "player","Skully_up", "png");
         imageH.ImageInitialiser(2, "player","Skully_down", "png");
         imageH.ImageInitialiser(3, "player","Skully_left", "png");
         imageH.ImageInitialiser(4, "player","Skully_right", "png");
+        imageH.ImageInitialiser(5, "player","Skully_up_2", "png");
+        imageH.ImageInitialiser(6, "player","Skully_down_2", "png");
+        imageH.ImageInitialiser(7, "player","Skully_left_2", "png");
+        imageH.ImageInitialiser(8, "player","Skully_right_2", "png");
 
         // Initial position
         this.pos_x = x;
@@ -35,19 +41,36 @@ public class Player extends Entity {
         if(keyH.wPressed == true || keyH.sPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
             if (keyH.wPressed) {
                 this.pos_y -= speed;
-                this.imageIndex = 1;
+                if(imageSwitch) {
+                    this.imageIndex = 1;
+                } else {
+                    this.imageIndex = 5;
+                }
+
             }
             if (keyH.sPressed) {
                 this.pos_y += speed;
-                this.imageIndex = 2;
+                if(imageSwitch) {
+                    this.imageIndex = 2;
+                } else {
+                    this.imageIndex = 6;
+                }
             }
             if (keyH.aPressed) {
                 this.pos_x -= speed;
-                this.imageIndex = 3;
+                if(imageSwitch) {
+                    this.imageIndex = 3;
+                } else {
+                    this.imageIndex = 7;
+                }
             }
             if (keyH.dPressed) {
                 this.pos_x += speed;
-                this.imageIndex = 4;
+                if(imageSwitch) {
+                    this.imageIndex = 4;
+                } else {
+                    this.imageIndex = 8;
+                }
             } else {
                 this.imageIndex = imageIndex;
             }
@@ -56,9 +79,8 @@ public class Player extends Entity {
 
     public void draw(Graphics g) {
         // Draw player image based on movement
-
         g.drawImage(this.imageH.image[this.imageIndex], this.pos_x, this.pos_y, this.tile_size,this.tile_size,null);
-
+        imageSwitch = !imageSwitch;
         //g.setColor(Color.RED);
         //g.fillRect(this.pos_x, this.pos_y, 96, 96);
     }

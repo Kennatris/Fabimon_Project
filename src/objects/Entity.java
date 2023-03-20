@@ -1,7 +1,7 @@
 package objects;
 import main.GameHandler;
 
-public class Entity {
+public class Entity extends GameHandler{
 
     public boolean CollisionOn;
     public int pos_x;
