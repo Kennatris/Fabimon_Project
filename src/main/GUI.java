@@ -1,13 +1,17 @@
 package main;
 
-import java.awt.Color;
+import java.awt.*;
 import javax.swing.JFrame;
+import main.KeyHandler;
 
 public class GUI {
     public boolean fullscreen;
     private int width;
     private int height;
+    private Graphics graphics;
     ImageHandler imageH = new ImageHandler();
+    KeyHandler keyH = new KeyHandler();
+    JFrame frame = new JFrame();
 
     public GUI(boolean fullscreen, int width, int height) {
         this.fullscreen = fullscreen;
@@ -16,13 +20,11 @@ public class GUI {
     }
 
     public void openWindow() {
-        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Fabimon");
         frame.getContentPane().setBackground(new Color(25, 100, 46)); // set background color to green
         imageH.ImageInitialiser(0, "main","Fabimon_Icon_Main", "png");
         frame.setIconImage(imageH.image[0]);
-
         if (fullscreen) {
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // maximize the window
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
@@ -31,7 +33,16 @@ public class GUI {
             frame.setSize(width, height); // set window size to height x width
             frame.setLocationRelativeTo(null); // center the window
         }
-
         frame.setVisible(true);
+        // get frame
+        graphics = frame.getGraphics();
+    }
+
+    public Graphics getFrameStata() {
+        return graphics;
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }

@@ -1,23 +1,46 @@
 package main;
 
 
+import objects.Player;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+
 public class GameHandler {
     public long timer = 0;
-    // var_delta-timer
+    // settings
     int FPS = 60;
+    final int tile_size = 96;
+    int start_x;
+    int start_y;
+    int start_speed;
+
+    boolean fullscreen = false;
+    private Graphics graphics;
+    private Graphics2D g2D;
     // Integration
     KeyHandler keyH = new KeyHandler();
     Kontroller kontroller = new Kontroller();
-
+    //Player player = new Player(start_x, start_y, start_speed, tile_size);
+    Player player = new Player(0, 0, 3, tile_size);
     // start the code
     public void start_setup() {
         // open a new Instance of GUI
-        GUI myGUI = new GUI(true, 1152, 576);
+        GUI myGUI = new GUI(fullscreen, 1152, 576);
         myGUI.openWindow();
-        kontroller.VerbindeKontroller();
-
+        myGUI.getFrame().addKeyListener(keyH);
+        myGUI.getFrame().setFocusable(true);
+        graphics = myGUI.getFrameStata();
+        g2D = (Graphics2D) graphics;
+        // initialising Controller
+        // kontroller.VerbindeKontroller();
         // starts the internal Delta-Timer ()
         delta_timer(myGUI);
+        saveSettings();
     }
 
     public void delta_timer(GUI myGUI) {
@@ -46,7 +69,21 @@ public class GameHandler {
 
     public void update() {
 
-            kontroller.KontrollerCheck();
+            // kontroller.KontrollerCheck();
+
+            // player stuff
+            player.update(keyH);
+
+            repaint();
+
+
+    }
+
+    public void repaint() {
+        // Player
+        player.draw(g2D);
+    }
+    public void saveSettings() {
 
     }
 }
