@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Player extends Entity {
     private ImageHandler imageHandler;
-    private int imageIndex = 1;
+    private int imageIndex = 2;
     ImageHandler imageH = new ImageHandler();
     public Player(int x, int y, int speed, int tile_size) {
         // Load images

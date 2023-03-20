@@ -15,9 +15,6 @@ public class GameHandler {
     // settings
     int FPS = 60;
     final int tile_size = 96;
-    int start_x;
-    int start_y;
-    int start_speed;
 
     boolean fullscreen = false;
     private Graphics graphics;
@@ -25,22 +22,24 @@ public class GameHandler {
     // Integration
     KeyHandler keyH = new KeyHandler();
     Kontroller kontroller = new Kontroller();
-    //Player player = new Player(start_x, start_y, start_speed, tile_size);
-    Player player = new Player(0, 0, 3, tile_size);
+    GUI myGUI;
+    Player player;
+
     // start the code
     public void start_setup() {
         // open a new Instance of GUI
-        GUI myGUI = new GUI(fullscreen, 1152, 576);
+        myGUI = new GUI(fullscreen, 1152, 576);
         myGUI.openWindow();
         myGUI.getFrame().addKeyListener(keyH);
         myGUI.getFrame().setFocusable(true);
         graphics = myGUI.getFrameStata();
         g2D = (Graphics2D) graphics;
+        // initialising Player
+        player = new Player((myGUI.frame.getWidth()/2)-(tile_size/2), (myGUI.frame.getHeight()/2)-(tile_size/2), 3, tile_size);
         // initialising Controller
         // kontroller.VerbindeKontroller();
         // starts the internal Delta-Timer ()
         delta_timer(myGUI);
-        saveSettings();
     }
 
     public void delta_timer(GUI myGUI) {
@@ -82,8 +81,5 @@ public class GameHandler {
     public void repaint() {
         // Player
         player.draw(g2D);
-    }
-    public void saveSettings() {
-
     }
 }
