@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-51.5" y="-22.5">main.Main</node>
+    <node x="279.125" y="-22.5">main.KeyHandler</node>
+    <node x="111.8125" y="-22.5">main.GUI</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Compact" zoom="0.768" showDependencies="false" x="489.65104166666663" y="21.369791666666686" />
+  <SelectedNodes>
+    <node>main.KeyHandler</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
