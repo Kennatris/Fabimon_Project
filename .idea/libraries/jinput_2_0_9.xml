@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="jutils-1.0.0">
+  <library name="jinput-2.0.9">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/jutils-1.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jinput-2.0.9.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

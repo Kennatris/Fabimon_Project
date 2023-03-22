@@ -3,20 +3,25 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyHandler implements KeyListener {
 
+
+
+
+public class KeyHandler implements KeyListener {
     public boolean wPressed, aPressed, dPressed, sPressed, escPressed, spacePressed, iPressed, f12Pressed;
+
+
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {    // Wenn eine Taste gedrückt wurde wird diese Methode aufgerufen.
+    public void keyPressed(KeyEvent e) {    //При нажатии клавиши вызывается этот метод. Wenn eine Taste gedrückt wurde wird diese Methode aufgerufen.
 
-        int code = e.getKeyCode();  // Speichert den Code der Taste die gedrückt wird in einer Variable ab.
+        int code = e.getKeyCode();  //Сохраняет код нажатой клавиши в переменной. Speichert den Code der Taste die gedrückt wird in einer Variable ab.
 
-        if (code == KeyEvent.VK_W) {    // schaut nach welche Taste gedrückt wurde und setzt den jeweiligen Boolean auf true.
+        if (code == KeyEvent.VK_W) {    //ищет, какая клавиша была нажата, и устанавливает соответствующее логическое значение в true. schaut nach welche Taste gedrückt wurde und setzt den jeweiligen Boolean auf true.
             wPressed = true;
         }
 
@@ -50,7 +55,7 @@ public class KeyHandler implements KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {   //Wenn die Taste losgelassen wurde wird der jeweilige Boolean auf false gesetzt.
+    public void keyReleased(KeyEvent e) {   //Когда клавиша отпущена, соответствующее логическое значение устанавливается в false. Wenn die Taste losgelassen wurde wird der jeweilige Boolean auf false gesetzt.
 
         int code = e.getKeyCode();
 

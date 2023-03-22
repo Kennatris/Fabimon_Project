@@ -1,6 +1,8 @@
 <component name="libraryTable">
   <library name="jinput-platform-2.0.7-natives-windows">
-    <CLASSES />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jinput-platform-2.0.7-natives-windows.jar!/" />
+    </CLASSES>
     <JAVADOC />
     <SOURCES />
   </library>

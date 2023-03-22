@@ -23,19 +23,19 @@ public class GUI {
     public void openWindow() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Fabimon");
-        frame.getContentPane().setBackground(new Color(25, 100, 46)); // set background color to green
+        frame.getContentPane().setBackground(new Color(25, 100, 46)); //установить цвет фона на зеленый set background color to green
         imageH.ImageInitialiser(0, "main","Fabimon_Icon_Main", "png");
         frame.setIconImage(imageH.image[0]);
         if (fullscreen) {
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // maximize the window
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
-            frame.setUndecorated(true); // <-- the title bar is removed here
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH); //развернуть окно maximize the window
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Уже здесь Already there
+            frame.setUndecorated(true); //<-- здесь убрана строка заголовка <-- the title bar is removed here
         } else {
-            frame.setSize(width, height); // set window size to height x width
-            frame.setLocationRelativeTo(null); // center the window
+            frame.setSize(width, height); //установить размер окна на высоту x ширину set window size to height x width
+            frame.setLocationRelativeTo(null); //центр окна center the window
         }
         frame.setVisible(true);
-        // get frame
+        //получить кадр get frame
         graphics = frame.getGraphics();
     }
 

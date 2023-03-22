@@ -19,7 +19,7 @@ public class Player extends Entity {
     ImageHandler imageH = new ImageHandler();
 
     public Player(int x, int y, int speed, int tile_size) {
-        // Load images
+        //Загрузить изображения Load images
         imageH.ImageInitialiser(1, "player","Skully_up", "png");
         imageH.ImageInitialiser(2, "player","Skully_down", "png");
         imageH.ImageInitialiser(3, "player","Skully_left", "png");
@@ -29,7 +29,7 @@ public class Player extends Entity {
         imageH.ImageInitialiser(7, "player","Skully_left_2", "png");
         imageH.ImageInitialiser(8, "player","Skully_right_2", "png");
 
-        // Initial position
+        //Исходное положение Initial position
         this.pos_x = x;
         this.pos_y = y;
         this.speed = speed;
@@ -37,7 +37,7 @@ public class Player extends Entity {
     }
 
     public void update(KeyHandler keyH) {
-        // Move player based on key input
+        //Перемещение игрока на основе ввода клавиш Move player based on key input
         if(keyH.wPressed == true || keyH.sPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
             imageSwitch = !imageSwitch;
             if (keyH.wPressed) {
@@ -79,7 +79,7 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics g) {
-        // Draw player image based on movement
+        //Нарисуйте изображение игрока на основе движения Draw player image based on movement
         g.clearRect(pos_x, pos_y, this.tile_size, this.tile_size);
         g.drawImage(this.imageH.image[this.imageIndex], this.pos_x, this.pos_y, this.tile_size,this.tile_size,null);
         //g.setColor(Color.RED);

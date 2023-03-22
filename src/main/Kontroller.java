@@ -28,21 +28,21 @@ public class Kontroller {
 
     public void VerbindeKontroller() {
 
-        controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();   //Speichert alle Controller die es findet im Array controllers ab.
+        controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();   //Сохраняет все контроллеры, которые он находит в контроллерах массива. Speichert alle Controller die es findet im Array controllers ab.
         controller = null;
 
-        for (Controller value : controllers) {      //Filtert im Array nach controller vom Typ Gamepad oder STICK und speichert diese in controller ab.
+        for (Controller value : controllers) {      //Фильтрует массив для контроллеров типа Gamepad или STICK и сохраняет их в контроллере. Filtert im Array nach controller vom Typ Gamepad oder STICK und speichert diese in controller ab.
             if (value.getType() == Controller.Type.STICK || value.getType() == Controller.Type.GAMEPAD)
                 controller = value;
         }
 
-        eventQueue = controller.getEventQueue();    //erstellt eine art Warteliste für den Input
+        eventQueue = controller.getEventQueue();    //создает своего рода список ожидания для ввода erstellt eine art Warteliste für den Input
         event = new Event();
         istVerbunden = true;
 
     }
 
-    private void NeuVerbinden() {       //Macht dasselbe wie VerbindeKontroller()
+    private void NeuVerbinden() {       //Делает то же самое, что и ConnectController(). Macht dasselbe wie VerbindeKontroller()
         DirectAndRawInputEnvironmentPlugin directEnv = new DirectAndRawInputEnvironmentPlugin();
         if (directEnv.isSupported()) {
             controllers = directEnv.getControllers();
@@ -59,26 +59,27 @@ public class Kontroller {
         event = new Event();
     }
 
-    private void TesteVerbindung() {
-        istVerbunden = controller.poll();       //Prüft, ob ein Kontroller Verbunden ist.
+    public void TesteVerbindung() {
+        istVerbunden = controller.poll();       //Проверяет, подключен ли контроллер. Prüft, ob ein Kontroller Verbunden ist.
         if (!istVerbunden) {
-            NeuVerbinden();     //Falls kein Kontroller verbunden ist, wird diese Methode ausgeführt.
+            NeuVerbinden();     //Если контроллер не подключен, этот метод будет выполнен. Falls kein Kontroller verbunden ist, wird diese Methode ausgeführt.
         }
 
     }
 
-    private void gamepad() {
+
+    public void KontrollerCheck() {     //Ищет, какой тип контроллера подключен, и выполняет соответствующий метод для запроса входных данных. Schaut nach welche art von controller angeschlossen ist und führt die jeweilige Methode aus zum Abfragen der Inputs.
         TesteVerbindung();
 
-        while (eventQueue.getNextEvent(event)) {    //Macht weiter so lange es Events gibt.
+        while (eventQueue.getNextEvent(event)) {    //Продолжайте, пока есть события. Macht weiter so lange es Events gibt.
 
-            Component component = event.getComponent();     //Speichert den Komponent ab der den event ausgelöst hat.
+            Component component = event.getComponent();     //Сохраняет компонент, вызвавший событие. Speichert den Komponent ab der den event ausgelöst hat.
 
             if (component != null) {
-                Component.Identifier identifier = component.getIdentifier();    //Identifiziert den Komponent.
-                float data = component.getPollData();   //Fragt nach Daten vom Komponent.
+                Component.Identifier identifier = component.getIdentifier();    //Идентифицирует компонент. Identifiziert den Komponent.
+                float data = component.getPollData();   //Запрашивает данные у компонента. Fragt nach Daten vom Komponent.
 
-                if (identifier == Component.Identifier.Axis.POV) {      //Überprüft welche Taste gedrückt wurde.
+                if (identifier == Component.Identifier.Axis.POV) {      //Проверяет, какая клавиша была нажата. Überprüft welche Taste gedrückt wurde.
                     System.out.println(data);
                     if (data == 0.25) {
                         System.out.println("oben");
@@ -142,33 +143,5 @@ public class Kontroller {
                 }
             }
         }
-    }
-
-    private void stick() {
-        TesteVerbindung();
-
-        while (eventQueue.getNextEvent(event)) {
-
-            Component component = event.getComponent();     //Speichert den Komponent ab der den event ausgelöst hat.
-
-            if (component != null) {
-                Component.Identifier identifier = component.getIdentifier();    //Identifiziert den Komponent.
-                float data = component.getPollData();   //Fragt nach Daten vom Komponent.
-                if (identifier == Component.Identifier.Button._0) {
-                    System.out.println(data);
-                }
-            }
-        }
-
-    }
-
-    public void KontrollerCheck() {     //Schaut nach welche art von controller angeschlossen ist und führt die jeweilige Methode aus zum Abfragen der Inputs.
-
-        if (controller.getType() == Controller.Type.GAMEPAD) {
-            gamepad();
-        } else if (controller.getType() == Controller.Type.STICK) {
-            stick();
-        }
-
     }
 }
