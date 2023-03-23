@@ -1,4 +1,6 @@
-package objects;
+package entity;
+
+import main.GameHandler;
 
 public class Stats extends Fabimon{
 
@@ -50,4 +52,7 @@ public class Stats extends Fabimon{
     private double element_flight = 4;
     private double element_bunny; // -,-
 
+    public Stats(GameHandler gameH) {
+        super(gameH);
+    }
 }

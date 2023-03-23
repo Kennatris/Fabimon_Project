@@ -4,17 +4,65 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.1.4">
+    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
+      <changelist_data name="Kennatris" email="tino.st.2004@gmail.com" />
+      <change afterPath="$PROJECT_DIR$/Documentation/2023.03.23/2023.03.23 [ClassDiagram].jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documentation/2023.03.23/2023.03.23 [ClassDiagram].plantuml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documentation/2023.03.23/2023.03.23 [ClassDiagram].png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documentation/diagram.uml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/main/Fabimon_Label.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/maps/world_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/saves/00_SaveTemplate.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/saves/01_save_Default.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/tiles/PLACEHOLDER.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/tiles/green.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/tiles/purple.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entity/Fabimon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entity/Stats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/EventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/UtilityTool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/objects/SuperObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/settings/Documentation/2023.03.23/2023.03.23 [ClassDiagram].jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/settings/Documentation/2023.03.23/2023.03.23 [ClassDiagram].plantuml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/settings/Documentation/2023.03.23/2023.03.23 [ClassDiagram].png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/settings/Documentation/diagram.uml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/settings/SaveCompiler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/settings/Settings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tile/Tile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_21_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_21_34__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_21_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_21_54__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_22_27__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_22_27__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_22_27__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_22_27__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_23_13__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_23_13__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_03_2023_16_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_03_2023_16_54__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_03_2023_18_45__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_03_2023_18_45__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_15_2023_9_33_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_15_2023_9_33_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Stats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/main/Fabimon_Icon_Main.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/player/Skully_down.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/player/Skully_down_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/player/Skully_left.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/player/Skully_left_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/player/Skully_right.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/player/Skully_right_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/player/Skully_up.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/player/Skully_up_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Stats.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documentation/class_diagrams.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ImageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ImageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/control/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Kontroller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/XKontroller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/settings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Entity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Fabimon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Stats.java" beforeDir="false" />
     </list>
+    <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,10 +76,13 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Kennatris &lt;tino.st.2004@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Stats.java" root0="SKIP_INSPECTION" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -44,42 +95,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/tinos/IdeaProjects/Fabimon_Project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.Stats">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Fabimon" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Stats" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Stats" />
-      <module name="Fabimon" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Stats" />
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -136,6 +180,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="V0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.1" />
+    <MESSAGE value="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>

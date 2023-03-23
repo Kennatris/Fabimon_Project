@@ -1,52 +1,462 @@
 package main;
 
+import entity.Entity;
+import entity.Player;
+import main.control.KeyHandler;
+import objects.SuperObject;
+import settings.SaveCompiler;
+import settings.Settings;
+import tile.TileManager;
 
-public class GameHandler {
-    public long timer = 0;
-    //var_delta-таймер var_delta-timer
+import javax.swing.*;
+import java.awt.*;
+
+public class GameHandler extends JPanel implements Runnable {
+    private static final long serialVersionUID = 1L;
+    // SCREEN SETTINGS
+    final int originalTileSize = 96; // 96x96 tile
+    final int scale = 1;
+
+    public final int tileSize = originalTileSize * scale; // 96x96 tile scale (zoom)
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = 12;
+    public int screenWidth = tileSize * maxScreenCol; // 96 x 16 = 1536
+    public int screenHeight = tileSize * maxScreenRow; // 96 x 12 = 1152
+
+    // WORLD SETTINGS
+    public final int worldColumns = 50;
+    public final int worldRows = 50;
+    public String map = "world_test";
+    public String save = "01_save_Default";
+    public int playerPosX;
+    public int playerPosY;
+    public boolean fullscreen;
+    public boolean keyboard = true;
+    public float musicVolume;
+    public float soundVolume;
+
+    // FPS
     int FPS = 60;
-    //Интеграция Integration
-    KeyHandler keyH = new KeyHandler();
-    Kontroller kontroller = new Kontroller();
 
-    //запустить код start the code
-    public void start_setup() {
-        //открыть новый экземпляр графического интерфейса open a new Instance of GUI
-        GUI myGUI = new GUI(true, 1152, 576);
-        myGUI.openWindow();
-        kontroller.VerbindeKontroller();
+    // SYSTEM
+    TileManager tileM = new TileManager(this, map);
+    public KeyHandler keyH = new KeyHandler();
+    Sound music = new Sound();
+    Sound se = new Sound();
+    public CollisionChecker cChecker = new CollisionChecker(this);
+    public AssetSetter aSetter = new AssetSetter(this);
+    public UI ui = new UI(this);
+    public EventHandler eHandler = new EventHandler(this);
+    Thread gameThread;
+    GUI myGUI;
+    SaveCompiler saveC = new SaveCompiler();
+    Settings settings = new Settings();
+    public boolean unsavedSetting;
 
-        //запускает внутренний дельта-таймер () starts the internal Delta-Timer ()
-        delta_timer(myGUI);
+    // ENTITY AND OBJECT
+    public Player player = new Player(this, keyH);
+    public SuperObject obj[] = new SuperObject[10];
+    public Entity npc[] = new Entity[10];
+
+    // GAME STATE
+    public int gameState;
+    public final int titleState = 0;
+    public final int playState = 1;
+    public final int pauseState = 2;
+    public final int dialogueState = 3;
+    public final int saveState = 4;
+    public final int settingState = 5;
+
+    public GameHandler() {
+
+        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setBackground(Color.black);
+        this.setDoubleBuffered(true);
+        this.addKeyListener(keyH);
+        this.setFocusable(true);
+
     }
 
-    public void delta_timer(GUI myGUI) {
-        double drawInterval = 1000000000 / FPS; //0,01666666 секунд 0.01666666 seconds
+    public void setupGame() {
+
+        // initializer
+        saveC.SaveReader(this, save);
+        myGUI = new GUI(fullscreen, screenWidth, screenHeight);
+
+        // open and config GUI
+        myGUI.frame.add(this);
+        myGUI.frame.pack();
+        myGUI.openWindow();
+
+        aSetter.setObject();
+
+        //playMusic(0);
+
+        gameState = titleState;
+
+    }
+
+    public void reSetupGame() {
+        reStartWindow();
+    }
+
+    public void reStartWindow() {
+        // close old Window
+        myGUI.closeWindow();
+        myGUI = null;
+
+        // open new Window
+        myGUI = new GUI(fullscreen, screenWidth, screenHeight);
+        if (fullscreen) {
+            myGUI.frame.setUndecorated(true); // remove title bar
+        }
+        myGUI.frame.add(this);
+        myGUI.frame.pack();
+        myGUI.openWindow();
+    }
+
+    public void startGameThread() {
+
+        gameThread = new Thread(this);
+        gameThread.start();
+
+    }
+
+    @Override
+    public void run() {
+
+        double drawInterval = 1000000000 / FPS; // 0.01666666 seconds
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
+        long timer = 0;
 
-        while (myGUI != null) {
+        while (gameThread != null) {
 
             currentTime = System.nanoTime();
+
             delta += (currentTime - lastTime) / drawInterval;
             timer += (currentTime - lastTime);
             lastTime = currentTime;
 
             if (delta >= 1) {
-                //код для обновления материала code to update stuff
-                // ...
-
+                // 1 UPDATE: update information such as character positions
                 update();
+
+                // 2 DRAW: draw the screen with the updated information
+                repaint();
+
                 delta--;
             }
 
+            if (timer >= 1000000000) {
+                timer = 0;
+            }
+
         }
+
     }
 
     public void update() {
 
-            kontroller.KontrollerCheck();
+        // fullscreen
+        if (keyH.f12Pressed) {
+            fullscreen = !fullscreen;
+            reStartWindow();
+
+            keyH.f12Pressed = false;
+        }
+
+        if (gameState == playState) {
+
+            // PLAYER
+            player.update();
+
+        }
+        if (gameState == pauseState) {
+            // do-nothing
+        }
+        if (gameState == titleState) {
+
+            // SELECTION
+            // MOVE CURSOR
+            if (keyH.wPressed == true || keyH.sPressed == true || keyH.upPressed == true || keyH.downPressed == true) {
+
+                if (keyH.wPressed == true || keyH.upPressed == true) {
+                    switch (ui.commandNum) {
+
+                        case 0:
+                            ui.commandNum = 3;
+                            break;
+                        case 1:
+                            ui.commandNum = 0;
+                            break;
+                        case 2:
+                            ui.commandNum = 1;
+                            break;
+                        case 3:
+                            ui.commandNum = 2;
+                            break;
+
+                    }
+
+                    keyH.wPressed = false;
+                    keyH.upPressed = false;
+
+                } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                    switch (ui.commandNum) {
+
+                        case 0:
+                            ui.commandNum = 1;
+                            break;
+                        case 1:
+                            ui.commandNum = 2;
+                            break;
+                        case 2:
+                            ui.commandNum = 3;
+                            break;
+                        case 3:
+                            ui.commandNum = 0;
+                            break;
+
+                    }
+
+                    keyH.sPressed = false;
+                    keyH.downPressed = false;
+                }
+            }
+            // SELECT
+                if (keyH.spacePressed == true || keyH.enterPressed == true) {
+
+                    switch (ui.commandNum) {
+
+                        case 0: // load game
+                            gameState = playState;
+                            break;
+                        case 1: // new game
+                            gameState = playState;
+                            break;
+                        case 2: // menu
+                            gameState = settingState;
+                            break;
+                        case 3: // quit
+                            System.exit(0);
+                            break;
+                    }
+
+                    ui.commandNum = 0;
+                    keyH.spacePressed = false;
+                    keyH.enterPressed = false;
+            }
+        } // Bindings for gameState
+
+        if (gameState == settingState) {
+            // SELECTION
+            // MOVE CURSOR
+            if (keyH.wPressed == true || keyH.sPressed == true || keyH.upPressed == true || keyH.downPressed == true) {
+
+                if (keyH.wPressed == true || keyH.upPressed == true) {
+                    switch (ui.commandNum) {
+
+                        case 0:
+                            ui.commandNum = 3;
+                            break;
+                        case 1:
+                            ui.commandNum = 0;
+                            break;
+                        case 2:
+                            ui.commandNum = 1;
+                            break;
+                        case 3:
+                            ui.commandNum = 2;
+                            break;
+
+                    }
+
+                    keyH.wPressed = false;
+                    keyH.upPressed = false;
+
+                } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                    switch (ui.commandNum) {
+
+                        case 0:
+                            ui.commandNum = 1;
+                            break;
+                        case 1:
+                            ui.commandNum = 2;
+                            break;
+                        case 2:
+                            ui.commandNum = 3;
+                            break;
+                        case 3:
+                            ui.commandNum = 0;
+                            break;
+
+                    }
+
+                    keyH.sPressed = false;
+                    keyH.downPressed = false;
+                }
+            }
+
+            switch (ui.settingScreenValue) {
+                case 0:
+                    // SELECT
+                    if (keyH.spacePressed == true || keyH.enterPressed == true) {
+                        switch (ui.commandNum) {
+                            case 0: // Video
+                                ui.settingScreenValue = 1;
+                                ui.commandNum = 0;
+                                break;
+                            case 1: // Music
+                                ui.settingScreenValue = 2;
+                                ui.commandNum = 0;
+                                break;
+                            case 2: // Controller / Keyboard
+                                keyboard = !keyboard;
+                                unsavedSetting = true;
+                                break;
+                            case 3:
+                                gameState = titleState;
+                                ui.commandNum = 0;
+                                unsavedSetting = false;
+                                settings.installSettings(this, fullscreen, myGUI.frame.getWidth(), myGUI.frame.getHeight(), player.worldX, player.worldY, keyboard, musicVolume, soundVolume);
+                                break;
+                        }
+
+                        keyH.spacePressed = false;
+                        keyH.enterPressed = false;
+                    }
+
+                    if (keyH.leftPressed == true || keyH.rightPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
+                        if (ui.commandNum == 2) {
+                            keyboard = !keyboard;
+                        }
+
+                        unsavedSetting = true;
+                        keyH.aPressed = false;
+                        keyH.dPressed = false;
+                        keyH.leftPressed = false;
+                        keyH.rightPressed = false;
+                    }
+                    break;
+                case 1: // Video
+                    if (keyH.spacePressed == true || keyH.enterPressed == true) {
+                        switch (ui.commandNum) {
+                            case 0: // fullscreen
+                                fullscreen = !fullscreen;
+                                reStartWindow();
+                                unsavedSetting = true;
+                                break;
+                            case 1: // empty
+                                break;
+                            case 2: // empty
+                                break;
+                            case 3:
+                                ui.settingScreenValue = 0;
+                                break;
+                        }
+
+                        ui.commandNum = 0;
+                        keyH.spacePressed = false;
+                        keyH.enterPressed = false;
+                    }
+                    break;
+                case 2: // Sound
+                    if (keyH.spacePressed == true || keyH.enterPressed == true) {
+                        switch (ui.commandNum) {
+                            case 0: // musicVolume
+                                break;
+                            case 1: // soundVolume
+                                break;
+                            case 2: // back
+                                ui.settingScreenValue = 0;
+                                break;
+                        }
+
+                        ui.commandNum = 0;
+                        keyH.spacePressed = false;
+                        keyH.enterPressed = false;
+                    }
+
+                    if (keyH.leftPressed == true || keyH.rightPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                if ((keyH.aPressed == true || keyH.leftPressed == true) && musicVolume > 0f) {
+                                    musicVolume = musicVolume - 0.1f;
+                                } else if ((keyH.dPressed == true || keyH.rightPressed == true) && musicVolume < 2f) {
+                                    musicVolume = musicVolume + 0.1f;
+                                }
+                                break;
+                            case 1:
+                                if ((keyH.aPressed == true || keyH.leftPressed == true) && soundVolume > 0f) {
+                                    soundVolume = soundVolume - 0.1f;
+                                } else if ((keyH.dPressed == true || keyH.rightPressed == true) && soundVolume < 2f) {
+                                    soundVolume = soundVolume + 0.1f;
+                                }
+                                break;
+                        }
+
+                        unsavedSetting = true;
+                        keyH.leftPressed = false;
+                        keyH.rightPressed = false;
+                    }
+                    break;
+
+            }
+        }
+    }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2 = (Graphics2D)g;
+
+        // TITLE SCREEN
+        if (gameState == titleState || gameState == settingState) {
+            ui.draw(g2);
+        }
+
+        // OTHERS
+        else {
+            // TILE
+            tileM.draw(g2);
+
+            // OBJECT
+            for(int i = 0; i < obj.length; i++) {
+                if(obj[i] != null) {
+                    obj[i].draw(g2, this);
+                }
+            }
+
+            // PLAYER
+            player.draw(g2);
+
+            // UI
+            ui.draw(g2);
+        }
+
+        g2.dispose();
+    }
+
+    public void playMusic(int i) {
+
+        music.setFile(i);
+        music.play();
+        music.loop();
 
     }
+
+    public void stopMusic() {
+
+        music.stop();
+
+    }
+
+    public void playSE(int i) {
+
+        se.setFile(i);
+        se.play();
+
+    }
+
 }

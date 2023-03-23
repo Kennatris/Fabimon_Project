@@ -1,0 +1,9 @@
+fullscreen: boolean
+screenWidth: int
+screenHeight: int
+playerPosX: int
+playerPosY: int
+keyboard: boolean
+musicVolume: float
+soundVolume: float
+
