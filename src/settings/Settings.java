@@ -35,8 +35,7 @@ public class Settings {
     }
 
     public void uploadSettings(GameHandler gameH) {
-
-        // upload VARS
+        
         gameH.fullscreen = fullscreen_s;
         gameH.screenWidth = screenWidth_s;
         gameH.screenHeight = screenHeight_s;

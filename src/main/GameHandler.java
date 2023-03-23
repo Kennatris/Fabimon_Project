@@ -27,7 +27,7 @@ public class GameHandler extends JPanel implements Runnable {
     public final int worldColumns = 50;
     public final int worldRows = 50;
     public String map = "world_test";
-    public String save = "01_save_Default";
+    public String save = "save_Default";
     public int playerPosX;
     public int playerPosY;
     public boolean fullscreen;
@@ -35,6 +35,9 @@ public class GameHandler extends JPanel implements Runnable {
     public float musicVolume;
     public float soundVolume;
 
+    // random Vars
+    public boolean debugMode;
+    public boolean unsavedSetting;
     // FPS
     int FPS = 60;
 
@@ -51,7 +54,6 @@ public class GameHandler extends JPanel implements Runnable {
     GUI myGUI;
     SaveCompiler saveC = new SaveCompiler();
     Settings settings = new Settings();
-    public boolean unsavedSetting;
 
     // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
@@ -78,12 +80,12 @@ public class GameHandler extends JPanel implements Runnable {
     }
 
     public void setupGame() {
-
         // initializer
         saveC.SaveReader(this, save);
         myGUI = new GUI(fullscreen, screenWidth, screenHeight);
 
         // open and config GUI
+        myGUI.frame.setUndecorated(true);
         myGUI.frame.add(this);
         myGUI.frame.pack();
         myGUI.openWindow();

@@ -4,6 +4,7 @@ import entity.Player;
 import main.GameHandler;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 
 public class SaveCompiler {
@@ -19,11 +20,14 @@ public class SaveCompiler {
     public void SaveReader(GameHandler gameH, String fileName) {
 
         try {
+            File f = new File("res/saves/save_options.txt");
+            if (f.exists()) {
+                fileName = "save_options";
+            }
             String fileLocation = "res/saves/" + fileName + ".txt";
 
             FileReader fr = new FileReader(fileLocation);
             BufferedReader br = new BufferedReader(fr);
-
             int parameter = 0; // column and stat at the same time
             String line;
 
@@ -87,15 +91,26 @@ public class SaveCompiler {
             }
 
         } catch(Exception e) {
-            System.out.println(e);
+            if (gameH.debugMode) {
+                System.out.println("Error-ReadFile: " + e);
+            }
         }
 
-        settings.installSettings(gameH, fullscreen_us, screenWidth_us, screenHeight_us, playerPosX_us, playerPosY_us, keyboard_us, musicVolume_us, soundVolume_us);
+            settings.installSettings(gameH, fullscreen_us, screenWidth_us, screenHeight_us, playerPosX_us, playerPosY_us, keyboard_us, musicVolume_us, soundVolume_us);
 
     }
 
     public void SaveWriter() {
-
+        /*
+        try () {
+            FileWriter fw = new FileWriter();
+            BufferedWriter bw = new BufferedWriter();
+        } catch (Exception e) {
+            if (gameH.debugMode) {
+                System.out.println("Error-WriteFile: " + e);
+            }
+        }
+         */
     }
 
 }
