@@ -3,9 +3,7 @@ package settings;
 import entity.Player;
 import main.GameHandler;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 
 public class SaveCompiler {
     Settings settings = new Settings();
@@ -20,9 +18,14 @@ public class SaveCompiler {
     public void SaveReader(GameHandler gameH, String fileName) {
 
         try {
-            File f = new File("res/saves/save_options.txt");
-            if (f.exists()) {
-                fileName = "save_options";
+            File f = new File("res/saves/" + fileName + ".txt");
+
+            if (gameH.debugMode) {
+                System.out.println(f.getPath());
+            }
+
+            if (f.exists() == false) {
+                fileName = "save_Default";
             }
             String fileLocation = "res/saves/" + fileName + ".txt";
 
@@ -100,17 +103,50 @@ public class SaveCompiler {
 
     }
 
-    public void SaveWriter() {
-        /*
-        try () {
-            FileWriter fw = new FileWriter();
-            BufferedWriter bw = new BufferedWriter();
+    public void SaveWriter(GameHandler gameH, String fileName) {
+
+        String fileLocation = "res/saves/" + fileName + ".txt";
+        File f = new File(fileLocation);
+
+        try {
+            if (f.exists()) {
+                FileWriter fw = new FileWriter(fileLocation);
+                BufferedWriter bw = new BufferedWriter(fw);
+
+                bw.write(String.valueOf(gameH.fullscreen));
+                bw.newLine();
+                bw.write(String.valueOf(gameH.screenWidth));
+                bw.newLine();
+                bw.write(String.valueOf(gameH.screenHeight));
+                bw.newLine();
+                bw.write(String.valueOf(gameH.playerPosX));
+                bw.newLine();
+                bw.write(String.valueOf(gameH.playerPosY));
+                bw.newLine();
+                bw.write(String.valueOf(gameH.keyboard));
+                bw.newLine();
+                bw.write(String.valueOf(gameH.musicVolume));
+                bw.newLine();
+                bw.write(String.valueOf(gameH.soundVolume));
+                bw.newLine();
+
+                bw.close();
+
+                if (gameH.debugMode) {
+                    System.out.println("FileLocation: " + fileLocation);
+                    System.out.println("Data was Written");
+                }
+
+            } else {
+                System.out.println("Error-WriteFile: ");
+            }
+
         } catch (Exception e) {
             if (gameH.debugMode) {
                 System.out.println("Error-WriteFile: " + e);
             }
         }
-         */
+
     }
 
 }

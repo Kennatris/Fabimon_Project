@@ -12,6 +12,8 @@ public class UI {
     public int textPos = 0;
     public int commandNum = 0;
     public int settingScreenValue = 0;
+    public Color backgroundColor = new Color(47, 45, 45);
+
     // METHODS
     public UI(GameHandler gameH) {
 
@@ -37,19 +39,16 @@ public class UI {
         g2.setColor(Color.white);
 
         // TITLE STATE
-
         if (gameH.gameState == gameH.titleState) {
             drawTitleScreen();
         }
 
         // PLAY STATE
-
         if (gameH.gameState == gameH.playState) {
 
         }
 
         // PAUSE STATE
-
         if (gameH.gameState == gameH.pauseState) {
             drawPauseScreen();
         }
@@ -63,10 +62,15 @@ public class UI {
         if (gameH.gameState == gameH.settingState) {
             drawSettingScreen();
         }
+
+        // SAVE STATE
+        if (gameH.gameState == gameH.saveState) {
+            drawSaveScreen();
+        }
     }
     public void drawTitleScreen() {
 
-        g2.setColor(new Color(47, 45, 45));
+        g2.setColor(backgroundColor);
         g2.fillRect(0, 0, gameH.myGUI.frame.getWidth(), gameH.myGUI.frame.getHeight());
 
         String text;
@@ -136,7 +140,7 @@ public class UI {
     }
     public void drawSettingScreen() {
 
-        g2.setColor(new Color(47, 45, 45));
+        g2.setColor(backgroundColor);
         g2.fillRect(0, 0, gameH.myGUI.frame.getWidth(), gameH.myGUI.frame.getHeight());
 
         String text;
@@ -216,13 +220,16 @@ public class UI {
 
             y += getYforText(text) + (gameH.myGUI.frame.getHeight()/60);
             if (gameH.unsavedSetting) {
+                g2.setColor(Color.red);
                 text = "SAVE AND BACK";
             } else {
+                g2.setColor(Color.white);
                 text = "BACK";
             }
             textPos = 3;
             x = getXforCenteredText(text);
             g2.drawString(text, x, y);
+            g2.setColor(Color.white);
             if(commandNum == textPos) {
                 g2.drawString(">", x-gameH.tileSize, y);
             }
@@ -257,7 +264,7 @@ public class UI {
             }
 
             y += getYforText(text) + (gameH.myGUI.frame.getHeight()/60);
-            text = "SOUND";
+            text = "";
             textPos = 1;
             x = getXforCenteredText(text);
             g2.drawString(text, x, y);
@@ -379,6 +386,91 @@ public class UI {
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
         g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+
+    }
+    public void drawSaveScreen() {
+        g2.setColor(backgroundColor);
+        g2.fillRect(0, 0, gameH.myGUI.frame.getWidth(), gameH.myGUI.frame.getHeight());
+
+        String text;
+        int x = 0;
+        int y = 0;
+
+        // set Color
+        g2.setColor(Color.white);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 100F));
+        text = "SAVE SELECT";
+        x = getXforCenteredText(text);
+        y = gameH.myGUI.frame.getHeight()/5;
+
+        g2.drawString(text, x, y);
+
+        // MENU
+        int texts = 4;
+        double fontValue = ((gameH.myGUI.frame.getHeight() / 2)-((texts+1)*(gameH.myGUI.frame.getHeight()/25)))/texts; // How big the Font is compared to the Screen
+        float fontSize = Float.parseFloat(String.valueOf(fontValue));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, fontSize));
+        text = gameH.fileIndex[0].toUpperCase();
+        textPos = 0;
+        x = getXforCenteredText(text);
+        y = gameH.myGUI.frame.getHeight()/2 + gameH.myGUI.frame.getHeight()/25; // middle of the Screen
+        if (gameH.save == gameH.fileIndex[0]) {
+            g2.setColor(Color.green);
+        } else {
+            g2.setColor(Color.white);
+        }
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
+        if(commandNum == textPos) {
+            g2.drawString(">", x-gameH.tileSize, y);
+        }
+
+        y += getYforText(text) + (gameH.myGUI.frame.getHeight()/60);
+        text = gameH.fileIndex[1].toUpperCase();
+        textPos = 1;
+        x = getXforCenteredText(text);
+        if (gameH.save == gameH.fileIndex[1]) {
+            g2.setColor(Color.green);
+        } else {
+            g2.setColor(Color.white);
+        }
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
+        if(commandNum == textPos) {
+            g2.drawString(">", x-gameH.tileSize, y);
+        }
+
+        y += getYforText(text) + (gameH.myGUI.frame.getHeight()/60);
+        text = gameH.fileIndex[2].toUpperCase();
+        textPos = 2;
+        x = getXforCenteredText(text);
+        if (gameH.save == gameH.fileIndex[2]) {
+            g2.setColor(Color.green);
+        } else {
+            g2.setColor(Color.white);
+        }
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
+        if(commandNum == textPos) {
+            g2.drawString(">", x-gameH.tileSize, y);
+        }
+
+        y += getYforText(text) + (gameH.myGUI.frame.getHeight()/60);
+        if (gameH.unsavedSetting) {
+            g2.setColor(Color.red);
+            text = "SAVE AND BACK";
+        } else {
+            g2.setColor(Color.white);
+            text = "BACK";
+        }
+        textPos = 3;
+        x = getXforCenteredText(text);
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
+        if(commandNum == textPos) {
+            g2.drawString(">", (int) (x - fontValue), y);
+        }
 
     }
     public int getXforCenteredText(String text) {

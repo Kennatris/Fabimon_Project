@@ -27,7 +27,8 @@ public class GameHandler extends JPanel implements Runnable {
     public final int worldColumns = 50;
     public final int worldRows = 50;
     public String map = "world_test";
-    public String save = "save_Default";
+    public String[] fileIndex = {"save_one", "save_two", "save_three"};
+    public String save = fileIndex[0];
     public int playerPosX;
     public int playerPosY;
     public boolean fullscreen;
@@ -36,7 +37,7 @@ public class GameHandler extends JPanel implements Runnable {
     public float soundVolume;
 
     // random Vars
-    public boolean debugMode;
+    public boolean debugMode = true;
     public boolean unsavedSetting;
     // FPS
     int FPS = 60;
@@ -85,7 +86,9 @@ public class GameHandler extends JPanel implements Runnable {
         myGUI = new GUI(fullscreen, screenWidth, screenHeight);
 
         // open and config GUI
-        myGUI.frame.setUndecorated(true);
+        if (fullscreen) {
+            myGUI.frame.setUndecorated(true);
+        }
         myGUI.frame.add(this);
         myGUI.frame.pack();
         myGUI.openWindow();
@@ -233,7 +236,7 @@ public class GameHandler extends JPanel implements Runnable {
                     switch (ui.commandNum) {
 
                         case 0: // load game
-                            gameState = playState;
+                            gameState = saveState;
                             break;
                         case 1: // new game
                             gameState = playState;
@@ -257,48 +260,123 @@ public class GameHandler extends JPanel implements Runnable {
             // MOVE CURSOR
             if (keyH.wPressed == true || keyH.sPressed == true || keyH.upPressed == true || keyH.downPressed == true) {
 
-                if (keyH.wPressed == true || keyH.upPressed == true) {
-                    switch (ui.commandNum) {
+                switch (ui.settingScreenValue) {
+                    case 0:
+                        if (keyH.wPressed == true || keyH.upPressed == true) {
+                            switch (ui.commandNum) {
 
-                        case 0:
-                            ui.commandNum = 3;
-                            break;
-                        case 1:
-                            ui.commandNum = 0;
-                            break;
-                        case 2:
-                            ui.commandNum = 1;
-                            break;
-                        case 3:
-                            ui.commandNum = 2;
-                            break;
+                                case 0:
+                                    ui.commandNum = 3;
+                                    break;
+                                case 1:
+                                    ui.commandNum = 0;
+                                    break;
+                                case 2:
+                                    ui.commandNum = 1;
+                                    break;
+                                case 3:
+                                    ui.commandNum = 2;
+                                    break;
 
-                    }
+                            }
 
-                    keyH.wPressed = false;
-                    keyH.upPressed = false;
+                            keyH.wPressed = false;
+                            keyH.upPressed = false;
 
-                } else if (keyH.sPressed == true || keyH.downPressed == true) {
-                    switch (ui.commandNum) {
+                        } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                            switch (ui.commandNum) {
 
-                        case 0:
-                            ui.commandNum = 1;
-                            break;
-                        case 1:
-                            ui.commandNum = 2;
-                            break;
-                        case 2:
-                            ui.commandNum = 3;
-                            break;
-                        case 3:
-                            ui.commandNum = 0;
-                            break;
+                                case 0:
+                                    ui.commandNum = 1;
+                                    break;
+                                case 1:
+                                    ui.commandNum = 2;
+                                    break;
+                                case 2:
+                                    ui.commandNum = 3;
+                                    break;
+                                case 3:
+                                    ui.commandNum = 0;
+                                    break;
 
-                    }
+                            }
 
-                    keyH.sPressed = false;
-                    keyH.downPressed = false;
+                            keyH.sPressed = false;
+                            keyH.downPressed = false;
+                        }
+                        break;
+                    case 1:
+                        if (keyH.wPressed == true || keyH.upPressed == true) {
+                            switch (ui.commandNum) {
+
+                                case 0:
+                                    ui.commandNum = 3;
+                                    break;
+                                case 3:
+                                    ui.commandNum = 0;
+                                    break;
+
+                            }
+
+                            keyH.wPressed = false;
+                            keyH.upPressed = false;
+
+                        } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                            switch (ui.commandNum) {
+
+                                case 0:
+                                    ui.commandNum = 3;
+                                    break;
+                                case 3:
+                                    ui.commandNum = 0;
+                                    break;
+
+                            }
+
+                            keyH.sPressed = false;
+                            keyH.downPressed = false;
+                        }
+                        break;
+                    case 2:
+                        if (keyH.wPressed == true || keyH.upPressed == true) {
+                            switch (ui.commandNum) {
+
+                                case 0:
+                                    ui.commandNum = 2;
+                                    break;
+                                case 1:
+                                    ui.commandNum = 0;
+                                    break;
+                                case 2:
+                                    ui.commandNum = 1;
+                                    break;
+
+                            }
+
+                            keyH.wPressed = false;
+                            keyH.upPressed = false;
+
+                        } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                            switch (ui.commandNum) {
+
+                                case 0:
+                                    ui.commandNum = 1;
+                                    break;
+                                case 1:
+                                    ui.commandNum = 2;
+                                    break;
+                                case 2:
+                                    ui.commandNum = 0;
+                                    break;
+
+                            }
+
+                            keyH.sPressed = false;
+                            keyH.downPressed = false;
+                        }
+                        break;
                 }
+
             }
 
             switch (ui.settingScreenValue) {
@@ -323,6 +401,7 @@ public class GameHandler extends JPanel implements Runnable {
                                 ui.commandNum = 0;
                                 unsavedSetting = false;
                                 settings.installSettings(this, fullscreen, myGUI.frame.getWidth(), myGUI.frame.getHeight(), player.worldX, player.worldY, keyboard, musicVolume, soundVolume);
+                                saveC.SaveWriter(this,save);
                                 break;
                         }
 
@@ -407,6 +486,85 @@ public class GameHandler extends JPanel implements Runnable {
 
             }
         }
+
+        if (gameState == saveState) {
+            // SELECTION
+            // MOVE CURSOR
+            if (keyH.wPressed == true || keyH.sPressed == true || keyH.upPressed == true || keyH.downPressed == true) {
+
+                if (keyH.wPressed == true || keyH.upPressed == true) {
+                    switch (ui.commandNum) {
+
+                        case 0:
+                            ui.commandNum = 3;
+                            break;
+                        case 1:
+                            ui.commandNum = 0;
+                            break;
+                        case 2:
+                            ui.commandNum = 1;
+                            break;
+                        case 3:
+                            ui.commandNum = 2;
+                            break;
+
+                    }
+
+                    keyH.wPressed = false;
+                    keyH.upPressed = false;
+
+                } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                    switch (ui.commandNum) {
+
+                        case 0:
+                            ui.commandNum = 1;
+                            break;
+                        case 1:
+                            ui.commandNum = 2;
+                            break;
+                        case 2:
+                            ui.commandNum = 3;
+                            break;
+                        case 3:
+                            ui.commandNum = 0;
+                            break;
+                    }
+
+                    keyH.sPressed = false;
+                    keyH.downPressed = false;
+                }
+            }
+            // SELECT
+            if (keyH.spacePressed == true || keyH.enterPressed == true) {
+
+                switch (ui.commandNum) {
+
+                    case 0: // save_one
+                        save = fileIndex[0];
+                        unsavedSetting = true;
+                        break;
+                    case 1: // save_two
+                        save = fileIndex[1];
+                        unsavedSetting = true;
+                        break;
+                    case 2: // save_three
+                        save = fileIndex[2];
+                        unsavedSetting = true;
+                        break;
+                    case 3: // back
+                        if (unsavedSetting) {
+                            saveC.SaveReader(this, save);
+                            reStartWindow();
+                        }
+                        gameState = titleState;
+                        ui.commandNum = 0;
+                        break;
+                }
+
+                keyH.spacePressed = false;
+                keyH.enterPressed = false;
+            }
+        } // Bindings for gameState
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
