@@ -411,10 +411,10 @@ public class GameHandler extends JPanel implements Runnable {
 
                     if (keyH.leftPressed == true || keyH.rightPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
                         if (ui.commandNum == 2) {
+                            unsavedSetting = true;
                             keyboard = !keyboard;
                         }
 
-                        unsavedSetting = true;
                         keyH.aPressed = false;
                         keyH.dPressed = false;
                         keyH.leftPressed = false;
@@ -553,6 +553,7 @@ public class GameHandler extends JPanel implements Runnable {
                         break;
                     case 3: // back
                         if (unsavedSetting) {
+                            unsavedSetting = false;
                             saveC.SaveReader(this, save);
                             reStartWindow();
                         }

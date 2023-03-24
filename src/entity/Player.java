@@ -4,6 +4,9 @@ package entity;
 import main.GameHandler;
 import main.ImageHandler;
 import main.control.KeyHandler;
+import main.GUI;
+import settings.SaveCompiler;
+import settings.Settings;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,14 +16,13 @@ public class Player extends Entity{
     KeyHandler keyH;
     ImageHandler imageH = new ImageHandler();
 
-    public final int screenX;
-    public final int screenY;
+    public int screenX;
+    public int screenY;
     int standCounter = 0;
 
     public Player(GameHandler gameH, KeyHandler keyH) {
 
         super(gameH);
-
         this.keyH = keyH;
 
         screenX = gameH.screenWidth/2 - (gameH.tileSize/2);
