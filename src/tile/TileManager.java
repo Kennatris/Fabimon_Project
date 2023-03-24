@@ -46,15 +46,15 @@ public class TileManager {
         setup(9, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
         // PLACEHOLDER
 
-        setup(10, "tiles","green","png", gameH.tileSize, gameH.tileSize,false);
-        setup(11, "tiles","purple","png", gameH.tileSize, gameH.tileSize,true);
+        setup(10, "tiles","grass","png", gameH.tileSize, gameH.tileSize,false);
+        setup(11, "tiles","gravel","png", gameH.tileSize, gameH.tileSize,true);
 
     }
 
-    public void setup(int index, String imageLocation, String imageName, String imageDataTyp, int refactoredWidth, int refactoredHeithg,boolean collision) {
+    public void setup(int index, String imageLocation, String imageName, String imageDataTyp, int refactoredWidth, int refactoredHeight, boolean collision) {
 
         tile [index] = new Tile();
-        imageH.ImageInitializer(index, imageLocation, imageName, imageDataTyp, refactoredWidth, refactoredHeithg);
+        imageH.ImageInitializer(index, imageLocation, imageName, imageDataTyp, refactoredWidth, refactoredHeight);
         tile [index].image = imageH.image[index];
         tile [index].collision = collision;
 
@@ -118,10 +118,12 @@ public class TileManager {
             int screenX = worldX - gameH.player.worldX + gameH.player.screenX;
             int screenY = worldY - gameH.player.worldY + gameH.player.screenY;
 
-            if     (worldX + gameH.tileSize > gameH.player.worldX - gameH.player.screenX &&
-                    worldX - gameH.tileSize < gameH.player.worldX + gameH.player.screenX &&
-                    worldY + gameH.tileSize > gameH.player.worldY - gameH.player.screenY &&
-                    worldY - gameH.tileSize < gameH.player.worldY + gameH.player.screenY) {
+            //(worldX + gameH.tileSize > gameH.player.worldX - gameH.player.screenX &&
+            //                    worldX - gameH.tileSize < gameH.player.worldX + gameH.player.screenX &&
+            //                    worldY + gameH.tileSize > gameH.player.worldY - gameH.player.screenY &&
+            //                    worldY - gameH.tileSize < gameH.player.worldY + gameH.player.screenY)
+
+            if (true) {
 
                 g2.drawImage(tile[tileNum].image, screenX, screenY, null);
 

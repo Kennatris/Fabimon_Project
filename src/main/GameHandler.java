@@ -57,7 +57,7 @@ public class GameHandler extends JPanel implements Runnable {
     Settings settings = new Settings();
 
     // ENTITY AND OBJECT
-    public Player player = new Player(this, keyH);
+    public Player player;
     public SuperObject obj[] = new SuperObject[10];
     public Entity npc[] = new Entity[10];
 
@@ -92,6 +92,8 @@ public class GameHandler extends JPanel implements Runnable {
         myGUI.frame.add(this);
         myGUI.frame.pack();
         myGUI.openWindow();
+
+        player = new Player(this, keyH);
 
         aSetter.setObject();
 
@@ -239,6 +241,7 @@ public class GameHandler extends JPanel implements Runnable {
                             gameState = saveState;
                             break;
                         case 1: // new game
+                            saveC.SaveReader(this, "save_Default");
                             gameState = playState;
                             break;
                         case 2: // menu

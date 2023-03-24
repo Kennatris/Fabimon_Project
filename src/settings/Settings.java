@@ -39,8 +39,8 @@ public class Settings {
         gameH.fullscreen = fullscreen_s;
         gameH.screenWidth = screenWidth_s;
         gameH.screenHeight = screenHeight_s;
-        gameH.playerPosX = playerPosX_s;
-        gameH.playerPosY = playerPosY_s;
+        gameH.playerPosX = playerPosX_s * gameH.tileSize;
+        gameH.playerPosY = playerPosY_s * gameH.tileSize;
         gameH.keyboard = keyboard_s;
         gameH.musicVolume = musicVolume_s;
         gameH.soundVolume = soundVolume_s;

@@ -4,9 +4,6 @@ package entity;
 import main.GameHandler;
 import main.ImageHandler;
 import main.control.KeyHandler;
-import main.GUI;
-import settings.SaveCompiler;
-import settings.Settings;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,15 +23,15 @@ public class Player extends Entity{
         this.keyH = keyH;
 
         screenX = gameH.screenWidth/2 - (gameH.tileSize/2);
-        screenY = gameH.screenHeight/2 - (gameH.tileSize/2);
+        screenY = gameH.screenHeight/3 - (gameH.tileSize/2);
 
         solidArea = new Rectangle();
         solidArea.x = gameH.tileSize/2;
         solidArea.y = gameH.tileSize-(gameH.tileSize/8);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = gameH.tileSize/3; // hitbox width
-        solidArea.height = gameH.tileSize/3; // hitbox height
+        solidArea.width = gameH.tileSize/2; // hitbox width
+        solidArea.height = gameH.tileSize/2; // hitbox height
 
         setDefaultValues();
         getPlayerImage();
