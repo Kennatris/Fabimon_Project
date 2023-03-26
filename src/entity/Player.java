@@ -27,11 +27,11 @@ public class Player extends Entity{
 
         solidArea = new Rectangle();
         solidArea.x = gameH.tileSize/2;
-        solidArea.y = gameH.tileSize-(gameH.tileSize/8);
+        solidArea.y = gameH.tileSize/2;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = gameH.tileSize/2; // hitbox width
-        solidArea.height = gameH.tileSize/2; // hitbox height
+        solidArea.width = gameH.tileSize/3; // hitbox width
+        solidArea.height = gameH.tileSize/3; // hitbox height
 
         setDefaultValues();
         getPlayerImage();
