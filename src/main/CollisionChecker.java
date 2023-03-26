@@ -235,11 +235,11 @@ public class CollisionChecker {
                 }
                 break;
         }
+
         entity.solidArea.x = entity.solidAreaDefaultX;
         entity.solidArea.y = entity.solidAreaDefaultY;
         gameH.player.solidArea.x = gameH.player.solidAreaDefaultX;
         gameH.player.solidArea.y = gameH.player.solidAreaDefaultY;
-
     }
 
 }

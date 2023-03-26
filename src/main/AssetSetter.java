@@ -1,5 +1,7 @@
 package main;
 
+import objects.Object_arenaPortal;
+
 public class AssetSetter {
 
     GameHandler gameH;
@@ -8,7 +10,10 @@ public class AssetSetter {
         this.gameH = gameH;
     }
     public void setObject() {
-
+        // arenaPortal
+        gameH.obj[0] = new Object_arenaPortal(gameH);
+        gameH.obj[0].worldX = gameH.tileSize*24;
+        gameH.obj[0].worldY = gameH.tileSize*17;
     }
 
     public void setNPC() {

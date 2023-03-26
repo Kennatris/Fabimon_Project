@@ -23,8 +23,13 @@ public class EventHandler {
     public void checkEvent() {
         
         /* Example
-        if(hit(INWICHCOLUMN_MAP, INWICHROW_MAP, requiredDIRECTION) == true) {Method(gp.dialogueState);}
+        if(hit(INWICHCOLUMN_MAP, INWICHROW_MAP, requiredDIRECTION) == true) {Method();}
         */
+        if(hit(18, 25, "any") == true) {
+            //gameH.map = "world_test.txt";
+            //gameH.tileM.loadMap(gameH.map);
+            System.out.println("hit");
+        }
 
     }
 

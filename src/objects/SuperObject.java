@@ -1,6 +1,7 @@
 package objects;
 
 import main.GameHandler;
+import main.ImageHandler;
 import main.UtilityTool;
 
 import java.awt.*;
@@ -8,13 +9,14 @@ import java.awt.image.BufferedImage;
 
 public class SuperObject {
 
-    public BufferedImage image, image2, image3;
+    public BufferedImage image;
     public String name;
     public boolean collision = false;
     public int worldX, worldY;
-    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    public Rectangle solidArea = new Rectangle(0, 0, 96, 96);
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
+    ImageHandler imageH = new ImageHandler();
     UtilityTool uTool = new UtilityTool();
 
     public void draw(Graphics2D g2, GameHandler gameH) {
