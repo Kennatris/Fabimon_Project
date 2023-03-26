@@ -26,7 +26,7 @@ public class GameHandler extends JPanel implements Runnable {
     // WORLD SETTINGS
     public final int worldColumns = 50;
     public final int worldRows = 50;
-    public String map = "world_test";
+    public String map = "map_test_1";
     public String[] fileIndex = {"save_one", "save_two", "save_three"};
     public String save = fileIndex[0];
     public int playerPosX;

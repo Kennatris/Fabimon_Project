@@ -47,7 +47,10 @@ public class TileManager {
         // PLACEHOLDER
 
         setup(10, "tiles","grass","png", gameH.tileSize, gameH.tileSize,false);
-        setup(11, "tiles","gravel","png", gameH.tileSize, gameH.tileSize,true);
+        setup(11, "tiles","gravel","png", gameH.tileSize, gameH.tileSize,false);
+        setup(12, "tiles","grass_flowers","png", gameH.tileSize, gameH.tileSize,true);
+        setup(13, "tiles","water","png", gameH.tileSize, gameH.tileSize,true);
+        setup(14, "tiles","sand","png", gameH.tileSize, gameH.tileSize,true);
 
     }
 

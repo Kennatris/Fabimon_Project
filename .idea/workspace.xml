@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.3.1" />
+    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.3.1">
+      <change afterPath="$PROJECT_DIR$/res/maps/map_test_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/tiles/grass_flowers.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/tiles/sand.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/tiles/water.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_Default.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_Default.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_four.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_four.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_one.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_one.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_three.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_three.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_two.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_two.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
+    </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +76,7 @@
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\maps" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\tiles" />
     </key>
   </component>
@@ -121,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679654032330</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="V0.9.3.1">
+      <created>1679654075507</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679654075507</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
