@@ -18,15 +18,22 @@ public class GameHandler extends JPanel implements Runnable {
     final int scale = 1;
 
     public final int tileSize = originalTileSize * scale; // 96x96 tile scale (zoom)
-    public final int maxScreenCol = 16;
+    public final int maxScreenCol = 20;
     public final int maxScreenRow = 12;
-    public int screenWidth = tileSize * maxScreenCol; // 96 x 16 = 1536
-    public int screenHeight = tileSize * maxScreenRow; // 96 x 12 = 1152
+    public int screenWidth = tileSize * maxScreenCol; // 96 x 20 = 1920
+    public int screenHeight = tileSize * maxScreenRow; // 96 x 12 = 1152 (1080++)
 
     // WORLD SETTINGS
     public final int worldColumns = 50;
     public final int worldRows = 50;
-    public String map = "map_test_1";
+    public String[] availableMaps = {
+            "map_test_1", // normalWorld
+            "",           // 2Map
+            "",           // 3Map
+            "arenaWorld"  // arenaWorld
+    };
+    public String map = availableMaps[0];
+    public int mapType = 0;
     public String[] fileIndex = {"save_one", "save_two", "save_three"};
     public String save = fileIndex[0];
     public int playerPosX;
@@ -170,6 +177,8 @@ public class GameHandler extends JPanel implements Runnable {
         if (keyH.f12Pressed) {
             fullscreen = !fullscreen;
             reStartWindow();
+            player.screenX = myGUI.frame.getWidth()/2 - (tileSize/2);
+            player.screenY = myGUI.frame.getHeight()/2 - (tileSize/2);
 
             keyH.f12Pressed = false;
         }

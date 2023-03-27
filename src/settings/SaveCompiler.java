@@ -119,9 +119,9 @@ public class SaveCompiler {
                 bw.newLine();
                 bw.write(String.valueOf(gameH.screenHeight));
                 bw.newLine();
-                bw.write(String.valueOf(gameH.playerPosX));
+                bw.write(String.valueOf(gameH.playerPosX/gameH.tileSize));
                 bw.newLine();
-                bw.write(String.valueOf(gameH.playerPosY));
+                bw.write(String.valueOf(gameH.playerPosY/gameH.tileSize));
                 bw.newLine();
                 bw.write(String.valueOf(gameH.keyboard));
                 bw.newLine();

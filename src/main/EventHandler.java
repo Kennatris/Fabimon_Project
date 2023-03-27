@@ -26,13 +26,22 @@ public class EventHandler {
         if(hit(INWICHCOLUMN_MAP, INWICHROW_MAP, requiredDIRECTION) == true) {Method();}
         */
         if(hit(24, 18, "any") == true) {
-            gameH.map = "world_test";
+            if (gameH.mapType == 0) {
+                gameH.map = gameH.availableMaps[3];
+                gameH.mapType = 3;
+            } else if (gameH.mapType == 3) {
+                gameH.map = gameH.availableMaps[0];
+                gameH.mapType = 0;
+            }
             gameH.tileM.loadMap(gameH.map);
+            // set Player
             gameH.player.worldY = 19 * gameH.tileSize;
             gameH.player.direction = "down";
-            if(gameH.debugMode) {
-                System.out.println("hit");
-            }
+            // reset Movement
+            gameH.keyH.wPressed = false;
+            gameH.keyH.sPressed = false;
+            gameH.keyH.aPressed = false;
+            gameH.keyH.dPressed = false;
         }
 
     }

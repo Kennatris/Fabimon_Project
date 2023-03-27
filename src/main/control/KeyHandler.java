@@ -47,6 +47,7 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_F12) {
             f12Pressed = true;
+
         }
 
         if (code == KeyEvent.VK_LEFT) {

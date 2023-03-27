@@ -25,7 +25,7 @@ public class Player extends Entity{
         this.keyH = keyH;
 
         screenX = gameH.screenWidth/2 - (gameH.tileSize/2);
-        screenY = gameH.screenHeight/3 - (gameH.tileSize/2);
+        screenY = gameH.screenHeight/2 + (gameH.tileSize/2);
 
         solidArea = new Rectangle();
         solidArea.x = gameH.tileSize/2;
