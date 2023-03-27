@@ -25,7 +25,7 @@ public class EventHandler {
         /* Example
         if(hit(INWICHCOLUMN_MAP, INWICHROW_MAP, requiredDIRECTION) == true) {Method();}
         */
-        if(hit(24, 18, "any") == true) {
+        if(hit(24, 18, "up") == true) {
             if (gameH.mapType == 0) {
                 gameH.map = gameH.availableMaps[3];
                 gameH.mapType = 3;

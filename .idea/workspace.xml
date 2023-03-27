@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.3.4">
-      <change afterPath="$PROJECT_DIR$/res/maps/arenaWorld.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/tiles/stone.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/tiles/wood.png" afterDir="false" />
+    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.3.5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/saves/save_one.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_one.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/EventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/control/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/control/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings/SaveCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/SaveCompiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <list id="905cfa43-7a46-4d91-b71e-117b4177b385" name="Changes by phili" comment="">
@@ -44,15 +36,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/entity/Player.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/tile/TileManager.java">
-      <ranges>
-        <range start1="53" end1="53" start2="53" end2="55" changelist="db0494c6-0a68-42cf-972d-c5e59f1f09f2" />
-        <range start1="123" end1="127" start2="125" end2="129" changelist="db0494c6-0a68-42cf-972d-c5e59f1f09f2" />
-        <range start1="129" end1="130" start2="131" end2="131" changelist="905cfa43-7a46-4d91-b71e-117b4177b385" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -115,7 +98,7 @@
       <updated>1678910081166</updated>
       <workItem from="1678910082575" duration="1455000" />
       <workItem from="1679553934541" duration="2696000" />
-      <workItem from="1679918541742" duration="4359000" />
+      <workItem from="1679918541742" duration="4533000" />
     </task>
     <task id="LOCAL-00001" summary="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
       <created>1679533924557</created>
@@ -194,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679911161669</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="V0.9.3.5">
+      <created>1679928145044</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1679928145044</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +238,8 @@
     <MESSAGE value="V0.9.3.2" />
     <MESSAGE value="V0.9.3.3" />
     <MESSAGE value="V0.9.3.4" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.9.3.4" />
+    <MESSAGE value="V0.9.3.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.9.3.5" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
