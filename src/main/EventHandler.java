@@ -12,10 +12,10 @@ public class EventHandler {
         this.gameH = gameH;
 
         eventRect = new Rectangle();
-        eventRect.x = 23;
-        eventRect.y = 23;
-        eventRect.width = 2;
-        eventRect.height = 2;
+        eventRect.x = gameH.tileSize/2;
+        eventRect.y = gameH.tileSize/2;
+        eventRect.width = 5;
+        eventRect.height = 5;
         eventRectDefaultX = eventRect.x;
         eventRectDefaultY = eventRect.y;
     }
@@ -25,10 +25,12 @@ public class EventHandler {
         /* Example
         if(hit(INWICHCOLUMN_MAP, INWICHROW_MAP, requiredDIRECTION) == true) {Method();}
         */
-        if(hit(17, 24, "any") == true) {
-            //gameH.map = "world_test.txt";
-            //gameH.tileM.loadMap(gameH.map);
-            System.out.println("hit");
+        if(hit(24, 18, "any") == true) {
+            gameH.map = "world_test";
+            gameH.tileM.loadMap(gameH.map);
+            if(gameH.debugMode) {
+                System.out.println("hit");
+            }
         }
 
     }
