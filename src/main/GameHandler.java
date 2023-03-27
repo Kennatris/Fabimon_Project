@@ -179,6 +179,10 @@ public class GameHandler extends JPanel implements Runnable {
             // PLAYER
             player.update();
 
+            if (debugMode) {
+
+            }
+
         }
         if (gameState == pauseState) {
             // do-nothing

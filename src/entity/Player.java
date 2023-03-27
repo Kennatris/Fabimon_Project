@@ -16,6 +16,8 @@ public class Player extends Entity{
     public int screenX;
     public int screenY;
     int standCounter = 0;
+    // DEBUG
+    public boolean speedBoost;
 
     public Player(GameHandler gameH, KeyHandler keyH) {
 

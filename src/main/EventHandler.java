@@ -28,6 +28,8 @@ public class EventHandler {
         if(hit(24, 18, "any") == true) {
             gameH.map = "world_test";
             gameH.tileM.loadMap(gameH.map);
+            gameH.player.worldY = 19 * gameH.tileSize;
+            gameH.player.direction = "down";
             if(gameH.debugMode) {
                 System.out.println("hit");
             }
