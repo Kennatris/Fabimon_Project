@@ -51,8 +51,6 @@ public class TileManager {
         setup(12, "tiles","grass_flowers","png", gameH.tileSize, gameH.tileSize,true);
         setup(13, "tiles","water","png", gameH.tileSize, gameH.tileSize,true);
         setup(14, "tiles","sand","png", gameH.tileSize, gameH.tileSize,true);
-        setup(15, "tiles","wood","png",gameH.tileSize, gameH.tileSize, false);
-        setup(16, "tiles","stone","png",gameH.tileSize, gameH.tileSize, false);
 
     }
 
@@ -123,12 +121,11 @@ public class TileManager {
             int screenX = worldX - gameH.player.worldX + gameH.player.screenX;
             int screenY = worldY - gameH.player.worldY + gameH.player.screenY;
 
-            //if(worldX + gameH.tileSize > gameH.player.worldX - gameH.player.screenX &&
-            // worldX - gameH.tileSize < gameH.player.worldX + gameH.player.screenX &&
-            // worldY + gameH.tileSize > gameH.player.worldY - gameH.player.screenY &&
-            // worldY - gameH.tileSize < gameH.player.worldY + gameH.player.screenY){
+            if(worldX + gameH.tileSize > gameH.player.worldX - gameH.player.screenX &&
+               worldX - gameH.tileSize < gameH.player.worldX + gameH.player.screenX &&
+               worldY + gameH.tileSize > gameH.player.worldY - gameH.player.screenY &&
+               worldY - gameH.tileSize < gameH.player.worldY + gameH.player.screenY){
 
-            if (true) {
 
                 g2.drawImage(tile[tileNum].image, screenX, screenY, null);
 

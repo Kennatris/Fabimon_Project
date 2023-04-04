@@ -22,7 +22,12 @@ public class Entity {
         this.gameH = gameH;
     }
 
+    public void setAction(){
+
+    }
+
     public void update() {
+        setAction();
 
         collisionOn = false;
         gameH.cChecker.checkTile(this);

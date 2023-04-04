@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
 
     public boolean wPressed, aPressed, dPressed, sPressed, escPressed, spacePressed, iPressed, f12Pressed, upPressed, downPressed, leftPressed, rightPressed, enterPressed, shiftPressed;
+    int genutzt = 1;
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -46,7 +47,10 @@ public class KeyHandler implements KeyListener {
         }
 
         if (code == KeyEvent.VK_F12) {
-            f12Pressed = true;
+            if(genutzt == 1) {
+                f12Pressed = true;
+                genutzt=0;
+            }
 
         }
 
@@ -111,11 +115,13 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_F12) {
             f12Pressed = false;
+            genutzt = 1;
         }
 
         if (code == KeyEvent.VK_SHIFT) {
             shiftPressed = false;
         }
+
     }
 
 }

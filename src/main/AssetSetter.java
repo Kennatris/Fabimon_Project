@@ -1,5 +1,6 @@
 package main;
 
+import entity.NPCTest;
 import objects.Object_arenaPortal;
 
 public class AssetSetter {
@@ -22,6 +23,10 @@ public class AssetSetter {
         gameH.npc[index].worldX = gameH.tileSize*spawnTILE;
         gameH.npc[index].worldY = gameH.tileSize*spawnTILE;
         */
+
+        gameH.npc[0] = new NPCTest(gameH);
+        gameH.npc[0].worldX = gameH.tileSize*24;
+        gameH.npc[0].worldY = gameH.tileSize*18;
     }
 
 }

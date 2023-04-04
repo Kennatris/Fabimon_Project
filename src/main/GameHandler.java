@@ -103,6 +103,7 @@ public class GameHandler extends JPanel implements Runnable {
         player = new Player(this, keyH);
 
         aSetter.setObject();
+        aSetter.setNPC();
 
         //playMusic(0);
 
@@ -184,6 +185,9 @@ public class GameHandler extends JPanel implements Runnable {
         }
 
         if (gameState == playState) {
+
+            //NPC
+            npc[0].update();
 
             // PLAYER
             player.update();
@@ -605,6 +609,12 @@ public class GameHandler extends JPanel implements Runnable {
                 }
             }
 
+            //NPC
+            for(int i = 0; i<npc.length; i++){
+                if(npc[i] != null){
+                    npc[i].draw(g2);
+                }
+            }
             // PLAYER
             player.draw(g2);
 
