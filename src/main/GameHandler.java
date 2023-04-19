@@ -48,6 +48,7 @@ public class GameHandler extends JPanel implements Runnable {
     public boolean unsavedSetting;
     // FPS
     int FPS = 60;
+    public int time, seconds, minutes, hour;
 
     // SYSTEM
     TileManager tileM = new TileManager(this, map);
@@ -161,6 +162,8 @@ public class GameHandler extends JPanel implements Runnable {
                 repaint();
 
                 delta--;
+
+                time++;
             }
 
             if (timer >= 1000000000) {
@@ -172,6 +175,29 @@ public class GameHandler extends JPanel implements Runnable {
     }
 
     public void update() {
+
+        // time
+        if (time == 60){
+            time = 0;
+            seconds++;
+            if (debugMode) {
+                System.out.println("The system runs: " + seconds + " seconds!");
+            }
+        }
+        if (seconds == 60) {
+            seconds = 0;
+            minutes ++;
+            if (minutes % 2 == 0) {
+                saveC.SaveWriter(this, save);
+            }
+            if (debugMode) {
+                System.out.println("The system runs: " + minutes + " minutes!");
+            }
+        }
+        if (minutes == 60) {
+            minutes = 0;
+            hour++;
+        }
 
         // fullscreen
         if (keyH.f12Pressed) {
@@ -186,7 +212,11 @@ public class GameHandler extends JPanel implements Runnable {
         if (gameState == playState) {
 
             //NPC
-            npc[0].update();
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].update();
+                }
+            }
 
             // PLAYER
             player.update();

@@ -26,14 +26,6 @@ public class Stats  {
     private String types[];
     private int atk_move[];
     private int accuracy_move[];
-    public static  void main(String args[]) {
-        moves();
-        ivs();
-        type();
-        exp();
-    }
-
-
 
     //Base
     //------------------------------------------------------------------------------------------------------------------
