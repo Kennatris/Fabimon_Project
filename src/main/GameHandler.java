@@ -77,6 +77,7 @@ public class GameHandler extends JPanel implements Runnable {
     public final int dialogueState = 3;
     public final int saveState = 4;
     public final int settingState = 5;
+    public final int battleState = 6;
 
     public GameHandler() {
 
