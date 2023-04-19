@@ -479,6 +479,14 @@ public class UI {
     }
     public void drawBattleScreen(){
 
+        g2.setColor(backgroundColor);
+        g2.fillRect(0, 0, gameH.myGUI.frame.getWidth(), gameH.myGUI.frame.getHeight());
+
+        int x = 0;
+        int y = 0;
+        x = gameH.myGUI.frame.getWidth()-gameH.tileM.tile[17].image.getWidth();
+        y += gameH.myGUI.frame.getHeight()-gameH.tileM.tile[17].image.getHeight();
+        g2.drawImage(gameH.tileM.tile[17].image, x, y, 96, 96, null);
     }
     public int getXforCenteredText(String text) {
 

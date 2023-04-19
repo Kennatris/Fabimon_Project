@@ -617,7 +617,10 @@ public class GameHandler extends JPanel implements Runnable {
                 keyH.spacePressed = false;
                 keyH.enterPressed = false;
             }
-        } // Bindings for gameState
+        }
+        if(gameState == battleState){
+
+        }// Bindings for gameState
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

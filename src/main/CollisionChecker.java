@@ -241,7 +241,7 @@ public class CollisionChecker {
         gameH.player.solidArea.x = gameH.player.solidAreaDefaultX;
         gameH.player.solidArea.y = gameH.player.solidAreaDefaultY;
     }
-    public int checkVision(Entity entity, Entity[] target){
+    public void checkVision(Entity entity, Entity[] target){
 
         int index = 999;
 
@@ -278,6 +278,7 @@ public class CollisionChecker {
                         entity.solidArea.y -= entity.speed;
                         if(entity.solidArea.intersects(target[i].visionArea)) {
                             gameH.gameState = gameH.battleState;
+
 
                             index = i;
                         }
@@ -318,7 +319,6 @@ public class CollisionChecker {
 
         }
 
-        return index;
     }
 
 }

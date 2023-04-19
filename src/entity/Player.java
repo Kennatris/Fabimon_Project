@@ -72,7 +72,7 @@ public class Player extends Entity{
     public void update() {
 
         //CHECK NPC VISION
-        int visionIndex = gameH.cChecker.checkVision(this, gameH.npc);
+        gameH.cChecker.checkVision(this, gameH.npc);
 
         if(keyH.wPressed == true || keyH.sPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
 
@@ -149,9 +149,6 @@ public class Player extends Entity{
             }
         }
 
-    }
-    public void visionNPC(int i){
-        gameH.gameState = gameH.battleState;
     }
 
     public void pickUpObject(int i) {
