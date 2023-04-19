@@ -7,13 +7,12 @@ import main.ImageHandler;
 
 public class NPCTest extends Entity{
     ImageHandler imageH = new ImageHandler();
+    int time=0;
+
 
   public  NPCTest(GameHandler gameH){
       super(gameH);
-
-      this.direction = "right";
-      this.speed = 10;
-      this.map = gameH.availableMaps[0];
+      speed = 5;
 
       getTestNPCImage();
   }
@@ -38,10 +37,29 @@ public class NPCTest extends Entity{
     }
     public void setAction(){
       if(gameH.npc[0].worldX > gameH.tileSize*24){
-            direction = "left";
+            gameH.npc[0].direction = "left";
+      }else if(gameH.npc[0].worldX < gameH.tileSize*12){
+          gameH.npc[0].direction = "right";
       }
-      else if(gameH.npc[0].worldX <gameH.tileSize*12){
-          direction = "right";
+      if(gameH.npc[1].worldX > gameH.tileSize*24){
+          gameH.npc[1].direction = "left";
+      }else if(gameH.npc[1].worldX < gameH.tileSize*12){
+          gameH.npc[1]. direction = "right";
+      }
+      time++;
+      if(time >= 80){
+          time = 0;
+      double zahl = Math.random()*2;
+
+      if(zahl > 0 && zahl < 0.25){
+          gameH.npc[2].direction = "left";
+      }else if(zahl > 0.25 && zahl < 0.50){
+          gameH.npc[2]. direction = "right";
+      }else if(zahl > 0.50 && zahl < 0.75){
+          gameH.npc[2]. direction = "up";
+      }else if(zahl > 0.75 && zahl < 1){
+          gameH.npc[2]. direction = "down";
       }
     }
+  }
 }

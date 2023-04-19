@@ -2,6 +2,7 @@ package main;
 
 import entity.Entity;
 import entity.Player;
+import entity.PlayerDummy;
 import main.control.KeyHandler;
 import objects.SuperObject;
 import settings.SaveCompiler;
@@ -66,6 +67,7 @@ public class GameHandler extends JPanel implements Runnable {
 
     // ENTITY AND OBJECT
     public Player player;
+    public PlayerDummy playerD = new PlayerDummy(this);
     public SuperObject obj[] = new SuperObject[10];
     public Entity npc[] = new Entity[10];
 
@@ -77,6 +79,7 @@ public class GameHandler extends JPanel implements Runnable {
     public final int dialogueState = 3;
     public final int saveState = 4;
     public final int settingState = 5;
+    public final int battleState = 6;
 
     public GameHandler() {
 

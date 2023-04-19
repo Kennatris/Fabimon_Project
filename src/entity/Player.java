@@ -12,7 +12,8 @@ public class Player extends Entity{
 
     KeyHandler keyH;
     ImageHandler imageH = new ImageHandler();
-
+    public BufferedImage image;
+    public Boolean drawing = true;
     public int screenX;
     public int screenY;
     int standCounter = 0;
@@ -70,6 +71,9 @@ public class Player extends Entity{
 
     public void update() {
 
+        //CHECK NPC VISION
+        int visionIndex = gameH.cChecker.checkVision(this, gameH.npc);
+
         if(keyH.wPressed == true || keyH.sPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
 
             if(keyH.wPressed == true) {
@@ -98,6 +102,8 @@ public class Player extends Entity{
             // CHECK NPC COLLISION
             int npcIndex = gameH.cChecker.checkEntity(this, gameH.npc);
             interactNPC(npcIndex);
+
+
 
 
             // CHECK EVENT
@@ -144,6 +150,9 @@ public class Player extends Entity{
         }
 
     }
+    public void visionNPC(int i){
+        gameH.gameState = gameH.battleState;
+    }
 
     public void pickUpObject(int i) {
 
@@ -165,7 +174,7 @@ public class Player extends Entity{
 
     public void draw(Graphics2D g2) {
 
-        BufferedImage image = null;
+        image = null;
 
         switch (direction) {
             case "up":

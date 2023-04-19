@@ -67,6 +67,10 @@ public class UI {
         if (gameH.gameState == gameH.saveState) {
             drawSaveScreen();
         }
+        // BATTLE STATE
+        if(gameH.gameState == gameH.battleState){
+            drawBattleScreen();
+        }
     }
     public void drawTitleScreen() {
 
@@ -471,6 +475,9 @@ public class UI {
         if(commandNum == textPos) {
             g2.drawString(">", (int) (x - fontValue), y);
         }
+
+    }
+    public void drawBattleScreen(){
 
     }
     public int getXforCenteredText(String text) {
