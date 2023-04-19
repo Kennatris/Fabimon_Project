@@ -2,8 +2,10 @@ package entity;
 
 import java.util.Random;
 
-public class Stats {
-    public int base;
+public class Stats  {
+
+
+
     public int item_lucky_egg;
     private double Atk_Fire[];
     private double DEV_Fire[];
@@ -20,6 +22,16 @@ public class Stats {
     private double Sp_Atk_Water[];
     private double Sp_Dev_Water[];
     private double Speed_Water[];
+    private String moves[];
+    private String types[];
+    private int atk_move[];
+    private int accuracy_move[];
+    public static  void main(String args[]) {
+        moves();
+        ivs();
+        type();
+        exp();
+    }
 
 
 
@@ -62,7 +74,7 @@ public class Stats {
     //------------------------------------------------------------------------------------------------------------------
     // IVs stats
     //generats a random value
-    public static void main( String args[] ) {
+    public static void ivs() {
         // Instance of random class
         Random rand = new Random();
         // Setting the upper bound to generate the
@@ -74,7 +86,8 @@ public class Stats {
         // Generating random using nextDouble
         // in 0.0 and 1.0 range
         // Printing the generated random numbers
-        //System.out.println("Random integer value from 0 to" + (upperbound) + " : " + int_random);
+        System.out.println("Random integer(IVS) value from 0 to" + (upperbound) + " : " + int_random);
+
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -93,7 +106,10 @@ public class Stats {
 
     //------------------------------------------------------------------------------------------------------------------
     //level
-    public void exp() {
+    public static void exp() {
+       int level = 1;
+        int aktuelles_level = 1;
+        boolean pokemon_win = false;
 
 
         //EXP Formular
@@ -113,17 +129,20 @@ public class Stats {
         int t = 1;
         //medium slow bulbasaur, all fire evo
         //earned xp from a fight
-        double EXP[] = {((exp_fire[1] * base) / 7) * 1 / 8 * e * a * t,
-                ((exp_fire[2] * base) / 7) * 1 / 8 * e * a * t,
-                ((exp_fire[3] * base) / 7) * 1 / 8 * e * a * t,
-                ((exp_grass[1] * base) / 7) * 1 / 8 * e * a * t,
-                ((exp_grass[2] * base) / 7) * 1 / 8 * e * a * t,
-                ((exp_grass[3] * base) / 7) * 1 / 8 * e * a * t,
-                ((exp_water[1] * base) / 7) * 1 / 8 * e * a * t,
-                ((exp_water[2] * base) / 7) * 1 / 8 * e * a * t,
-                ((exp_water[3] * base) / 7) * 1 / 8 * e * a * t,};
-        //xp needed for next level
-        int next_level_xp[] = {0, 9, 57, 96, 135, 179, 236, 314, 419, 560,
+        double EXP[] = {((exp_fire[0] * aktuelles_level) / 7) * 1 / 8 * e * a * t,
+                ((exp_fire[1] * aktuelles_level) / 7) * 1 / 8 * e * a * t,
+                ((exp_fire[2] * aktuelles_level) / 7) * 1 / 8 * e * a * t,
+                ((exp_grass[0] * aktuelles_level) / 7) * 1 / 8 * e * a * t,
+                ((exp_grass[1] * aktuelles_level) / 7) * 1 / 8 * e * a * t,
+                ((exp_grass[2] * aktuelles_level) / 7) * 1 / 8 * e * a * t,
+                ((exp_water[0] * aktuelles_level) / 7) * 1 / 8 * e * a * t,
+                ((exp_water[1] * aktuelles_level) / 7) * 1 / 8 * e * a * t,
+                ((exp_water[2] * aktuelles_level) / 7) * 1 / 8 * e * a * t,};
+
+        double aktuelle_xp = 0;
+
+        //xp total for slow medium
+        int total_xp[] = {0, 9, 57, 96, 135, 179, 236, 314, 419, 560,
                 742, 973, 1261, 1612, 2035, 2535, 3120, 3798, 4575, 5460,
                 6458, 7577, 8825, 10208, 11735, 13411, 15244, 17242, 19411, 21760,
                 24294, 27021, 29949, 33084, 36435, 40007, 43808, 47846, 52127, 56660,
@@ -134,541 +153,566 @@ public class Stats {
                 547274, 568841, 590969, 613664, 636935, 660787, 685228, 710266, 735907, 762160,
                 789030, 816525, 844653, 873420, 902835, 932903, 963632, 995030, 1027103, 1059860};
 
+        //xp needed for level up(slow medium)
+        int next_level_xp[] = {9, 48, 39, 39, 44, 57, 78, 105, 141, 182,
+                231, 288, 351, 423, 500, 585, 678, 777, 885, 998,
+                1119, 1248, 1383, 1527, 1676, 1833, 1998, 2169, 2349, 2534,
+                2727, 2928, 3135, 3351, 3572, 3801, 4038, 4281, 4533, 4790,
+                5055, 5328, 5607, 5895, 6188, 6489, 6798, 7113, 7437, 7766,
+                8103, 8448, 8799, 9159, 9524, 9897, 10278, 10665, 11061, 11462,
+                11871, 12288, 12711, 13143, 13580, 14025, 14478, 14937, 15405, 15878,
+                16359, 16848, 17343, 17847, 18356, 18873, 19398, 19929, 20469, 21014,
+                21567, 22128, 22695, 23271, 24441, 25038, 25641, 26253, 26870, 27495,
+                28128, 28767, 29415, 30068, 30792, 31398, 32073, 32757};
+        //
+        int temp = level - 1;
+        // level calculation
+        if (pokemon_win == true){
+            aktuelle_xp = aktuelle_xp + EXP[0];
+            while(aktuelle_xp> next_level_xp[temp]){
+                level++;
+                aktuelle_xp = aktuelle_xp - aktuelle_xp;
+                aktuelles_level = level;
+
+            }
+        }
+        System.out.println("level: " + aktuelles_level);
     }
+
 
     //------------------------------------------------------------------------------------------------------------------
     //Naturepublic void natue() {
 
-    private double multiplikator_nature = 0.1;
     public void nature(){
+        double multiplikator_nature = 0.1;
         double[] nature_Hardy =
                 //stat that getting decreased
-                {Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
+                {Atk_Fire[0] - Atk_Fire[0] * multiplikator_nature,
+                        Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] - Atk_Fire[2] * multiplikator_nature,
-                        Atk_Fire[3] - Atk_Fire[3] * multiplikator_nature,
+                        Atk_Grass[0] - Atk_Grass[0] * multiplikator_nature,
                         Atk_Grass[1] - Atk_Grass[1] * multiplikator_nature,
                         Atk_Grass[2] - Atk_Grass[2] * multiplikator_nature,
-                        Atk_Grass[3] - Atk_Grass[3] * multiplikator_nature,
+                        Atk_Water[0] - Atk_Water[0] * multiplikator_nature,
                         Atk_Water[1] - Atk_Water[1] * multiplikator_nature,
                         Atk_Water[2] - Atk_Water[2] * multiplikator_nature,
-                        Atk_Water[3] - Atk_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Atk_Fire[0] + Atk_Fire[0] * multiplikator_nature,
                         Atk_Fire[1] + Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] + Atk_Fire[2] * multiplikator_nature,
-                        Atk_Fire[3] + Atk_Fire[3] * multiplikator_nature,
+                        Atk_Grass[0] + Atk_Grass[0] * multiplikator_nature,
                         Atk_Grass[1] + Atk_Grass[1] * multiplikator_nature,
                         Atk_Grass[2] + Atk_Grass[2] * multiplikator_nature,
-                        Atk_Grass[3] + Atk_Grass[3] * multiplikator_nature,
+                        Atk_Water[0] + Atk_Water[0] * multiplikator_nature,
                         Atk_Water[1] + Atk_Water[1] * multiplikator_nature,
-                        Atk_Water[2] + Atk_Water[2] * multiplikator_nature,
-                        Atk_Water[3] + Atk_Water[3] * multiplikator_nature};
+                        Atk_Water[2] + Atk_Water[2] * multiplikator_nature};
 
         double[] nature_Bold =
                 //stat that getting decreased
-                {Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
+                {Atk_Fire[0] - Atk_Fire[0] * multiplikator_nature,
+                        Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] - Atk_Fire[2] * multiplikator_nature,
-                        Atk_Fire[3] - Atk_Fire[3] * multiplikator_nature,
+                        Atk_Grass[0] - Atk_Grass[0] * multiplikator_nature,
                         Atk_Grass[1] - Atk_Grass[1] * multiplikator_nature,
                         Atk_Grass[2] - Atk_Grass[2] * multiplikator_nature,
-                        Atk_Grass[3] - Atk_Grass[3] * multiplikator_nature,
+                        Atk_Water[0] - Atk_Water[0] * multiplikator_nature,
                         Atk_Water[1] - Atk_Water[1] * multiplikator_nature,
                         Atk_Water[2] - Atk_Water[2] * multiplikator_nature,
-                        Atk_Water[3] - Atk_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        DEV_Fire[0] + DEV_Fire[0] * multiplikator_nature,
                         DEV_Fire[1] + DEV_Fire[1] * multiplikator_nature,
                         DEV_Fire[2] + DEV_Fire[2] * multiplikator_nature,
-                        DEV_Fire[3] + DEV_Fire[3] * multiplikator_nature,
+                        DEV_Grass[0] + DEV_Grass[0] * multiplikator_nature,
                         DEV_Grass[1] + DEV_Grass[1] * multiplikator_nature,
                         DEV_Grass[2] + DEV_Grass[2] * multiplikator_nature,
-                        DEV_Grass[3] + DEV_Grass[3] * multiplikator_nature,
+                        DEV_Water[0] + DEV_Water[0] * multiplikator_nature,
                         DEV_Water[1] + DEV_Water[1] * multiplikator_nature,
-                        DEV_Water[2] + DEV_Water[2] * multiplikator_nature,
-                        DEV_Water[3] + DEV_Water[3] * multiplikator_nature};
+                        DEV_Water[2] + DEV_Water[2] * multiplikator_nature};
 
         double[] nature_Modest =
                 //stat that getting decreased
-                {Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
+                {Atk_Fire[0] - Atk_Fire[0] * multiplikator_nature,
+                        Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] - Atk_Fire[2] * multiplikator_nature,
-                        Atk_Fire[3] - Atk_Fire[3] * multiplikator_nature,
+                        Atk_Grass[0] - Atk_Grass[0] * multiplikator_nature,
                         Atk_Grass[1] - Atk_Grass[1] * multiplikator_nature,
                         Atk_Grass[2] - Atk_Grass[2] * multiplikator_nature,
-                        Atk_Grass[3] - Atk_Grass[3] * multiplikator_nature,
+                        Atk_Water[0] - Atk_Water[0] * multiplikator_nature,
                         Atk_Water[1] - Atk_Water[1] * multiplikator_nature,
                         Atk_Water[2] - Atk_Water[2] * multiplikator_nature,
-                        Atk_Water[3] - Atk_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Sp_Atk_Fire[0] + Sp_Atk_Fire[0] * multiplikator_nature,
                         Sp_Atk_Fire[1] + Sp_Atk_Fire[1] * multiplikator_nature,
                         Sp_Atk_Fire[2] + Sp_Atk_Fire[2] * multiplikator_nature,
-                        Sp_Atk_Fire[3] + Sp_Atk_Fire[3] * multiplikator_nature,
+                        Sp_Atk_Grass[0] + Sp_Atk_Grass[0] * multiplikator_nature,
                         Sp_Atk_Grass[1] + Sp_Atk_Grass[1] * multiplikator_nature,
                         Sp_Atk_Grass[2] + Sp_Atk_Grass[2] * multiplikator_nature,
-                        Sp_Atk_Grass[3] + Sp_Atk_Grass[3] * multiplikator_nature,
+                        Sp_Atk_Water[0] + Sp_Atk_Water[0] * multiplikator_nature,
                         Sp_Atk_Water[1] + Sp_Atk_Water[1] * multiplikator_nature,
-                        Sp_Atk_Water[2] + Sp_Atk_Water[2] * multiplikator_nature,
-                        Sp_Atk_Water[3] + Sp_Atk_Water[3] * multiplikator_nature};
+                        Sp_Atk_Water[2] + Sp_Atk_Water[2] * multiplikator_nature};
 
         double[] nature_Calm =
                 //stat that getting decreased
-                {Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
+                {Atk_Fire[0] - Atk_Fire[0] * multiplikator_nature,
+                        Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] - Atk_Fire[2] * multiplikator_nature,
-                        Atk_Fire[3] - Atk_Fire[3] * multiplikator_nature,
+                        Atk_Grass[0] - Atk_Grass[0] * multiplikator_nature,
                         Atk_Grass[1] - Atk_Grass[1] * multiplikator_nature,
                         Atk_Grass[2] - Atk_Grass[2] * multiplikator_nature,
-                        Atk_Grass[3] - Atk_Grass[3] * multiplikator_nature,
+                        Atk_Water[0] - Atk_Water[0] * multiplikator_nature,
                         Atk_Water[1] - Atk_Water[1] * multiplikator_nature,
                         Atk_Water[2] - Atk_Water[2] * multiplikator_nature,
-                        Atk_Water[3] - Atk_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Sp_Dev_Fire[0] + Sp_Dev_Fire[0] * multiplikator_nature,
                         Sp_Dev_Fire[1] + Sp_Dev_Fire[1] * multiplikator_nature,
                         Sp_Dev_Fire[2] + Sp_Dev_Fire[2] * multiplikator_nature,
-                        Sp_Dev_Fire[3] + Sp_Dev_Fire[3] * multiplikator_nature,
+                        Sp_Dev_Grass[0] + Sp_Dev_Grass[0] * multiplikator_nature,
                         Sp_Dev_Grass[1] + Sp_Dev_Grass[1] * multiplikator_nature,
                         Sp_Dev_Grass[2] + Sp_Dev_Grass[2] * multiplikator_nature,
-                        Sp_Dev_Grass[3] + Sp_Dev_Grass[3] * multiplikator_nature,
+                        Sp_Dev_Water[0] + Sp_Dev_Water[0] * multiplikator_nature,
                         Sp_Dev_Water[1] + Sp_Dev_Water[1] * multiplikator_nature,
-                        Sp_Dev_Water[2] + Sp_Dev_Water[2] * multiplikator_nature,
-                        Sp_Dev_Water[3] + Sp_Dev_Water[3] * multiplikator_nature};
+                        Sp_Dev_Water[2] + Sp_Dev_Water[2] * multiplikator_nature};
 
         double[] nature_Timid =
                 //stat that getting decreased
-                {Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
+                {Atk_Fire[0] - Atk_Fire[0] * multiplikator_nature,
+                        Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] - Atk_Fire[2] * multiplikator_nature,
-                        Atk_Fire[3] - Atk_Fire[3] * multiplikator_nature,
+                        Atk_Grass[0] - Atk_Grass[0] * multiplikator_nature,
                         Atk_Grass[1] - Atk_Grass[1] * multiplikator_nature,
                         Atk_Grass[2] - Atk_Grass[2] * multiplikator_nature,
-                        Atk_Grass[3] - Atk_Grass[3] * multiplikator_nature,
+                        Atk_Water[0] - Atk_Water[0] * multiplikator_nature,
                         Atk_Water[1] - Atk_Water[1] * multiplikator_nature,
                         Atk_Water[2] - Atk_Water[2] * multiplikator_nature,
-                        Atk_Water[3] - Atk_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Speed_Fire[0] + Speed_Fire[0] * multiplikator_nature,
                         Speed_Fire[1] + Speed_Fire[1] * multiplikator_nature,
                         Speed_Fire[2] + Speed_Fire[2] * multiplikator_nature,
-                        Speed_Fire[3] + Speed_Fire[3] * multiplikator_nature,
+                        Speed_Grass[0] + Speed_Grass[0] * multiplikator_nature,
                         Speed_Grass[1] + Speed_Grass[1] * multiplikator_nature,
                         Speed_Grass[2] + Speed_Grass[2] * multiplikator_nature,
-                        Speed_Grass[3] + Speed_Grass[3] * multiplikator_nature,
+                        Speed_Water[0] + Speed_Water[0] * multiplikator_nature,
                         Speed_Water[1] + Speed_Water[1] * multiplikator_nature,
-                        Speed_Water[2] + Speed_Water[2] * multiplikator_nature,
-                        Speed_Water[3] + Speed_Water[3] * multiplikator_nature};
+                        Speed_Water[2] + Speed_Water[2] * multiplikator_nature};
 
 
         double[] nature_Lonely =
                 //stat that getting decreased
-                {DEV_Fire[1] - DEV_Fire[1] * multiplikator_nature,
+                {DEV_Fire[0] - DEV_Fire[0] * multiplikator_nature,
+                        DEV_Fire[1] - DEV_Fire[1] * multiplikator_nature,
                         DEV_Fire[2] - DEV_Fire[2] * multiplikator_nature,
-                        DEV_Fire[3] - DEV_Fire[3] * multiplikator_nature,
+                        DEV_Grass[0] - DEV_Grass[0] * multiplikator_nature,
                         DEV_Grass[1] - DEV_Grass[1] * multiplikator_nature,
                         DEV_Grass[2] - DEV_Grass[2] * multiplikator_nature,
-                        DEV_Grass[3] - DEV_Grass[3] * multiplikator_nature,
+                        DEV_Water[0] - DEV_Water[0] * multiplikator_nature,
                         DEV_Water[1] - DEV_Water[1] * multiplikator_nature,
                         DEV_Water[2] - DEV_Water[2] * multiplikator_nature,
-                        DEV_Water[3] - DEV_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Atk_Fire[0] + Atk_Fire[0] * multiplikator_nature,
                         Atk_Fire[1] + Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] + Atk_Fire[2] * multiplikator_nature,
-                        Atk_Fire[3] + Atk_Fire[3] * multiplikator_nature,
+                        Atk_Grass[0] + Atk_Grass[0] * multiplikator_nature,
                         Atk_Grass[1] + Atk_Grass[1] * multiplikator_nature,
                         Atk_Grass[2] + Atk_Grass[2] * multiplikator_nature,
-                        Atk_Grass[3] + Atk_Grass[3] * multiplikator_nature,
+                        Atk_Water[0] + Atk_Water[0] * multiplikator_nature,
                         Atk_Water[1] + Atk_Water[1] * multiplikator_nature,
-                        Atk_Water[2] + Atk_Water[2] * multiplikator_nature,
-                        Atk_Water[3] + Atk_Water[3] * multiplikator_nature};
+                        Atk_Water[2] + Atk_Water[2] * multiplikator_nature};
 
         double[] nature_Docile =
                 //stat that getting decreased
-                {DEV_Fire[1] - DEV_Fire[1] * multiplikator_nature,
+                {DEV_Fire[0] - DEV_Fire[0] * multiplikator_nature,
+                        DEV_Fire[1] - DEV_Fire[1] * multiplikator_nature,
                         DEV_Fire[2] - DEV_Fire[2] * multiplikator_nature,
-                        DEV_Fire[3] - DEV_Fire[3] * multiplikator_nature,
+                        DEV_Grass[0] - DEV_Grass[0] * multiplikator_nature,
                         DEV_Grass[1] - DEV_Grass[1] * multiplikator_nature,
                         DEV_Grass[2] - DEV_Grass[2] * multiplikator_nature,
-                        DEV_Grass[3] - DEV_Grass[3] * multiplikator_nature,
+                        DEV_Water[0] - DEV_Water[0] * multiplikator_nature,
                         DEV_Water[1] - DEV_Water[1] * multiplikator_nature,
                         DEV_Water[2] - DEV_Water[2] * multiplikator_nature,
-                        DEV_Water[3] - DEV_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        DEV_Fire[0] + DEV_Fire[0] * multiplikator_nature,
                         DEV_Fire[1] + DEV_Fire[1] * multiplikator_nature,
                         DEV_Fire[2] + DEV_Fire[2] * multiplikator_nature,
-                        DEV_Fire[3] + DEV_Fire[3] * multiplikator_nature,
+                        DEV_Grass[0] + DEV_Grass[0] * multiplikator_nature,
                         DEV_Grass[1] + DEV_Grass[1] * multiplikator_nature,
                         DEV_Grass[2] + DEV_Grass[2] * multiplikator_nature,
-                        DEV_Grass[3] + DEV_Grass[3] * multiplikator_nature,
+                        DEV_Water[0] + DEV_Water[0] * multiplikator_nature,
                         DEV_Water[1] + DEV_Water[1] * multiplikator_nature,
-                        DEV_Water[2] + DEV_Water[2] * multiplikator_nature,
-                        DEV_Water[3] + DEV_Water[3] * multiplikator_nature};
+                        DEV_Water[2] + DEV_Water[2] * multiplikator_nature};
 
         double[] nature_Mild =
                 //stat that getting decreased
-                {DEV_Fire[1] - DEV_Fire[1] * multiplikator_nature,
+                {DEV_Fire[0] - DEV_Fire[0] * multiplikator_nature,
+                        DEV_Fire[1] - DEV_Fire[1] * multiplikator_nature,
                         DEV_Fire[2] - DEV_Fire[2] * multiplikator_nature,
-                        DEV_Fire[3] - DEV_Fire[3] * multiplikator_nature,
+                        DEV_Grass[0] - DEV_Grass[0] * multiplikator_nature,
                         DEV_Grass[1] - DEV_Grass[1] * multiplikator_nature,
                         DEV_Grass[2] - DEV_Grass[2] * multiplikator_nature,
-                        DEV_Grass[3] - DEV_Grass[3] * multiplikator_nature,
+                        DEV_Water[0] - DEV_Water[0] * multiplikator_nature,
                         DEV_Water[1] - DEV_Water[1] * multiplikator_nature,
                         DEV_Water[2] - DEV_Water[2] * multiplikator_nature,
-                        DEV_Water[3] - DEV_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Sp_Atk_Fire[0] + Sp_Atk_Fire[0] * multiplikator_nature,
                         Sp_Atk_Fire[1] + Sp_Atk_Fire[1] * multiplikator_nature,
                         Sp_Atk_Fire[2] + Sp_Atk_Fire[2] * multiplikator_nature,
-                        Sp_Atk_Fire[3] + Sp_Atk_Fire[3] * multiplikator_nature,
+                        Sp_Atk_Grass[0] + Sp_Atk_Grass[0] * multiplikator_nature,
                         Sp_Atk_Grass[1] + Sp_Atk_Grass[1] * multiplikator_nature,
                         Sp_Atk_Grass[2] + Sp_Atk_Grass[2] * multiplikator_nature,
-                        Sp_Atk_Grass[3] + Sp_Atk_Grass[3] * multiplikator_nature,
+                        Sp_Atk_Water[0] + Sp_Atk_Water[0] * multiplikator_nature,
                         Sp_Atk_Water[1] + Sp_Atk_Water[1] * multiplikator_nature,
-                        Sp_Atk_Water[2] + Sp_Atk_Water[2] * multiplikator_nature,
-                        Sp_Atk_Water[3] + Sp_Atk_Water[3] * multiplikator_nature};
+                        Sp_Atk_Water[2] + Sp_Atk_Water[2] * multiplikator_nature};
 
         double[] nature_Gentle =
                 //stat that getting decreased
-                {DEV_Fire[1] - DEV_Fire[1] * multiplikator_nature,
+                {DEV_Fire[0] - DEV_Fire[0] * multiplikator_nature,
+                        DEV_Fire[1] - DEV_Fire[1] * multiplikator_nature,
                         DEV_Fire[2] - DEV_Fire[2] * multiplikator_nature,
-                        DEV_Fire[3] - DEV_Fire[3] * multiplikator_nature,
+                        DEV_Grass[0] - DEV_Grass[0] * multiplikator_nature,
                         DEV_Grass[1] - DEV_Grass[1] * multiplikator_nature,
                         DEV_Grass[2] - DEV_Grass[2] * multiplikator_nature,
-                        DEV_Grass[3] - DEV_Grass[3] * multiplikator_nature,
+                        DEV_Water[0] - DEV_Water[0] * multiplikator_nature,
                         DEV_Water[1] - DEV_Water[1] * multiplikator_nature,
                         DEV_Water[2] - DEV_Water[2] * multiplikator_nature,
-                        DEV_Water[3] - DEV_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Sp_Dev_Fire[0] + Sp_Dev_Fire[0] * multiplikator_nature,
                         Sp_Dev_Fire[1] + Sp_Dev_Fire[1] * multiplikator_nature,
                         Sp_Dev_Fire[2] + Sp_Dev_Fire[2] * multiplikator_nature,
-                        Sp_Dev_Fire[3] + Sp_Dev_Fire[3] * multiplikator_nature,
+                        Sp_Dev_Grass[0] + Sp_Dev_Grass[0] * multiplikator_nature,
                         Sp_Dev_Grass[1] + Sp_Dev_Grass[1] * multiplikator_nature,
                         Sp_Dev_Grass[2] + Sp_Dev_Grass[2] * multiplikator_nature,
-                        Sp_Dev_Grass[3] + Sp_Dev_Grass[3] * multiplikator_nature,
+                        Sp_Dev_Water[0] + Sp_Dev_Water[0] * multiplikator_nature,
                         Sp_Dev_Water[1] + Sp_Dev_Water[1] * multiplikator_nature,
-                        Sp_Dev_Water[2] + Sp_Dev_Water[2] * multiplikator_nature,
-                        Sp_Dev_Water[3] + Sp_Dev_Water[3] * multiplikator_nature};
+                        Sp_Dev_Water[2] + Sp_Dev_Water[2] * multiplikator_nature};
 
         double[] nature_Hasty =
                 //stat that getting decreased
-                {DEV_Fire[1] - DEV_Fire[1] * multiplikator_nature,
+                {DEV_Fire[0] - DEV_Fire[0] * multiplikator_nature,
+                        DEV_Fire[1] - DEV_Fire[1] * multiplikator_nature,
                         DEV_Fire[2] - DEV_Fire[2] * multiplikator_nature,
-                        DEV_Fire[3] - DEV_Fire[3] * multiplikator_nature,
+                        DEV_Grass[0] - DEV_Grass[0] * multiplikator_nature,
                         DEV_Grass[1] - DEV_Grass[1] * multiplikator_nature,
                         DEV_Grass[2] - DEV_Grass[2] * multiplikator_nature,
-                        DEV_Grass[3] - DEV_Grass[3] * multiplikator_nature,
+                        DEV_Water[0] - DEV_Water[0] * multiplikator_nature,
                         DEV_Water[1] - DEV_Water[1] * multiplikator_nature,
                         DEV_Water[2] - DEV_Water[2] * multiplikator_nature,
-                        DEV_Water[3] - DEV_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Speed_Fire[0] + Speed_Fire[0] * multiplikator_nature,
                         Speed_Fire[1] + Speed_Fire[1] * multiplikator_nature,
                         Speed_Fire[2] + Speed_Fire[2] * multiplikator_nature,
-                        Speed_Fire[3] + Speed_Fire[3] * multiplikator_nature,
+                        Speed_Grass[0] + Speed_Grass[0] * multiplikator_nature,
                         Speed_Grass[1] + Speed_Grass[1] * multiplikator_nature,
                         Speed_Grass[2] + Speed_Grass[2] * multiplikator_nature,
-                        Speed_Grass[3] + Speed_Grass[3] * multiplikator_nature,
+                        Speed_Water[0] + Speed_Water[0] * multiplikator_nature,
                         Speed_Water[1] + Speed_Water[1] * multiplikator_nature,
-                        Speed_Water[2] + Speed_Water[2] * multiplikator_nature,
-                        Speed_Water[3] + Speed_Water[3] * multiplikator_nature};
+                        Speed_Water[2] + Speed_Water[2] * multiplikator_nature};
 
         double[] nature_Adamant =
                 //stat that getting decreased
-                {Sp_Atk_Fire[1] - Sp_Atk_Fire[1] * multiplikator_nature,
+                {Sp_Atk_Fire[0] - Sp_Atk_Fire[0] * multiplikator_nature,
+                        Sp_Atk_Fire[1] - Sp_Atk_Fire[1] * multiplikator_nature,
                         Sp_Atk_Fire[2] - Sp_Atk_Fire[2] * multiplikator_nature,
-                        Sp_Atk_Fire[3] - Sp_Atk_Fire[3] * multiplikator_nature,
+                        Sp_Atk_Grass[0] - Sp_Atk_Grass[0] * multiplikator_nature,
                         Sp_Atk_Grass[1] - Sp_Atk_Grass[1] * multiplikator_nature,
                         Sp_Atk_Grass[2] - Sp_Atk_Grass[2] * multiplikator_nature,
-                        Sp_Atk_Grass[3] - Sp_Atk_Grass[3] * multiplikator_nature,
+                        Sp_Atk_Water[0] - Sp_Atk_Water[0] * multiplikator_nature,
                         Sp_Atk_Water[1] - Sp_Atk_Water[1] * multiplikator_nature,
                         Sp_Atk_Water[2] - Sp_Atk_Water[2] * multiplikator_nature,
-                        Sp_Atk_Water[3] - Sp_Atk_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Atk_Fire[0] + Atk_Fire[0] * multiplikator_nature,
                         Atk_Fire[1] + Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] + Atk_Fire[2] * multiplikator_nature,
-                        Atk_Fire[3] + Atk_Fire[3] * multiplikator_nature,
+                        Atk_Grass[0] + Atk_Grass[0] * multiplikator_nature,
                         Atk_Grass[1] + Atk_Grass[1] * multiplikator_nature,
                         Atk_Grass[2] + Atk_Grass[2] * multiplikator_nature,
-                        Atk_Grass[3] + Atk_Grass[3] * multiplikator_nature,
+                        Atk_Water[0] + Atk_Water[0] * multiplikator_nature,
                         Atk_Water[1] + Atk_Water[1] * multiplikator_nature,
-                        Atk_Water[2] + Atk_Water[2] * multiplikator_nature,
-                        Atk_Water[3] + Atk_Water[3] * multiplikator_nature};
+                        Atk_Water[2] + Atk_Water[2] * multiplikator_nature};
 
         double[] nature_Bashful =
                 //stat that getting decreased
-                {Sp_Atk_Fire[1] - Sp_Atk_Fire[1] * multiplikator_nature,
+                {Sp_Atk_Fire[0] - Sp_Atk_Fire[0] * multiplikator_nature,
+                        Sp_Atk_Fire[1] - Sp_Atk_Fire[1] * multiplikator_nature,
                         Sp_Atk_Fire[2] - Sp_Atk_Fire[2] * multiplikator_nature,
-                        Sp_Atk_Fire[3] - Sp_Atk_Fire[3] * multiplikator_nature,
+                        Sp_Atk_Grass[0] - Sp_Atk_Grass[0] * multiplikator_nature,
                         Sp_Atk_Grass[1] - Sp_Atk_Grass[1] * multiplikator_nature,
                         Sp_Atk_Grass[2] - Sp_Atk_Grass[2] * multiplikator_nature,
-                        Sp_Atk_Grass[3] - Sp_Atk_Grass[3] * multiplikator_nature,
+                        Sp_Atk_Water[0] - Sp_Atk_Water[0] * multiplikator_nature,
                         Sp_Atk_Water[1] - Sp_Atk_Water[1] * multiplikator_nature,
                         Sp_Atk_Water[2] - Sp_Atk_Water[2] * multiplikator_nature,
-                        Sp_Atk_Water[3] - Sp_Atk_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Sp_Atk_Fire[0] + Sp_Atk_Fire[0] * multiplikator_nature,
                         Sp_Atk_Fire[1] + Sp_Atk_Fire[1] * multiplikator_nature,
                         Sp_Atk_Fire[2] + Sp_Atk_Fire[2] * multiplikator_nature,
-                        Sp_Atk_Fire[3] + Sp_Atk_Fire[3] * multiplikator_nature,
+                        Sp_Atk_Grass[0] + Sp_Atk_Grass[0] * multiplikator_nature,
                         Sp_Atk_Grass[1] + Sp_Atk_Grass[1] * multiplikator_nature,
                         Sp_Atk_Grass[2] + Sp_Atk_Grass[2] * multiplikator_nature,
-                        Sp_Atk_Grass[3] + Sp_Atk_Grass[3] * multiplikator_nature,
+                        Sp_Atk_Water[0] + Sp_Atk_Water[0] * multiplikator_nature,
                         Sp_Atk_Water[1] + Sp_Atk_Water[1] * multiplikator_nature,
-                        Sp_Atk_Water[2] + Sp_Atk_Water[2] * multiplikator_nature,
-                        Sp_Atk_Water[3] + Sp_Atk_Water[3] * multiplikator_nature};
+                        Sp_Atk_Water[2] + Sp_Atk_Water[2] * multiplikator_nature};
 
         double[] nature_Careful =
                 //stat that getting decreased
-                {Sp_Atk_Fire[1] - Sp_Atk_Fire[1] * multiplikator_nature,
+                {Sp_Atk_Fire[0] - Sp_Atk_Fire[0] * multiplikator_nature,
+                        Sp_Atk_Fire[1] - Sp_Atk_Fire[1] * multiplikator_nature,
                         Sp_Atk_Fire[2] - Sp_Atk_Fire[2] * multiplikator_nature,
-                        Sp_Atk_Fire[3] - Sp_Atk_Fire[3] * multiplikator_nature,
+                        Sp_Atk_Grass[0] - Sp_Atk_Grass[0] * multiplikator_nature,
                         Sp_Atk_Grass[1] - Sp_Atk_Grass[1] * multiplikator_nature,
                         Sp_Atk_Grass[2] - Sp_Atk_Grass[2] * multiplikator_nature,
-                        Sp_Atk_Grass[3] - Sp_Atk_Grass[3] * multiplikator_nature,
+                        Sp_Atk_Water[0] - Sp_Atk_Water[0] * multiplikator_nature,
                         Sp_Atk_Water[1] - Sp_Atk_Water[1] * multiplikator_nature,
                         Sp_Atk_Water[2] - Sp_Atk_Water[2] * multiplikator_nature,
-                        Sp_Atk_Water[3] - Sp_Atk_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Sp_Dev_Fire[0] + Sp_Dev_Fire[0] * multiplikator_nature,
                         Sp_Dev_Fire[1] + Sp_Dev_Fire[1] * multiplikator_nature,
                         Sp_Dev_Fire[2] + Sp_Dev_Fire[2] * multiplikator_nature,
-                        Sp_Dev_Fire[3] + Sp_Dev_Fire[3] * multiplikator_nature,
+                        Sp_Dev_Grass[0] + Sp_Dev_Grass[0] * multiplikator_nature,
                         Sp_Dev_Grass[1] + Sp_Dev_Grass[1] * multiplikator_nature,
                         Sp_Dev_Grass[2] + Sp_Dev_Grass[2] * multiplikator_nature,
-                        Sp_Dev_Grass[3] + Sp_Dev_Grass[3] * multiplikator_nature,
+                        Sp_Dev_Water[0] + Sp_Dev_Water[0] * multiplikator_nature,
                         Sp_Dev_Water[1] + Sp_Dev_Water[1] * multiplikator_nature,
-                        Sp_Dev_Water[2] + Sp_Dev_Water[2] * multiplikator_nature,
-                        Sp_Dev_Water[3] + Sp_Dev_Water[3] * multiplikator_nature};
+                        Sp_Dev_Water[2] + Sp_Dev_Water[2] * multiplikator_nature};
 
         double[] nature_jolly =
                 ///stat that getting decreased
-                {Sp_Atk_Fire[1] - Sp_Atk_Fire[1] * multiplikator_nature,
+                {Sp_Atk_Fire[0] - Sp_Atk_Fire[0] * multiplikator_nature,
+                        Sp_Atk_Fire[1] - Sp_Atk_Fire[1] * multiplikator_nature,
                         Sp_Atk_Fire[2] - Sp_Atk_Fire[2] * multiplikator_nature,
-                        Sp_Atk_Fire[3] - Sp_Atk_Fire[3] * multiplikator_nature,
+                        Sp_Atk_Grass[0] - Sp_Atk_Grass[0] * multiplikator_nature,
                         Sp_Atk_Grass[1] - Sp_Atk_Grass[1] * multiplikator_nature,
                         Sp_Atk_Grass[2] - Sp_Atk_Grass[2] * multiplikator_nature,
-                        Sp_Atk_Grass[3] - Sp_Atk_Grass[3] * multiplikator_nature,
+                        Sp_Atk_Water[0] - Sp_Atk_Water[0] * multiplikator_nature,
                         Sp_Atk_Water[1] - Sp_Atk_Water[1] * multiplikator_nature,
                         Sp_Atk_Water[2] - Sp_Atk_Water[2] * multiplikator_nature,
-                        Sp_Atk_Water[3] - Sp_Atk_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Speed_Fire[0] + Speed_Fire[0] * multiplikator_nature,
                         Speed_Fire[1] + Speed_Fire[1] * multiplikator_nature,
                         Speed_Fire[2] + Speed_Fire[2] * multiplikator_nature,
-                        Speed_Fire[3] + Speed_Fire[3] * multiplikator_nature,
+                        Speed_Grass[0] + Speed_Grass[0] * multiplikator_nature,
                         Speed_Grass[1] + Speed_Grass[1] * multiplikator_nature,
                         Speed_Grass[2] + Speed_Grass[2] * multiplikator_nature,
-                        Speed_Grass[3] + Speed_Grass[3] * multiplikator_nature,
+                        Speed_Water[0] + Speed_Water[0] * multiplikator_nature,
                         Speed_Water[1] + Speed_Water[1] * multiplikator_nature,
-                        Speed_Water[2] + Speed_Water[2] * multiplikator_nature,
-                        Speed_Water[3] + Speed_Water[3] * multiplikator_nature};
+                        Speed_Water[2] + Speed_Water[2] * multiplikator_nature};
 
         double[] nature_Naughty =
                 //stat that getting decreased
-                {Sp_Dev_Fire[1] - Sp_Dev_Fire[1] * multiplikator_nature,
+                {Sp_Dev_Fire[0] - Sp_Dev_Fire[0] * multiplikator_nature,
+                        Sp_Dev_Fire[1] - Sp_Dev_Fire[1] * multiplikator_nature,
                         Sp_Dev_Fire[2] - Sp_Dev_Fire[2] * multiplikator_nature,
-                        Sp_Dev_Fire[3] - Sp_Dev_Fire[3] * multiplikator_nature,
+                        Sp_Dev_Grass[0] - Sp_Dev_Grass[0] * multiplikator_nature,
                         Sp_Dev_Grass[1] - Sp_Dev_Grass[1] * multiplikator_nature,
                         Sp_Dev_Grass[2] - Sp_Dev_Grass[2] * multiplikator_nature,
-                        Sp_Dev_Grass[3] - Sp_Dev_Grass[3] * multiplikator_nature,
+                        Sp_Dev_Water[0] - Sp_Dev_Water[0] * multiplikator_nature,
                         Sp_Dev_Water[1] - Sp_Dev_Water[1] * multiplikator_nature,
                         Sp_Dev_Water[2] - Sp_Dev_Water[2] * multiplikator_nature,
-                        Sp_Dev_Water[3] - Sp_Dev_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Atk_Fire[0] + Atk_Fire[0] * multiplikator_nature,
                         Atk_Fire[1] + Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] + Atk_Fire[2] * multiplikator_nature,
-                        Atk_Fire[3] + Atk_Fire[3] * multiplikator_nature,
+                        Atk_Grass[0] + Atk_Grass[0] * multiplikator_nature,
                         Atk_Grass[1] + Atk_Grass[1] * multiplikator_nature,
                         Atk_Grass[2] + Atk_Grass[2] * multiplikator_nature,
-                        Atk_Grass[3] + Atk_Grass[3] * multiplikator_nature,
+                        Atk_Water[0] + Atk_Water[0] * multiplikator_nature,
                         Atk_Water[1] + Atk_Water[1] * multiplikator_nature,
-                        Atk_Water[2] + Atk_Water[2] * multiplikator_nature,
-                        Atk_Water[3] + Atk_Water[3] * multiplikator_nature};
+                        Atk_Water[2] + Atk_Water[2] * multiplikator_nature};
 
         double[] nature_Lax =
                 //stat that getting decreased
-                {Sp_Dev_Fire[1] - Sp_Dev_Fire[1] * multiplikator_nature,
+                {Sp_Dev_Fire[0] - Sp_Dev_Fire[0] * multiplikator_nature,
+                        Sp_Dev_Fire[1] - Sp_Dev_Fire[1] * multiplikator_nature,
                         Sp_Dev_Fire[2] - Sp_Dev_Fire[2] * multiplikator_nature,
-                        Sp_Dev_Fire[3] - Sp_Dev_Fire[3] * multiplikator_nature,
+                        Sp_Dev_Grass[0] - Sp_Dev_Grass[0] * multiplikator_nature,
                         Sp_Dev_Grass[1] - Sp_Dev_Grass[1] * multiplikator_nature,
                         Sp_Dev_Grass[2] - Sp_Dev_Grass[2] * multiplikator_nature,
-                        Sp_Dev_Grass[3] - Sp_Dev_Grass[3] * multiplikator_nature,
+                        Sp_Dev_Water[0] - Sp_Dev_Water[0] * multiplikator_nature,
                         Sp_Dev_Water[1] - Sp_Dev_Water[1] * multiplikator_nature,
                         Sp_Dev_Water[2] - Sp_Dev_Water[2] * multiplikator_nature,
-                        Sp_Dev_Water[3] - Sp_Dev_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        DEV_Fire[0] + DEV_Fire[0] * multiplikator_nature,
                         DEV_Fire[1] + DEV_Fire[1] * multiplikator_nature,
                         DEV_Fire[2] + DEV_Fire[2] * multiplikator_nature,
-                        DEV_Fire[3] + DEV_Fire[3] * multiplikator_nature,
+                        DEV_Grass[0] + DEV_Grass[0] * multiplikator_nature,
                         DEV_Grass[1] + DEV_Grass[1] * multiplikator_nature,
                         DEV_Grass[2] + DEV_Grass[2] * multiplikator_nature,
-                        DEV_Grass[3] + DEV_Grass[3] * multiplikator_nature,
+                        DEV_Water[0] + DEV_Water[0] * multiplikator_nature,
                         DEV_Water[1] + DEV_Water[1] * multiplikator_nature,
-                        DEV_Water[2] + DEV_Water[2] * multiplikator_nature,
-                        DEV_Water[3] + DEV_Water[3] * multiplikator_nature};
+                        DEV_Water[2] + DEV_Water[2] * multiplikator_nature};
 
         double[] nature_Rash =
                 //stat that getting decreased
-                {Sp_Dev_Fire[1] - Sp_Dev_Fire[1] * multiplikator_nature,
+                {Sp_Dev_Fire[0] - Sp_Dev_Fire[0] * multiplikator_nature,
+                        Sp_Dev_Fire[1] - Sp_Dev_Fire[1] * multiplikator_nature,
                         Sp_Dev_Fire[2] - Sp_Dev_Fire[2] * multiplikator_nature,
-                        Sp_Dev_Fire[3] - Sp_Dev_Fire[3] * multiplikator_nature,
+                        Sp_Dev_Grass[0] - Sp_Dev_Grass[0] * multiplikator_nature,
                         Sp_Dev_Grass[1] - Sp_Dev_Grass[1] * multiplikator_nature,
                         Sp_Dev_Grass[2] - Sp_Dev_Grass[2] * multiplikator_nature,
-                        Sp_Dev_Grass[3] - Sp_Dev_Grass[3] * multiplikator_nature,
+                        Sp_Dev_Water[0] - Sp_Dev_Water[0] * multiplikator_nature,
                         Sp_Dev_Water[1] - Sp_Dev_Water[1] * multiplikator_nature,
                         Sp_Dev_Water[2] - Sp_Dev_Water[2] * multiplikator_nature,
-                        Sp_Dev_Water[3] - Sp_Dev_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Sp_Atk_Fire[0] + Sp_Atk_Fire[0] * multiplikator_nature,
                         Sp_Atk_Fire[1] + Sp_Atk_Fire[1] * multiplikator_nature,
                         Sp_Atk_Fire[2] + Sp_Atk_Fire[2] * multiplikator_nature,
-                        Sp_Atk_Fire[3] + Sp_Atk_Fire[3] * multiplikator_nature,
+                        Sp_Atk_Grass[0] + Sp_Atk_Grass[0] * multiplikator_nature,
                         Sp_Atk_Grass[1] + Sp_Atk_Grass[1] * multiplikator_nature,
                         Sp_Atk_Grass[2] + Sp_Atk_Grass[2] * multiplikator_nature,
-                        Sp_Atk_Grass[3] + Sp_Atk_Grass[3] * multiplikator_nature,
+                        Sp_Atk_Water[0] + Sp_Atk_Water[0] * multiplikator_nature,
                         Sp_Atk_Water[1] + Sp_Atk_Water[1] * multiplikator_nature,
-                        Sp_Atk_Water[2] + Sp_Atk_Water[2] * multiplikator_nature,
-                        Sp_Atk_Water[3] + Sp_Atk_Water[3] * multiplikator_nature};
+                        Sp_Atk_Water[2] + Sp_Atk_Water[2] * multiplikator_nature};
 
         double[] nature_Quirky =
                 //stat that getting decreased
-                {Sp_Dev_Fire[1] - Sp_Dev_Fire[1] * multiplikator_nature,
+                {Sp_Dev_Fire[0] - Sp_Dev_Fire[0] * multiplikator_nature,
+                        Sp_Dev_Fire[1] - Sp_Dev_Fire[1] * multiplikator_nature,
                         Sp_Dev_Fire[2] - Sp_Dev_Fire[2] * multiplikator_nature,
-                        Sp_Dev_Fire[3] - Sp_Dev_Fire[3] * multiplikator_nature,
+                        Sp_Dev_Grass[0] - Sp_Dev_Grass[0] * multiplikator_nature,
                         Sp_Dev_Grass[1] - Sp_Dev_Grass[1] * multiplikator_nature,
                         Sp_Dev_Grass[2] - Sp_Dev_Grass[2] * multiplikator_nature,
-                        Sp_Dev_Grass[3] - Sp_Dev_Grass[3] * multiplikator_nature,
+                        Sp_Dev_Water[0] - Sp_Dev_Water[0] * multiplikator_nature,
                         Sp_Dev_Water[1] - Sp_Dev_Water[1] * multiplikator_nature,
                         Sp_Dev_Water[2] - Sp_Dev_Water[2] * multiplikator_nature,
-                        Sp_Dev_Water[3] - Sp_Dev_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Sp_Dev_Fire[0] + Sp_Dev_Fire[0] * multiplikator_nature,
                         Sp_Dev_Fire[1] + Sp_Dev_Fire[1] * multiplikator_nature,
                         Sp_Dev_Fire[2] + Sp_Dev_Fire[2] * multiplikator_nature,
-                        Sp_Dev_Fire[3] + Sp_Dev_Fire[3] * multiplikator_nature,
+                        Sp_Dev_Grass[0] + Sp_Dev_Grass[0] * multiplikator_nature,
                         Sp_Dev_Grass[1] + Sp_Dev_Grass[1] * multiplikator_nature,
                         Sp_Dev_Grass[2] + Sp_Dev_Grass[2] * multiplikator_nature,
-                        Sp_Dev_Grass[3] + Sp_Dev_Grass[3] * multiplikator_nature,
+                        Sp_Dev_Water[0] + Sp_Dev_Water[0] * multiplikator_nature,
                         Sp_Dev_Water[1] + Sp_Dev_Water[1] * multiplikator_nature,
-                        Sp_Dev_Water[2] + Sp_Dev_Water[2] * multiplikator_nature,
-                        Sp_Dev_Water[3] + Sp_Dev_Water[3] * multiplikator_nature};
+                        Sp_Dev_Water[2] + Sp_Dev_Water[2] * multiplikator_nature};
 
         double[] nature_Naive =
                 //stat that getting decreased
-                {Sp_Dev_Fire[1] - Sp_Dev_Fire[1] * multiplikator_nature,
+                {Sp_Dev_Fire[0] - Sp_Dev_Fire[0] * multiplikator_nature,
+                        Sp_Dev_Fire[1] - Sp_Dev_Fire[1] * multiplikator_nature,
                         Sp_Dev_Fire[2] - Sp_Dev_Fire[2] * multiplikator_nature,
-                        Sp_Dev_Fire[3] - Sp_Dev_Fire[3] * multiplikator_nature,
+                        Sp_Dev_Grass[0] - Sp_Dev_Grass[0] * multiplikator_nature,
                         Sp_Dev_Grass[1] - Sp_Dev_Grass[1] * multiplikator_nature,
                         Sp_Dev_Grass[2] - Sp_Dev_Grass[2] * multiplikator_nature,
-                        Sp_Dev_Grass[3] - Sp_Dev_Grass[3] * multiplikator_nature,
+                        Sp_Dev_Water[0] - Sp_Dev_Water[0] * multiplikator_nature,
                         Sp_Dev_Water[1] - Sp_Dev_Water[1] * multiplikator_nature,
                         Sp_Dev_Water[2] - Sp_Dev_Water[2] * multiplikator_nature,
-                        Sp_Dev_Water[3] - Sp_Dev_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Speed_Fire[0] + Speed_Fire[0] * multiplikator_nature,
                         Speed_Fire[1] + Speed_Fire[1] * multiplikator_nature,
                         Speed_Fire[2] + Speed_Fire[2] * multiplikator_nature,
-                        Speed_Fire[3] + Speed_Fire[3] * multiplikator_nature,
+                        Speed_Grass[0] + Speed_Grass[0] * multiplikator_nature,
                         Speed_Grass[1] + Speed_Grass[1] * multiplikator_nature,
                         Speed_Grass[2] + Speed_Grass[2] * multiplikator_nature,
-                        Speed_Grass[3] + Speed_Grass[3] * multiplikator_nature,
+                        Speed_Water[0] + Speed_Water[0] * multiplikator_nature,
                         Speed_Water[1] + Speed_Water[1] * multiplikator_nature,
-                        Speed_Water[2] + Speed_Water[2] * multiplikator_nature,
-                        Speed_Water[3] + Speed_Water[3] * multiplikator_nature};
+                        Speed_Water[2] + Speed_Water[2] * multiplikator_nature};
 
         double[] nature_Brave =
                 //stat that getting decreased
-                {Speed_Fire[1] - Speed_Fire[1] * multiplikator_nature,
+                {Speed_Fire[0] - Speed_Fire[0] * multiplikator_nature,
+                        Speed_Fire[1] - Speed_Fire[1] * multiplikator_nature,
                         Speed_Fire[2] - Speed_Fire[2] * multiplikator_nature,
-                        Speed_Fire[3] - Speed_Fire[3] * multiplikator_nature,
+                        Speed_Grass[0] - Speed_Grass[0] * multiplikator_nature,
                         Speed_Grass[1] - Speed_Grass[1] * multiplikator_nature,
                         Speed_Grass[2] - Speed_Grass[2] * multiplikator_nature,
-                        Speed_Grass[3] - Speed_Grass[3] * multiplikator_nature,
+                        Speed_Water[0] - Speed_Water[0] * multiplikator_nature,
                         Speed_Water[1] - Speed_Water[1] * multiplikator_nature,
                         Speed_Water[2] - Speed_Water[2] * multiplikator_nature,
-                        Speed_Water[3] - Speed_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Atk_Fire[0] + Atk_Fire[0] * multiplikator_nature,
                         Atk_Fire[1] + Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] + Atk_Fire[2] * multiplikator_nature,
-                        Atk_Fire[3] + Atk_Fire[3] * multiplikator_nature,
+                        Atk_Grass[0] + Atk_Grass[0] * multiplikator_nature,
                         Atk_Grass[1] + Atk_Grass[1] * multiplikator_nature,
                         Atk_Grass[2] + Atk_Grass[2] * multiplikator_nature,
-                        Atk_Grass[3] + Atk_Grass[3] * multiplikator_nature,
+                        Atk_Water[0] + Atk_Water[0] * multiplikator_nature,
                         Atk_Water[1] + Atk_Water[1] * multiplikator_nature,
-                        Atk_Water[2] + Atk_Water[2] * multiplikator_nature,
-                        Atk_Water[3] + Atk_Water[3] * multiplikator_nature};
+                        Atk_Water[2] + Atk_Water[2] * multiplikator_nature};
 
         double[] nature_Relaxed =
                 //stat that getting decreased
-                {Speed_Fire[1] - Speed_Fire[1] * multiplikator_nature,
+                {Speed_Fire[0] - Speed_Fire[0] * multiplikator_nature,
+                        Speed_Fire[1] - Speed_Fire[1] * multiplikator_nature,
                         Speed_Fire[2] - Speed_Fire[2] * multiplikator_nature,
-                        Speed_Fire[3] - Speed_Fire[3] * multiplikator_nature,
+                        Speed_Grass[0] - Speed_Grass[0] * multiplikator_nature,
                         Speed_Grass[1] - Speed_Grass[1] * multiplikator_nature,
                         Speed_Grass[2] - Speed_Grass[2] * multiplikator_nature,
-                        Speed_Grass[3] - Speed_Grass[3] * multiplikator_nature,
+                        Speed_Water[0] - Speed_Water[0] * multiplikator_nature,
                         Speed_Water[1] - Speed_Water[1] * multiplikator_nature,
                         Speed_Water[2] - Speed_Water[2] * multiplikator_nature,
-                        Speed_Water[3] - Speed_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        DEV_Fire[0] + DEV_Fire[0] * multiplikator_nature,
                         DEV_Fire[1] + DEV_Fire[1] * multiplikator_nature,
                         DEV_Fire[2] + DEV_Fire[2] * multiplikator_nature,
-                        DEV_Fire[3] + DEV_Fire[3] * multiplikator_nature,
+                        DEV_Grass[0] + DEV_Grass[0] * multiplikator_nature,
                         DEV_Grass[1] + DEV_Grass[1] * multiplikator_nature,
                         DEV_Grass[2] + DEV_Grass[2] * multiplikator_nature,
-                        DEV_Grass[3] + DEV_Grass[3] * multiplikator_nature,
+                        DEV_Water[0] + DEV_Water[0] * multiplikator_nature,
                         DEV_Water[1] + DEV_Water[1] * multiplikator_nature,
-                        DEV_Water[2] + DEV_Water[2] * multiplikator_nature,
-                        DEV_Water[3] + DEV_Water[3] * multiplikator_nature};
+                        DEV_Water[2] + DEV_Water[2] * multiplikator_nature};
 
         double[] nature_Quiet =
                 //stat that getting decreased
-                {Speed_Fire[1] - Speed_Fire[1] * multiplikator_nature,
+                {Speed_Fire[0] - Speed_Fire[0] * multiplikator_nature,
+                        Speed_Fire[1] - Speed_Fire[1] * multiplikator_nature,
                         Speed_Fire[2] - Speed_Fire[2] * multiplikator_nature,
-                        Speed_Fire[3] - Speed_Fire[3] * multiplikator_nature,
+                        Speed_Grass[0] - Speed_Grass[0] * multiplikator_nature,
                         Speed_Grass[1] - Speed_Grass[1] * multiplikator_nature,
                         Speed_Grass[2] - Speed_Grass[2] * multiplikator_nature,
-                        Speed_Grass[3] - Speed_Grass[3] * multiplikator_nature,
+                        Speed_Water[0] - Speed_Water[0] * multiplikator_nature,
                         Speed_Water[1] - Speed_Water[1] * multiplikator_nature,
                         Speed_Water[2] - Speed_Water[2] * multiplikator_nature,
-                        Speed_Water[3] - Speed_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Sp_Atk_Fire[0] + Sp_Atk_Fire[0] * multiplikator_nature,
                         Sp_Atk_Fire[1] + Sp_Atk_Fire[1] * multiplikator_nature,
                         Sp_Atk_Fire[2] + Sp_Atk_Fire[2] * multiplikator_nature,
-                        Sp_Atk_Fire[3] + Sp_Atk_Fire[3] * multiplikator_nature,
+                        Sp_Atk_Grass[0] + Sp_Atk_Grass[0] * multiplikator_nature,
                         Sp_Atk_Grass[1] + Sp_Atk_Grass[1] * multiplikator_nature,
                         Sp_Atk_Grass[2] + Sp_Atk_Grass[2] * multiplikator_nature,
-                        Sp_Atk_Grass[3] + Sp_Atk_Grass[3] * multiplikator_nature,
+                        Sp_Atk_Water[0] + Sp_Atk_Water[0] * multiplikator_nature,
                         Sp_Atk_Water[1] + Sp_Atk_Water[1] * multiplikator_nature,
-                        Sp_Atk_Water[2] + Sp_Atk_Water[2] * multiplikator_nature,
-                        Sp_Atk_Water[3] + Sp_Atk_Water[3] * multiplikator_nature};
+                        Sp_Atk_Water[2] + Sp_Atk_Water[2] * multiplikator_nature};
 
         double[] nature_Sassy =
                 //stat that getting decreased
-                {Speed_Fire[1] - Speed_Fire[1] * multiplikator_nature,
+                {Speed_Fire[0] - Speed_Fire[0] * multiplikator_nature,
+                        Speed_Fire[1] - Speed_Fire[1] * multiplikator_nature,
                         Speed_Fire[2] - Speed_Fire[2] * multiplikator_nature,
-                        Speed_Fire[3] - Speed_Fire[3] * multiplikator_nature,
+                        Speed_Grass[0] - Speed_Grass[0] * multiplikator_nature,
                         Speed_Grass[1] - Speed_Grass[1] * multiplikator_nature,
                         Speed_Grass[2] - Speed_Grass[2] * multiplikator_nature,
-                        Speed_Grass[3] - Speed_Grass[3] * multiplikator_nature,
+                        Speed_Water[0] - Speed_Water[0] * multiplikator_nature,
                         Speed_Water[1] - Speed_Water[1] * multiplikator_nature,
                         Speed_Water[2] - Speed_Water[2] * multiplikator_nature,
-                        Speed_Water[3] - Speed_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Sp_Dev_Fire[0] + Sp_Dev_Fire[0] * multiplikator_nature,
                         Sp_Dev_Fire[1] + Sp_Dev_Fire[1] * multiplikator_nature,
                         Sp_Dev_Fire[2] + Sp_Dev_Fire[2] * multiplikator_nature,
-                        Sp_Dev_Fire[3] + Sp_Dev_Fire[3] * multiplikator_nature,
+                        Sp_Dev_Grass[0] + Sp_Dev_Grass[0] * multiplikator_nature,
                         Sp_Dev_Grass[1] + Sp_Dev_Grass[1] * multiplikator_nature,
                         Sp_Dev_Grass[2] + Sp_Dev_Grass[2] * multiplikator_nature,
-                        Sp_Dev_Grass[3] + Sp_Dev_Grass[3] * multiplikator_nature,
+                        Sp_Dev_Water[0] + Sp_Dev_Water[0] * multiplikator_nature,
                         Sp_Dev_Water[1] + Sp_Dev_Water[1] * multiplikator_nature,
-                        Sp_Dev_Water[2] + Sp_Dev_Water[2] * multiplikator_nature,
-                        Sp_Dev_Water[3] + Sp_Dev_Water[3] * multiplikator_nature};
+                        Sp_Dev_Water[2] + Sp_Dev_Water[2] * multiplikator_nature};
 
         double[] nature_Serious =
                 //stat that getting decreased
-                {Speed_Fire[1] - Speed_Fire[1] * multiplikator_nature,
+                {Speed_Fire[0] - Speed_Fire[0] * multiplikator_nature,
+                        Speed_Fire[1] - Speed_Fire[1] * multiplikator_nature,
                         Speed_Fire[2] - Speed_Fire[2] * multiplikator_nature,
-                        Speed_Fire[3] - Speed_Fire[3] * multiplikator_nature,
+                        Speed_Grass[0] - Speed_Grass[0] * multiplikator_nature,
                         Speed_Grass[1] - Speed_Grass[1] * multiplikator_nature,
                         Speed_Grass[2] - Speed_Grass[2] * multiplikator_nature,
-                        Speed_Grass[3] - Speed_Grass[3] * multiplikator_nature,
+                        Speed_Water[0] - Speed_Water[0] * multiplikator_nature,
                         Speed_Water[1] - Speed_Water[1] * multiplikator_nature,
                         Speed_Water[2] - Speed_Water[2] * multiplikator_nature,
-                        Speed_Water[3] - Speed_Water[3] * multiplikator_nature,
                         //stat that getting increased
+                        Speed_Fire[0] + Speed_Fire[0] * multiplikator_nature,
                         Speed_Fire[1] + Speed_Fire[1] * multiplikator_nature,
                         Speed_Fire[2] + Speed_Fire[2] * multiplikator_nature,
-                        Speed_Fire[3] + Speed_Fire[3] * multiplikator_nature,
+                        Speed_Grass[0] + Speed_Grass[0] * multiplikator_nature,
                         Speed_Grass[1] + Speed_Grass[1] * multiplikator_nature,
                         Speed_Grass[2] + Speed_Grass[2] * multiplikator_nature,
-                        Speed_Grass[3] + Speed_Grass[3] * multiplikator_nature,
+                        Speed_Water[0] + Speed_Water[0] * multiplikator_nature,
                         Speed_Water[1] + Speed_Water[1] * multiplikator_nature,
-                        Speed_Water[2] + Speed_Water[2] * multiplikator_nature,
-                        Speed_Water[3] + Speed_Water[3] * multiplikator_nature};
+                        Speed_Water[2] + Speed_Water[2] * multiplikator_nature};
 
 
     }
@@ -676,7 +720,21 @@ public class Stats {
     //------------------------------------------------------------------------------------------------------------------
     //items
     public void items(){
-
+        //lucky egg
+        //potion
+        //super potion
+        //hyper potion
+        //max potion
+        //revive
+        // Power Lens 	Hold items 	A Pokémon held item that promotes Sp. Atk gain on leveling, but reduces the Speed stat.
+        // Power Weight 	Hold items 	A Pokémon held item that promotes HP gain on leveling, but reduces the Speed stat.
+        //Power Bracer 	Hold items 	A Pokémon held item that promotes Attack gain on leveling, but reduces the Speed stat.
+        //Power Belt 	Hold items 	A Pokémon held item that promotes Defense gain on leveling, but reduces the Speed stat.
+        //Power Band 	Hold items 	A Pokémon held item that promotes Sp. Def gain on leveling, but reduces the Speed stat.
+        //Power Anklet 	Hold items 	A Pokémon held item that promotes Speed gain on leveling, but reduces the Speed stat.
+        //xp-share An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.
+        //X Attack raises the Attack stat of a Pokémon in battle by two stages.
+        //X Defense raises the Defense of a Pokémon in battle by two stages.
     }
     public int getItem_lucky_egg() {
         return item_lucky_egg;
@@ -684,5 +742,31 @@ public class Stats {
 
     public void setItem_lucky_egg(int item_lucky_egg) {
         this.item_lucky_egg = item_lucky_egg;
+    }
+
+    public static void moves() {
+        String moves[]= {"scratch","growl","scare","ember","bubble","Absorb"};
+        int atk_move[]= {	35,	0,	0,	40,	40,	40};
+        int accuracy_move[]= {100,	100,	100,	100,	100,	100};
+
+
+        // System.out.println("move value " + list.getattacke("growl"));
+        // System.out.println("move value " + list.getattacke("scare"));
+        // System.out.println("move value " + list.getattacke("ember"));
+        // System.out.println("move value " + list.getattacke("bubble"));
+        // System.out.println("move value " + list.getattacke("Absorb"));
+
+    }
+    public static void type() {
+        String type[]= {"Fire","Grass","Water"};
+        int type_Value[]= {1,2,3,};
+        type[0]= "1"; //Fire
+        type[1]= "2"; //Grass
+        type[2]= "3"; //Water
+        int typeValue[] = {Integer.parseInt(type[0]),Integer.parseInt(type[1]),Integer.parseInt(type[2])};
+        //if(typeValue[0]<typeValue[0]){
+        System.out.println("type Fire: " +typeValue[0]);
+
+        // }
     }
 }
