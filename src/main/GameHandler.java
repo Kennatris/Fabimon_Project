@@ -108,7 +108,6 @@ public class GameHandler extends JPanel implements Runnable {
         //playMusic(0);
 
         gameState = titleState;
-
     }
 
     public void reSetupGame() {

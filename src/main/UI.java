@@ -90,7 +90,7 @@ public class UI {
         double fontValue = ((gameH.myGUI.frame.getHeight() / 2)-((texts+1)*(gameH.myGUI.frame.getHeight()/25)))/texts; // How big the Font is compared to the Screen
         float fontSize = Float.parseFloat(String.valueOf(fontValue));
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, fontSize));
-        text = "LOAD GAME";
+        text = "SELECT SAVE";
         textPos = 0;
         x = getXforCenteredText(text);
 //      y = (gameH.myGUI.frame.getHeight()/16) + (gameH.myGUI.frame.getWidth()/3)/3 + (gameH.myGUI.frame.getHeight()/8); // first Label under the Image
@@ -101,7 +101,7 @@ public class UI {
         }
 
         y += getYforText(text) + (gameH.myGUI.frame.getHeight()/60);
-        text = "NEW GAME";
+        text = "LOAD GAME";
         textPos = 1;
         x = getXforCenteredText(text);
         g2.drawString(text, x, y);

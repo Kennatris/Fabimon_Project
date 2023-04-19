@@ -141,7 +141,7 @@ public class CollisionChecker {
         return index;
     }
 
-    // NPC OR MONSTER
+    // NPC OR MOB
     public int checkEntity(Entity entity, Entity[] target) {
 
         int index = 999;

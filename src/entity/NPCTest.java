@@ -11,8 +11,9 @@ public class NPCTest extends Entity{
   public  NPCTest(GameHandler gameH){
       super(gameH);
 
-      direction = "right";
-      speed = 10;
+      this.direction = "right";
+      this.speed = 10;
+      this.map = gameH.availableMaps[0];
 
       getTestNPCImage();
   }
