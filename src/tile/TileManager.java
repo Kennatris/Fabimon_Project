@@ -46,6 +46,7 @@ public class TileManager {
         setup(7, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
         setup(8, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
         setup(9, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
+
         // PLACEHOLDER
 
 
@@ -65,6 +66,9 @@ public class TileManager {
         setup(20, "Buttons","BagS","png",343, 110,false);
         setup(21, "Buttons","Fabimon","png",343, 110,false);
         setup(22, "Buttons","FabimonS","png",343, 110,false);
+
+        //Textfields
+        setup(23, "Textfields","Textfield_1","png", gameH.tileSize, gameH.tileSize,false);
 
     }
 

@@ -60,6 +60,7 @@ public class GameHandler extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
+    public CutsceneManager csManager = new CutsceneManager(this);
     Thread gameThread;
     GUI myGUI;
     SaveCompiler saveC = new SaveCompiler();
@@ -70,6 +71,7 @@ public class GameHandler extends JPanel implements Runnable {
     public PlayerDummy playerD = new PlayerDummy(this);
     public SuperObject obj[] = new SuperObject[10];
     public Entity npc[] = new Entity[10];
+    public int  npcBattle;
 
     // GAME STATE
     public int gameState;
@@ -201,7 +203,9 @@ public class GameHandler extends JPanel implements Runnable {
             minutes = 0;
             hour++;
         }
-
+        if(keyH.shiftPressed){
+            gameState = battleState;
+        }
         // fullscreen
         if (keyH.f12Pressed) {
             fullscreen = !fullscreen;
@@ -223,6 +227,8 @@ public class GameHandler extends JPanel implements Runnable {
 
             // PLAYER
             player.update();
+
+
 
             if (debugMode) {
 
@@ -617,10 +623,76 @@ public class GameHandler extends JPanel implements Runnable {
                 keyH.spacePressed = false;
                 keyH.enterPressed = false;
             }
-        }
-        if(gameState == battleState){
-
         }// Bindings for gameState
+
+        if(gameState == battleState){
+            if(keyH.upPressed || keyH.wPressed || keyH.downPressed || keyH.sPressed ||
+               keyH.rightPressed || keyH.dPressed || keyH.leftPressed || keyH.aPressed){
+
+                if(keyH.upPressed || keyH.wPressed){
+                    switch(ui.commandNum){
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                        case 2: ui.commandNum = 0;
+                            break;
+                        case 3: ui.commandNum = 1;
+                            break;
+                    }
+                } else if (keyH.downPressed || keyH.sPressed){
+                    switch(ui.commandNum){
+                        case 0: ui.commandNum = 2;
+                            break;
+                        case 1: ui.commandNum = 3;
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                    }
+                }else if(keyH.rightPressed || keyH.dPressed){
+                    switch(ui.commandNum){
+                        case 0: ui.commandNum = 1;
+                            break;
+                        case 1:
+                            break;
+                        case 2: ui.commandNum = 3;
+                            break;
+                        case 3:
+                            break;
+                    }
+                }else if(keyH.leftPressed || keyH.aPressed){
+                    switch(ui.commandNum) {
+                        case 0:
+
+                            break;
+                        case 1:
+                            ui.commandNum = 0;
+                            break;
+                        case 2:
+                            break;
+                        case 3: ui.commandNum = 2;
+                            break;
+                    }
+                }
+            }else if (keyH.enterPressed || keyH.spacePressed){
+                switch(ui.commandNum) {
+                    case 0: ui.battleText = "Fight";
+                        break;
+                    case 1: ui.battleText = "Fabimon";
+                        break;
+                    case 2: ui.battleText = "Bag";
+                        break;
+                    case 3: gameState = playState;
+                        npc[npcBattle].isApproaching = false;
+                        player.beingApproached = false;
+                        npc[npcBattle].approached = false;
+                        npc[npcBattle].innactive = true ;
+                        break;
+                }
+            }
+        }// Bindings for battleState
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -652,6 +724,9 @@ public class GameHandler extends JPanel implements Runnable {
             }
             // PLAYER
             player.draw(g2);
+
+            //Cutscene
+            csManager.draw(g2);
 
             // UI
             ui.draw(g2);
