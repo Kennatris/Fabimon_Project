@@ -34,6 +34,8 @@ public class TileManager {
         // LABEL
         setup(0, "main","Fabimon_Label","png",343, 110,false);
 
+
+
         // empty fill Space to skip
         setup(1, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
         setup(2, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
@@ -44,8 +46,11 @@ public class TileManager {
         setup(7, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
         setup(8, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
         setup(9, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
+
         // PLACEHOLDER
 
+
+        //Tiles
         setup(10, "tiles","grass","png", gameH.tileSize, gameH.tileSize,false);
         setup(11, "tiles","gravel","png", gameH.tileSize, gameH.tileSize,false);
         setup(12, "tiles","grass_flowers","png", gameH.tileSize, gameH.tileSize,true);
@@ -53,6 +58,17 @@ public class TileManager {
         setup(14, "tiles","sand","png", gameH.tileSize, gameH.tileSize,true);
         setup(15, "tiles","wood","png",gameH.tileSize, gameH.tileSize, false);
         setup(16, "tiles","stone","png",gameH.tileSize, gameH.tileSize, false);
+
+        //Buttons
+        setup(17, "Buttons","Fight","png",96, 96,false);
+        setup(18, "Buttons","FightS","png",343, 110,false);
+        setup(19, "Buttons","Bag","png",343, 110,false);
+        setup(20, "Buttons","BagS","png",343, 110,false);
+        setup(21, "Buttons","Fabimon","png",343, 110,false);
+        setup(22, "Buttons","FabimonS","png",343, 110,false);
+
+        //Textfields
+        setup(23, "Textfields","Textfield_1","png", gameH.tileSize, gameH.tileSize,false);
 
     }
 
@@ -123,12 +139,11 @@ public class TileManager {
             int screenX = worldX - gameH.player.worldX + gameH.player.screenX;
             int screenY = worldY - gameH.player.worldY + gameH.player.screenY;
 
-            //if(worldX + gameH.tileSize > gameH.player.worldX - gameH.player.screenX &&
-            // worldX - gameH.tileSize < gameH.player.worldX + gameH.player.screenX &&
-            // worldY + gameH.tileSize > gameH.player.worldY - gameH.player.screenY &&
-            // worldY - gameH.tileSize < gameH.player.worldY + gameH.player.screenY){
+            if(worldX + gameH.tileSize > gameH.player.worldX - gameH.player.screenX &&
+                worldX - gameH.tileSize < gameH.player.worldX + gameH.player.screenX &&
+                worldY + gameH.tileSize > gameH.player.worldY - gameH.player.screenY &&
+                worldY - gameH.tileSize < gameH.player.worldY + gameH.player.screenY) {
 
-            if (true) {
 
                 g2.drawImage(tile[tileNum].image, screenX, screenY, null);
 

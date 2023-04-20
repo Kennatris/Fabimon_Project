@@ -2,6 +2,7 @@ package main;
 
 import entity.Entity;
 import entity.Player;
+import entity.PlayerDummy;
 import main.control.KeyHandler;
 import objects.SuperObject;
 import settings.SaveCompiler;
@@ -66,6 +67,7 @@ public class GameHandler extends JPanel implements Runnable {
 
     // ENTITY AND OBJECT
     public Player player;
+    public PlayerDummy playerD = new PlayerDummy(this);
     public SuperObject obj[] = new SuperObject[10];
     public Entity npc[] = new Entity[10];
 
@@ -199,7 +201,9 @@ public class GameHandler extends JPanel implements Runnable {
             minutes = 0;
             hour++;
         }
-
+        if(keyH.shiftPressed){
+            gameState = battleState;
+        }
         // fullscreen
         if (keyH.f12Pressed) {
             fullscreen = !fullscreen;
@@ -615,7 +619,72 @@ public class GameHandler extends JPanel implements Runnable {
                 keyH.spacePressed = false;
                 keyH.enterPressed = false;
             }
-        } // Bindings for gameState
+        }// Bindings for gameState
+
+        if(gameState == battleState){
+            if(keyH.upPressed || keyH.wPressed || keyH.downPressed || keyH.sPressed ||
+               keyH.rightPressed || keyH.dPressed || keyH.leftPressed || keyH.aPressed){
+
+                if(keyH.upPressed || keyH.wPressed){
+                    switch(ui.commandNum){
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                        case 2: ui.commandNum = 0;
+                            break;
+                        case 3: ui.commandNum = 1;
+                            break;
+                    }
+                } else if (keyH.downPressed || keyH.sPressed){
+                    switch(ui.commandNum){
+                        case 0: ui.commandNum = 2;
+                            break;
+                        case 1: ui.commandNum = 3;
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                    }
+                }else if(keyH.rightPressed || keyH.dPressed){
+                    switch(ui.commandNum){
+                        case 0: ui.commandNum = 1;
+                            break;
+                        case 1:
+                            break;
+                        case 2: ui.commandNum = 3;
+                            break;
+                        case 3:
+                            break;
+                    }
+                }else if(keyH.leftPressed || keyH.aPressed){
+                    switch(ui.commandNum) {
+                        case 0:
+
+                            break;
+                        case 1:
+                            ui.commandNum = 0;
+                            break;
+                        case 2:
+                            break;
+                        case 3: ui.commandNum = 2;
+                            break;
+                    }
+                }
+            }else if (keyH.enterPressed || keyH.spacePressed){
+                switch(ui.commandNum) {
+                    case 0: ui.battleText = "Fight";
+                        break;
+                    case 1: ui.battleText = "Fabimon";
+                        break;
+                    case 2: ui.battleText = "Bag";
+                        break;
+                    case 3: ui.battleText = "Run";
+                        break;
+                }
+            }
+        }// Bindings for battleState
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

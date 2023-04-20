@@ -17,10 +17,7 @@ public class Entity {
     public int spriteNum = 1;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // 48 size of the hitbox
     public Rectangle visionArea = new Rectangle(0, 0, 48, 48);
-    public int visionRangeUp;
-    public int visionRangeDown;
-    public int visionRangeLeft;
-    public int visionRangeRight;
+    public int visionRangeUp, visionRangeRight, visionRangeLeft, visionRangeDown;
     public int solidAreaDefaultX, solidAreaDefaultY, visionAreaDefaultX, visionAreaDefaultY;
     public boolean collisionOn = false;
 

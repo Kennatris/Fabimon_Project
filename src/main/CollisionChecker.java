@@ -241,7 +241,7 @@ public class CollisionChecker {
         gameH.player.solidArea.x = gameH.player.solidAreaDefaultX;
         gameH.player.solidArea.y = gameH.player.solidAreaDefaultY;
     }
-    public int checkVision(Entity entity, Entity[] target){
+    public void checkVision(Entity entity, Entity[] target){
 
         int index = 999;
 
@@ -252,6 +252,8 @@ public class CollisionChecker {
                 // Get entity's solid area position
                 entity.solidArea.x = entity.worldX + entity.solidArea.x;
                 entity.solidArea.y = entity.worldY + entity.solidArea.y;
+                target[i].visionArea.x = target[i].worldX + target[i].visionArea.x;
+                target[i].visionArea.y = target[i].worldY + target[i].visionArea.y;
 
                 // Get the object's solid area position
                 if(target[i].direction.equals("left")){
@@ -262,48 +264,45 @@ public class CollisionChecker {
                     target[i].visionArea.x = target[i].worldX;
                     target[i].visionArea.width = gameH.tileSize*target[i].visionRangeRight-target[i].worldX ;
                 }
-               // if(target[i].direction.equals("up")){
-                //   target[i].visionArea.y = target[i].worldY - (target[i].worldY-target[i].visionRangeUp);
-                //  target[i].visionArea.height = target[i].worldY-target[i].visionRangeUp;
-                //  }
-                //if(target[i].direction.equals("down")){
-                //  target[i].visionArea.y = target[i].worldY;
-                //target[i].visionArea.height = target[i].visionRangeDown-target[i].worldY ;
-                //}
-
-
-                // target[i].visionArea.x = target[i].worldX + target[i].visionArea.x;
-                target[i].visionArea.y = target[i].worldY + target[i].visionArea.y;
-
+               if(target[i].direction.equals("up")){
+                   target[i].visionArea.y = target[i].worldY - (target[i].worldY-target[i].visionRangeUp);
+                  target[i].visionArea.height = target[i].worldY-target[i].visionRangeUp;
+                  }
+                if(target[i].direction.equals("down")){
+                  target[i].visionArea.y = target[i].worldY;
+                target[i].visionArea.height = target[i].visionRangeDown+target[i].worldY ;
+                }
 
                 switch(entity.direction) {
                     case "up":
                         entity.solidArea.y -= entity.speed;
                         if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.gameState = gameH.titleState;
+                            gameH.gameState = gameH.battleState;
+                            gameH.ui.commandNum = 0;
                             index = i;
                         }
                         break;
                     case "down":
                         entity.solidArea.y += entity.speed;
                         if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.gameState = gameH.titleState;
+                            gameH.gameState = gameH.battleState;
+                            gameH.ui.commandNum = 0;
                             index = i;
                         }
                         break;
                     case "left":
                         entity.solidArea.x -= entity.speed;
                         if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.gameState = gameH.titleState;
-                            System.out.println("geht");
-
+                            gameH.gameState = gameH.battleState;
+                           gameH.ui.commandNum = 0;
                             index = i;
                         }
                         break;
                     case "right":
                         entity.solidArea.x += entity.speed;
                         if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.gameState = gameH.titleState;
+                            gameH.gameState = gameH.battleState;
+                            gameH.ui.commandNum = 0;
                             index = i;
                         }
                         break;
@@ -312,11 +311,12 @@ public class CollisionChecker {
                 entity.solidArea.y = entity.solidAreaDefaultY;
                 target[i].visionArea.x = target[i].visionAreaDefaultX;
                 target[i].visionArea.y = target[i].visionAreaDefaultY;
+                target[i].visionArea.width = 48;
+                target[i].visionArea.height = 48;
             }
 
         }
 
-        return index;
     }
 
 }
