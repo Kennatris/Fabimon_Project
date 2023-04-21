@@ -23,6 +23,7 @@ public class CutsceneManager {
     public void draw(Graphics2D g2) {
         this.g2 = g2;
 
+
         switch (csNum) {
             case battleBegin:
                 battleBegin();
@@ -60,7 +61,7 @@ public class CutsceneManager {
         x = gameH.npc[gameH.npcBattle].worldX;
         y = gameH.npc[gameH.npcBattle].worldY - gameH.tileSize;
 
-            g2.drawImage(gameH.tileM.tile[9].image, x, y, 96, 96, null);
+          g2.drawImage(gameH.tileM.tile[9].image, x, y, gameH.tileSize, gameH.tileSize, null);
     }
 
     private void cstest3() {
