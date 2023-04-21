@@ -232,7 +232,9 @@ public class GameHandler extends JPanel implements Runnable {
             minutes = 0;
             hour++;
         }
-
+        if(keyH.shiftPressed){
+            gameState = battleState;
+        }
         // fullscreen
         if (keyH.f12Pressed) {
             fullscreen = !fullscreen;

@@ -44,8 +44,8 @@ public class Entity {
     public void endBattle(int i){
         gameH.gameState = gameH.playState;
         if(gameH.npc[i].speed == 0){
-            gameH.npc[i].worldX = gameH.npc[i].originalWorldX * gameH.tileSize;
-            gameH.npc[i].worldY = gameH.npc[i].originalWorldY * gameH.tileSize;
+            gameH.npc[i].worldX = gameH.npc[i].originalWorldX *gameH.tileSize;
+            gameH.npc[i].worldY = gameH.npc[i].originalWorldY *gameH.tileSize;
         }
         gameH.npc[i].isApproaching = false;
         gameH.player.beingApproached = false;
@@ -76,7 +76,7 @@ public class Entity {
 
         if(gameH.npc[i].direction.equals("right")){
             abstand = gameH.player.worldX - gameH.npc[i].worldX-gameH.tileSize;
-            if(gameH.npc[i].speed == 0){
+            if(gameH.npc[i].speed == 0 && abstand > 0){
                 gameH.npc[i].worldX += gameH.npc[i].defaultspeed;
             }
                 if(abstand<=0) {
@@ -87,7 +87,7 @@ public class Entity {
                 }
         }else if(gameH.npc[i].direction.equals("left")){
             abstand = gameH.npc[i].worldX-gameH.tileSize - gameH.player.worldX;
-            if(gameH.npc[i].speed == 0){
+            if(gameH.npc[i].speed == 0 && abstand > 0){
                 gameH.npc[i].worldX -= gameH.npc[i].defaultspeed;
             }
             if(abstand<=0) {
@@ -98,7 +98,7 @@ public class Entity {
 
         }else if(gameH.npc[i].direction.equals("up")){
             abstand = gameH.npc[i].worldY-gameH.tileSize- gameH.player.worldY;
-            if(gameH.npc[i].speed == 0){
+            if(gameH.npc[i].speed == 0 && abstand > 0){
                 gameH.npc[i].worldY -= gameH.npc[i].defaultspeed;
             }
             if(abstand<=0) {
