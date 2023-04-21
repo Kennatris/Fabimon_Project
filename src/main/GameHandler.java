@@ -50,6 +50,7 @@ public class GameHandler extends JPanel implements Runnable {
     // FPS
     int FPS = 60;
     public int time, seconds, minutes, hour;
+    public int speed_increased = 0;
 
     // SYSTEM
     TileManager tileM = new TileManager(this, map);
@@ -184,29 +185,26 @@ public class GameHandler extends JPanel implements Runnable {
         // DEBUG MODE
         if (keyH.hPressed) {
             debugMode = !debugMode;
+            System.out.println("DebugMode: " + debugMode);
+
+            keyH.hPressed = false;
         }
         if (debugMode) {
             if(keyH.kPressed) {
                 gameState = battleState;
             }
-            if(keyH.entPressed) {
-                if (player.speed == 4) {
-                    player.speed = player.speed * 2;
-                } else if (player.speed == 8) {
-                    player.speed = player.speed / 2;
-                }
-            }
-            int speed_increased = 0;
             if(keyH.shiftPressed) {
                 if (speed_increased == 0) {
-                    player.speed = player.speed * 2;
+                    player.speed = 8;
+                    System.out.println("Speed: " + player.speed);
                 }
                 speed_increased = 1;
             }
 
             if(!keyH.shiftPressed) {
                 if (speed_increased == 1) {
-                    player.speed = player.speed / 2;
+                    player.speed = 4;
+                    System.out.println("Speed: " + player.speed);
                 }
                 speed_increased = 0;
             }
