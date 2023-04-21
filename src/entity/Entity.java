@@ -44,8 +44,8 @@ public class Entity {
     public void endBattle(int i){
         gameH.gameState = gameH.playState;
         if(gameH.npc[i].speed == 0){
-            gameH.npc[i].worldX = gameH.npc[i].originalWorldX *gameH.tileSize;
-            gameH.npc[i].worldY = gameH.npc[i].originalWorldY *gameH.tileSize;
+            gameH.npc[i].worldX = gameH.npc[i].originalWorldX * gameH.tileSize;
+            gameH.npc[i].worldY = gameH.npc[i].originalWorldY * gameH.tileSize;
         }
         gameH.npc[i].isApproaching = false;
         gameH.player.beingApproached = false;

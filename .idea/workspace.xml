@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/XInput_Plugin_for_JInput_1_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/XInput_Plugin_for_JInput_1_2_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/de_ralleytn_wrapper_microsoft_xinput_1_2_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/de_ralleytn_wrapper_microsoft_xinput_1_2_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jinput_2_0_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jinput_2_0_9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jinput_platform_2_0_7_natives_windows.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jinput_platform_2_0_7_natives_windows.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jna_5_12_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jna_5_12_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jutils_1_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jutils_1_0_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_22_27__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_22_27__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/Reaktionen/Ausrufezeichen.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/Reaktionen/Ausrufezeichen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/CutsceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CutsceneManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/control/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/control/KeyHandler.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -233,6 +229,21 @@
     <option name="SHOW_OTHER_BRANCHES" value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -250,21 +261,6 @@
                 </map>
               </option>
             </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="User">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="*" />
-                </option>
-              </RecentGroup>
-            </list>
           </value>
         </entry>
       </map>

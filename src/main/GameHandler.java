@@ -181,6 +181,37 @@ public class GameHandler extends JPanel implements Runnable {
 
     public void update() {
 
+        // DEBUG MODE
+        if (keyH.hPressed) {
+            debugMode = !debugMode;
+        }
+        if (debugMode) {
+            if(keyH.kPressed) {
+                gameState = battleState;
+            }
+            if(keyH.entPressed) {
+                if (player.speed == 4) {
+                    player.speed = player.speed * 2;
+                } else if (player.speed == 8) {
+                    player.speed = player.speed / 2;
+                }
+            }
+            int speed_increased = 0;
+            if(keyH.shiftPressed) {
+                if (speed_increased == 0) {
+                    player.speed = player.speed * 2;
+                }
+                speed_increased = 1;
+            }
+
+            if(!keyH.shiftPressed) {
+                if (speed_increased == 1) {
+                    player.speed = player.speed / 2;
+                }
+                speed_increased = 0;
+            }
+        }
+
         // time
         if (time == 60){
             time = 0;
@@ -203,9 +234,7 @@ public class GameHandler extends JPanel implements Runnable {
             minutes = 0;
             hour++;
         }
-        if(keyH.shiftPressed){
-            gameState = battleState;
-        }
+
         // fullscreen
         if (keyH.f12Pressed) {
             fullscreen = !fullscreen;

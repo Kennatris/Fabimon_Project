@@ -57,11 +57,16 @@ public class CutsceneManager {
         }
     }
 
-    private void ausrufezeichen() {
+    public void ausrufezeichen() {
         x = gameH.npc[gameH.npcBattle].worldX;
         y = gameH.npc[gameH.npcBattle].worldY - gameH.tileSize;
 
           g2.drawImage(gameH.tileM.tile[9].image, x, y, gameH.tileSize, gameH.tileSize, null);
+          if (gameH.debugMode) {
+              System.out.println("Cutscene: 1");
+              System.out.println("NPC: " + gameH.npcBattle);
+              System.out.println("X: " + x + "Y: " + y);
+          }
     }
 
     private void cstest3() {
