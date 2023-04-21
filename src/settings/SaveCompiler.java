@@ -119,9 +119,9 @@ public class SaveCompiler {
                 bw.newLine();
                 bw.write(String.valueOf(gameH.screenHeight));
                 bw.newLine();
-                bw.write(String.valueOf(gameH.playerPosX/gameH.tileSize));
+                bw.write(String.valueOf(gameH.player.worldX/gameH.tileSize));
                 bw.newLine();
-                bw.write(String.valueOf(gameH.playerPosY/gameH.tileSize));
+                bw.write(String.valueOf(gameH.player.worldY/gameH.tileSize));
                 bw.newLine();
                 bw.write(String.valueOf(gameH.keyboard));
                 bw.newLine();
@@ -135,6 +135,14 @@ public class SaveCompiler {
                 if (gameH.debugMode) {
                     System.out.println("FileLocation: " + fileLocation);
                     System.out.println("Data was Written");
+                    System.out.println("Fullscreen: " + gameH.fullscreen);
+                    System.out.println("ScreenWidth: " + gameH.screenWidth);
+                    System.out.println("ScreenHeight: " + gameH.screenHeight);
+                    System.out.println("playerPosX: " + gameH.player.worldX/gameH.tileSize);
+                    System.out.println("playerPosY: " + gameH.player.worldY/gameH.tileSize);
+                    System.out.println("Keyboard: " + gameH.keyboard);
+                    System.out.println("MusicVolume: " + gameH.musicVolume);
+                    System.out.println("SoundVolume: " + gameH.soundVolume);
                 }
 
             } else {
