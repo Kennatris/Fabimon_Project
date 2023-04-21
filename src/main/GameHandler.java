@@ -60,6 +60,7 @@ public class GameHandler extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
+    public CutsceneManager csManager = new CutsceneManager(this);
     Thread gameThread;
     GUI myGUI;
     SaveCompiler saveC = new SaveCompiler();
@@ -70,6 +71,7 @@ public class GameHandler extends JPanel implements Runnable {
     public PlayerDummy playerD = new PlayerDummy(this);
     public SuperObject obj[] = new SuperObject[10];
     public Entity npc[] = new Entity[10];
+    public int  npcBattle;
 
     // GAME STATE
     public int gameState;
@@ -225,6 +227,8 @@ public class GameHandler extends JPanel implements Runnable {
 
             // PLAYER
             player.update();
+
+
 
             if (debugMode) {
 
@@ -680,7 +684,7 @@ public class GameHandler extends JPanel implements Runnable {
                         break;
                     case 2: ui.battleText = "Bag";
                         break;
-                    case 3: ui.battleText = "Run";
+                    case 3: npc[npcBattle].endBattle(npcBattle);
                         break;
                 }
             }
@@ -716,6 +720,9 @@ public class GameHandler extends JPanel implements Runnable {
             }
             // PLAYER
             player.draw(g2);
+
+            //Cutscene
+            csManager.draw(g2);
 
             // UI
             ui.draw(g2);

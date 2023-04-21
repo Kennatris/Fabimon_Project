@@ -10,7 +10,20 @@ public class Entity {
     GameHandler gameH;
     public int worldX, worldY;
     public int speed;
+    public int defaultspeed = 4;
+    public Boolean isApproaching = false;
+    public int originalWorldX, originalWorldY;
+    public Boolean approached = false;
+    public Boolean innactive = false;
+    public Boolean drawing = true;
+    public Boolean checkingVision = true;
+    public Boolean updating = true;
+
     public String map;
+    int turnTimer;
+    int timer;
+    int approachphase = 0;
+    int innactiveTimer;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public String direction;
     public int spriteCounter = 0;
@@ -28,9 +41,110 @@ public class Entity {
     public void setAction(){
 
     }
+    public void endBattle(int i){
+        gameH.gameState = gameH.playState;
+        if(gameH.npc[i].speed == 0){
+            gameH.npc[i].worldX = gameH.npc[i].originalWorldX *gameH.tileSize;
+            gameH.npc[i].worldY = gameH.npc[i].originalWorldY *gameH.tileSize;
+        }
+        gameH.npc[i].isApproaching = false;
+        gameH.player.beingApproached = false;
+        gameH.npc[i].approached = false;
+        gameH.npc[i].innactive = true ;
+        approachphase = 0;
+    }
+    public void approach(int i){
+        int abstand;
+        gameH.npc[i].isApproaching = true;
+        gameH.player.beingApproached = true;
+        gameH.npcBattle=i;
+        if( approachphase == 0){
+            updating = false;
+            gameH.csManager.csNum = gameH.csManager.ausrufezeichen;
+            approachphase++;
+            timer = 0;
+        }else if(approachphase == 1){
+            timer++;
+            if(timer == 120){
+                approachphase++;
+                gameH.csManager.csNum = 0;
+                timer = 0;
+                updating = true;
+            }
+        }else if(approachphase == 2){
+
+
+        if(gameH.npc[i].direction.equals("right")){
+            abstand = gameH.player.worldX - gameH.npc[i].worldX-gameH.tileSize;
+            if(gameH.npc[i].speed == 0){
+                gameH.npc[i].worldX += gameH.npc[i].defaultspeed;
+            }
+                if(abstand<=0) {
+                    gameH.csManager.csNum = gameH.csManager.battleBegin;
+
+                    gameH.npc[i].approached = true;
+
+                }
+        }else if(gameH.npc[i].direction.equals("left")){
+            abstand = gameH.npc[i].worldX-gameH.tileSize - gameH.player.worldX;
+            if(gameH.npc[i].speed == 0){
+                gameH.npc[i].worldX -= gameH.npc[i].defaultspeed;
+            }
+            if(abstand<=0) {
+
+                gameH.csManager.csNum = gameH.csManager.battleBegin;
+                gameH.npc[i].approached = true;
+            }
+
+        }else if(gameH.npc[i].direction.equals("up")){
+            abstand = gameH.npc[i].worldY-gameH.tileSize- gameH.player.worldY;
+            if(gameH.npc[i].speed == 0){
+                gameH.npc[i].worldY -= gameH.npc[i].defaultspeed;
+            }
+            if(abstand<=0) {
+
+                gameH.csManager.csNum = gameH.csManager.battleBegin;
+                gameH.npc[i].approached = true;
+
+            }
+
+        }else if(gameH.npc[i].direction.equals("down")){
+            abstand = gameH.player.worldY-gameH.tileSize - gameH.npc[i].worldY;
+            if(gameH.npc[i].speed == 0 && abstand > 0){
+                gameH.npc[i].worldY += gameH.npc[i].defaultspeed;
+            }
+            if(abstand<=0) {
+                gameH.csManager.csNum = gameH.csManager.battleBegin;
+                gameH.npc[i].approached = true;
+            }
+        }}
+    }
+
+    public void innactivechecker(){
+        if(!innactive){
+            return;
+        }else{
+            checkingVision = false;
+            updating = false;
+            innactiveTimer++;
+            if(innactiveTimer%10 == 0){
+                drawing = !drawing;
+                if(innactiveTimer == 180){
+                    innactive = false;
+                    innactiveTimer = 0;
+                    drawing = true;
+                    checkingVision = true;
+                    updating = true;
+                }
+
+            }
+        }
+
+    }
 
     public void update() {
         setAction();
+        innactivechecker();
 
         collisionOn = false;
         gameH.cChecker.checkTile(this);
@@ -38,6 +152,7 @@ public class Entity {
         gameH.cChecker.checkPlayer(this);
 
         // IF COLLISION IS FALSE, NPC CAN MOVE
+        if(!approached && updating == true){
         if(!collisionOn) {
 
             switch (direction) {
@@ -46,8 +161,8 @@ public class Entity {
                 case "left" -> worldX -= speed;
                 case "right" -> worldX += speed;
             }
-
         }
+
 
         spriteCounter++;
         if (spriteCounter > 10) {
@@ -59,10 +174,11 @@ public class Entity {
             spriteCounter = 0;
         }
     }
+    }
 
     public void draw(Graphics2D g2) {
 
-        if (gameH.map == map) {
+        if (gameH.map == map && drawing) {
             BufferedImage image = null;
 
             int screenX = worldX - gameH.player.worldX + gameH.player.screenX;

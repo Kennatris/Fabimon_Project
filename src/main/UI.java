@@ -5,7 +5,7 @@ import java.awt.*;
 public class UI {
     GameHandler gameH;
     Graphics2D g2;
-    Font arial_40, arial_80B;
+    Font arial_40, arial_80B, arial_20;
     public boolean messageOn = false;
     public String message = "";
     public String currentDialogue = "";
@@ -22,6 +22,7 @@ public class UI {
 
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
+        arial_20 = new Font("Arial", Font.PLAIN, 20);
 
         // CREATE HUD OBJECT
 
@@ -486,9 +487,8 @@ public class UI {
 
         int x = 0;
         int y = 0;
-        double minD = (gameH.myGUI.frame.getHeight()*0.01);
-        int min = (int)minD;
         if(gameH.fullscreen){
+            g2.setFont(arial_40);
             int buttonHeightScaling = (gameH.myGUI.frame.getHeight()/3);
             int buttonYScaling = buttonHeightScaling-(2*(buttonHeightScaling)/5);
             int buttonYScaling2 = buttonHeightScaling-((buttonHeightScaling)/15)+2;
@@ -539,20 +539,72 @@ public class UI {
 
         }
         if(!gameH.fullscreen) {
-            g2.setColor(Color.BLUE);
-            g2.fillRect(0, gameH.myGUI.frame.getHeight() - min, gameH.myGUI.frame.getWidth(), gameH.myGUI.frame.getHeight() - min);
-            //x = gameH.myGUI.frame.getWidth() - 96;
-            //y = gameH.myGUI.frame.getHeight() - 96;
-            x = gameH.screenWidth - 96;
-            y = gameH.screenHeight - 2 * 96;
-            g2.drawImage(gameH.tileM.tile[17].image, x, y, 96, 96, null);
+            g2.setFont(arial_20);
+            int minHeight = gameH.myGUI.frame.getHeight()/15;
+            int minWidth = gameH.myGUI.frame.getWidth()/77;
+            int buttonHeightScaling = (gameH.myGUI.frame.getHeight()/10)*3;
+            int buttonYScaling = buttonHeightScaling-(2*(buttonHeightScaling)/5);
+            int buttonWidthScaling = gameH.myGUI.frame.getWidth()/8;
+            int buttonYScaling2 = buttonHeightScaling-((buttonHeightScaling)/15)+2;
+            int textfieldHeightScaling = (gameH.myGUI.frame.getHeight()/10)*2;
+            int textfieldWidthScaling = gameH.myGUI.frame.getWidth() - buttonWidthScaling*2-minWidth;
+
+
+
+            x = gameH.myGUI.frame.getWidth()-buttonWidthScaling - minWidth;
+            y = gameH.myGUI.frame.getHeight()-buttonYScaling - minHeight;
+            if(commandNum == 3){
+                g2.drawImage(gameH.tileM.tile[20].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else {
+                g2.drawImage(gameH.tileM.tile[19].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }
+
+            //Fabimob button
+            y = gameH.myGUI.frame.getHeight()-buttonYScaling2 - minHeight;
+            if(commandNum == 1) {
+                g2.drawImage(gameH.tileM.tile[22].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else{
+                g2.drawImage(gameH.tileM.tile[21].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }
+
+            //Run button
+            x = gameH.myGUI.frame.getWidth()-(2*buttonWidthScaling) - minWidth;
+            y = gameH.myGUI.frame.getHeight()-buttonYScaling - minHeight;
+            if(commandNum == 2) {
+                g2.drawImage(gameH.tileM.tile[20].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else{
+                g2.drawImage(gameH.tileM.tile[19].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }
+
+            //Fight button
+            y = gameH.myGUI.frame.getHeight()-buttonYScaling2 - minHeight;
+            if(commandNum == 0) {
+                g2.drawImage(gameH.tileM.tile[18].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else{
+                g2.drawImage(gameH.tileM.tile[17].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }
+
+            //Textfield
+            y  = gameH.myGUI.frame.getHeight()-textfieldHeightScaling - minHeight;
+            x = 0;
+            g2.drawImage(gameH.tileM.tile[23].image, x, y, textfieldWidthScaling, textfieldHeightScaling, null);
+
+            // Text
+            drawBattleText(battleText);
         }
     }
     public void drawBattleText(String text){
-        int textXScaling = gameH.myGUI.frame.getWidth()/40;
-        int textYScaling = gameH.myGUI.frame.getHeight() - gameH.myGUI.frame.getHeight()/6;
-
+        int textYScaling=0;
+        int textXScaling=0;
+        if(gameH.fullscreen) {
+            textXScaling = gameH.myGUI.frame.getWidth() / 40;
+            textYScaling = gameH.myGUI.frame.getHeight() - gameH.myGUI.frame.getHeight() / 6;
+        }else{
+            textXScaling = gameH.myGUI.frame.getWidth() / 40;
+            textYScaling = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 9)*2;
+        }
         g2.drawString(text, textXScaling, textYScaling);
+
     }
     public int getXforCenteredText(String text) {
 

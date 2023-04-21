@@ -247,7 +247,7 @@ public class CollisionChecker {
 
         for(int i = 0; i < target.length; i++) {
 
-            if(target[i] != null) {
+            if(target[i] != null && target[i].checkingVision == true) {
 
                 // Get entity's solid area position
                 entity.solidArea.x = entity.worldX + entity.solidArea.x;
@@ -257,52 +257,56 @@ public class CollisionChecker {
 
                 // Get the object's solid area position
                 if(target[i].direction.equals("left")){
-                    target[i].visionArea.x = target[i].worldX - (target[i].worldX-gameH.tileSize*target[i].visionRangeLeft);
-                    target[i].visionArea.width = target[i].worldX-gameH.tileSize*target[i].visionRangeLeft;
+                    target[i].visionArea.x = target[i].worldX - (target[i].worldX - gameH.tileSize*target[i].visionRangeLeft);
+                    target[i].visionArea.width = target[i].worldX - gameH.tileSize*target[i].visionRangeLeft;
                 }
                 if(target[i].direction.equals("right")){
                     target[i].visionArea.x = target[i].worldX;
                     target[i].visionArea.width = gameH.tileSize*target[i].visionRangeRight-target[i].worldX ;
                 }
                if(target[i].direction.equals("up")){
-                   target[i].visionArea.y = target[i].worldY - (target[i].worldY-target[i].visionRangeUp);
-                  target[i].visionArea.height = target[i].worldY-target[i].visionRangeUp;
+                   target[i].visionArea.y = target[i].worldY - (target[i].worldY - target[i].visionRangeUp*gameH.tileSize);
+                  target[i].visionArea.height = target[i].worldY - target[i].visionRangeUp*gameH.tileSize;
                   }
                 if(target[i].direction.equals("down")){
                   target[i].visionArea.y = target[i].worldY;
-                target[i].visionArea.height = target[i].visionRangeDown+target[i].worldY ;
+                  target[i].visionArea.height = gameH.tileSize*target[i].visionRangeDown - target[i].visionArea.y;
                 }
 
                 switch(entity.direction) {
                     case "up":
                         entity.solidArea.y -= entity.speed;
                         if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.gameState = gameH.battleState;
+                            gameH.player.collisionOn = true;
                             gameH.ui.commandNum = 0;
+                            gameH.npc[i].approach(i);
                             index = i;
                         }
                         break;
                     case "down":
                         entity.solidArea.y += entity.speed;
                         if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.gameState = gameH.battleState;
+                            gameH.player.collisionOn = true;
                             gameH.ui.commandNum = 0;
+                            gameH.npc[i].approach(i);
                             index = i;
                         }
                         break;
                     case "left":
                         entity.solidArea.x -= entity.speed;
                         if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.gameState = gameH.battleState;
-                           gameH.ui.commandNum = 0;
+                            gameH.player.collisionOn = true;
+                            gameH.ui.commandNum = 0;
+                            gameH.npc[i].approach(i);
                             index = i;
                         }
                         break;
                     case "right":
                         entity.solidArea.x += entity.speed;
                         if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.gameState = gameH.battleState;
+                            gameH.player.collisionOn = true;
                             gameH.ui.commandNum = 0;
+                            gameH.npc[i].approach(i);
                             index = i;
                         }
                         break;

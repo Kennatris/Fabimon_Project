@@ -22,12 +22,14 @@ public class AssetSetter {
             createNPC(index, spawnTileX, spawnTileY, map, spawnDirection, speed);
         */
 
-        createTestNPC(0, 24, 18, 0, "left", 2, 12, 25, 18,18);
-        createTestNPC(1, 24, 19, 0, "left", 2, 12, 25, 19, 19);
-        createTestNPC(2, 34, 17, 0, "up", 0, 32, 37, 15, 19);
+        createTestNPC(0, 23, 17, 0, "down", 0, 0, 0, 0,0);
+        createTestNPC(1, 24, 19, 0, "left", 4, 12, 24, 19, 19);
+        createTestNPC(2, 34, 17, 0, "up", 0, 31, 37, 15, 21);
     }
     private void createTestNPC(int npcNum, int spawnX, int spawnY, int pMap, String pDirection, int pSpeed, int rangeL, int rangeR, int rangeU, int rangeD){
         gameH.npc[npcNum] = new NPCTest(gameH);
+        gameH.npc[npcNum].originalWorldX = spawnX;
+        gameH.npc[npcNum].originalWorldY = spawnY;
         gameH.npc[npcNum].worldX = gameH.tileSize*spawnX;
         gameH.npc[npcNum].worldY = gameH.tileSize*spawnY;
         gameH.npc[npcNum].map = gameH.availableMaps[pMap];

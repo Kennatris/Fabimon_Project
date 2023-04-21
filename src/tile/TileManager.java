@@ -45,7 +45,7 @@ public class TileManager {
         setup(6, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
         setup(7, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
         setup(8, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
-        setup(9, "tiles","PLACEHOLDER","png", gameH.tileSize, gameH.tileSize,false);
+        setup(9, "NPC/Reaktionen","Ausrufezeichen","png", gameH.tileSize, gameH.tileSize,false);
 
         // PLACEHOLDER
 
@@ -69,6 +69,7 @@ public class TileManager {
 
         //Textfields
         setup(23, "Textfields","Textfield_1","png", gameH.tileSize, gameH.tileSize,false);
+
 
     }
 
