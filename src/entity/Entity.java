@@ -12,6 +12,7 @@ public class Entity {
     public int speed;
     public int defaultspeed = 4;
     public Boolean isApproaching = false;
+    public int originalWorldX, originalWorldY;
     public Boolean approached = false;
     public Boolean innactive = false;
     public Boolean drawing = true;
@@ -20,6 +21,8 @@ public class Entity {
 
     public String map;
     int turnTimer;
+    int timer;
+    int approachphase = 0;
     int innactiveTimer;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public String direction;
@@ -38,57 +41,83 @@ public class Entity {
     public void setAction(){
 
     }
+    public void endBattle(int i){
+        gameH.gameState = gameH.playState;
+        if(gameH.npc[i].speed == 0){
+            gameH.npc[i].worldX = gameH.npc[i].originalWorldX *gameH.tileSize;
+            gameH.npc[i].worldY = gameH.npc[i].originalWorldY *gameH.tileSize;
+        }
+        gameH.npc[i].isApproaching = false;
+        gameH.player.beingApproached = false;
+        gameH.npc[i].approached = false;
+        gameH.npc[i].innactive = true ;
+        approachphase = 0;
+    }
     public void approach(int i){
         int abstand;
         gameH.npc[i].isApproaching = true;
         gameH.player.beingApproached = true;
+        gameH.npcBattle=i;
+        if( approachphase == 0){
+            updating = false;
+            gameH.csManager.csNum = gameH.csManager.ausrufezeichen;
+            approachphase++;
+            timer = 0;
+        }else if(approachphase == 1){
+            timer++;
+            if(timer == 120){
+                approachphase++;
+                gameH.csManager.csNum = 0;
+                timer = 0;
+                updating = true;
+            }
+        }else if(approachphase == 2){
+
+
         if(gameH.npc[i].direction.equals("right")){
             abstand = gameH.player.worldX - gameH.npc[i].worldX-gameH.tileSize;
-            if(gameH.npc[i].speed == 0){
-                gameH.npc[i].worldX -= gameH.npc[i].defaultspeed;
+            if(gameH.npc[i].speed == 0 && abstand > 0){
+                gameH.npc[i].worldX += gameH.npc[i].defaultspeed;
             }
                 if(abstand<=0) {
                     gameH.csManager.csNum = gameH.csManager.battleBegin;
-                    gameH.npcBattle=i;
-                    gameH.npc[i].approached = true;
-                }
 
+                    gameH.npc[i].approached = true;
+
+                }
         }else if(gameH.npc[i].direction.equals("left")){
             abstand = gameH.npc[i].worldX-gameH.tileSize - gameH.player.worldX;
-            if(gameH.npc[i].speed == 0){
+            if(gameH.npc[i].speed == 0 && abstand > 0){
                 gameH.npc[i].worldX -= gameH.npc[i].defaultspeed;
             }
             if(abstand<=0) {
 
                 gameH.csManager.csNum = gameH.csManager.battleBegin;
-                gameH.npcBattle=i;
                 gameH.npc[i].approached = true;
             }
 
         }else if(gameH.npc[i].direction.equals("up")){
             abstand = gameH.npc[i].worldY-gameH.tileSize- gameH.player.worldY;
-            if(gameH.npc[i].speed == 0){
+            if(gameH.npc[i].speed == 0 && abstand > 0){
                 gameH.npc[i].worldY -= gameH.npc[i].defaultspeed;
             }
             if(abstand<=0) {
 
                 gameH.csManager.csNum = gameH.csManager.battleBegin;
-                gameH.npcBattle=i;
                 gameH.npc[i].approached = true;
 
             }
 
         }else if(gameH.npc[i].direction.equals("down")){
-            abstand = gameH.player.worldY - gameH.npc[i].worldY-gameH.tileSize;
-            if(gameH.npc[i].speed == 0){
+            abstand = gameH.player.worldY-gameH.tileSize - gameH.npc[i].worldY;
+            if(gameH.npc[i].speed == 0 && abstand > 0){
                 gameH.npc[i].worldY += gameH.npc[i].defaultspeed;
             }
             if(abstand<=0) {
                 gameH.csManager.csNum = gameH.csManager.battleBegin;
-                gameH.npcBattle=i;
                 gameH.npc[i].approached = true;
             }
-        }
+        }}
     }
 
     public void innactivechecker(){

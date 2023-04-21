@@ -53,6 +53,7 @@ public class GameHandler extends JPanel implements Runnable {
 
     // SYSTEM
     TileManager tileM = new TileManager(this, map);
+    public CutsceneManager csManager = new CutsceneManager(this);
     public KeyHandler keyH = new KeyHandler();
     Sound music = new Sound();
     Sound se = new Sound();
@@ -60,7 +61,6 @@ public class GameHandler extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
-    public CutsceneManager csManager = new CutsceneManager(this);
     Thread gameThread;
     GUI myGUI;
     SaveCompiler saveC = new SaveCompiler();
@@ -684,11 +684,7 @@ public class GameHandler extends JPanel implements Runnable {
                         break;
                     case 2: ui.battleText = "Bag";
                         break;
-                    case 3: gameState = playState;
-                        npc[npcBattle].isApproaching = false;
-                        player.beingApproached = false;
-                        npc[npcBattle].approached = false;
-                        npc[npcBattle].innactive = true ;
+                    case 3: npc[npcBattle].endBattle(npcBattle);
                         break;
                 }
             }
@@ -722,11 +718,13 @@ public class GameHandler extends JPanel implements Runnable {
                     npc[i].draw(g2);
                 }
             }
+            //Cutscene
+            csManager.draw(g2);
+
             // PLAYER
             player.draw(g2);
 
-            //Cutscene
-            csManager.draw(g2);
+
 
             // UI
             ui.draw(g2);

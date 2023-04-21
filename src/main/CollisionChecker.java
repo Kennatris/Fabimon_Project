@@ -257,16 +257,16 @@ public class CollisionChecker {
 
                 // Get the object's solid area position
                 if(target[i].direction.equals("left")){
-                    target[i].visionArea.x = target[i].worldX - (target[i].worldX-gameH.tileSize*target[i].visionRangeLeft);
-                    target[i].visionArea.width = target[i].worldX-gameH.tileSize*target[i].visionRangeLeft;
+                    target[i].visionArea.x = target[i].worldX - (target[i].worldX - gameH.tileSize*target[i].visionRangeLeft);
+                    target[i].visionArea.width = target[i].worldX - gameH.tileSize*target[i].visionRangeLeft;
                 }
                 if(target[i].direction.equals("right")){
                     target[i].visionArea.x = target[i].worldX;
                     target[i].visionArea.width = gameH.tileSize*target[i].visionRangeRight-target[i].worldX ;
                 }
                if(target[i].direction.equals("up")){
-                   target[i].visionArea.y = target[i].worldY - (target[i].worldY-target[i].visionRangeUp*gameH.tileSize);
-                  target[i].visionArea.height = target[i].worldY-target[i].visionRangeUp;
+                   target[i].visionArea.y = target[i].worldY - (target[i].worldY - target[i].visionRangeUp*gameH.tileSize);
+                  target[i].visionArea.height = target[i].worldY - target[i].visionRangeUp*gameH.tileSize;
                   }
                 if(target[i].direction.equals("down")){
                   target[i].visionArea.y = target[i].worldY;

@@ -5,64 +5,65 @@ import main.GameHandler;
 import main.ImageHandler;
 
 
-public class NPCTest extends Entity{
+public class NPCTest extends Entity {
     ImageHandler imageH = new ImageHandler();
 
 
+    public NPCTest(GameHandler gameH) {
+        super(gameH);
+        speed = 5;
 
-  public  NPCTest(GameHandler gameH){
-      super(gameH);
-      speed = 5;
-
-      getTestNPCImage();
-  }
+        getTestNPCImage();
+    }
 
     public void getTestNPCImage() {
-        imageH.ImageInitializer(0,"NPC/NPCTest","uparrow","png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(0, "NPC/NPCTest", "uparrow", "png", gameH.tileSize, gameH.tileSize);
         up1 = imageH.image[0];
-        imageH.ImageInitializer(1,"NPC/NPCTest","uparrow2","png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(1, "NPC/NPCTest", "uparrow2", "png", gameH.tileSize, gameH.tileSize);
         up2 = imageH.image[1];
-        imageH.ImageInitializer(2,"NPC/NPCTest","downarrow","png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(2, "NPC/NPCTest", "downarrow", "png", gameH.tileSize, gameH.tileSize);
         down1 = imageH.image[2];
-        imageH.ImageInitializer(3,"NPC/NPCTest","downarrow2","png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(3, "NPC/NPCTest", "downarrow2", "png", gameH.tileSize, gameH.tileSize);
         down2 = imageH.image[3];
-        imageH.ImageInitializer(4,"NPC/NPCTest","leftarrow","png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(4, "NPC/NPCTest", "leftarrow", "png", gameH.tileSize, gameH.tileSize);
         left1 = imageH.image[4];
-        imageH.ImageInitializer(5,"NPC/NPCTest","leftarrow2","png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(5, "NPC/NPCTest", "leftarrow2", "png", gameH.tileSize, gameH.tileSize);
         left2 = imageH.image[5];
-        imageH.ImageInitializer(6,"NPC/NPCTest","rightarrow","png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(6, "NPC/NPCTest", "rightarrow", "png", gameH.tileSize, gameH.tileSize);
         right1 = imageH.image[6];
-        imageH.ImageInitializer(7,"NPC/NPCTest","rightarrow2","png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(7, "NPC/NPCTest", "rightarrow2", "png", gameH.tileSize, gameH.tileSize);
         right2 = imageH.image[7];
     }
-    public void setAction(){
-      if(gameH.npc[0].worldX > gameH.tileSize*24){
+
+    public void setAction() {
+        if (gameH.npc[0].worldX > gameH.tileSize * 24) {
             gameH.npc[0].direction = "left";
-      }else if(gameH.npc[0].worldX < gameH.tileSize*12){
-          gameH.npc[0].direction = "right";
-      }
-      if(gameH.npc[1].worldX > gameH.tileSize*24){
-          gameH.npc[1].direction = "left";
-      }else if(gameH.npc[1].worldX < gameH.tileSize*12){
-          gameH.npc[1]. direction = "right";
-      }
-      if(!gameH.npc[2].isApproaching){
-      gameH.npc[2].turnTimer++;
-      if(gameH.npc[2].turnTimer >= 60){
-          gameH.npc[2].turnTimer = 0;
-      double zahl = Math.random()*2;
+        } else if (gameH.npc[0].worldX < gameH.tileSize * 12) {
+            gameH.npc[0].direction = "right";
+        }
+        if (gameH.npc[1].worldX > gameH.tileSize * 24) {
+            gameH.npc[1].direction = "left";
+        } else if (gameH.npc[1].worldX < gameH.tileSize * 12) {
+            gameH.npc[1].direction = "right";
+        }
+        if (!gameH.npc[2].isApproaching && !gameH.npc[2].innactive) {
+
+            gameH.npc[2].turnTimer++;
+            if (gameH.npc[2].turnTimer >= 80) {
+                gameH.npc[2].turnTimer = 0;
+                double zahl = Math.random() * 2;
 
 
-      if(zahl > 0 && zahl < 0.25){
-          gameH.npc[2].direction = "left";
-      }else if(zahl > 0.25 && zahl < 0.50){
-          gameH.npc[2]. direction = "right";
-      }else if(zahl > 0.50 && zahl < 0.75){
-          gameH.npc[2]. direction = "up";
-      }else if(zahl > 0.75 && zahl < 1){
-          gameH.npc[2]. direction = "down";
-      }
-      }
+                if (zahl > 0 && zahl < 0.25) {
+                    gameH.npc[2].direction = "left";
+                } else if (zahl > 0.25 && zahl < 0.50) {
+                    gameH.npc[2].direction = "right";
+                } else if (zahl > 0.50 && zahl < 0.75) {
+                    gameH.npc[2].direction = "up";
+                } else if (zahl > 0.75 && zahl < 1) {
+                    gameH.npc[2].direction = "down";
+                }
+            }
+        }
     }
-  }
 }
