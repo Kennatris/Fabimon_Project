@@ -8,7 +8,7 @@ public class Settings {
 
     // SYSTEM INFORMATIONS
     public String fileTyp = ".txt";
-
+    //tmp
     // Initializing
     GameHandler gameH;
     // all saved Variables
