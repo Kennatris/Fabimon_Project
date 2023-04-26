@@ -81,6 +81,12 @@ public class SaveCompiler extends Settings{
                             unsavedFloat[0][1] = Float.parseFloat(line);
                             if (gameH.debugMode) {
                                 System.out.println("Sound Volume: " + line);
+                            }
+                            break;
+                        case 8:
+                            unsavedString[0][0] = line;
+                            if (gameH.debugMode) {
+                                System.out.println("Loaded Map: " + line);
                                 System.out.println(">>> End of System Settings <<<");
                             }
                             break;
@@ -155,6 +161,8 @@ public class SaveCompiler extends Settings{
                 bw.write(String.valueOf(gameH.musicVolume));
                 bw.newLine();
                 bw.write(String.valueOf(gameH.soundVolume));
+                bw.newLine();
+                bw.write(String.valueOf(gameH.map));
                 bw.newLine();
 
                 // ENTITY SHIT = FABIO SHIT

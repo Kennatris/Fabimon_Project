@@ -6,3 +6,4 @@ false
 true
 1.0f
 1.0f
+map_test_1

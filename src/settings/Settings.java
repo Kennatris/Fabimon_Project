@@ -2,6 +2,8 @@ package settings;
 
 import main.GameHandler;
 
+import java.util.Objects;
+
 public class Settings {
 
     // SYSTEM INFORMATIONS
@@ -18,11 +20,11 @@ public class Settings {
     public boolean[][] unsavedBoolean = new boolean[999][20];
     public float[][] unsavedFloat = new float[999][20];
     public String[][] unsavedString = new String[999][20];
-    public int entitySavableINT = 9; // how many Vars are getting saved from each entity
+    public int entitySavableINT = 0; // how many Vars are getting saved from each entity
     public int entitySavableBOOLEAN = 0; // how many Vars are getting saved from each entity
     public int entitySavableSTRING = 0; // how many Vars are getting saved from each entity
     public int entitySavableFLOAT = 0; // how many Vars are getting saved from each entity
-    public int systemSavable = 7; // how many System Settings are getting saved
+    public int systemSavable = 8; // how many System Settings are getting saved
 
     public void installSettings(GameHandler gameH, boolean[][] unsavedBoolean, int[][] unsavedInt, float[][] unsavedFloat, String[][] unsavedString) {
         // CLASSES
@@ -51,7 +53,7 @@ public class Settings {
         }
         this.savedBoolean[0][1] = unsavedBoolean[0][1]; // Keyboard
         if (gameH.debugMode) {
-            System.out.println("Keyboard: "  + unsavedBoolean[0][1]);
+            System.out.println("Keyboard Saved: "  + unsavedBoolean[0][1]);
         }
         this.savedFloat[0][0] = unsavedFloat[0][0]; // Music Volume
         if (gameH.debugMode) {
@@ -60,6 +62,10 @@ public class Settings {
         this.savedFloat[0][1] = unsavedFloat[0][1]; // Sound Volume
         if (gameH.debugMode) {
             System.out.println("Sound Volume Saved: "  + unsavedFloat[0][1]);
+        }
+        this.savedString[0][0] = unsavedString[0][0];
+        if (gameH.debugMode) {
+            System.out.println("Loaded Map Saved: "  + unsavedString[0][0]);
         }
 
         for (int i = 0; i < gameH.npc.length; i++) {
@@ -113,6 +119,25 @@ public class Settings {
         gameH.keyboard = savedBoolean[0][1];
         gameH.musicVolume = savedFloat[0][0];
         gameH.soundVolume = savedFloat[0][1];
+        if (Objects.equals(savedString[0][0], gameH.availableMaps[0])) {
+            gameH.map = savedString[0][0];
+            gameH.mapType = 0;
+        } else if (Objects.equals(savedString[0][0], gameH.availableMaps[1])) {
+            gameH.map = savedString[0][0];
+            gameH.mapType = 1;
+        } else if (Objects.equals(savedString[0][0], gameH.availableMaps[2])) {
+            gameH.map = savedString[0][0];
+            gameH.mapType = 2;
+        } else if (Objects.equals(savedString[0][0], gameH.availableMaps[3])) {
+            gameH.map = savedString[0][0];
+            gameH.mapType = 3;
+        } else {
+            if (gameH.debugMode) {
+                System.out.println("Wrong Map-Name at selected file!");
+                System.out.println("Map was set on Default.");
+                gameH.map = gameH.availableMaps[0];
+            }
+        }
 
         // NPC SHIT = FABIO SHIT
         for (int i = 0; i < gameH.npc.length; i++) {
@@ -130,6 +155,9 @@ public class Settings {
                     //unsavedString[i+1][j];
                 }
             }
+        }
+        if (gameH.debugMode) {
+            System.out.println("All Settings have been saved!");
         }
     }
 }

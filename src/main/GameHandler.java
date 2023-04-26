@@ -117,10 +117,6 @@ public class GameHandler extends JPanel implements Runnable {
         gameState = titleState;
     }
 
-    public void reSetupGame() {
-        reStartWindow();
-    }
-
     public void reStartWindow() {
         // close old Window
         myGUI.closeWindow();
