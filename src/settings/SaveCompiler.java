@@ -32,7 +32,7 @@ public class SaveCompiler extends Settings{
                 }
 
 
-                if (parameter >= 0 && parameter <= 7) {
+                if (parameter >= 0 && parameter <= systemSavable) {
                     switch (parameter) {
                         case 0:
                             unsavedBoolean[0][0] = Boolean.parseBoolean(line);
@@ -87,7 +87,7 @@ public class SaveCompiler extends Settings{
                     }
                 }
 
-                if (parameter >= 8) {
+                if (parameter >= systemSavable + 1) {
                     for (int i = 0; i < gameH.npc.length; i++) {
                         if (gameH.npc[i] != null) {
                             for (int j = 0; j < entitySavableINT; j++) {
@@ -179,12 +179,15 @@ public class SaveCompiler extends Settings{
                 bw.close();
 
                 if (gameH.debugMode) {
+                    System.out.println(">>> Start Writing Data <<<");
                     System.out.println("FileLocation: " + fileLocation);
-                    System.out.println("Data was Written");
+                    System.out.println(">>> Data has been Written <<<");
                 }
 
             } else {
-                System.out.println("Error-WriteFile: ");
+                if (gameH.debugMode) {
+                    System.out.println("Error-WriteFile: file does not exist");
+                }
             }
 
         } catch (Exception e) {
