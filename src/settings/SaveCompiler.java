@@ -27,6 +27,10 @@ public class SaveCompiler extends Settings{
 
             while(!last) {
                 line = br.readLine();
+                if (gameH.debugMode) {
+                    System.out.println("Line Input: " + line);
+                }
+
 
                 if (parameter >= 0 && parameter <= 7) {
                     switch (parameter) {
@@ -83,27 +87,29 @@ public class SaveCompiler extends Settings{
                     }
                 }
 
-                for (int i = 0; i < gameH.npc.length; i++) {
-                    if (gameH.npc[i] != null) {
-                        for (int j = 0; j < entitySavableINT; j++) {
-                            line = br.readLine();
-                            unsavedInt[i+1][j] = Integer.parseInt(line);
-                            parameter++;
-                        }
-                        for (int j = 0; j < entitySavableBOOLEAN; j++) {
-                            line = br.readLine();
-                            unsavedBoolean[i+1][j] = Boolean.parseBoolean(line);
-                            parameter++;
-                        }
-                        for (int j = 0; j < entitySavableFLOAT; j++) {
-                            line = br.readLine();
-                            unsavedFloat[i+1][j] = Float.parseFloat(line);
-                            parameter++;
-                        }
-                        for (int j = 0; j < entitySavableSTRING; j++) {
-                            line = br.readLine();
-                            unsavedString[i+1][j] = line;
-                            parameter++;
+                if (parameter >= 8) {
+                    for (int i = 0; i < gameH.npc.length; i++) {
+                        if (gameH.npc[i] != null) {
+                            for (int j = 0; j < entitySavableINT; j++) {
+                                line = br.readLine();
+                                unsavedInt[i+1][j] = Integer.parseInt(line);
+                                parameter++;
+                            }
+                            for (int j = 0; j < entitySavableBOOLEAN; j++) {
+                                line = br.readLine();
+                                unsavedBoolean[i+1][j] = Boolean.parseBoolean(line);
+                                parameter++;
+                            }
+                            for (int j = 0; j < entitySavableFLOAT; j++) {
+                                line = br.readLine();
+                                unsavedFloat[i+1][j] = Float.parseFloat(line);
+                                parameter++;
+                            }
+                            for (int j = 0; j < entitySavableSTRING; j++) {
+                                line = br.readLine();
+                                unsavedString[i+1][j] = line;
+                                parameter++;
+                            }
                         }
                     }
                 }

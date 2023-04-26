@@ -26,13 +26,37 @@ public class Settings {
 
         // SAVE VARS
         this.savedBoolean[0][0] = unsavedBoolean[0][0]; // fullscreen
+        if (gameH.debugMode) {
+            System.out.println("Fullscreen Saved: "  + unsavedBoolean[0][0]);
+        }
         this.savedInt[0][0] = unsavedInt[0][0]; // screen Width
+        if (gameH.debugMode) {
+            System.out.println("Screen Width Saved: "  + unsavedInt[0][0]);
+        }
         this.savedInt[0][1] = unsavedInt[0][1]; // screen Height
+        if (gameH.debugMode) {
+            System.out.println("Screen Height Saved: "  + unsavedInt[0][1]);
+        }
         this.savedInt[0][2] = unsavedInt[0][2]; // Player Position X
+        if (gameH.debugMode) {
+            System.out.println("Player Position X Saved: "  + unsavedInt[0][2]);
+        }
         this.savedInt[0][3] = unsavedInt[0][3]; // Player Position Y
+        if (gameH.debugMode) {
+            System.out.println("Player Position Y Saved: "  + unsavedInt[0][3]);
+        }
         this.savedBoolean[0][1] = unsavedBoolean[0][1]; // Keyboard
+        if (gameH.debugMode) {
+            System.out.println("Keyboard: "  + unsavedBoolean[0][1]);
+        }
         this.savedFloat[0][0] = unsavedFloat[0][0]; // Music Volume
+        if (gameH.debugMode) {
+            System.out.println("Music Volume Saved: "  + unsavedFloat[0][0]);
+        }
         this.savedFloat[0][1] = unsavedFloat[0][1]; // Sound Volume
+        if (gameH.debugMode) {
+            System.out.println("Sound Volume Saved: "  + unsavedFloat[0][1]);
+        }
 
         for (int i = 1; i < gameH.npc.length; i++) {
             if (gameH.npc[i] != null) {
@@ -63,8 +87,13 @@ public class Settings {
         gameH.fullscreen = savedBoolean[0][0];
         gameH.screenWidth = savedInt[0][0];
         gameH.screenHeight = savedInt[0][1];
-        gameH.playerStandardValueX = savedInt[0][2] * gameH.tileSize;
-        gameH.playerStandardValueY = savedInt[0][3] * gameH.tileSize;
+        if (gameH.player != null) {
+            gameH.player.worldX = savedInt[0][2] * gameH.tileSize;
+            gameH.player.worldY = savedInt[0][3] * gameH.tileSize;
+        } else {
+            gameH.playerStandardValueX = savedInt[0][2] * gameH.tileSize;
+            gameH.playerStandardValueY = savedInt[0][3] * gameH.tileSize;
+        }
         gameH.keyboard = savedBoolean[0][1];
         gameH.musicVolume = savedFloat[0][0];
         gameH.soundVolume = savedFloat[0][1];

@@ -283,11 +283,10 @@ public class GameHandler extends JPanel implements Runnable {
 
                     switch (ui.commandNum) {
 
-                        case 0: // load game
+                        case 0: // load save
                             gameState = saveState;
                             break;
-                        case 1: // new game
-                            saveC.SaveReader(this, "save_Default");
+                        case 1: // load game
                             gameState = playState;
                             break;
                         case 2: // menu
