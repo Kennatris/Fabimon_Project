@@ -6,17 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.3.6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/downarrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/downarrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/downarrow2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/downarrow2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/leftarrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/leftarrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/leftarrow2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/leftarrow2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/rightarrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/rightarrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/rightarrow2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/rightarrow2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/uparrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/uparrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/uparrow2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/uparrow2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/NPCTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/NPCTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Stats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings/SaveCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/SaveCompiler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/Settings.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -237,6 +230,21 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -254,21 +262,6 @@
                 </map>
               </option>
             </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="User">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="*" />
-                </option>
-              </RecentGroup>
-            </list>
           </value>
         </entry>
       </map>

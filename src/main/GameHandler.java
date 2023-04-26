@@ -36,8 +36,8 @@ public class GameHandler extends JPanel implements Runnable {
     public int mapType = 0;
     public String[] fileIndex = {"save_one", "save_two", "save_three"};
     public String save = fileIndex[0];
-    public int playerPosX;
-    public int playerPosY;
+    public int playerStandardValueX = 25;
+    public int playerStandardValueY = 25;
     public boolean fullscreen;
     public boolean keyboard = true;
     public float musicVolume;
@@ -449,7 +449,7 @@ public class GameHandler extends JPanel implements Runnable {
                                 gameState = titleState;
                                 ui.commandNum = 0;
                                 unsavedSetting = false;
-                                settings.installSettings(this, fullscreen, myGUI.frame.getWidth(), myGUI.frame.getHeight(), player.worldX, player.worldY, keyboard, musicVolume, soundVolume);
+                                settings.uploadSettings(this); // SETTINGS
                                 saveC.SaveWriter(this,save);
                                 break;
                         }

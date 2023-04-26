@@ -40,8 +40,8 @@ public class Player extends Entity{
     }
     public void setDefaultValues () {
 
-        worldX = gameH.playerPosX;
-        worldY = gameH.playerPosY;
+        worldX = gameH.playerStandardValueX;
+        worldY = gameH.playerStandardValueY;
         speed = 4;
         direction = "down";
 
