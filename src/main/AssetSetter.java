@@ -19,14 +19,26 @@ public class AssetSetter {
 
     public void setNPC() {
         /* EXAMPLE
-        gameH.npc[index] = new NPS_name(gameH);
-        gameH.npc[index].worldX = gameH.tileSize*spawnTILE;
-        gameH.npc[index].worldY = gameH.tileSize*spawnTILE;
+            createNPC(index, spawnTileX, spawnTileY, map, spawnDirection, speed);
         */
 
-        gameH.npc[0] = new NPCTest(gameH);
-        gameH.npc[0].worldX = gameH.tileSize*24;
-        gameH.npc[0].worldY = gameH.tileSize*18;
+        createTestNPC(0, 23, 17, 0, "down", 0, 0, 0, 0,0);
+        createTestNPC(1, 24, 19, 0, "left", 4, 12, 24, 19, 19);
+        createTestNPC(2, 34, 17, 0, "up", 0, 31, 37, 15, 21);
+    }
+    private void createTestNPC(int npcNum, int spawnX, int spawnY, int pMap, String pDirection, int pSpeed, int rangeL, int rangeR, int rangeU, int rangeD){
+        gameH.npc[npcNum] = new NPCTest(gameH);
+        gameH.npc[npcNum].originalWorldX = spawnX;
+        gameH.npc[npcNum].originalWorldY = spawnY;
+        gameH.npc[npcNum].worldX = gameH.tileSize*spawnX;
+        gameH.npc[npcNum].worldY = gameH.tileSize*spawnY;
+        gameH.npc[npcNum].map = gameH.availableMaps[pMap];
+        gameH.npc[npcNum].direction = pDirection;
+        gameH.npc[npcNum].speed = pSpeed;
+        gameH.npc[npcNum].visionRangeRight = rangeR;
+        gameH.npc[npcNum].visionRangeLeft = rangeL;
+        gameH.npc[npcNum].visionRangeUp = rangeU;
+        gameH.npc[npcNum].visionRangeDown = rangeD;
     }
 
 }

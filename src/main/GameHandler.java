@@ -2,6 +2,7 @@ package main;
 
 import entity.Entity;
 import entity.Player;
+import entity.PlayerDummy;
 import main.control.KeyHandler;
 import objects.SuperObject;
 import settings.SaveCompiler;
@@ -49,9 +50,11 @@ public class GameHandler extends JPanel implements Runnable {
     // FPS
     int FPS = 60;
     public int time, seconds, minutes, hour;
+    public int speed_increased = 0;
 
     // SYSTEM
     TileManager tileM = new TileManager(this, map);
+    public CutsceneManager csManager = new CutsceneManager(this);
     public KeyHandler keyH = new KeyHandler();
     Sound music = new Sound();
     Sound se = new Sound();
@@ -66,8 +69,10 @@ public class GameHandler extends JPanel implements Runnable {
 
     // ENTITY AND OBJECT
     public Player player;
+    public PlayerDummy playerD = new PlayerDummy(this);
     public SuperObject obj[] = new SuperObject[10];
     public Entity npc[] = new Entity[10];
+    public int  npcBattle;
 
     // GAME STATE
     public int gameState;
@@ -77,6 +82,7 @@ public class GameHandler extends JPanel implements Runnable {
     public final int dialogueState = 3;
     public final int saveState = 4;
     public final int settingState = 5;
+    public final int battleState = 6;
 
     public GameHandler() {
 
@@ -176,6 +182,34 @@ public class GameHandler extends JPanel implements Runnable {
 
     public void update() {
 
+        // DEBUG MODE
+        if (keyH.hPressed) {
+            debugMode = !debugMode;
+            System.out.println("DebugMode: " + debugMode);
+
+            keyH.hPressed = false;
+        }
+        if (debugMode) {
+            if(keyH.kPressed) {
+                gameState = battleState;
+            }
+            if(keyH.shiftPressed) {
+                if (speed_increased == 0) {
+                    player.speed = 8;
+                    System.out.println("Speed: " + player.speed);
+                }
+                speed_increased = 1;
+            }
+
+            if(!keyH.shiftPressed) {
+                if (speed_increased == 1) {
+                    player.speed = 4;
+                    System.out.println("Speed: " + player.speed);
+                }
+                speed_increased = 0;
+            }
+        }
+
         // time
         if (time == 60){
             time = 0;
@@ -220,6 +254,8 @@ public class GameHandler extends JPanel implements Runnable {
 
             // PLAYER
             player.update();
+
+
 
             if (debugMode) {
 
@@ -613,7 +649,72 @@ public class GameHandler extends JPanel implements Runnable {
                 keyH.spacePressed = false;
                 keyH.enterPressed = false;
             }
-        } // Bindings for gameState
+        }// Bindings for gameState
+
+        if(gameState == battleState){
+            if(keyH.upPressed || keyH.wPressed || keyH.downPressed || keyH.sPressed ||
+               keyH.rightPressed || keyH.dPressed || keyH.leftPressed || keyH.aPressed){
+
+                if(keyH.upPressed || keyH.wPressed){
+                    switch(ui.commandNum){
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                        case 2: ui.commandNum = 0;
+                            break;
+                        case 3: ui.commandNum = 1;
+                            break;
+                    }
+                } else if (keyH.downPressed || keyH.sPressed){
+                    switch(ui.commandNum){
+                        case 0: ui.commandNum = 2;
+                            break;
+                        case 1: ui.commandNum = 3;
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                    }
+                }else if(keyH.rightPressed || keyH.dPressed){
+                    switch(ui.commandNum){
+                        case 0: ui.commandNum = 1;
+                            break;
+                        case 1:
+                            break;
+                        case 2: ui.commandNum = 3;
+                            break;
+                        case 3:
+                            break;
+                    }
+                }else if(keyH.leftPressed || keyH.aPressed){
+                    switch(ui.commandNum) {
+                        case 0:
+
+                            break;
+                        case 1:
+                            ui.commandNum = 0;
+                            break;
+                        case 2:
+                            break;
+                        case 3: ui.commandNum = 2;
+                            break;
+                    }
+                }
+            }else if (keyH.enterPressed || keyH.spacePressed){
+                switch(ui.commandNum) {
+                    case 0: ui.battleText = "Fight";
+                        break;
+                    case 1: ui.battleText = "Fabimon";
+                        break;
+                    case 2: ui.battleText = "Bag";
+                        break;
+                    case 3: npc[npcBattle].endBattle(npcBattle);
+                        break;
+                }
+            }
+        }// Bindings for battleState
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -643,8 +744,13 @@ public class GameHandler extends JPanel implements Runnable {
                     npc[i].draw(g2);
                 }
             }
+            //Cutscene
+            csManager.draw(g2);
+
             // PLAYER
             player.draw(g2);
+
+
 
             // UI
             ui.draw(g2);

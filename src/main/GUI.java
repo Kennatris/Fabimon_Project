@@ -29,6 +29,7 @@ public class GUI {
         } else {
             frame.setSize(width, height); // set window size to height x width
             frame.setLocationRelativeTo(null); // center the window
+            frame.setResizable(false);
         }
         frame.setVisible(true);
         // get frame

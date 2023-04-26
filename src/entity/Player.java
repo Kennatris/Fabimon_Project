@@ -12,7 +12,9 @@ public class Player extends Entity{
 
     KeyHandler keyH;
     ImageHandler imageH = new ImageHandler();
+    public BufferedImage image;
 
+    public Boolean beingApproached = false;
     public int screenX;
     public int screenY;
     int standCounter = 0;
@@ -70,79 +72,84 @@ public class Player extends Entity{
 
     public void update() {
 
-        if(keyH.wPressed == true || keyH.sPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
+        //CHECK NPC VISION
+        gameH.cChecker.checkVision(this, gameH.npc);
 
-            if(keyH.wPressed == true) {
-                direction = "up";
+        if(!beingApproached) {
+
+            if (keyH.wPressed == true || keyH.sPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
+
+                if (keyH.wPressed == true) {
+                    direction = "up";
 
 //				playerY = playerY - playerSpeed;
-            } else if(keyH.sPressed == true) {
-                direction = "down";
+                } else if (keyH.sPressed == true) {
+                    direction = "down";
 
-            } else if(keyH.aPressed == true) {
-                direction = "left";
+                } else if (keyH.aPressed == true) {
+                    direction = "left";
 
-            } else if(keyH.dPressed == true) {
-                direction = "right";
+                } else if (keyH.dPressed == true) {
+                    direction = "right";
 
-            }
-
-            // CHECK TILE COLLISION
-            collisionOn = false;
-            gameH.cChecker.checkTile(this);
-
-            // CHECK OBJECT COLLISION
-            int objIndex = gameH.cChecker.checkObject(this, true);
-            pickUpObject(objIndex);
-
-            // CHECK NPC COLLISION
-            int npcIndex = gameH.cChecker.checkEntity(this, gameH.npc);
-            interactNPC(npcIndex);
-
-
-            // CHECK EVENT
-            gameH.eHandler.checkEvent();
-
-            gameH.keyH.spacePressed = false;
-
-            // IF COLLISION IS FALSE, PLAYER CAN MOVE
-            if(collisionOn == false) {
-
-                switch(direction) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
                 }
 
-            }
+                // CHECK TILE COLLISION
+                collisionOn = false;
+                gameH.cChecker.checkTile(this);
 
-            spriteCounter++;
-            if (spriteCounter > 10) {
-                if (spriteNum == 1) {
-                    spriteNum = 2;
-                } else if (spriteNum == 2) {
+                // CHECK OBJECT COLLISION
+                int objIndex = gameH.cChecker.checkObject(this, true);
+                pickUpObject(objIndex);
+
+                // CHECK NPC COLLISION
+                int npcIndex = gameH.cChecker.checkEntity(this, gameH.npc);
+                interactNPC(npcIndex);
+
+
+                // CHECK EVENT
+                gameH.eHandler.checkEvent();
+
+                gameH.keyH.spacePressed = false;
+
+                // IF COLLISION IS FALSE, PLAYER CAN MOVE
+                if (collisionOn == false) {
+
+                    switch (direction) {
+                        case "up":
+                            worldY -= speed;
+                            break;
+                        case "down":
+                            worldY += speed;
+                            break;
+                        case "left":
+                            worldX -= speed;
+                            break;
+                        case "right":
+                            worldX += speed;
+                            break;
+                    }
+
+                }
+
+                spriteCounter++;
+                if (spriteCounter > 10) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    } else if (spriteNum == 2) {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
+                }
+
+            } else {
+                standCounter++;
+                if (standCounter == 20) {
                     spriteNum = 1;
+                    standCounter = 0;
                 }
-                spriteCounter = 0;
-            }
-
-        } else {
-            standCounter++;
-            if(standCounter == 20) {
-                spriteNum = 1;
-                standCounter = 0;
             }
         }
-
     }
 
     public void pickUpObject(int i) {
@@ -165,7 +172,7 @@ public class Player extends Entity{
 
     public void draw(Graphics2D g2) {
 
-        BufferedImage image = null;
+        image = null;
 
         switch (direction) {
             case "up":
