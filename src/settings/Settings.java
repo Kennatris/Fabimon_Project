@@ -3,7 +3,10 @@ package settings;
 import main.GameHandler;
 
 public class Settings {
-    
+
+    // SYSTEM INFORMATIONS
+    public String fileTyp = ".txt";
+
     // Initializing
     GameHandler gameH;
     // all saved Variables
@@ -87,24 +90,7 @@ public class Settings {
                 }
             }
         }
-        /*
-        for (int i = 0; i < gameH.npc.length; i++) {
-            if (gameH.npc[i] != null) {
-                for (int j = 0; j < entitySavableINT; i ++) {
-                    this.savedInt[i+1][j] = unsavedInt[i][j];
-                }
-                for (int j = 0; j < entitySavableBOOLEAN; i++) {
-                    this.savedBoolean[i+1][j] = unsavedBoolean[i][j];
-                }
-                for (int j = 0; j < entitySavableSTRING; i++) {
-                    this.savedString[i+1][j] = unsavedString[i][j];
-                }
-                for (int j = 0; j < entitySavableFLOAT; i++) {
-                    this.savedFloat[i+1][j] = unsavedFloat[i][j];
-                }
-            }
-        }
-        */
+
         uploadSettings(this.gameH);
 
     }

@@ -8,7 +8,7 @@ public class SaveCompiler extends Settings{
     public void SaveReader(GameHandler gameH, String fileName) {
 
         try {
-            File f = new File("res/saves/" + fileName + ".txt");
+            File f = new File("res/saves/" + fileName + fileTyp);
 
             if (gameH.debugMode) {
                 System.out.println(f.getPath());
@@ -17,7 +17,7 @@ public class SaveCompiler extends Settings{
             if (!f.exists()) {
                 fileName = "save_Default";
             }
-            String fileLocation = "res/saves/" + fileName + ".txt";
+            String fileLocation = "res/saves/" + fileName + fileTyp;
 
             FileReader fr = new FileReader(fileLocation);
             BufferedReader br = new BufferedReader(fr);
@@ -132,7 +132,7 @@ public class SaveCompiler extends Settings{
 
     public void SaveWriter(GameHandler gameH, String fileName) {
 
-        String fileLocation = "res/saves/" + fileName + ".txt";
+        String fileLocation = "res/saves/" + fileName + fileTyp;
         File f = new File(fileLocation);
 
         try {
