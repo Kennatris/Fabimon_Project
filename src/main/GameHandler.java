@@ -11,12 +11,14 @@ import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class GameHandler extends JPanel implements Runnable {
+
     private static final long serialVersionUID = 1L;
     // SCREEN SETTINGS
     final int originalTileSize = 96; // 96x96 tile
-    final int scale = 1;
+    public int scale = 1;
 
     public final int tileSize = originalTileSize * scale; // 96x96 tile scale (zoom)
     public final int maxScreenCol = 20;
@@ -33,10 +35,11 @@ public class GameHandler extends JPanel implements Runnable {
             "",           // 3Map
             "arenaWorld"  // arenaWorld
     };
-    public String map = availableMaps[0];
+    public String map;
     public int mapType = 0;
     public String[] fileIndex = {"save_one", "save_two", "save_three"};
-    public String save = fileIndex[0];
+    public String fileTyp = ".txt";
+    public String save = "save_Default";
     public int playerStandardValueX = 25;
     public int playerStandardValueY = 25;
     public boolean fullscreen;
@@ -46,6 +49,7 @@ public class GameHandler extends JPanel implements Runnable {
 
     // random Vars
     public boolean debugMode = true;
+    public boolean timerMode = false;
     public boolean unsavedSetting;
     // FPS
     int FPS = 60;
@@ -53,7 +57,7 @@ public class GameHandler extends JPanel implements Runnable {
     public int speed_increased = 0;
 
     // SYSTEM
-    TileManager tileM = new TileManager(this, map);
+    public TileManager tileM = new TileManager(this, map);
     public CutsceneManager csManager = new CutsceneManager(this);
     public KeyHandler keyH = new KeyHandler();
     Sound music = new Sound();
@@ -181,7 +185,7 @@ public class GameHandler extends JPanel implements Runnable {
         // DEBUG MODE
         if (keyH.hPressed) {
             debugMode = !debugMode;
-            System.out.println("DebugMode: " + debugMode);
+            System.out.println("Debug Mode set: " + debugMode);
 
             keyH.hPressed = false;
         }
@@ -189,10 +193,15 @@ public class GameHandler extends JPanel implements Runnable {
             if(keyH.kPressed) {
                 gameState = battleState;
             }
+            if(keyH.tPressed) {
+                timerMode = !timerMode;
+                keyH.tPressed = false;
+                System.out.println("Timer Mode set: " + timerMode);
+            }
             if(keyH.shiftPressed) {
                 if (speed_increased == 0) {
                     player.speed = 8;
-                    System.out.println("Speed: " + player.speed);
+                    System.out.println("Speed set: " + player.speed);
                 }
                 speed_increased = 1;
             }
@@ -200,7 +209,7 @@ public class GameHandler extends JPanel implements Runnable {
             if(!keyH.shiftPressed) {
                 if (speed_increased == 1) {
                     player.speed = 4;
-                    System.out.println("Speed: " + player.speed);
+                    System.out.println("Speed set: " + player.speed);
                 }
                 speed_increased = 0;
             }
@@ -210,7 +219,7 @@ public class GameHandler extends JPanel implements Runnable {
         if (time == 60){
             time = 0;
             seconds++;
-            if (debugMode) {
+            if (debugMode && timerMode) {
                 System.out.println("The system runs: " + seconds + " seconds!");
             }
         }
@@ -218,9 +227,11 @@ public class GameHandler extends JPanel implements Runnable {
             seconds = 0;
             minutes ++;
             if (minutes % 2 == 0) {
-                saveC.SaveWriter(this, save);
+                if (!Objects.equals(save, "save_Default")) {
+                    saveC.SaveWriter(this, save);
+                }
             }
-            if (debugMode) {
+            if (debugMode && timerMode) {
                 System.out.println("The system runs: " + minutes + " minutes!");
             }
         }
@@ -235,6 +246,10 @@ public class GameHandler extends JPanel implements Runnable {
             reStartWindow();
             player.screenX = myGUI.frame.getWidth()/2 - (tileSize/2);
             player.screenY = myGUI.frame.getHeight()/2 - (tileSize/2);
+
+            if (debugMode) {
+                System.out.println("Screen X: " + myGUI.frame.getWidth() + ", Screen Y: " + myGUI.frame.getHeight());
+            }
 
             keyH.f12Pressed = false;
         }
@@ -251,15 +266,71 @@ public class GameHandler extends JPanel implements Runnable {
             // PLAYER
             player.update();
 
+            // UPDATE SCREEN SETTINGS
+            screenWidth = myGUI.frame.getWidth();
+            screenHeight = myGUI.frame.getHeight();
 
-
-            if (debugMode) {
-
+            // pause Screen
+            if (keyH.escPressed) {
+                gameState = pauseState;
             }
-
         }
         if (gameState == pauseState) {
             // do-nothing
+            if (keyH.wPressed == true || keyH.sPressed == true || keyH.upPressed == true || keyH.downPressed == true) {
+
+                if (keyH.wPressed == true || keyH.upPressed == true) {
+                    switch (ui.commandNum) {
+
+                        case 0:
+                            ui.commandNum = 1;
+                            break;
+                        case 1:
+                            ui.commandNum = 0;
+                            break;
+
+                    }
+
+                    keyH.wPressed = false;
+                    keyH.upPressed = false;
+
+                } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                    switch (ui.commandNum) {
+
+                        case 0:
+                            ui.commandNum = 1;
+                            break;
+                        case 1:
+                            ui.commandNum = 0;
+                            break;
+
+                    }
+
+                    keyH.sPressed = false;
+                    keyH.downPressed = false;
+                }
+            }
+
+            // SELECT
+            if (keyH.spacePressed == true || keyH.enterPressed == true) {
+
+                switch (ui.commandNum) {
+
+                    case 0: // BACK
+                        gameState = playState;
+                        break;
+                    case 1: // SAVE AND QUIT
+                        if (!Objects.equals(save, "save_Default")) {
+                            saveC.SaveWriter(this, save);
+                        }
+                        gameState = titleState;
+                        break;
+                }
+
+                ui.commandNum = 0;
+                keyH.spacePressed = false;
+                keyH.enterPressed = false;
+            }
         }
         if (gameState == titleState) {
 
@@ -480,8 +551,10 @@ public class GameHandler extends JPanel implements Runnable {
                                 gameState = titleState;
                                 ui.commandNum = 0;
                                 unsavedSetting = false;
-                                settings.uploadSettings(this); // SETTINGS
-                                saveC.SaveWriter(this,save);
+                                if (!Objects.equals(save, "save_Default")) {
+                                    saveC.SaveWriter(this, save); // SETTINGS
+                                    saveC.SaveReader(this, save);
+                                }
                                 break;
                         }
 

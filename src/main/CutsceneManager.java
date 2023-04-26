@@ -60,11 +60,13 @@ public class CutsceneManager {
     private void ausrufezeichen() {
         int x = gameH.npc[gameH.npcBattle].worldX - gameH.player.worldX + gameH.player.screenX;
         int y = gameH.npc[gameH.npcBattle].worldY - gameH.player.worldY + gameH.player.screenY - gameH.tileSize;
+        /*
         if (gameH.debugMode) {
             System.out.println("Cutscene: 1");
             System.out.println("NPC: " + gameH.npcBattle);
-            System.out.println("X: " + x + "Y: " + y);
+            System.out.println("X: " + x + ", Y: " + y);
         }
+         */
 
 
           g2.drawImage(gameH.tileM.tile[9].image, x, y, gameH.tileSize, gameH.tileSize, null);

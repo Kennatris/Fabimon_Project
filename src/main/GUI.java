@@ -21,7 +21,7 @@ public class GUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Fabimon");
         frame.getContentPane().setBackground(new Color(255, 255, 255)); // set background color to green
-        imageH.ImageInitializer(0, "tiles","PLACEHOLDER", "png", 250, 250);
+        imageH.ImageInitializer(0, "main","Skully_main(uwu skin)", "png", 500, 500);
         frame.setIconImage(imageH.image[0]);
         if (fullscreen) {
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // maximize the window

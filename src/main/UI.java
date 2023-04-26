@@ -136,12 +136,56 @@ public class UI {
     }
     public void drawPauseScreen() {
 
+        Color pauseBGC = new Color(47, 45, 45, 127);
+
+        double pauseBGHeight = gameH.myGUI.frame.getHeight()/2 + gameH.myGUI.frame.getHeight()/4;
+
+        g2.setColor(Color.BLACK);
+        g2.drawRect(gameH.myGUI.frame.getWidth()/3, gameH.myGUI.frame.getHeight()/12, gameH.myGUI.frame.getWidth()/3, (int) pauseBGHeight);
+        g2.setColor(pauseBGC);
+        g2.fillRect(gameH.myGUI.frame.getWidth()/3, gameH.myGUI.frame.getHeight()/12, gameH.myGUI.frame.getWidth()/3, (int) pauseBGHeight);
+
+        g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
         String text = "PAUSED";
         int x = getXforCenteredText(text);
-        int y = gameH.screenHeight/16;
-
+        int y;
+        if (gameH.fullscreen) {
+            y = (int) (pauseBGHeight/4);
+        } else {
+            y = (int) (pauseBGHeight/3);
+        }
         g2.drawString(text, x, y);
+
+        // BACK
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
+        text = "BACK";
+        textPos = 0;
+        x = getXforCenteredText(text);
+        if (gameH.fullscreen) {
+            y = (int) ((15*pauseBGHeight)/16);
+        } else {
+            y = (int) ((11*pauseBGHeight)/12);
+        }
+        g2.drawString(text, x, y);
+        if (commandNum == textPos) {
+            g2.drawString(">", x-gameH.tileSize, y);
+        }
+
+        // SAVE AND QUIT
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
+        text = "SAVE AND QUIT";
+        textPos = 1;
+        x = getXforCenteredText(text);
+        if (gameH.fullscreen) {
+            y = (int) (pauseBGHeight);
+        } else {
+            y = (int) (pauseBGHeight);
+        }
+        g2.drawString(text, x, y);
+        if (commandNum == textPos) {
+            g2.drawString(">", x-(gameH.tileSize/3), y);
+        }
 
     }
     public void drawSettingScreen() {

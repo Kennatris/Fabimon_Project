@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    public boolean wPressed, aPressed, dPressed, sPressed, escPressed, spacePressed, iPressed, f12Pressed, upPressed, downPressed, leftPressed, rightPressed, enterPressed, shiftPressed, hPressed, kPressed, entPressed;
+    public boolean wPressed, aPressed, dPressed, sPressed, escPressed, spacePressed, iPressed, f12Pressed, upPressed, downPressed, leftPressed, rightPressed, enterPressed, shiftPressed, hPressed, kPressed, entPressed, tPressed;
     int genutzt = 1;
     @Override
     public void keyTyped(KeyEvent e) {
@@ -91,6 +91,10 @@ public class KeyHandler implements KeyListener {
                 genutzt=0;
             }
         }
+
+        if (code == KeyEvent.VK_T) {
+            tPressed = true;
+        }
     }
 
     @Override
@@ -163,6 +167,10 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_DELETE) {
             entPressed = false;
+        }
+
+        if (code == KeyEvent.VK_T) {
+            tPressed = false;
         }
 
     }

@@ -5,10 +5,6 @@ import main.GameHandler;
 import java.util.Objects;
 
 public class Settings {
-
-    // SYSTEM INFORMATIONS
-    public String fileTyp = ".txt";
-    //tmp
     // Initializing
     GameHandler gameH;
     // all saved Variables
@@ -120,24 +116,29 @@ public class Settings {
         gameH.musicVolume = savedFloat[0][0];
         gameH.soundVolume = savedFloat[0][1];
         if (Objects.equals(savedString[0][0], gameH.availableMaps[0])) {
-            gameH.map = savedString[0][0];
+            gameH.map = gameH.availableMaps[0];
+            System.out.println("Map was set to: " + savedString[0][0] + " with the value: " + 0);
             gameH.mapType = 0;
         } else if (Objects.equals(savedString[0][0], gameH.availableMaps[1])) {
-            gameH.map = savedString[0][0];
+            gameH.map = gameH.availableMaps[1];
+            System.out.println("Map was set to: " + savedString[0][0] + " with the value: " + 1);
             gameH.mapType = 1;
         } else if (Objects.equals(savedString[0][0], gameH.availableMaps[2])) {
-            gameH.map = savedString[0][0];
+            gameH.map = gameH.availableMaps[2];
+            System.out.println("Map was set to: " + savedString[0][0] + " with the value: " + 2);
             gameH.mapType = 2;
         } else if (Objects.equals(savedString[0][0], gameH.availableMaps[3])) {
-            gameH.map = savedString[0][0];
+            gameH.map = gameH.availableMaps[3];
+            System.out.println("Map was set to: " + savedString[0][0] + " with the value: " + 3);
             gameH.mapType = 3;
         } else {
             if (gameH.debugMode) {
-                System.out.println("Wrong Map-Name at selected file!");
+                System.out.println("Wrong Map-Name at: " + gameH.save);
                 System.out.println("Map was set on Default.");
                 gameH.map = gameH.availableMaps[0];
             }
         }
+        gameH.tileM.loadMap(gameH.map);
 
         // NPC SHIT = FABIO SHIT
         for (int i = 0; i < gameH.npc.length; i++) {
@@ -157,7 +158,7 @@ public class Settings {
             }
         }
         if (gameH.debugMode) {
-            System.out.println("All Settings have been saved!");
+            System.out.println("All Settings have been saved to " + gameH.save + "!");
         }
     }
 }

@@ -4,6 +4,7 @@ import main.GameHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 public class Entity {
 
@@ -178,7 +179,7 @@ public class Entity {
 
     public void draw(Graphics2D g2) {
 
-        if (gameH.map == map && drawing) {
+        if (Objects.equals(gameH.map, map) && drawing) {
             BufferedImage image = null;
 
             int screenX = worldX - gameH.player.worldX + gameH.player.screenX;

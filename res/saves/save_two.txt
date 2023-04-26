@@ -1,9 +1,9 @@
 false
 1152
 576
-23
-21
+25
+25
 true
 1.0
 1.0
-arenaWorld
+map_test_1
