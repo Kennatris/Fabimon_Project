@@ -59,7 +59,36 @@ public class Settings {
             System.out.println("Sound Volume Saved: "  + unsavedFloat[0][1]);
         }
 
-        for (int i = 1; i < gameH.npc.length; i++) {
+        for (int i = 0; i < gameH.npc.length; i++) {
+            if (gameH.npc[i] != null) {
+                for (int j = 0; j < entitySavableINT; j++) {
+                    this.savedInt[i+1][j] = unsavedInt[i+1][j];
+                    if (gameH.debugMode) {
+                        System.out.println("[" + i + "]" + " " + "[" + j + "]" + " = " + this.savedInt[i+1][j]);
+                    }
+                }
+                for (int j = 0; j < entitySavableBOOLEAN; j++) {
+                    this.savedBoolean[i+1][j] = unsavedBoolean[i][j];
+                    if (gameH.debugMode) {
+                        System.out.println("[" + i + "]" + " " + "[" + j + "]" + " = " + this.savedBoolean[i+1][j]);
+                    }
+                }
+                for (int j = 0; j < entitySavableSTRING; j++) {
+                    this.savedString[i+1][j] = unsavedString[i][j];
+                    if (gameH.debugMode) {
+                        System.out.println("[" + i + "]" + " " + "[" + j + "]" + " = " + this.savedString[i+1][j]);
+                    }
+                }
+                for (int j = 0; j < entitySavableFLOAT; j++) {
+                    this.savedFloat[i+1][j] = unsavedFloat[i][j];
+                    if (gameH.debugMode) {
+                        System.out.println("[" + i + "]" + " " + "[" + j + "]" + " = " + this.savedFloat[i+1][j]);
+                    }
+                }
+            }
+        }
+        /*
+        for (int i = 0; i < gameH.npc.length; i++) {
             if (gameH.npc[i] != null) {
                 for (int j = 0; j < entitySavableINT; i ++) {
                     this.savedInt[i+1][j] = unsavedInt[i][j];
@@ -75,7 +104,7 @@ public class Settings {
                 }
             }
         }
-
+        */
         uploadSettings(this.gameH);
 
     }
