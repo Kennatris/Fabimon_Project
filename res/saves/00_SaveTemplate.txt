@@ -1,7 +1,3 @@
-: int
-: float
-: int
-
 fullscreen: boolean
 screenWidth: int
 screenHeight: int
@@ -10,4 +6,9 @@ playerPosY: int
 keyboard: boolean
 musicVolume: float
 soundVolume: float
+map: String
+n*entityInt: int
+n*entityBoolean: int
+n*entityString: int
+n*entityFloat: int
 

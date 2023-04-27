@@ -53,7 +53,7 @@ public class GameHandler extends JPanel implements Runnable {
     public boolean unsavedSetting;
     // FPS
     int FPS = 60;
-    public int time, seconds, minutes, hour;
+    public int time, seconds, minutes, hour, tmpTime, tmpWaited;
     public int speed_increased = 0;
 
     // SYSTEM
@@ -181,7 +181,6 @@ public class GameHandler extends JPanel implements Runnable {
     }
 
     public void update() {
-
         // DEBUG MODE
         if (keyH.hPressed) {
             debugMode = !debugMode;
@@ -273,20 +272,28 @@ public class GameHandler extends JPanel implements Runnable {
             // pause Screen
             if (keyH.escPressed) {
                 gameState = pauseState;
+                tmpTime = 30;
+                tmpWaited = 0;
             }
         }
         if (gameState == pauseState) {
+            if (tmpWaited != tmpTime) {
+                tmpWaited++;
+            }
             // do-nothing
             if (keyH.wPressed == true || keyH.sPressed == true || keyH.upPressed == true || keyH.downPressed == true) {
 
-                if (keyH.wPressed == true || keyH.upPressed == true) {
+                if (keyH.wPressed || keyH.upPressed) {
                     switch (ui.commandNum) {
 
                         case 0:
-                            ui.commandNum = 1;
+                            ui.commandNum = 2;
                             break;
                         case 1:
                             ui.commandNum = 0;
+                            break;
+                        case 2:
+                            ui.commandNum = 1;
                             break;
 
                     }
@@ -294,13 +301,16 @@ public class GameHandler extends JPanel implements Runnable {
                     keyH.wPressed = false;
                     keyH.upPressed = false;
 
-                } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                } else if (keyH.sPressed || keyH.downPressed) {
                     switch (ui.commandNum) {
 
                         case 0:
                             ui.commandNum = 1;
                             break;
                         case 1:
+                            ui.commandNum = 2;
+                            break;
+                        case 2:
                             ui.commandNum = 0;
                             break;
 
@@ -312,24 +322,39 @@ public class GameHandler extends JPanel implements Runnable {
             }
 
             // SELECT
-            if (keyH.spacePressed == true || keyH.enterPressed == true) {
+            if (keyH.spacePressed || keyH.enterPressed) {
+                if (ui.pauseScreenValue == 0) {
+                    switch (ui.commandNum) {
+                        case 0: // SETTINGS
+                            ui.pauseScreenValue = 1;
+                            break;
+                        case 1: // BACK
+                            gameState = playState;
+                            break;
+                        case 2: // SAVE AND QUIT
+                            if (!Objects.equals(save, "save_Default")) {
+                                saveC.SaveWriter(this, save);
+                            }
+                            gameState = titleState;
+                            break;
+                    }
+                } else if (ui.pauseScreenValue == 1) {
 
-                switch (ui.commandNum) {
-
-                    case 0: // BACK
-                        gameState = playState;
-                        break;
-                    case 1: // SAVE AND QUIT
-                        if (!Objects.equals(save, "save_Default")) {
-                            saveC.SaveWriter(this, save);
-                        }
-                        gameState = titleState;
-                        break;
                 }
 
                 ui.commandNum = 0;
                 keyH.spacePressed = false;
                 keyH.enterPressed = false;
+            }
+
+            // ESC
+            if (keyH.escPressed && tmpWaited == tmpTime) {
+                gameState = playState;
+
+                ui.commandNum = 0;
+                tmpWaited = 0;
+                tmpTime = 0;
+                keyH.escPressed = false;
             }
         }
         if (gameState == titleState) {
@@ -709,6 +734,8 @@ public class GameHandler extends JPanel implements Runnable {
                             unsavedSetting = false;
                             saveC.SaveReader(this, save);
                             reStartWindow();
+                            player.screenX = myGUI.frame.getWidth()/2 - (tileSize/2);
+                            player.screenY = myGUI.frame.getHeight()/2 - (tileSize/2);
                         }
                         gameState = titleState;
                         ui.commandNum = 0;
