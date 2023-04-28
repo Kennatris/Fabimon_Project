@@ -11,9 +11,40 @@ public class NPCTest extends Entity {
 
     public NPCTest(GameHandler gameH) {
         super(gameH);
-        speed = 5;
 
         getTestNPCImage();
+        loadDialouge("NPCTestDialogues");
+    }
+    public void dialogue(int npc){
+        if(npc == 0){
+            if(dialoguePhase == 0){
+                for(int i = 0; i<3; i++) {
+                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[2][i];
+                }
+                dialoguePhase++;
+            }else if(dialoguePhase == 1){
+                for(int i = 0; i<3; i++) {
+                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[3][i];
+                }
+                dialoguePhase++;
+            }else if(dialoguePhase == 2){
+                for(int i = 0; i<3; i++) {
+                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[4][i];
+                }
+                dialoguePhase++;
+            }else if(dialoguePhase == 3){
+                for(int i = 0; i<3; i++) {
+                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[5][i];
+                }
+                dialoguePhase++;
+            }else if(dialoguePhase == 4){
+                for(int i = 0; i<3; i++) {
+                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[6][i];
+                }
+                dialoguePhase = 0;
+                gameH.npc[npc].endDialogue = true;
+            }
+        }
     }
 
     public void getTestNPCImage() {

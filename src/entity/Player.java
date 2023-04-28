@@ -15,6 +15,7 @@ public class Player extends Entity{
     public BufferedImage image;
 
     public Boolean beingApproached = false;
+
     public int screenX;
     public int screenY;
     int standCounter = 0;
@@ -72,8 +73,13 @@ public class Player extends Entity{
 
     public void update() {
 
+        collisionOn = false;
         //CHECK NPC VISION
         gameH.cChecker.checkVision(this, gameH.npc);
+
+        // CHECK NPC COLLISION
+        int npcIndex = gameH.cChecker.checkEntity(this, gameH.npc);
+        interactNPC(npcIndex);
 
         if(!beingApproached) {
 
@@ -95,22 +101,19 @@ public class Player extends Entity{
                 }
 
                 // CHECK TILE COLLISION
-                collisionOn = false;
+
                 gameH.cChecker.checkTile(this);
 
                 // CHECK OBJECT COLLISION
                 int objIndex = gameH.cChecker.checkObject(this, true);
                 pickUpObject(objIndex);
 
-                // CHECK NPC COLLISION
-                int npcIndex = gameH.cChecker.checkEntity(this, gameH.npc);
-                interactNPC(npcIndex);
+
 
 
                 // CHECK EVENT
                 gameH.eHandler.checkEvent();
 
-                gameH.keyH.spacePressed = false;
 
                 // IF COLLISION IS FALSE, PLAYER CAN MOVE
                 if (collisionOn == false) {
@@ -161,9 +164,14 @@ public class Player extends Entity{
     }
 
     public void interactNPC(int i) {
+        if(!gameH.keyH.spacePressed && !gameH.keyH.enterPressed){
+            gameH.bumber=0;
+        }
+        if(i != 999 && gameH.keyH.spacePressed && gameH.bumber == 0|| gameH.keyH.enterPressed && i != 999 && gameH.bumber == 0) {
 
-        if(i != 999) {
-
+            gameH.gameState = gameH.dialogueState;
+            gameH.npcInteracted = i;
+            gameH.npc[i].dialogue(i);
             // NPC code
             // ...
 
