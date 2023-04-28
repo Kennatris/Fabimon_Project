@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.7.2.4">
+    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.7.2">
+      <change afterPath="$PROJECT_DIR$/res/main/Skully_main(uwu skin).png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/saves/save_four.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_four.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_Default.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_Default.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/saves/save_one.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_one.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/saves/save_three.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_three.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/saves/save_two.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_two.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CutsceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CutsceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/control/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/control/KeyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/settings/SaveCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/SaveCompiler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/Settings.java" afterDir="false" />
     </list>
@@ -46,11 +51,6 @@
       <list>
         <option value="Kennatris &lt;tino.st.2004@gmail.com&gt;" />
       </list>
-    </option>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="Kennatris" />
-      </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
@@ -92,7 +92,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tinos/IdeaProjects/Fabimon_Project/res/Music Libray&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tinos/Downloads/jinput-platform-2.0.7-natives-windows.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -105,12 +105,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Music Libray" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\saves" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Sound Library" />
+      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\main" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\NPC\SpeedyGonzales" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\NPC\NPCTest" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\objects" />
@@ -137,7 +136,6 @@
       <workItem from="1678910082575" duration="1455000" />
       <workItem from="1679553934541" duration="2696000" />
       <workItem from="1681884555709" duration="4984000" />
-      <workItem from="1683092737209" duration="2158000" />
     </task>
     <task id="LOCAL-00001" summary="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
       <created>1679533924557</created>
@@ -251,28 +249,7 @@
       <option name="project" value="LOCAL" />
       <updated>1682503751640</updated>
     </task>
-    <task id="LOCAL-00017" summary="V0.9.7.2.1&#10;// fileType änderbar, BugFixing, Saves durch Variable ins &quot;unendliche&quot; abänderbar">
-      <created>1682504112051</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1682504112051</updated>
-    </task>
-    <task id="LOCAL-00018" summary="V0.9.7.2.2">
-      <created>1682509056370</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1682509056370</updated>
-    </task>
-    <task id="LOCAL-00019" summary="V0.9.7.2.4">
-      <created>1682586767753</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1682586767753</updated>
-    </task>
-    <option name="localTasksCounter" value="20" />
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,10 +319,7 @@
     <MESSAGE value="V0.9.6" />
     <MESSAGE value="V0.9.7.1" />
     <MESSAGE value="V0.9.7.2" />
-    <MESSAGE value="V0.9.7.2.1&#10;// fileType änderbar, BugFixing, Saves durch Variable ins &quot;unendliche&quot; abänderbar" />
-    <MESSAGE value="V0.9.7.2.2" />
-    <MESSAGE value="V0.9.7.2.4" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.9.7.2.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.9.7.2" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>

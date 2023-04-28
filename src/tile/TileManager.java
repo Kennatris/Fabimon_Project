@@ -66,9 +66,10 @@ public class TileManager {
         setup(20, "Buttons","BagS","png",343, 110,false);
         setup(21, "Buttons","Fabimon","png",343, 110,false);
         setup(22, "Buttons","FabimonS","png",343, 110,false);
-
+        setup(23, "Buttons","Run","png",343, 110,false);
+        setup(24, "Buttons","RunS","png",343, 110,false);
         //Textfields
-        setup(23, "Textfields","Textfield_1","png", gameH.tileSize, gameH.tileSize,false);
+        setup(25, "Textfields","Textfield_1","png", gameH.tileSize, gameH.tileSize,false);
 
 
     }

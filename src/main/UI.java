@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.*;
-import java.util.Objects;
 
 public class UI {
     GameHandler gameH;
@@ -13,9 +12,8 @@ public class UI {
     public int textPos = 0;
     public int commandNum = 0;
     public int settingScreenValue = 0;
-    public int pauseScreenValue = 0;
     public Color backgroundColor = new Color(47, 45, 45);
-    String battleText = "... DU BIST TOD";
+    String battleText = "... fordert dich zum Kampf heraus";
 
     // METHODS
     public UI(GameHandler gameH) {
@@ -25,6 +23,8 @@ public class UI {
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
         arial_20 = new Font("Arial", Font.PLAIN, 20);
+
+        // CREATE HUD OBJECT
 
     }
     public void showMessage(String text) {
@@ -145,75 +145,46 @@ public class UI {
         g2.setColor(pauseBGC);
         g2.fillRect(gameH.myGUI.frame.getWidth()/3, gameH.myGUI.frame.getHeight()/12, gameH.myGUI.frame.getWidth()/3, (int) pauseBGHeight);
 
-        String text = "";
-        int x, y;
-        if (pauseScreenValue == 0) {
-            // LABEL
-            g2.setColor(Color.WHITE);
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
-            text = "SETTINGS";
-            x = getXforCenteredText(text);
-            if (gameH.fullscreen) {
-                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
-                y = (int) (pauseBGHeight/4);
-            } else {
-                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
-                y = (int) (pauseBGHeight/3);
-            }
-            g2.drawString(text, x, y);
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
+        String text = "PAUSED";
+        int x = getXforCenteredText(text);
+        int y;
+        if (gameH.fullscreen) {
+            y = (int) (pauseBGHeight/4);
+        } else {
+            y = (int) (pauseBGHeight/3);
+        }
+        g2.drawString(text, x, y);
 
-            // SETTINGS
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
-            text = "SETTINGS";
-            textPos = 0;
-            x = getXforCenteredText(text);
-            if (gameH.fullscreen) {
-                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
-                y = (int) ((28*pauseBGHeight)/32);
-            } else {
-                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
-                y = (int) ((20*pauseBGHeight)/24);
-            }
-            g2.drawString(text, x, y);
-            if (commandNum == textPos) {
-                g2.drawString(">", x-gameH.tileSize, y);
-            }
+        // BACK
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
+        text = "BACK";
+        textPos = 0;
+        x = getXforCenteredText(text);
+        if (gameH.fullscreen) {
+            y = (int) ((15*pauseBGHeight)/16);
+        } else {
+            y = (int) ((11*pauseBGHeight)/12);
+        }
+        g2.drawString(text, x, y);
+        if (commandNum == textPos) {
+            g2.drawString(">", x-gameH.tileSize, y);
+        }
 
-            // BACK
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
-            text = "BACK";
-            textPos = 1;
-            x = getXforCenteredText(text);
-            if (gameH.fullscreen) {
-                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
-                y = (int) ((15*pauseBGHeight)/16);
-            } else {
-                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
-                y = (int) ((11*pauseBGHeight)/12);
-            }
-            g2.drawString(text, x, y);
-            if (commandNum == textPos) {
-                g2.drawString(">", x-gameH.tileSize, y);
-            }
-
-            // SAVE AND QUIT
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
-            text = "SAVE AND QUIT";
-            textPos = 2;
-            x = getXforCenteredText(text);
-            if (gameH.fullscreen) {
-                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
-                y = (int) (pauseBGHeight);
-            } else {
-                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
-                y = (int) (pauseBGHeight);
-            }
-            g2.drawString(text, x, y);
-            if (commandNum == textPos) {
-                g2.drawString(">", x-(gameH.tileSize/3), y);
-            }
-        } else if (pauseScreenValue == 1) {
-            // SETTINGS CODE
+        // SAVE AND QUIT
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
+        text = "SAVE AND QUIT";
+        textPos = 1;
+        x = getXforCenteredText(text);
+        if (gameH.fullscreen) {
+            y = (int) (pauseBGHeight);
+        } else {
+            y = (int) (pauseBGHeight);
+        }
+        g2.drawString(text, x, y);
+        if (commandNum == textPos) {
+            g2.drawString(">", x-(gameH.tileSize/3), y);
         }
 
     }
@@ -379,7 +350,7 @@ public class UI {
 
             // MENU
             int texts = 4;
-            double fontValue = (double) ((gameH.myGUI.frame.getHeight() / 2) - ((texts + 1) * (gameH.myGUI.frame.getHeight() / 25))) /texts; // How big the Font is compared to the Screen
+            double fontValue = ((gameH.myGUI.frame.getHeight() / 2)-((texts+1)*(gameH.myGUI.frame.getHeight()/25)))/texts; // How big the Font is compared to the Screen
             float fontSize = Float.parseFloat(String.valueOf(fontValue));
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, fontSize));
             text = "Music Volume:";
@@ -524,7 +495,7 @@ public class UI {
         text = gameH.fileIndex[2].toUpperCase();
         textPos = 2;
         x = getXforCenteredText(text);
-        if (Objects.equals(gameH.save, gameH.fileIndex[2])) {
+        if (gameH.save == gameH.fileIndex[2]) {
             g2.setColor(Color.green);
         } else {
             g2.setColor(Color.white);

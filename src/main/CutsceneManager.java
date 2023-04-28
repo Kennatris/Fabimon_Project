@@ -58,8 +58,8 @@ public class CutsceneManager {
     }
 
     private void ausrufezeichen() {
-        int x = gameH.npc[gameH.npcBattle].worldX - gameH.player.worldX + gameH.player.screenX;
-        int y = gameH.npc[gameH.npcBattle].worldY - gameH.player.worldY + gameH.player.screenY - gameH.tileSize;
+        int x = gameH.npc[gameH.npcInteracted].worldX - gameH.player.worldX + gameH.player.screenX;
+        int y = gameH.npc[gameH.npcInteracted].worldY - gameH.player.worldY + gameH.player.screenY - gameH.tileSize;
         /*
         if (gameH.debugMode) {
             System.out.println("Cutscene: 1");

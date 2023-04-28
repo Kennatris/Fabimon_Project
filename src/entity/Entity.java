@@ -4,6 +4,8 @@ import main.GameHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Objects;
 
 public class Entity {
@@ -14,11 +16,14 @@ public class Entity {
     public int defaultspeed = 4;
     public Boolean isApproaching = false;
     public int originalWorldX, originalWorldY;
+    public Boolean endDialogue = false;
+    public int dialoguePhase = 0;
     public Boolean approached = false;
     public Boolean innactive = false;
     public Boolean drawing = true;
     public Boolean checkingVision = true;
     public Boolean updating = true;
+    public String dialogues[][] = new String[20][3];
 
     public String map;
     int turnTimer;
@@ -42,6 +47,40 @@ public class Entity {
     public void setAction(){
 
     }
+    public void loadDialouge(String fileName){
+        try {
+
+            // https://www.geeksforgeeks.org/java-io-bufferedreader-class-java/
+
+            String fileLocation = "res/NPC/Dialogues/" + fileName + ".txt";
+
+            FileReader fr = new FileReader(fileLocation);
+            BufferedReader br = new BufferedReader(fr);
+
+            System.out.println("mapfile: " + fileLocation);
+
+            int dialogueNum = 0;
+            while(dialogueNum < 20) {
+
+                String line = br.readLine();
+
+                    String lineSplit[] = line.split("~");
+
+                    for(int i = 0; i<3; i++){
+                        dialogues[dialogueNum][i] = lineSplit[i];
+                    }
+                    dialogueNum++;
+                }
+
+            br.close();
+
+        }catch(Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }
+    public void dialogue(int npc){
+
+    }
     public void endBattle(int i){
         gameH.gameState = gameH.playState;
         if(gameH.npc[i].speed == 0){
@@ -58,7 +97,7 @@ public class Entity {
         int abstand;
         gameH.npc[i].isApproaching = true;
         gameH.player.beingApproached = true;
-        gameH.npcBattle=i;
+        gameH.npcInteracted =i;
         if( approachphase == 0){
             // Sound
 
