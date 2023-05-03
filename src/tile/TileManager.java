@@ -68,9 +68,13 @@ public class TileManager {
         setup(22, "Buttons","FabimonS","png",343, 110,false);
         setup(23, "Buttons","Run","png",343, 110,false);
         setup(24, "Buttons","RunS","png",343, 110,false);
+
         //Textfields
         setup(25, "Textfields","Textfield_1","png", gameH.tileSize, gameH.tileSize,false);
 
+        //Fabimon Info
+        setup(26, "battleInfo","enemy_fabimon","png", gameH.tileSize, gameH.tileSize,false);
+        setup(27, "battleInfo","own_fabimon","png", gameH.tileSize, gameH.tileSize,false);
 
     }
 

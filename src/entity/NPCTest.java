@@ -44,6 +44,11 @@ public class NPCTest extends Entity {
                 dialoguePhase = 0;
                 gameH.npc[npc].endDialogue = true;
             }
+        }else if(npc == 1 || npc == 2){
+            for(int i = 0; i<3; i++) {
+                gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[0][i];
+            }
+            gameH.npc[npc].endDialogue = true;
         }
     }
 
