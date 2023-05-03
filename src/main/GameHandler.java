@@ -281,7 +281,7 @@ public class GameHandler extends JPanel implements Runnable {
                 tmpWaited++;
             }
             // do-nothing
-            if (keyH.wPressed == true || keyH.sPressed == true || keyH.upPressed == true || keyH.downPressed == true) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed) {
 
                 if (keyH.wPressed || keyH.upPressed) {
                     switch (ui.commandNum) {
@@ -361,9 +361,9 @@ public class GameHandler extends JPanel implements Runnable {
 
             // SELECTION
             // MOVE CURSOR
-            if (keyH.wPressed == true || keyH.sPressed == true || keyH.upPressed == true || keyH.downPressed == true) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed) {
 
-                if (keyH.wPressed == true || keyH.upPressed == true) {
+                if (keyH.wPressed || keyH.upPressed) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -384,7 +384,7 @@ public class GameHandler extends JPanel implements Runnable {
                     keyH.wPressed = false;
                     keyH.upPressed = false;
 
-                } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                } else if (keyH.sPressed || keyH.downPressed) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -407,7 +407,7 @@ public class GameHandler extends JPanel implements Runnable {
                 }
             }
             // SELECT
-                if (keyH.spacePressed == true || keyH.enterPressed == true) {
+                if (keyH.spacePressed || keyH.enterPressed) {
 
                     switch (ui.commandNum) {
 
@@ -434,11 +434,11 @@ public class GameHandler extends JPanel implements Runnable {
         if (gameState == settingState) {
             // SELECTION
             // MOVE CURSOR
-            if (keyH.wPressed == true || keyH.sPressed == true || keyH.upPressed == true || keyH.downPressed == true) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed) {
 
                 switch (ui.settingScreenValue) {
                     case 0:
-                        if (keyH.wPressed == true || keyH.upPressed == true) {
+                        if (keyH.wPressed || keyH.upPressed) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -459,7 +459,7 @@ public class GameHandler extends JPanel implements Runnable {
                             keyH.wPressed = false;
                             keyH.upPressed = false;
 
-                        } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                        } else if (keyH.sPressed || keyH.downPressed) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -482,7 +482,7 @@ public class GameHandler extends JPanel implements Runnable {
                         }
                         break;
                     case 1:
-                        if (keyH.wPressed == true || keyH.upPressed == true) {
+                        if (keyH.wPressed || keyH.upPressed) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -497,7 +497,7 @@ public class GameHandler extends JPanel implements Runnable {
                             keyH.wPressed = false;
                             keyH.upPressed = false;
 
-                        } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                        } else if (keyH.sPressed || keyH.downPressed) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -514,7 +514,7 @@ public class GameHandler extends JPanel implements Runnable {
                         }
                         break;
                     case 2:
-                        if (keyH.wPressed == true || keyH.upPressed == true) {
+                        if (keyH.wPressed || keyH.upPressed) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -532,7 +532,7 @@ public class GameHandler extends JPanel implements Runnable {
                             keyH.wPressed = false;
                             keyH.upPressed = false;
 
-                        } else if (keyH.sPressed == true || keyH.downPressed == true) {
+                        } else if (keyH.sPressed || keyH.downPressed) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -605,6 +605,8 @@ public class GameHandler extends JPanel implements Runnable {
                             case 0: // fullscreen
                                 fullscreen = !fullscreen;
                                 reStartWindow();
+                                player.screenX = myGUI.frame.getWidth()/2 - (tileSize/2);
+                                player.screenY = myGUI.frame.getHeight()/2 - (tileSize/2);
                                 unsavedSetting = true;
                                 break;
                             case 1: // empty

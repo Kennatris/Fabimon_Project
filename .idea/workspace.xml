@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.7.2.4">
-      <change afterPath="$PROJECT_DIR$/res/Music Libray/Music.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/Sound Library/Sound.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_four.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_four.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_one.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_one.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_three.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_three.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_two.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_two.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings/SaveCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/SaveCompiler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/Settings.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
@@ -45,6 +47,11 @@
         <option value="Kennatris &lt;tino.st.2004@gmail.com&gt;" />
       </list>
     </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Kennatris" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
     <option name="UPDATE_TYPE" value="REBASE" />
@@ -76,26 +83,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/tinos/IdeaProjects/Fabimon_Project/res/Music Libray",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tinos/IdeaProjects/Fabimon_Project/res/Music Libray&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Music Libray" />
@@ -272,7 +279,6 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
-    <option name="SHOW_OTHER_BRANCHES" value="true" />
     <option name="COLUMN_ID_ORDER">
       <list>
         <option value="Default.Root" />
@@ -282,6 +288,7 @@
         <option value="Space.CommitStatus" />
       </list>
     </option>
+    <option name="SHOW_OTHER_BRANCHES" value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="RECENT_FILTERS">

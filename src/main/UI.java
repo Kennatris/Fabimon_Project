@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.*;
+import java.util.Objects;
 
 public class UI {
     GameHandler gameH;
@@ -523,7 +524,7 @@ public class UI {
         text = gameH.fileIndex[2].toUpperCase();
         textPos = 2;
         x = getXforCenteredText(text);
-        if (gameH.save == gameH.fileIndex[2]) {
+        if (Objects.equals(gameH.save, gameH.fileIndex[2])) {
             g2.setColor(Color.green);
         } else {
             g2.setColor(Color.white);

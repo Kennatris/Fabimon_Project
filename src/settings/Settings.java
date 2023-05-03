@@ -113,8 +113,8 @@ public class Settings {
             gameH.playerStandardValueY = savedInt[0][3] * gameH.tileSize;
         }
         gameH.keyboard = savedBoolean[0][1];
-        gameH.musicVolume = (savedFloat[0][0]) / 2;
-        gameH.soundVolume = (savedFloat[0][1]) / 2;
+        gameH.musicVolume = savedFloat[0][0];
+        gameH.soundVolume = savedFloat[0][1];
 
         if (Objects.equals(savedString[0][0], gameH.availableMaps[0])) {
             gameH.map = gameH.availableMaps[0];
@@ -145,16 +145,16 @@ public class Settings {
         for (int i = 0; i < gameH.npc.length; i++) {
             if (gameH.npc[i] != null) {
                 for (int j = 0; j < entitySavableINT; j++) {
-                    //unsavedInt[i+1][j];
+                    //VAR = unsavedInt[i+1][j];
                 }
                 for (int j = 0; j < entitySavableBOOLEAN; j++) {
-                    //unsavedBoolean[i+1][j];
+                    //VAR = unsavedBoolean[i+1][j];
                 }
                 for (int j = 0; j < entitySavableFLOAT; j++) {
-                    //unsavedFloat[i+1][j];
+                    //VAR = unsavedFloat[i+1][j];
                 }
                 for (int j = 0; j < entitySavableSTRING; j++) {
-                    //unsavedString[i+1][j];
+                    //VAR = unsavedString[i+1][j];
                 }
             }
         }
