@@ -172,6 +172,7 @@ public class Player extends Entity{
             gameH.gameState = gameH.dialogueState;
             gameH.npcInteracted = i;
             gameH.npc[i].dialogue(i);
+            gameH.bumber = 1;
             // NPC code
             // ...
 

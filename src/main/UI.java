@@ -5,15 +5,16 @@ import java.awt.*;
 public class UI {
     GameHandler gameH;
     Graphics2D g2;
-    Font arial_40, arial_80B, arial_20;
+    Font arial_40, arial_80B, arial_25;
     public boolean messageOn = false;
     public String message = "";
-    public String currentDialogue = "";
+    public String currentDialogue[] = new String[3];
     public int textPos = 0;
     public int commandNum = 0;
     public int settingScreenValue = 0;
+    public int pauseScreenValue = 0;
     public Color backgroundColor = new Color(47, 45, 45);
-    String battleText = "... fordert dich zum Kampf heraus";
+    String battleText = "... DU BIST TOD";
 
     // METHODS
     public UI(GameHandler gameH) {
@@ -22,9 +23,7 @@ public class UI {
 
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
-        arial_20 = new Font("Arial", Font.PLAIN, 20);
-
-        // CREATE HUD OBJECT
+        arial_25 = new Font("Arial", Font.PLAIN, 25);
 
     }
     public void showMessage(String text) {
@@ -145,46 +144,75 @@ public class UI {
         g2.setColor(pauseBGC);
         g2.fillRect(gameH.myGUI.frame.getWidth()/3, gameH.myGUI.frame.getHeight()/12, gameH.myGUI.frame.getWidth()/3, (int) pauseBGHeight);
 
-        g2.setColor(Color.WHITE);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
-        String text = "PAUSED";
-        int x = getXforCenteredText(text);
-        int y;
-        if (gameH.fullscreen) {
-            y = (int) (pauseBGHeight/4);
-        } else {
-            y = (int) (pauseBGHeight/3);
-        }
-        g2.drawString(text, x, y);
+        String text = "";
+        int x, y;
+        if (pauseScreenValue == 0) {
+            // LABEL
+            g2.setColor(Color.WHITE);
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
+            text = "SETTINGS";
+            x = getXforCenteredText(text);
+            if (gameH.fullscreen) {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
+                y = (int) (pauseBGHeight/4);
+            } else {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
+                y = (int) (pauseBGHeight/3);
+            }
+            g2.drawString(text, x, y);
 
-        // BACK
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
-        text = "BACK";
-        textPos = 0;
-        x = getXforCenteredText(text);
-        if (gameH.fullscreen) {
-            y = (int) ((15*pauseBGHeight)/16);
-        } else {
-            y = (int) ((11*pauseBGHeight)/12);
-        }
-        g2.drawString(text, x, y);
-        if (commandNum == textPos) {
-            g2.drawString(">", x-gameH.tileSize, y);
-        }
+            // SETTINGS
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
+            text = "SETTINGS";
+            textPos = 0;
+            x = getXforCenteredText(text);
+            if (gameH.fullscreen) {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
+                y = (int) ((28*pauseBGHeight)/32);
+            } else {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
+                y = (int) ((20*pauseBGHeight)/24);
+            }
+            g2.drawString(text, x, y);
+            if (commandNum == textPos) {
+                g2.drawString(">", x-gameH.tileSize, y);
+            }
 
-        // SAVE AND QUIT
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
-        text = "SAVE AND QUIT";
-        textPos = 1;
-        x = getXforCenteredText(text);
-        if (gameH.fullscreen) {
-            y = (int) (pauseBGHeight);
-        } else {
-            y = (int) (pauseBGHeight);
-        }
-        g2.drawString(text, x, y);
-        if (commandNum == textPos) {
-            g2.drawString(">", x-(gameH.tileSize/3), y);
+            // BACK
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
+            text = "BACK";
+            textPos = 1;
+            x = getXforCenteredText(text);
+            if (gameH.fullscreen) {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
+                y = (int) ((15*pauseBGHeight)/16);
+            } else {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
+                y = (int) ((11*pauseBGHeight)/12);
+            }
+            g2.drawString(text, x, y);
+            if (commandNum == textPos) {
+                g2.drawString(">", x-gameH.tileSize, y);
+            }
+
+            // SAVE AND QUIT
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
+            text = "SAVE AND QUIT";
+            textPos = 2;
+            x = getXforCenteredText(text);
+            if (gameH.fullscreen) {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
+                y = (int) (pauseBGHeight);
+            } else {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() /2 + (double) gameH.myGUI.frame.getHeight() /4;
+                y = (int) (pauseBGHeight);
+            }
+            g2.drawString(text, x, y);
+            if (commandNum == textPos) {
+                g2.drawString(">", x-(gameH.tileSize/3), y);
+            }
+        } else if (pauseScreenValue == 1) {
+            // SETTINGS CODE
         }
 
     }
@@ -405,37 +433,51 @@ public class UI {
         }
     }
     public void drawDialogueScreen() {
-
-        // WINDOW
-        int x = gameH.tileSize*2;
-        int y = gameH.tileSize/2;
-        int width = gameH.screenWidth - (gameH.tileSize*4);
-        int height = gameH.tileSize*4;
-
-        drawSubWindow(x, y, width, height);
-
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,23F));
-        x += gameH.tileSize;
-        y += gameH.tileSize;
-
-        for(String line : currentDialogue.split("\n")) {
-            g2.drawString(line, x, y);
-            y += 40;
-        }
-
-
+        drawTextfield();
+        drawDialogue(currentDialogue);
 
     }
-    public void drawSubWindow(int x, int y, int width, int height) {
+    public void drawTextfield() {
 
-        Color c = new Color(0, 0, 0, 210);
-        g2.setColor(c);
-        g2.fillRoundRect(x, y, width, height, 35, 35);
+        if(gameH.gameState == gameH.battleState) {
 
-        c = new Color(255, 255, 255);
-        g2.setColor(c);
-        g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+            if(gameH.fullscreen) {
+
+                int textfieldHeightScaling = (gameH.myGUI.frame.getHeight() / 9) * 2;
+                int textfieldWidthScaling = gameH.myGUI.frame.getWidth() - gameH.myGUI.frame.getWidth() / 6 * 2;
+
+                int y = gameH.myGUI.frame.getHeight() - textfieldHeightScaling;
+                int x = 0;
+                g2.drawImage(gameH.tileM.tile[25].image, x, y, textfieldWidthScaling, textfieldHeightScaling, null);
+            }else{
+
+                int textfieldHeightScaling = (gameH.myGUI.frame.getHeight()/10)*2;
+                int textfieldWidthScaling = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth()/8) * 2 - (gameH.myGUI.frame.getWidth()/77);
+
+                int y = gameH.myGUI.frame.getHeight() - textfieldHeightScaling - gameH.myGUI.frame.getHeight()/15;
+                int x = 0;
+                g2.drawImage(gameH.tileM.tile[25].image, x, y, textfieldWidthScaling, textfieldHeightScaling, null);
+            }
+        }
+        if(gameH.gameState == gameH.dialogueState){
+
+            if(gameH.fullscreen) {
+
+                int textfieldHeightScaling = (gameH.myGUI.frame.getHeight() / 9) * 2;
+                int textfieldWidthScaling = gameH.myGUI.frame.getWidth();
+                int y = gameH.myGUI.frame.getHeight() - textfieldHeightScaling;
+                int x = 0;
+                g2.drawImage(gameH.tileM.tile[25].image, x, y, textfieldWidthScaling, textfieldHeightScaling, null);
+            }else{
+
+                int textfieldHeightScaling = (gameH.myGUI.frame.getHeight()/10)*2;
+                int textfieldWidthScaling = gameH.myGUI.frame.getWidth()-(gameH.myGUI.frame.getWidth()/77);
+
+                int y = gameH.myGUI.frame.getHeight() - textfieldHeightScaling - gameH.myGUI.frame.getHeight()/15;
+                int x = 0;
+                g2.drawImage(gameH.tileM.tile[25].image, x, y, textfieldWidthScaling, textfieldHeightScaling, null);
+            }
+        }
 
     }
     public void drawSaveScreen() {
@@ -537,8 +579,7 @@ public class UI {
             int buttonYScaling = buttonHeightScaling-(2*(buttonHeightScaling)/5);
             int buttonYScaling2 = buttonHeightScaling-((buttonHeightScaling)/15)+2;
             int buttonWidthScaling = gameH.myGUI.frame.getWidth()/6;
-            int textfieldHeightScaling = (gameH.myGUI.frame.getHeight()/9)*2;
-            int textfieldWidthScaling = gameH.myGUI.frame.getWidth() - buttonWidthScaling*2;
+
 
 
             //Bag button
@@ -561,9 +602,9 @@ public class UI {
             x = gameH.myGUI.frame.getWidth()-(2*buttonWidthScaling);
             y = gameH.myGUI.frame.getHeight()-buttonYScaling;
             if(commandNum == 2) {
-                g2.drawImage(gameH.tileM.tile[20].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.tileM.tile[24].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }else{
-                g2.drawImage(gameH.tileM.tile[19].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.tileM.tile[23].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
             //Fight button
             y = gameH.myGUI.frame.getHeight()-buttonYScaling2;
@@ -573,34 +614,31 @@ public class UI {
                 g2.drawImage(gameH.tileM.tile[17].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
-            //Textfield
-            y  = gameH.myGUI.frame.getHeight()-textfieldHeightScaling;
-            x = 0;
-            g2.drawImage(gameH.tileM.tile[23].image, x, y, textfieldWidthScaling, textfieldHeightScaling, null);
+
+            drawTextfield();
+
 
             // Text
-            drawBattleText(battleText);
+           // drawBattleText(battleText);
 
         }
         if(!gameH.fullscreen) {
-            g2.setFont(arial_20);
             int minHeight = gameH.myGUI.frame.getHeight()/15;
             int minWidth = gameH.myGUI.frame.getWidth()/77;
             int buttonHeightScaling = (gameH.myGUI.frame.getHeight()/10)*3;
             int buttonYScaling = buttonHeightScaling-(2*(buttonHeightScaling)/5);
             int buttonWidthScaling = gameH.myGUI.frame.getWidth()/8;
             int buttonYScaling2 = buttonHeightScaling-((buttonHeightScaling)/15)+2;
-            int textfieldHeightScaling = (gameH.myGUI.frame.getHeight()/10)*2;
-            int textfieldWidthScaling = gameH.myGUI.frame.getWidth() - buttonWidthScaling*2-minWidth;
+
 
 
 
             x = gameH.myGUI.frame.getWidth()-buttonWidthScaling - minWidth;
             y = gameH.myGUI.frame.getHeight()-buttonYScaling - minHeight;
             if(commandNum == 3){
-                g2.drawImage(gameH.tileM.tile[20].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.tileM.tile[24].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }else {
-                g2.drawImage(gameH.tileM.tile[19].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.tileM.tile[23 ].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
             //Fabimob button
@@ -629,25 +667,28 @@ public class UI {
             }
 
             //Textfield
-            y  = gameH.myGUI.frame.getHeight()-textfieldHeightScaling - minHeight;
-            x = 0;
-            g2.drawImage(gameH.tileM.tile[23].image, x, y, textfieldWidthScaling, textfieldHeightScaling, null);
+           drawTextfield();
 
             // Text
-            drawBattleText(battleText);
+          //  drawBattleText(" ");
         }
     }
-    public void drawBattleText(String text){
+    public void drawDialogue(String text[]){
         int textYScaling=0;
         int textXScaling=0;
+        g2.setColor(Color.BLACK);
         if(gameH.fullscreen) {
-            textXScaling = gameH.myGUI.frame.getWidth() / 40;
+            g2.setFont(arial_40);
+            textXScaling = gameH.myGUI.frame.getWidth() / 30;
             textYScaling = gameH.myGUI.frame.getHeight() - gameH.myGUI.frame.getHeight() / 6;
         }else{
-            textXScaling = gameH.myGUI.frame.getWidth() / 40;
-            textYScaling = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 9)*2;
+            g2.setFont(arial_25);
+            textXScaling = gameH.myGUI.frame.getWidth() / 30;
+            textYScaling = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 14)*3;
         }
-        g2.drawString(text, textXScaling, textYScaling);
+        for(int i = 0; i<3; i++){
+            g2.drawString(text[i], textXScaling, textYScaling);
+        }
 
     }
     public int getXforCenteredText(String text) {
