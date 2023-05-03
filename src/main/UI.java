@@ -378,7 +378,7 @@ public class UI {
 
             // MENU
             int texts = 4;
-            double fontValue = ((gameH.myGUI.frame.getHeight() / 2)-((texts+1)*(gameH.myGUI.frame.getHeight()/25)))/texts; // How big the Font is compared to the Screen
+            double fontValue = (double) ((gameH.myGUI.frame.getHeight() / 2) - ((texts + 1) * (gameH.myGUI.frame.getHeight() / 25))) /texts; // How big the Font is compared to the Screen
             float fontSize = Float.parseFloat(String.valueOf(fontValue));
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, fontSize));
             text = "Music Volume:";

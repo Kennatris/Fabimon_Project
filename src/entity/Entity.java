@@ -60,6 +60,8 @@ public class Entity {
         gameH.player.beingApproached = true;
         gameH.npcBattle=i;
         if( approachphase == 0){
+            // Sound
+
             updating = false;
             gameH.csManager.csNum = gameH.csManager.ausrufezeichen;
             approachphase++;

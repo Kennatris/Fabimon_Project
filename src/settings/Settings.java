@@ -113,8 +113,9 @@ public class Settings {
             gameH.playerStandardValueY = savedInt[0][3] * gameH.tileSize;
         }
         gameH.keyboard = savedBoolean[0][1];
-        gameH.musicVolume = savedFloat[0][0];
-        gameH.soundVolume = savedFloat[0][1];
+        gameH.musicVolume = (savedFloat[0][0]) / 2;
+        gameH.soundVolume = (savedFloat[0][1]) / 2;
+
         if (Objects.equals(savedString[0][0], gameH.availableMaps[0])) {
             gameH.map = gameH.availableMaps[0];
             System.out.println("Map was set to: " + savedString[0][0] + " with the value: " + 0);
