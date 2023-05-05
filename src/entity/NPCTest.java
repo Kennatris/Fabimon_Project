@@ -49,6 +49,11 @@ public class NPCTest extends Entity {
                 gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[0][i];
             }
             gameH.npc[npc].endDialogue = true;
+        }else if(npc == 3){
+            for(int i = 0; i<3; i++) {
+                gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[7][i];
+            }
+            gameH.npc[npc].endDialogue = true;
         }
     }
 
@@ -72,11 +77,6 @@ public class NPCTest extends Entity {
     }
 
     public void setAction() {
-        if (gameH.npc[0].worldX > gameH.tileSize * 24) {
-            gameH.npc[0].direction = "left";
-        } else if (gameH.npc[0].worldX < gameH.tileSize * 12) {
-            gameH.npc[0].direction = "right";
-        }
         if (gameH.npc[1].worldX > gameH.tileSize * 24) {
             gameH.npc[1].direction = "left";
         } else if (gameH.npc[1].worldX < gameH.tileSize * 12) {

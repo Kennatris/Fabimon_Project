@@ -436,6 +436,7 @@ public class UI {
         drawTextfield();
         drawDialogue(currentDialogue);
 
+
     }
     public void drawTextfield() {
 
@@ -619,7 +620,17 @@ public class UI {
 
 
             // Text
+
            // drawBattleText(battleText);
+            //fabimon info
+            int battleinfoWidthScaling = gameH.myGUI.frame.getWidth()/3;
+            int battleinfoHeightScaling = gameH.myGUI.frame.getHeight()/3;
+
+            g2.drawImage(gameH.tileM.tile[26].image, 0, 0, battleinfoWidthScaling, battleinfoHeightScaling, null);
+
+            x = gameH.myGUI.frame.getWidth()-battleinfoWidthScaling;
+            y = gameH.myGUI.frame.getHeight()-(gameH.myGUI.frame.getHeight()/6)*3;
+            g2.drawImage(gameH.tileM.tile[27].image, x, y, battleinfoWidthScaling, battleinfoHeightScaling, null);
 
         }
         if(!gameH.fullscreen) {
@@ -670,7 +681,17 @@ public class UI {
            drawTextfield();
 
             // Text
-          //  drawBattleText(" ");
+            //drawBattleText(" ");
+            //battleinfo fabimon
+
+            int battleinfoWidthScaling = gameH.myGUI.frame.getWidth()/3;
+            int battleinfoHeightScaling = gameH.myGUI.frame.getHeight()/3;
+
+            g2.drawImage(gameH.tileM.tile[26].image, 0, 0, battleinfoWidthScaling, battleinfoHeightScaling, null);
+
+            x = gameH.myGUI.frame.getWidth()-battleinfoWidthScaling;
+            y = gameH.myGUI.frame.getHeight()-(gameH.myGUI.frame.getHeight()/6)*3;
+            g2.drawImage(gameH.tileM.tile[27].image, x, y, battleinfoWidthScaling, battleinfoHeightScaling, null);
         }
     }
     public void drawDialogue(String text[]){

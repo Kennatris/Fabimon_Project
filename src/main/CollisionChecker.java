@@ -148,7 +148,7 @@ public class CollisionChecker {
 
         for(int i = 0; i < target.length; i++) {
 
-            if(target[i] != null) {
+            if(target[i] != null && target[i].map == gameH.map) {
 
                 // Get entity's solid area position
                 entity.solidArea.x = entity.worldX + entity.solidArea.x;
@@ -164,6 +164,7 @@ public class CollisionChecker {
                         if(entity.solidArea.intersects(target[i].solidArea)) {
                             entity.collisionOn = true;
                             index = i;
+                            System.out.println("test");
                         }
                         break;
                     case "down":
@@ -195,7 +196,6 @@ public class CollisionChecker {
             }
 
         }
-
         return index;
     }
 
@@ -247,7 +247,7 @@ public class CollisionChecker {
 
         for(int i = 0; i < target.length; i++) {
 
-            if(target[i] != null && target[i].checkingVision == true) {
+            if(target[i] != null && target[i].checkingVision && gameH.map == target[i].map && target[i].trainer) {
 
                 // Get entity's solid area position
                 entity.solidArea.x = entity.worldX + entity.solidArea.x;
@@ -273,54 +273,20 @@ public class CollisionChecker {
                   target[i].visionArea.height = gameH.tileSize*target[i].visionRangeDown - target[i].visionArea.y;
                 }
 
-                switch(entity.direction) {
-                    case "up":
-                        entity.solidArea.y -= entity.speed;
                         if(entity.solidArea.intersects(target[i].visionArea)) {
                             gameH.player.collisionOn = true;
                             gameH.ui.commandNum = 0;
                             gameH.npc[i].approach(i);
                             index = i;
                         }
-                        break;
-                    case "down":
-                        entity.solidArea.y += entity.speed;
-                        if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.player.collisionOn = true;
-                            gameH.ui.commandNum = 0;
-                            gameH.npc[i].approach(i);
-                            index = i;
-                        }
-                        break;
-                    case "left":
-                        entity.solidArea.x -= entity.speed;
-                        if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.player.collisionOn = true;
-                            gameH.ui.commandNum = 0;
-                            gameH.npc[i].approach(i);
-                            index = i;
-                        }
-                        break;
-                    case "right":
-                        entity.solidArea.x += entity.speed;
-                        if(entity.solidArea.intersects(target[i].visionArea)) {
-                            gameH.player.collisionOn = true;
-                            gameH.ui.commandNum = 0;
-                            gameH.npc[i].approach(i);
-                            index = i;
-                        }
-                        break;
-                }
+
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
                 target[i].visionArea.x = target[i].visionAreaDefaultX;
                 target[i].visionArea.y = target[i].visionAreaDefaultY;
-                target[i].visionArea.width = 48;
-                target[i].visionArea.height = 48;
+                target[i].visionArea.width = 47;
+                target[i].visionArea.height = 47;
             }
-
         }
-
     }
-
 }

@@ -109,7 +109,7 @@ public class GameHandler extends JPanel implements Runnable {
         player = new Player(this, keyH);
 
         aSetter.setObject();
-        aSetter.setNPC();
+        aSetter.setNPC("createNPC");
 
         //playMusic(0);
 
