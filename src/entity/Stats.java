@@ -29,9 +29,9 @@ public class Stats  {
     protected static int atk_move[];
     protected static  int accuracy_move[];
 
-    //Base
+    // Base
     //------------------------------------------------------------------------------------------------------------------
-    //Fire stats
+    // Fire stats
     public double[] fire() {
         double HP_Fire[] = {39, 58, 78};
         double Atk_Fire[] = {52, 64, 84};
@@ -43,7 +43,7 @@ public class Stats  {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    //grass stats
+    // grass stats
     public double[] grass() {
         double HP_Grass[] = {45, 60, 80};
         double Atk_Grass[] = {49, 62, 82};
@@ -55,7 +55,7 @@ public class Stats  {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    //water stats
+    // water stats
     public double[] water() {
         double HP_Water[] = {45, 60, 80};
         double Atk_Water[] = {49, 62, 82};
@@ -67,7 +67,7 @@ public class Stats  {
     }
     //------------------------------------------------------------------------------------------------------------------
     // IVs stats
-    //generats a random value
+    // generats a random value
     public static void ivs() {
         // Instance of random class
         Random rand = new Random();
@@ -714,21 +714,21 @@ public class Stats  {
     //------------------------------------------------------------------------------------------------------------------
     //items
     public void items(){
-        //lucky egg
-        //potion
-        //super potion
-        //hyper potion
-        //max potion
-        //revive
+        // lucky egg
+        // potion
+        // super potion
+        // hyper potion
+        // max potion
+        // revive
         // Power Lens 	Hold items 	A Pokémon held item that promotes Sp. Atk gain on leveling, but reduces the Speed stat.
         // Power Weight 	Hold items 	A Pokémon held item that promotes HP gain on leveling, but reduces the Speed stat.
-        //Power Bracer 	Hold items 	A Pokémon held item that promotes Attack gain on leveling, but reduces the Speed stat.
-        //Power Belt 	Hold items 	A Pokémon held item that promotes Defense gain on leveling, but reduces the Speed stat.
-        //Power Band 	Hold items 	A Pokémon held item that promotes Sp. Def gain on leveling, but reduces the Speed stat.
-        //Power Anklet 	Hold items 	A Pokémon held item that promotes Speed gain on leveling, but reduces the Speed stat.
-        //xp-share An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.
-        //X Attack raises the Attack stat of a Pokémon in battle by two stages.
-        //X Defense raises the Defense of a Pokémon in battle by two stages.
+        // Power Bracer 	Hold items 	A Pokémon held item that promotes Attack gain on leveling, but reduces the Speed stat.
+        // Power Belt 	Hold items 	A Pokémon held item that promotes Defense gain on leveling, but reduces the Speed stat.
+        // Power Band 	Hold items 	A Pokémon held item that promotes Sp. Def gain on leveling, but reduces the Speed stat.
+        // Power Anklet 	Hold items 	A Pokémon held item that promotes Speed gain on leveling, but reduces the Speed stat.
+        // xp-share An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.
+        // X Attack raises the Attack stat of a Pokémon in battle by two stages.
+        // X Defense raises the Defense of a Pokémon in battle by two stages.
     }
 
     public static void moves() {

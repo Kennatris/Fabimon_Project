@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.8.1">
+    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.8.3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/diagram.uml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/diagram.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Stats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings/SaveCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/SaveCompiler.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +133,7 @@
       <workItem from="1681884555709" duration="4984000" />
       <workItem from="1683092737209" duration="2158000" />
       <workItem from="1683099876361" duration="1895000" />
-      <workItem from="1683546579830" duration="1944000" />
+      <workItem from="1683546579830" duration="2092000" />
     </task>
     <task id="LOCAL-00001" summary="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
       <created>1679533924557</created>
@@ -279,7 +275,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683097243634</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="V0.9.8.3">
+      <created>1683548577492</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1683548577492</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +356,8 @@
     <MESSAGE value="V0.9.7.2.2" />
     <MESSAGE value="V0.9.7.2.4" />
     <MESSAGE value="V0.9.8.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.9.8.1" />
+    <MESSAGE value="V0.9.8.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.9.8.3" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
