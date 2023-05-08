@@ -14,6 +14,7 @@ public class Entity {
     public int speed;
     public int defaultspeed = 4;
     public Boolean isApproaching = false;
+    public Boolean trainer;
     public int originalWorldX, originalWorldY;
     public Boolean endDialogue = false;
     public int dialoguePhase = 0;

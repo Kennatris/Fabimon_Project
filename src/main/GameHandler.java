@@ -28,6 +28,7 @@ public class GameHandler extends JPanel implements Runnable {
     public final int saveState = 4;
     public final int settingState = 5;
     public final int battleState = 6;
+    public final int cutsceneState = 7;
     // SCREEN SETTINGS
     final int originalTileSize = 96; // 96x96 tile
     public int scale = 1;
@@ -430,7 +431,7 @@ public class GameHandler extends JPanel implements Runnable {
             // SELECTION
             // MOVE CURSOR
             if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed) {
-
+                playSE(0);
                 switch (ui.settingScreenValue) {
                     case 0:
                         if (keyH.wPressed || keyH.upPressed) {
@@ -819,9 +820,15 @@ public class GameHandler extends JPanel implements Runnable {
         if (gameState == dialogueState) {
 
             if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0){
+
                 if (npc[npcInteracted].endDialogue) {
-                    gameState = playState;
-                    npc[npcInteracted].endDialogue = false;
+                    if(npc[npcInteracted].trainer){
+                        gameState = cutsceneState;
+                        csManager.csNum = csManager.battleBegin;
+                    }else {
+                        gameState = playState;
+                        npc[npcInteracted].endDialogue = false;
+                    }
                 } else {
                     npc[npcInteracted].dialogue(npcInteracted);
                 }
@@ -830,6 +837,8 @@ public class GameHandler extends JPanel implements Runnable {
             if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1) {
                 bumber = 0;
             }
+        }
+        if(gameState == cutsceneState){
 
         }
     }

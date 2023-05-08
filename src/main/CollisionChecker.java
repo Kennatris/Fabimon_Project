@@ -164,7 +164,6 @@ public class CollisionChecker {
                         if(entity.solidArea.intersects(target[i].solidArea)) {
                             entity.collisionOn = true;
                             index = i;
-                            System.out.println("test");
                         }
                         break;
                     case "down":
@@ -243,8 +242,6 @@ public class CollisionChecker {
     }
     public void checkVision(Entity entity, Entity[] target){
 
-        int index = 999;
-
         for(int i = 0; i < target.length; i++) {
 
             if(target[i] != null && target[i].checkingVision && gameH.map == target[i].map && target[i].trainer) {
@@ -277,7 +274,6 @@ public class CollisionChecker {
                             gameH.player.collisionOn = true;
                             gameH.ui.commandNum = 0;
                             gameH.npc[i].approach(i);
-                            index = i;
                         }
 
                 entity.solidArea.x = entity.solidAreaDefaultX;
