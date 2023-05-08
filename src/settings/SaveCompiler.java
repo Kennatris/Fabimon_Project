@@ -149,10 +149,10 @@ public class SaveCompiler extends Settings{
                 bw.write(String.valueOf(gameH.fullscreen));
                 bw.newLine();
                 //bw.write(String.valueOf(gameH.screenWidth));
-                bw.write(String.valueOf(1152));
+                bw.write(String.valueOf(gameH.defaultScreenWidth));
                 bw.newLine();
                 //bw.write(String.valueOf(gameH.screenHeight));
-                bw.write(String.valueOf(567));
+                bw.write(String.valueOf(gameH.defaultScreenHeight));
                 bw.newLine();
                 bw.write(String.valueOf(gameH.player.worldX/gameH.tileSize));
                 bw.newLine();

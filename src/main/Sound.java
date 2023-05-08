@@ -4,12 +4,12 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
-import java.net.URL;
+import java.io.File;
 
 public class Sound {
 
     Clip clip;
-    URL soundURL[] = new URL[30];
+    File soundURL[] = new File[30];
 
     public Sound() {
 
@@ -17,13 +17,15 @@ public class Sound {
         soundURL[index] = getClass().getResource("NAME");
          */
 
+        soundURL[0] = new File("res/Music Libray/Music.wav");
+
     }
 
     public void setFile(int i) {
 
         try {
 
-            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i].toURI().toURL());
             clip = AudioSystem.getClip();
             clip.open(ais);
 

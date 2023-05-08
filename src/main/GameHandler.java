@@ -32,6 +32,8 @@ public class GameHandler extends JPanel implements Runnable {
     final int originalTileSize = 96; // 96x96 tile
     public int scale = 1;
     public final int tileSize = originalTileSize * scale; // 96x96 tile scale (zoom)
+    public int defaultScreenWidth = 1152;
+    public int defaultScreenHeight = 576;
     public int screenWidth = tileSize * maxScreenCol; // 96 x 20 = 1920
     public int screenHeight = tileSize * maxScreenRow; // 96 x 12 = 1152 (1080++)
     public String[] availableMaps = {"map_test_1", // normalWorld
@@ -111,7 +113,7 @@ public class GameHandler extends JPanel implements Runnable {
         aSetter.setObject();
         aSetter.setNPC();
 
-        //playMusic(0);
+        playMusic(0);
 
         gameState = titleState;
     }
@@ -261,8 +263,15 @@ public class GameHandler extends JPanel implements Runnable {
             player.update();
 
             // UPDATE SCREEN SETTINGS
-            screenWidth = myGUI.frame.getWidth();
-            screenHeight = myGUI.frame.getHeight();
+            /*
+            if (fullscreen) {
+                screenWidth = myGUI.frame.getWidth();
+                screenHeight = myGUI.frame.getHeight();
+            } else {
+                screenWidth = defaultScreenWidth;
+                screenHeight = defaultScreenHeight;
+            }
+            */
 
             // pause Screen
             if (keyH.escPressed) {
@@ -430,6 +439,8 @@ public class GameHandler extends JPanel implements Runnable {
             // SELECTION
             // MOVE CURSOR
             if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed) {
+
+                //playSE(0);
 
                 switch (ui.settingScreenValue) {
                     case 0:

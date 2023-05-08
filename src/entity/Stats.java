@@ -4,28 +4,30 @@ import java.util.Random;
 
 public class Stats  {
 
-
-
-    public int item_lucky_egg;
-    private double Atk_Fire[];
-    private double DEV_Fire[];
-    private double Sp_Atk_Fire[];
-    private double Sp_Dev_Fire[];
-    private double Speed_Fire[];
-    private double Atk_Grass[];
-    private double DEV_Grass[];
-    private double Sp_Atk_Grass[];
-    private double Sp_Dev_Grass[];
-    private double Speed_Grass[];
-    private double Atk_Water[];
-    private double DEV_Water[];
-    private double Sp_Atk_Water[];
-    private double Sp_Dev_Water[];
-    private double Speed_Water[];
-    private String moves[];
-    private String types[];
-    private int atk_move[];
-    private int accuracy_move[];
+    protected static int typeValue[];
+    protected static double HP_Fire[];
+    protected static double Atk_Fire[];
+    protected static double DEV_Fire[];
+    protected static double Sp_Atk_Fire[];
+    protected static double Sp_Dev_Fire[];
+    protected static double Speed_Fire[];
+    protected static double HP_Grass[];
+    protected static double Atk_Grass[];
+    protected static double DEV_Grass[];
+    protected static double Sp_Atk_Grass[];
+    protected static double Sp_Dev_Grass[];
+    protected static double Speed_Grass[];
+    protected static double HP_Water[];
+    protected static double Atk_Water[];
+    protected static double DEV_Water[];
+    protected static double Sp_Atk_Water[];
+    protected static double Sp_Dev_Water[];
+    protected static double Speed_Water[];
+    protected static double EXP[];
+    protected static String moves[];
+    protected static String types[];
+    protected static int atk_move[];
+    protected static  int accuracy_move[];
 
     //Base
     //------------------------------------------------------------------------------------------------------------------
@@ -728,13 +730,6 @@ public class Stats  {
         //X Attack raises the Attack stat of a Pokémon in battle by two stages.
         //X Defense raises the Defense of a Pokémon in battle by two stages.
     }
-    public int getItem_lucky_egg() {
-        return item_lucky_egg;
-    }
-
-    public void setItem_lucky_egg(int item_lucky_egg) {
-        this.item_lucky_egg = item_lucky_egg;
-    }
 
     public static void moves() {
         String moves[]= {"scratch","growl","scare","ember","bubble","Absorb"};
@@ -751,11 +746,11 @@ public class Stats  {
     }
     public static void type() {
         String type[]= {"Fire","Grass","Water"};
-        int type_Value[]= {1,2,3,};
+        int typeValue[] = {1,2,3,};
         type[0]= "1"; //Fire
         type[1]= "2"; //Grass
         type[2]= "3"; //Water
-        int typeValue[] = {Integer.parseInt(type[0]),Integer.parseInt(type[1]),Integer.parseInt(type[2])};
+        //int typeValue[] = {Integer.parseInt(type[0]),Integer.parseInt(type[1]),Integer.parseInt(type[2])};
         //if(typeValue[0]<typeValue[0]){
         System.out.println("type Fire: " +typeValue[0]);
 
