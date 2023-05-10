@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="V0.9.7.2.2">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/net_java_jinput.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/net_java_jutils.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_22_27_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_03_2023_22_27__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entity/Feirir.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/NPC/NPCTest/downarrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/downarrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/NPC/NPCTest/downarrow2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/downarrow2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/NPC/NPCTest/leftarrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/leftarrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/NPC/NPCTest/leftarrow2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/leftarrow2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/NPC/NPCTest/rightarrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/rightarrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/NPC/NPCTest/rightarrow2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/rightarrow2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/NPC/NPCTest/uparrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/uparrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/NPC/NPCTest/uparrow2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/NPCTest/uparrow2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Fabimon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Fabimon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Stats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
@@ -106,11 +111,11 @@
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\phili\IdeaProjects\Fabimon_Project" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\NPC\SpeedyGonzales" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\NPC\NPCTest" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\objects" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\maps" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\tiles" />
     </key>
   </component>
   <component name="RunManager">
@@ -133,6 +138,7 @@
       <workItem from="1678910082575" duration="1455000" />
       <workItem from="1679553934541" duration="2696000" />
       <workItem from="1681884555709" duration="4984000" />
+      <workItem from="1683698925406" duration="13422000" />
     </task>
     <task id="LOCAL-00001" summary="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
       <created>1679533924557</created>
@@ -267,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683095279019</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="V0.9.7.2.2">
+      <created>1683548508836</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683548508836</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

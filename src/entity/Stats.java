@@ -2,43 +2,40 @@ package entity;
 
 import java.util.Random;
 
-public class Stats  {
+public class Stats{
 
 
+    protected static int typeValue[];
+    protected static double HP_Fire[];
+    protected static double Atk_Fire[];
+    protected static double DEV_Fire[];
+    protected static double Sp_Atk_Fire[];
+    protected static double Sp_Dev_Fire[];
+    protected static double Speed_Fire[];
+    protected static double HP_Grass[];
+    protected static double Atk_Grass[];
+    protected static double DEV_Grass[];
+    protected static double Sp_Atk_Grass[];
+    protected static double Sp_Dev_Grass[];
+    protected static double Speed_Grass[];
+    protected static double HP_Water[];
+    protected static double Atk_Water[];
+    protected static double DEV_Water[];
+    protected static double Sp_Atk_Water[];
+    protected static double Sp_Dev_Water[];
+    protected static double Speed_Water[];
+    protected static double EXP[];
+    protected static String moves[];
+    protected static String types[];
+    protected static int atk_move[];
+    protected static double aktuelles_level;
+    protected static  int accuracy_move[];
 
-    public int item_lucky_egg;
-    private double Atk_Fire[];
-    private double DEV_Fire[];
-    private double Sp_Atk_Fire[];
-    private double Sp_Dev_Fire[];
-    private double Speed_Fire[];
-    private double Atk_Grass[];
-    private double DEV_Grass[];
-    private double Sp_Atk_Grass[];
-    private double Sp_Dev_Grass[];
-    private double Speed_Grass[];
-    private double Atk_Water[];
-    private double DEV_Water[];
-    private double Sp_Atk_Water[];
-    private double Sp_Dev_Water[];
-    private double Speed_Water[];
-    private String moves[];
-    private String types[];
-    private int atk_move[];
-    private int accuracy_move[];
 
     //Base
     //------------------------------------------------------------------------------------------------------------------
-    //Fire stats
-    public double[] fire() {
-        double HP_Fire[] = {39, 58, 78};
-        double Atk_Fire[] = {52, 64, 84};
-        double DEV_Fire[] = {43, 58, 78};
-        double Sp_Atk_Fire[] = {60, 80, 109};
-        double Sp_Dev_Fire[] = {50, 65, 85};
-        double Speed_Fire[] = {65, 80, 100};
-        return fire();
-    }
+
+
 
     //------------------------------------------------------------------------------------------------------------------
     //grass stats
@@ -85,10 +82,10 @@ public class Stats  {
     //------------------------------------------------------------------------------------------------------------------
     // EVs stats
     public void evs() {
-        int EVs_Sp_Atk_Grass[] = {1, 2, 2};
+        int EVs_Sp_Atk_Grass[] = {1, 1, 2};
         //first evolution has no evs for sp.dev grass
-        int EVs_Sp_Dev_Grass[] = {2, 2};
-        int Evs_Speed_fire[] = {1, 1};
+        int EVs_Sp_Dev_Grass[] = {0, 1, 1};
+        int Evs_Speed_fire[] = {1, 1, 0};
         //first evolution has no evs for sp.atk fire
         int Evs_Sp_Atk_fire[] = {1, 3};
         int Evs_Dev_water[] = {1, 1};
@@ -100,7 +97,7 @@ public class Stats  {
     //level
     public static void exp() {
        int level = 1;
-        int aktuelles_level = 1;
+        double aktuelles_level = 1;
         boolean pokemon_win = false;
 
 
@@ -728,13 +725,6 @@ public class Stats  {
         //X Attack raises the Attack stat of a Pokémon in battle by two stages.
         //X Defense raises the Defense of a Pokémon in battle by two stages.
     }
-    public int getItem_lucky_egg() {
-        return item_lucky_egg;
-    }
-
-    public void setItem_lucky_egg(int item_lucky_egg) {
-        this.item_lucky_egg = item_lucky_egg;
-    }
 
     public static void moves() {
         String moves[]= {"scratch","growl","scare","ember","bubble","Absorb"};
@@ -751,11 +741,11 @@ public class Stats  {
     }
     public static void type() {
         String type[]= {"Fire","Grass","Water"};
-        int type_Value[]= {1,2,3,};
+        int typeValue[] = {1,2,3,};
         type[0]= "1"; //Fire
         type[1]= "2"; //Grass
         type[2]= "3"; //Water
-        int typeValue[] = {Integer.parseInt(type[0]),Integer.parseInt(type[1]),Integer.parseInt(type[2])};
+        //int typeValue[] = {Integer.parseInt(type[0]),Integer.parseInt(type[1]),Integer.parseInt(type[2])};
         //if(typeValue[0]<typeValue[0]){
         System.out.println("type Fire: " +typeValue[0]);
 

@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import entity.Fabimon;
 import entity.Player;
 import entity.PlayerDummy;
 import main.control.KeyHandler;
@@ -72,6 +73,9 @@ public class GameHandler extends JPanel implements Runnable {
     public SuperObject[] obj = new SuperObject[10];
     public Entity[] npc = new Entity[10];
     public int npcInteracted;
+    public Fabimon fabimon = new Fabimon(this);
+    public Fabimon own_Fabimon;
+    public Fabimon enemy_Fabimon;
 
     // GAME STATE
     public int gameState;
@@ -187,6 +191,12 @@ public class GameHandler extends JPanel implements Runnable {
         if (debugMode) {
             if (keyH.kPressed) {
                 gameState = battleState;
+                fabimon.createFabimon(0, 0, (int)(Math.random()*100));
+                enemy_Fabimon = fabimon.tempFabimon;
+               // System.out.println(fabimon.tempFabimon.hp + " " + fabimon.tempFabimon.atk  + " " +  fabimon.tempFabimon.dev  + " " +  fabimon.tempFabimon.sp_atk  + " " +  fabimon.tempFabimon.sp_dev  + " " +  fabimon.tempFabimon.init);
+                for(int i = 0; i<fabimon.info.length; i++) {
+                    System.out.println(fabimon.info[i]);
+                }
             }
             if (keyH.tPressed) {
                 timerMode = !timerMode;
@@ -800,10 +810,10 @@ public class GameHandler extends JPanel implements Runnable {
                             break;
                     }
                 }
-            } else if (keyH.enterPressed || keyH.spacePressed) {
+            } else if(keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0){
                 switch (ui.commandNum) {
                     case 0:
-                        ui.battleText = "Fight";
+                        ui.battleText = "Fight"; enemy_Fabimon.currentHp -= 5;
                         break;
                     case 1:
                         ui.battleText = "Fabimon";
@@ -815,6 +825,10 @@ public class GameHandler extends JPanel implements Runnable {
                         npc[npcInteracted].endBattle(npcInteracted);
                         break;
                 }
+                bumber=1;
+            }
+            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1) {
+                bumber = 0;
             }
         }// Bindings for battleState
         if (gameState == dialogueState) {

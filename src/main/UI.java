@@ -674,8 +674,6 @@ public class UI {
             //Textfield
            drawTextfield();
 
-            // Text
-            //drawBattleText(" ");
             //battleinfo fabimon
 
             int battleinfoWidthScaling = gameH.myGUI.frame.getWidth()/3;
@@ -687,13 +685,21 @@ public class UI {
             y = gameH.myGUI.frame.getHeight()-(gameH.myGUI.frame.getHeight()/6)*3;
             g2.drawImage(gameH.tileM.tile[27].image, x, y, battleinfoWidthScaling, battleinfoHeightScaling, null);
             health();
+
+            //enemy Fabimon
+            g2.setFont(arial_25);
+            g2.drawString( Integer.toString(gameH.enemy_Fabimon.level), 50, 85);
+            g2.drawString(gameH.enemy_Fabimon.name, 150, 85);
+            g2.drawImage(gameH.enemy_Fabimon.up1, 500, 100, 150, 150, null);
+            g2.setColor(Color.BLACK);
+
         }
     }
     private void health(){
         g2.setColor(Color.GREEN);
         if(gameH.fullscreen) {
             //Fabimon Healthbar
-            int healthScalingWidth = (gameH.myGUI.frame.getWidth() / 15) * 2;
+            int healthScalingWidth = ((gameH.myGUI.frame.getWidth() / 15) * 2)/gameH.enemy_Fabimon.hp;
             int healthScalingHeight = (gameH.myGUI.frame.getHeight() / 70);
             int x = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 13) * 2;
             int y = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 8) * 3;
@@ -705,16 +711,17 @@ public class UI {
             g2.fillRect(x, y, healthScalingWidth, healthScalingHeight);
         }else{
             //Fabimon healthbar
-            int healthScalingWidth = (gameH.myGUI.frame.getWidth() / 15) * 2;
+            int healthScalingWidth = ((gameH.myGUI.frame.getWidth() / 15) * 2)/gameH.enemy_Fabimon.hp;
             int healthScalingHeight = (gameH.myGUI.frame.getHeight() / 70);
             int x = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 13) * 2-1;
             int y = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 8) * 3;
             g2.fillRect(x, y, healthScalingWidth, healthScalingHeight);
 
             //enemy Fabimon healthbar
+
             x = (gameH.myGUI.frame.getWidth() / 17);
             y = (gameH.myGUI.frame.getHeight() / 29) * 5;
-            g2.fillRect(x, y, healthScalingWidth, healthScalingHeight);
+            g2.fillRect(x, y, healthScalingWidth*gameH.enemy_Fabimon.currentHp, healthScalingHeight);
         }
     }
     public void drawDialogue(String text[]){

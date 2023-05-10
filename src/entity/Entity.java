@@ -15,6 +15,7 @@ public class Entity {
     public int defaultspeed = 4;
     public Boolean isApproaching = false;
     public Boolean trainer;
+    public Fabimon fabimonTeam[] = new Fabimon[6];
     public int originalWorldX, originalWorldY;
     public Boolean endDialogue = false;
     public int dialoguePhase = 0;
@@ -58,8 +59,6 @@ public class Entity {
             FileReader fr = new FileReader(fileLocation);
             BufferedReader br = new BufferedReader(fr);
 
-            System.out.println("mapfile: " + fileLocation);
-
             int dialogueNum = 0;
             while (dialogueNum < 20) {
 
@@ -67,7 +66,7 @@ public class Entity {
 
                 String[] lineSplit = line.split("~");
 
-                System.arraycopy(lineSplit, 0, dialogues[dialogueNum], 0, 3);
+                System.arraycopy(lineSplit, 0, dialogues[dialogueNum], 0, 1);
                 dialogueNum++;
             }
 
