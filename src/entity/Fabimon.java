@@ -36,36 +36,19 @@ public class Fabimon extends Entity {
     public void createFabimon(String fabimonName, int fabimonEvo, int plevel) {
         if(fabimonName.equals("Feirir")){
             if(fabimonEvo == 0){
-                tempFabimon = new Feirir(gameH);
-                setIV();
-                tempFabimon.nature = nat.setNature();
-                tempFabimon.type = ("Fire");
-                if(tempFabimon.nature.equals("redo")){
-                    tempFabimon.nature = nat.setNature();
-                }
-                getBaseInfo(fabimonName, fabimonEvo);
-                setFabimonInfo(plevel);
-
+                tempFabimon = new Feirir(gameH, fabimonName, fabimonEvo, plevel);
             }
 
         }else if(fabimonName.equals("cursed Shiggy")){
             if(fabimonEvo == 0){
-                tempFabimon = new cursedShiggy(gameH);
-                setIV();
-                tempFabimon.nature = nat.setNature();
-                if(tempFabimon.nature.equals("redo")){
-                    tempFabimon.nature = nat.setNature();
-                }
-                getBaseInfo(fabimonName, fabimonEvo);
-                setFabimonInfo(plevel);
-
+                tempFabimon = new cursedShiggy(gameH, fabimonName, fabimonEvo, plevel);
             }
         }
     }
     public void setIV(){
         for(int i = 0; i<iv.length; i++){
             int temp = (int)(Math.random()*32);
-            iv[i] = temp;
+            tempFabimon.iv[i] = temp;
         }
     }
     public int berechneHP(){
@@ -85,7 +68,7 @@ public class Fabimon extends Entity {
         return (int)berechnung;
     }
 
-    private void setFabimonInfo(int plevel) {
+    void setFabimonInfo(int plevel) {
         tempFabimon.name = sInfo[0];
         tempFabimon.type = sInfo[1];
         tempFabimon.level = plevel;

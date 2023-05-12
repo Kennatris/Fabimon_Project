@@ -5,30 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/entity/cursedShiggy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/nature.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Fabimon/Feirir/BaseStats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/Fabimon/Feirir/BaseStats.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/Dialogues/NPCTestDialogues.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/Dialogues/NPCTestDialogues.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/NPC/createNPC.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/createNPC.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/saves/save_four.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_four.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/saves/save_one.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_one.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/saves/save_three.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_three.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/saves/save_two.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_two.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Fabimon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Fabimon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Feirir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Feirir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/NPCTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/NPCTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Stats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/CutsceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CutsceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings/SaveCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/SaveCompiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/cursedShiggy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/cursedShiggy.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +128,7 @@
       <workItem from="1678910082575" duration="1455000" />
       <workItem from="1679553934541" duration="2696000" />
       <workItem from="1681884555709" duration="4984000" />
-      <workItem from="1683698925406" duration="34202000" />
+      <workItem from="1683698925406" duration="34874000" />
     </task>
     <task id="LOCAL-00001" summary="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
       <created>1679533924557</created>
@@ -297,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683716303963</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="V0.9.7.2.2">
+      <created>1683888536020</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1683888536020</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
