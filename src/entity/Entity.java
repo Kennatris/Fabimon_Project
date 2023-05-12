@@ -66,7 +66,7 @@ public class Entity {
 
                 String[] lineSplit = line.split("~");
 
-                System.arraycopy(lineSplit, 0, dialogues[dialogueNum], 0, 1);
+                System.arraycopy(lineSplit, 0, dialogues[dialogueNum], 0, 3);
                 dialogueNum++;
             }
 
@@ -163,7 +163,6 @@ public class Entity {
             }
         }
     }
-
     public void innactivechecker() {
         if (!innactive) {
         } else {

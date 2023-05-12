@@ -23,9 +23,6 @@ public class AssetSetter {
     }
 
     public void setNPC(String fileName) {
-        /* EXAMPLE
-            createNPC(index, spawnTileX, spawnTileY, map, spawnDirection, speed);
-        */
 
         try {
 
@@ -45,7 +42,6 @@ public class AssetSetter {
                 npcNum++;
 
             }
-
 
             br.close();
 

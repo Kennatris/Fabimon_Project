@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.Random;
-
 public class Stats{
 
 
@@ -51,34 +49,10 @@ public class Stats{
 
     //------------------------------------------------------------------------------------------------------------------
     //water stats
-    public double[] water() {
-        double HP_Water[] = {45, 60, 80};
-        double Atk_Water[] = {49, 62, 82};
-        double DEV_Water[] = {49, 63, 83};
-        double Sp_Atk_Water[] = {65, 80, 100};
-        double Sp_Dev_Water[] = {65, 80, 100};
-        double Speed_Water[] = {45, 60, 80};
-        return water();
-    }
+
     //------------------------------------------------------------------------------------------------------------------
     // IVs stats
     //generats a random value
-    public static void ivs() {
-        // Instance of random class
-        Random rand = new Random();
-        // Setting the upper bound to generate the
-        // random numbers in specific range
-        int upperbound = 31;
-        // Generating random values from 0 to 31
-        // using nextInt()
-        int int_random = rand.nextInt(upperbound);
-        // Generating random using nextDouble
-        // in 0.0 and 1.0 range
-        // Printing the generated random numbers
-        System.out.println("Random integer(IVS) value from 0 to" + (upperbound) + " : " + int_random);
-
-    }
-
     //------------------------------------------------------------------------------------------------------------------
     // EVs stats
     public void evs() {
@@ -176,7 +150,7 @@ public class Stats{
         double multiplikator_nature = 0.1;
         double[] nature_Hardy =
                 //stat that getting decreased
-                {Atk_Fire[0] - Atk_Fire[0] * multiplikator_nature,
+                        {Atk_Fire[0] - Atk_Fire[0] * multiplikator_nature,
                         Atk_Fire[1] - Atk_Fire[1] * multiplikator_nature,
                         Atk_Fire[2] - Atk_Fire[2] * multiplikator_nature,
                         Atk_Grass[0] - Atk_Grass[0] * multiplikator_nature,
