@@ -1,9 +1,6 @@
 package main;
 
-import entity.Entity;
-import entity.Fabimon;
-import entity.Player;
-import entity.PlayerDummy;
+import entity.*;
 import main.control.KeyHandler;
 import objects.SuperObject;
 import settings.SaveCompiler;
@@ -29,6 +26,11 @@ public class GameHandler extends JPanel implements Runnable {
     public final int saveState = 4;
     public final int settingState = 5;
     public final int battleState = 6;
+    public int battleSubState = 0;
+    public final int mainMenu = 0;
+    public final int attackMenu = 1;
+    public final int itemMenu = 2;
+    public final int fabimonMenu = 3;
     public final int cutsceneState = 7;
     // SCREEN SETTINGS
     final int originalTileSize = 96; // 96x96 tile
@@ -67,6 +69,7 @@ public class GameHandler extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
+
     // ENTITY AND OBJECT
     public Player player;
     public PlayerDummy playerD = new PlayerDummy(this);
@@ -74,6 +77,7 @@ public class GameHandler extends JPanel implements Runnable {
     public Entity[] npc = new Entity[10];
     public int npcInteracted;
     public Fabimon fabimon = new Fabimon(this);
+    public Attack attack = new Attack(this);
     public Fabimon own_Fabimon;
     public Fabimon enemy_Fabimon;
 
@@ -191,6 +195,7 @@ public class GameHandler extends JPanel implements Runnable {
         if (debugMode) {
             if (keyH.kPressed) {
                 gameState = battleState;
+                battleSubState = mainMenu;
                 int rand = (int)(Math.random()*4);
                 if(rand == 0){
                     fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
@@ -213,7 +218,6 @@ public class GameHandler extends JPanel implements Runnable {
                     fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
                     own_Fabimon = fabimon.tempFabimon;
                 }
-
                }
             if (keyH.tPressed) {
                 timerMode = !timerMode;
@@ -828,9 +832,10 @@ public class GameHandler extends JPanel implements Runnable {
                     }
                 }
             } else if(keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0){
+                if(battleSubState == mainMenu){
                 switch (ui.commandNum) {
                     case 0:
-                        ui.battleText = "Fight"; enemy_Fabimon.currentHp -= own_Fabimon.atk;
+                        battleSubState = attackMenu;
                         break;
                     case 1:
                         ui.battleText = "Fabimon";
@@ -841,6 +846,20 @@ public class GameHandler extends JPanel implements Runnable {
                     case 3:
                         npc[npcInteracted].endBattle(npcInteracted);
                         break;
+                }
+                }else if(battleSubState == attackMenu){
+                    switch (ui.commandNum) {
+                        case 0:
+                            break;
+                        case 1:
+                            ui.battleText = "Fabimon";
+                            break;
+                        case 2:
+                            ui.battleText = "Bag";
+                            break;
+                        case 3:
+                            break;
+                    }
                 }
                 bumber=1;
             }

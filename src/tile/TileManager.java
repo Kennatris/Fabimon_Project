@@ -59,15 +59,16 @@ public class TileManager {
         setup(15, "tiles","wood","png",gameH.tileSize, gameH.tileSize, false);
         setup(16, "tiles","stone","png",gameH.tileSize, gameH.tileSize, false);
 
-        //Buttons
-        setup(17, "Buttons","Fight","png",96, 96,false);
-        setup(18, "Buttons","FightS","png",343, 110,false);
-        setup(19, "Buttons","Bag","png",343, 110,false);
-        setup(20, "Buttons","BagS","png",343, 110,false);
-        setup(21, "Buttons","Fabimon","png",343, 110,false);
-        setup(22, "Buttons","FabimonS","png",343, 110,false);
-        setup(23, "Buttons","Run","png",343, 110,false);
-        setup(24, "Buttons","RunS","png",343, 110,false);
+        //Main Buttons
+        setup(17, "Buttons/MainButtons","Fight","png",96, 96,false);
+        setup(18, "Buttons/MainButtons","FightS","png",343, 110,false);
+        setup(19, "Buttons/MainButtons","Bag","png",343, 110,false);
+        setup(20, "Buttons/MainButtons","BagS","png",343, 110,false);
+        setup(21, "Buttons/MainButtons","Fabimon","png",343, 110,false);
+        setup(22, "Buttons/MainButtons","FabimonS","png",343, 110,false);
+        setup(23, "Buttons/MainButtons","Run","png",343, 110,false);
+        setup(24, "Buttons/MainButtons","RunS","png",343, 110,false);
+
 
         //Textfields
         setup(25, "Textfields","Textfield_1","png", gameH.tileSize, gameH.tileSize,false);
@@ -75,7 +76,7 @@ public class TileManager {
         //Fabimon Info
         setup(26, "battleInfo","enemy_fabimon","png", gameH.tileSize, gameH.tileSize,false);
         setup(27, "battleInfo","own_fabimon","png", gameH.tileSize, gameH.tileSize,false);
-
+        
     }
 
     public void setup(int index, String imageLocation, String imageName, String imageDataTyp, int refactoredWidth, int refactoredHeight, boolean collision) {

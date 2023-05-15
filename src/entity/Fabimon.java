@@ -1,5 +1,11 @@
 package entity;
 
+import entity.FabimonOrdner.Feirir;
+import entity.FabimonOrdner.cursedShiggy;
+import entity.attacks.Ember;
+import entity.attacks.Growl;
+import entity.attacks.Scary_Face;
+import entity.attacks.Scratch;
 import main.GameHandler;
 
 import java.io.BufferedReader;
@@ -24,31 +30,32 @@ public class Fabimon extends Entity {
     public int init;
     public String type;
     public String nature;
-    public String move[] = new String[4];
+    public Attack move[] = new Attack[4];
     public String item;
     public String gender;
-    public int iv[] = {15, 0, 0, 0, 0, 0};
+    public int iv[] = {0, 0, 0, 0, 0, 0};
+    public GameHandler gameH;
 
     public Fabimon(GameHandler gameH) {
         super(gameH);
+        this.gameH = gameH;
+
     }
 
     public void createFabimon(String fabimonName, int fabimonEvo, int plevel) {
         if(fabimonName.equals("Feirir")){
             if(fabimonEvo == 0){
                 tempFabimon = new Feirir(gameH, fabimonName, fabimonEvo, plevel);
+                getBaseInfo(fabimonName, fabimonEvo);
+                setFabimonInfo(plevel);
             }
 
         }else if(fabimonName.equals("cursed Shiggy")){
             if(fabimonEvo == 0){
                 tempFabimon = new cursedShiggy(gameH, fabimonName, fabimonEvo, plevel);
+                getBaseInfo(fabimonName, fabimonEvo);
+                setFabimonInfo(plevel);
             }
-        }
-    }
-    public void setIV(){
-        for(int i = 0; i<iv.length; i++){
-            int temp = (int)(Math.random()*32);
-            tempFabimon.iv[i] = temp;
         }
     }
     public int berechneHP(){
@@ -58,7 +65,6 @@ public class Fabimon extends Entity {
         double tempHP = (int)statdurch100+tempFabimon.level+10;
         return (int)tempHP;
     }
-
     public int berechneStat(int basestatIndex){
         double ev = (haveEV[0]/4);
         double stat = (2*baseStats[basestatIndex]+iv[basestatIndex]+ (int)ev);
@@ -67,11 +73,11 @@ public class Fabimon extends Entity {
         double berechnung = (int)statdurch100*nature;
         return (int)berechnung;
     }
-
     void setFabimonInfo(int plevel) {
         tempFabimon.name = sInfo[0];
         tempFabimon.type = sInfo[1];
         tempFabimon.level = plevel;
+        tempFabimon.nature = nat.setNature();
         tempFabimon.hp = berechneHP();
         tempFabimon.atk = berechneStat(1);
         tempFabimon.dev = berechneStat(2);;
@@ -86,6 +92,14 @@ public class Fabimon extends Entity {
         }else{
             tempFabimon.gender = "Male";
         }
+        for(int i = 0; i<iv.length; i++){
+            int temp = (int)(Math.random()*32);
+            tempFabimon.iv[i] = temp;
+        }
+        tempFabimon.move[0] = new Scratch(gameH);
+        tempFabimon.move[1] = new Ember(gameH);
+        tempFabimon.move[2] = new Scary_Face(gameH);
+        tempFabimon.move[3] = new Growl(gameH);
     }
 
     public void getBaseInfo(String fileName, int evo) {

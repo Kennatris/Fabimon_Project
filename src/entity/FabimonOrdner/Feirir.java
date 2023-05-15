@@ -1,24 +1,15 @@
-package entity;
+package entity.FabimonOrdner;
 
+import entity.Fabimon;
 import main.GameHandler;
 import main.ImageHandler;
 
 
-public class Feirir extends Fabimon{
+public class Feirir extends Fabimon {
     ImageHandler imageH = new ImageHandler();
     public Feirir(GameHandler gameH, String fabimonName, int fabimonEvo, int plevel) {
         super(gameH);
         getFeirirImage();
-        setIV();
-        tempFabimon.nature = nat.setNature();
-        tempFabimon.type = ("Fire");
-        if(tempFabimon.nature.equals("redo")){
-            tempFabimon.nature = nat.setNature();
-        }
-        getBaseInfo(fabimonName, fabimonEvo);
-        setFabimonInfo(plevel);
-
-
     }
     public void getFeirirImage(){
         imageH.ImageInitializer(0, "Fabimon/Feirir", "l0_fire_starter_first_evo1", "png", gameH.tileSize, gameH.tileSize);
