@@ -1,4 +1,4 @@
-package entity.attacks;
+package Battle.attacks;
 
 import entity.Attack;
 import main.GameHandler;
@@ -15,5 +15,6 @@ public class Scary_Face extends Attack {
         type = "Normal";
         accDown = 2;
         priority = 0;
+        name = "Scary face";
     }
 }

@@ -1,11 +1,11 @@
 package entity;
 
+import Battle.attacks.Ember;
+import Battle.attacks.Growl;
+import Battle.attacks.Scary_Face;
+import Battle.attacks.Scratch;
 import entity.FabimonOrdner.Feirir;
 import entity.FabimonOrdner.cursedShiggy;
-import entity.attacks.Ember;
-import entity.attacks.Growl;
-import entity.attacks.Scary_Face;
-import entity.attacks.Scratch;
 import main.GameHandler;
 
 import java.io.BufferedReader;
@@ -96,10 +96,10 @@ public class Fabimon extends Entity {
             int temp = (int)(Math.random()*32);
             tempFabimon.iv[i] = temp;
         }
-        tempFabimon.move[0] = new Scratch(gameH);
+        tempFabimon.move[3] = new Scratch(gameH);
         tempFabimon.move[1] = new Ember(gameH);
         tempFabimon.move[2] = new Scary_Face(gameH);
-        tempFabimon.move[3] = new Growl(gameH);
+        tempFabimon.move[0] = new Growl(gameH);
     }
 
     public void getBaseInfo(String fileName, int evo) {

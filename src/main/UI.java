@@ -440,7 +440,7 @@ public class UI {
 
     public void drawDialogueScreen() {
         drawTextfield();
-        drawDialogue(currentDialogue);
+        drawDialogue();
     }
 
     public void drawTextfield() {
@@ -709,9 +709,9 @@ public class UI {
             x = gameH.myGUI.frame.getWidth() - buttonWidthScaling - minWidth;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling - minHeight;
             if (commandNum == 3) {
-                g2.drawImage(gameH.own_Fabimon.move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.own_Fabimon.move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.own_Fabimon.move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.own_Fabimon.move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
             //Fabimob button
@@ -734,9 +734,9 @@ public class UI {
             //Fight button
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2 - minHeight;
             if (commandNum == 0) {
-                g2.drawImage(gameH.own_Fabimon.move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.own_Fabimon.move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.own_Fabimon.move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.own_Fabimon.move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
         }
     }
@@ -756,6 +756,7 @@ public class UI {
             drawTextfield();
             battleInfoFields();
             health();
+            drawDialogue();
 
     }
 
@@ -861,7 +862,7 @@ public class UI {
         }
     }
 
-    public void drawDialogue(String[] text) {
+    public void drawDialogue() {
         int textYScaling = 0;
         int textXScaling = 0;
         g2.setColor(Color.BLACK);
@@ -870,14 +871,14 @@ public class UI {
             textXScaling = gameH.myGUI.frame.getWidth() / 30;
             textYScaling = gameH.myGUI.frame.getHeight() - gameH.myGUI.frame.getHeight() / 6;
             for (int i = 0; i < 3; i++) {
-                g2.drawString(text[i], textXScaling, textYScaling + i * 57);
+                g2.drawString(currentDialogue[i], textXScaling, textYScaling + i * 57);
             }
         } else {
             g2.setFont(arial_25);
             textXScaling = gameH.myGUI.frame.getWidth() / 30;
             textYScaling = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 14) * 3;
             for (int i = 0; i < 3; i++) {
-                g2.drawString(text[i], textXScaling, textYScaling + i * 37);
+                g2.drawString(currentDialogue[i], textXScaling, textYScaling + i * 37);
             }
         }
     }

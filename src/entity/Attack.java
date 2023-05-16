@@ -17,7 +17,7 @@ public class Attack{
     public int priority;
     public int accUp;
     public int accDown;
-
+    public String name;
     public Attack(GameHandler gameH){
         this.gameH = gameH;
     }

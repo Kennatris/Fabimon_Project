@@ -5,27 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/entity/Attack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/attacks/Ember.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/attacks/Growl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/attacks/Scary_Face.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/attacks/Scratch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Battle/battle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Buttons/Bag.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Buttons/BagS.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Buttons/Fabimon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Buttons/FabimonS.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Buttons/Fight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Buttons/FightS.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Buttons/Run.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Buttons/RunS.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Fabimon/Feirir/BaseStats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/Fabimon/Feirir/BaseStats.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Attack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Attack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Fabimon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Fabimon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Feirir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/FabimonOrdner/Feirir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/cursedShiggy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/FabimonOrdner/cursedShiggy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/attacks/Ember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Battle/attacks/Ember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/attacks/Growl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Battle/attacks/Growl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/attacks/Scary_Face.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Battle/attacks/Scary_Face.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/attacks/Scratch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Battle/attacks/Scratch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,6 +113,9 @@
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\objects" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\maps" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="Battle" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -145,7 +137,7 @@
       <workItem from="1678910082575" duration="1455000" />
       <workItem from="1679553934541" duration="2696000" />
       <workItem from="1681884555709" duration="4984000" />
-      <workItem from="1683698925406" duration="47022000" />
+      <workItem from="1683698925406" duration="60816000" />
     </task>
     <task id="LOCAL-00001" summary="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
       <created>1679533924557</created>
@@ -308,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683889151814</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="V0.9.7.2.2">
+      <created>1684151711233</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1684151711233</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
