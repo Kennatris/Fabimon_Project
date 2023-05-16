@@ -25,26 +25,25 @@ public class battle {
         if (prio.equals("own")) {
             if (phase == 0) {
                 gameH.enemy_Fabimon.currentHp -= calculateOwnDamage();
-                gameH.ui.currentDialogue[0] = gameH.own_Fabimon.name + " nutzt " + gameH.own_Fabimon.move[gameH.ui.commandNum].name + ".";
             } else if (phase == 1) {
                 gameH.own_Fabimon.currentHp -= calculateEnemyDamage(enemyattack);
-                gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon.name + " nutzt " + gameH.enemy_Fabimon.move[enemyattack].name + ".";
+
             }else if(phase == 2){
                 gameH.battleSubState = gameH.mainMenu;
                 phase = -1;
                 gameH.ui.currentDialogue[0] = "Was willst du machen?";
+                gameH.ui.currentDialogue[1] = "";
             }
         } else if (prio.equals("enemy")) {
             if (phase == 0) {
                 gameH.own_Fabimon.currentHp -= calculateEnemyDamage(enemyattack);
-                gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon.name + " nutzt " + gameH.enemy_Fabimon.move[enemyattack].name + ".";
             } else if (phase == 1) {
                 gameH.enemy_Fabimon.currentHp -= calculateOwnDamage();
-                gameH.ui.currentDialogue[0] = gameH.own_Fabimon.name + " nutzt " + gameH.own_Fabimon.move[gameH.ui.commandNum].name + ".";
             }else if(phase == 2){
                 gameH.battleSubState = gameH.mainMenu;
                 phase = -1;
                 gameH.ui.currentDialogue[0] = "Was willst du machen?";
+                gameH.ui.currentDialogue[1] = "";
             }
         }
     }
@@ -58,6 +57,15 @@ public class battle {
         }
         int rand = (int) (Math.random() * 4);
         return rand;
+    }
+    private int volltreffer(){
+        int ran = (int)(Math.random()*101);
+        if(ran <= 6){
+            gameH.ui.currentDialogue[1] = "Ein Volltreffer!";
+            return 2;
+        }
+        gameH.ui.currentDialogue[1] = "";
+        return 1;
     }
 
     private String priority(int i) {
@@ -85,13 +93,13 @@ public class battle {
     public int calculateOwnDamage() {
 
         if (gameH.own_Fabimon.move[gameH.ui.commandNum].category.equals("special")) {
-
             double basisschaden = gameH.own_Fabimon.move[gameH.ui.commandNum].power;
             int zr0 = ((gameH.own_Fabimon.level * 2) / 5) + 2;
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             int zr1 = (zr0 * gameH.own_Fabimon.sp_atk) / (50 * gameH.enemy_Fabimon.sp_dev) + 2;
-            double zr2 = zr1 * z;
+            double zr2 = zr1 * z * volltreffer();
+            gameH.ui.currentDialogue[0] = gameH.own_Fabimon.name + " nutzt " + gameH.own_Fabimon.move[gameH.ui.commandNum].name + ".";
             return (int) zr2;
 
         } else if (gameH.own_Fabimon.move[gameH.ui.commandNum].category.equals("physical")) {
@@ -100,11 +108,13 @@ public class battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             int zr1 = (zr0 * gameH.own_Fabimon.atk) / (50 * gameH.enemy_Fabimon.dev) + 2;
-            double zr2 = zr1 * z;
+            double zr2 = zr1 * z * volltreffer();
+            gameH.ui.currentDialogue[0] = gameH.own_Fabimon.name + " nutzt " + gameH.own_Fabimon.move[gameH.ui.commandNum].name + ".";
             return (int) zr2;
         } else if (gameH.own_Fabimon.move[gameH.ui.commandNum].category.equals("status")) {
-
+            gameH.ui.currentDialogue[0] = gameH.own_Fabimon.name + " nutzt " + gameH.own_Fabimon.move[gameH.ui.commandNum].name + ".";
         }
+
         return 0;
     }
 
@@ -116,7 +126,8 @@ public class battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             int zr1 = (zr0 * gameH.enemy_Fabimon.sp_atk) / (50 * gameH.own_Fabimon.sp_dev) + 2;
-            double zr2 = zr1 * z;
+            double zr2 = zr1 * z* volltreffer();
+            gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon.name + " nutzt " + gameH.enemy_Fabimon.move[enemyattack].name + ".";
             return (int) zr2;
         } else if (gameH.enemy_Fabimon.move[i].category.equals("physical")) {
 
@@ -125,11 +136,13 @@ public class battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             int zr1 = (zr0 * gameH.enemy_Fabimon.atk) / (50 * gameH.own_Fabimon.dev) + 2;
-            double zr2 = zr1 * z;
+            double zr2 = zr1 * z *volltreffer();
+            gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon.name + " nutzt " + gameH.enemy_Fabimon.move[enemyattack].name + ".";
             return (int) zr2;
         } else if (gameH.enemy_Fabimon.move[i].category.equals("status")) {
-
+            gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon.name + " nutzt " + gameH.enemy_Fabimon.move[enemyattack].name + ".";
         }
+
         return 0;
     }
 }
