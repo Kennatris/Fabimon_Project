@@ -1,5 +1,6 @@
 package main;
 
+import Battle.battle;
 import entity.*;
 import main.control.KeyHandler;
 import objects.SuperObject;
@@ -69,6 +70,7 @@ public class GameHandler extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
+    public battle battle = new battle(this);
 
     // ENTITY AND OBJECT
     public Player player;
@@ -196,6 +198,10 @@ public class GameHandler extends JPanel implements Runnable {
             if (keyH.kPressed) {
                 gameState = battleState;
                 battleSubState = mainMenu;
+                for(int i = 0; i<ui.currentDialogue.length; i++){
+                    ui.currentDialogue[i] = "";
+                }
+
                 int rand = (int)(Math.random()*4);
                 if(rand == 0){
                     fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
@@ -848,18 +854,8 @@ public class GameHandler extends JPanel implements Runnable {
                         break;
                 }
                 }else if(battleSubState == attackMenu){
-                    switch (ui.commandNum) {
-                        case 0:
-                            break;
-                        case 1:
-                            ui.battleText = "Fabimon";
-                            break;
-                        case 2:
-                            ui.battleText = "Bag";
-                            break;
-                        case 3:
-                            break;
-                    }
+                    battle.battleRound();
+                    battle.phase++;
                 }
                 bumber=1;
             }

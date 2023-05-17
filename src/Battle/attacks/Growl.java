@@ -1,4 +1,4 @@
-package entity.attacks;
+package Battle.attacks;
 
 import entity.Attack;
 import main.GameHandler;
@@ -14,5 +14,6 @@ public class Growl extends Attack {
         accuracy = 100;
         ap = 40;
         priority = 0;
+        name = "growl";
     }
 }
