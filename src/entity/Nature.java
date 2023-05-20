@@ -1,6 +1,6 @@
 package entity;
 
-public class nature {
+public class Nature {
     public final double nature[][] = {{0, 0.9, 1.1, 1, 1, 1},
                                      {0, 0.9, 1, 1.1, 1, 1},
                                      {0, 0.9, 1, 1, 1.1, 1},

@@ -1,7 +1,11 @@
 package main;
 
-import Battle.battle;
-import entity.*;
+import Battle.Attack;
+import Battle.Battle;
+import entity.Entity;
+import entity.Fabimon;
+import entity.Player;
+import entity.PlayerDummy;
 import main.control.KeyHandler;
 import objects.SuperObject;
 import settings.SaveCompiler;
@@ -70,7 +74,7 @@ public class GameHandler extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
-    public battle battle = new battle(this);
+    public Battle battle = new Battle(this);
 
     // ENTITY AND OBJECT
     public Player player;

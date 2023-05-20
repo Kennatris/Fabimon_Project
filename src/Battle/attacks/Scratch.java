@@ -1,6 +1,6 @@
 package Battle.attacks;
 
-import entity.Attack;
+import Battle.Attack;
 import main.GameHandler;
 
 public class Scratch extends Attack {
@@ -16,5 +16,7 @@ public class Scratch extends Attack {
         priority = 0;
         ap = 35;
         name = "Scratch";
+        trifftImmer = false;
+        target = "enemy";
     }
 }

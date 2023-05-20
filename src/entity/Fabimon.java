@@ -1,11 +1,12 @@
 package entity;
 
+import Battle.Attack;
 import Battle.attacks.Ember;
 import Battle.attacks.Growl;
 import Battle.attacks.Scary_Face;
 import Battle.attacks.Scratch;
+import entity.FabimonOrdner.CursedShiggy;
 import entity.FabimonOrdner.Feirir;
-import entity.FabimonOrdner.cursedShiggy;
 import main.GameHandler;
 
 import java.io.BufferedReader;
@@ -14,7 +15,7 @@ import java.io.FileReader;
 public class Fabimon extends Entity {
 
     public Fabimon tempFabimon;
-    nature nat = new nature();
+    Nature nat = new Nature();
     public int baseStats[] = new int[6];
     public int giveEV[] = new int[6];
     public int haveEV[] = {0, 0, 0, 0, 0, 0};
@@ -30,6 +31,7 @@ public class Fabimon extends Entity {
     public int init;
     public String type;
     public String nature;
+    public int haveEffect[] = {0, 0, 0, 0, 0, 0, 0};
     public Attack move[] = new Attack[4];
     public String item;
     public String gender;
@@ -52,7 +54,7 @@ public class Fabimon extends Entity {
 
         }else if(fabimonName.equals("cursed Shiggy")){
             if(fabimonEvo == 0){
-                tempFabimon = new cursedShiggy(gameH, fabimonName, fabimonEvo, plevel);
+                tempFabimon = new CursedShiggy(gameH, fabimonName, fabimonEvo, plevel);
                 getBaseInfo(fabimonName, fabimonEvo);
                 setFabimonInfo(plevel);
             }

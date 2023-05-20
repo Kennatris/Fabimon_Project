@@ -1,4 +1,4 @@
-package entity;
+package Battle;
 
 import main.GameHandler;
 import main.ImageHandler;
@@ -15,9 +15,11 @@ public class Attack{
     public String category;
     public int ap;
     public int priority;
-    public int accUp;
-    public int accDown;
+    public int effect[] = {0, 0, 0, 0, 0, 0, 0};
+    //{dodge, acc, atk, dev, sp_atk, sp_dev, init};
+    public String target;
     public String name;
+    public Boolean trifftImmer;
     public Attack(GameHandler gameH){
         this.gameH = gameH;
     }

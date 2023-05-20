@@ -49,7 +49,7 @@ public class Entity {
 
     }
 
-    public void loadDialouge(String fileName) {
+    public void loadDialogue(String fileName) {
         try {
 
             // https://www.geeksforgeeks.org/java-io-bufferedreader-class-java/
@@ -61,13 +61,13 @@ public class Entity {
 
             int dialogueNum = 0;
             while (dialogueNum < 20) {
-
                 String line = br.readLine();
 
-                String[] lineSplit = line.split("~");
+                    String[] lineSplit = line.split("~");
 
-                System.arraycopy(lineSplit, 0, dialogues[dialogueNum], 0, 3);
-                dialogueNum++;
+                    System.arraycopy(lineSplit, 0, dialogues[dialogueNum], 0, 3);
+                    dialogueNum++;
+
             }
 
             br.close();
