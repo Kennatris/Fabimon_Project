@@ -84,7 +84,6 @@ public class GameHandler extends JPanel implements Runnable {
     public int npcInteracted;
     public Fabimon fabimon = new Fabimon(this);
     public Attack attack = new Attack(this);
-    public Fabimon own_Fabimon;
     public Fabimon enemy_Fabimon;
 
     // GAME STATE
@@ -109,6 +108,7 @@ public class GameHandler extends JPanel implements Runnable {
     }
 
     public void setupGame() {
+        player = new Player(this, keyH);
         // initializer
         saveC.SaveReader(this, save);
         myGUI = new GUI(fullscreen, screenWidth, screenHeight);
@@ -121,7 +121,6 @@ public class GameHandler extends JPanel implements Runnable {
         myGUI.frame.pack();
         myGUI.openWindow();
 
-        player = new Player(this, keyH);
 
         aSetter.setObject();
         aSetter.setNPC("createNPC");
@@ -212,25 +211,22 @@ public class GameHandler extends JPanel implements Runnable {
                     enemy_Fabimon = fabimon.tempFabimon;
                     fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
                     player.fabimonTeam[0] = fabimon.tempFabimon;
-                    own_Fabimon = player.fabimonTeam[0];
                 }else if(rand == 1){
                     fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
                     enemy_Fabimon = fabimon.tempFabimon;
                     fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
                     player.fabimonTeam[0] = fabimon.tempFabimon;
-                    own_Fabimon = player.fabimonTeam[0];
                 }else if(rand == 2){
                     fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
                     enemy_Fabimon = fabimon.tempFabimon;
                     fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
                     player.fabimonTeam[0] = fabimon.tempFabimon;
-                    own_Fabimon = player.fabimonTeam[0];
                 }else if(rand == 3){
                     fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
                     enemy_Fabimon = fabimon.tempFabimon;
                     fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
                     player.fabimonTeam[0] = fabimon.tempFabimon;
-                    own_Fabimon = player.fabimonTeam[0];
+
                 }
 
                     saveC.SaveWriter(this, save);

@@ -90,6 +90,64 @@ public class SaveCompiler extends Settings{
                                 System.out.println(">>> End of System Settings <<<");
                             }
                             break;
+                        default:
+                            for(int i = 1; i<gameH.player.fabimonTeam.length+1; i++){
+
+                                    unsavedString[i][0] = line;
+                                    line = br.readLine();
+                                    unsavedString[i][1] = line;
+                                    line = br.readLine();
+                                    unsavedString[i][2] = line;
+                                    line =  br.readLine();
+                                    unsavedString[i][3] = line;
+                                    line =  br.readLine();
+                                    unsavedInt[i][0] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][1] = Integer.parseInt(line);
+                                    line = br.readLine();
+                                    unsavedInt[i][2] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][3] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][4] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][5] = Integer.parseInt(line);
+                                    line = br.readLine();
+                                    unsavedInt[i][6] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][7] = Integer.parseInt(line);
+                                    line =   br.readLine();
+                                    unsavedInt[i][8] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][9] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][10] = Integer.parseInt(line);
+                                    line =   br.readLine();
+                                    unsavedInt[i][11] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][12] = Integer.parseInt(line);
+                                    line =   br.readLine();
+                                    unsavedInt[i][13] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][14] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedString[i][4] = line;
+                                    line =  br.readLine();
+                                    unsavedString[i][5] = line;
+                                    line =  br.readLine();
+                                    unsavedString[i][6] = line;
+                                    line = br.readLine();
+                                    unsavedString[i][7] = line;
+                                    line =  br.readLine();
+                                    unsavedInt[i][15] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][16] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][17] = Integer.parseInt(line);
+                                    line =  br.readLine();
+                                    unsavedInt[i][18] = Integer.parseInt(line);
+                            }
+                            parameter +=26;
                     }
                 }
 
@@ -120,7 +178,6 @@ public class SaveCompiler extends Settings{
                         }
                     }
                 }
-
                 if (line == null) {
                     last = true;
                 } else {
@@ -135,6 +192,31 @@ public class SaveCompiler extends Settings{
         }
 
         installSettings(gameH, unsavedBoolean, unsavedInt, unsavedFloat, unsavedString);
+        String psinfo[] = new String[4];
+        String move[] = new String[4];
+        int pap[] =new int[4];
+        int pev[] = new int[6];
+        int piv[] = new int[6];
+        int pinfo[] = new int[3];
+        for(int i = 1; i< gameH.player.fabimonTeam.length+1; i++) {
+
+           if(unsavedString[i][0] != null) {
+               for (int j = 0; j < 4; j++) {
+                   psinfo[j] = unsavedString[i][j];
+                   move[j] = unsavedString[i][4 + j];
+                   System.out.println(move[j]);
+                   pap[j] = unsavedInt[i][15 + j];
+               }
+               for (int j = 0; j < 3; j++) {
+                   pinfo[j] = unsavedInt[i][j];
+               }
+               for (int j = 0; j < 6; j++) {
+                   pev[j] = unsavedInt[i][3 + j];
+                   piv[j] = unsavedInt[i][9 + j];
+               }
+               gameH.fabimon.setPlayerFabimon(i, psinfo, move, pap, pev, piv, pinfo);
+           }
+        }
     }
 
     public void SaveWriter(GameHandler gameH, String fileName) {
@@ -175,9 +257,13 @@ public class SaveCompiler extends Settings{
                         bw.newLine();
                         bw.write(gameH.player.fabimonTeam[i].gender);
                         bw.newLine();
+                        bw.write(gameH.player.fabimonTeam[i].nature);
+                        bw.newLine();
                         bw.write(String.valueOf(gameH.player.fabimonTeam[i].level));
                         bw.newLine();
                         bw.write(String.valueOf(gameH.player.fabimonTeam[i].currentHp));
+                        bw.newLine();
+                        bw.write(String.valueOf(gameH.player.fabimonTeam[i].currentEp));
                         bw.newLine();
                         for (int j = 0; j < gameH.player.fabimonTeam[i].haveEV.length; j++) {
                             bw.write(String.valueOf(gameH.player.fabimonTeam[i].haveEV[j]));
@@ -191,12 +277,20 @@ public class SaveCompiler extends Settings{
                             bw.write(gameH.player.fabimonTeam[i].move[j].name);
                             bw.newLine();
                         }
+                        for(int j = 0; j< gameH.player.fabimonTeam[i].move.length; j++){
+                            bw.write(String.valueOf(gameH.player.fabimonTeam[i].move[j].ap));
+                            bw.newLine();
+                        }
                     }else{
                         bw.write("nichts");
                         bw.newLine();
                         bw.write("nichts");
                         bw.newLine();
                         bw.write("nichts");
+                        bw.newLine();
+                        bw.write("nichts");
+                        bw.newLine();
+                        bw.write("1");
                         bw.newLine();
                         bw.write("1");
                         bw.newLine();
@@ -212,6 +306,10 @@ public class SaveCompiler extends Settings{
                         }
                         for (int j = 0; j < 4; j++) {
                             bw.write("nichts");
+                            bw.newLine();
+                        }
+                        for (int j = 0; j < 4; j++) {
+                            bw.write("0");
                             bw.newLine();
                         }
                     }
