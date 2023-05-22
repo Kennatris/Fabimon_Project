@@ -1,6 +1,6 @@
 package Battle.attacks;
 
-import entity.Attack;
+import Battle.Attack;
 import main.GameHandler;
 
 public class Scary_Face extends Attack {
@@ -13,8 +13,16 @@ public class Scary_Face extends Attack {
         accuracy = 100;
         ap = 10;
         type = "Normal";
-        accDown = 2;
         priority = 0;
-        name = "Scary face";
+        name = "Scary_face";
+        trifftImmer = false;
+        target = "enemy";
+        effect[6] = -2;
+        effect[5] = 0;
+        effect[4] = 0;
+        effect[3] = 0;
+        effect[2] = 0;
+        effect[1] = 0;
+        effect[0] = 0;
     }
 }

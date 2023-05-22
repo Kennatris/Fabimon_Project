@@ -4,9 +4,9 @@ import entity.Fabimon;
 import main.GameHandler;
 import main.ImageHandler;
 
-public class cursedShiggy extends Fabimon {
+public class CursedShiggy extends Fabimon {
     ImageHandler imageH = new ImageHandler();
-    public cursedShiggy(GameHandler gameH, String fabimonName, int fabimonEvo, int plevel){
+    public CursedShiggy(GameHandler gameH, String fabimonName, int fabimonEvo, int plevel){
         super(gameH);
         getcursedShiggyimage();
 

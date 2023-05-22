@@ -7,6 +7,17 @@ keyboard: boolean
 musicVolume: float
 soundVolume: float
 map: String
+fabimon name: String
+fabimon item: String
+fabimon gender: String
+fabimon level: int
+fabimon current Hp: int
+fabimon EV: int, int, int, int, int, int
+fabimon IV: int, int, int, int, int, int
+fabimon move: String, String, String, String
+.
+.
+.
 n*entityInt: int
 n*entityBoolean: int
 n*entityString: int

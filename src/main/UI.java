@@ -27,14 +27,6 @@ public class UI {
         arial_25 = new Font("Arial", Font.PLAIN, 25);
 
     }
-
-    public void showMessage(String text) {
-
-        message = text;
-        messageOn = true;
-
-    }
-
     public void draw(Graphics2D g2) {
 
         this.g2 = g2;

@@ -1,6 +1,6 @@
 package Battle.attacks;
 
-import entity.Attack;
+import Battle.Attack;
 import main.GameHandler;
 
 public class Ember extends Attack {
@@ -17,5 +17,8 @@ public class Ember extends Attack {
         ap = 25;
         priority = 0;
         name = "Ember";
+        trifftImmer = false;
+        target = "enemy";
+
     }
 }

@@ -1,6 +1,6 @@
 package Battle.attacks;
 
-import entity.Attack;
+import Battle.Attack;
 import main.GameHandler;
 
 public class Growl extends Attack {
@@ -15,5 +15,14 @@ public class Growl extends Attack {
         ap = 40;
         priority = 0;
         name = "growl";
+        trifftImmer = false;
+        target = "enemy";
+        effect[6] = 0;
+        effect[5] = 0;
+        effect[4] = 0;
+        effect[3] = 0;
+        effect[2] = -1;
+        effect[1] = 0;
+        effect[0] = 0;
     }
 }

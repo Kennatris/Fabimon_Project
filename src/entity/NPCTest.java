@@ -13,7 +13,7 @@ public class NPCTest extends Entity {
         super(gameH);
 
         getTestNPCImage();
-        loadDialouge("NPCTestDialogues");
+        loadDialogue("NPCTestDialogues");
     }
     public void dialogue(int npc){
         if(npc == 0){

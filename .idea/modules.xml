@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Fabimon.iml" filepath="$PROJECT_DIR$/Fabimon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Fabimon_Project.iml" filepath="$PROJECT_DIR$/Fabimon_Project.iml" />
     </modules>
   </component>
 </project>

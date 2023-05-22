@@ -105,6 +105,7 @@ public class SaveCompiler extends Settings{
                                 line = br.readLine();
                                 unsavedBoolean[i+1][j] = Boolean.parseBoolean(line);
                                 parameter++;
+
                             }
                             for (int j = 0; j < entitySavableFLOAT; j++) {
                                 line = br.readLine();
@@ -166,22 +167,74 @@ public class SaveCompiler extends Settings{
                 bw.newLine();
                 bw.write(String.valueOf(gameH.map));
                 bw.newLine();
-
+                for(int i = 0; i < gameH.player.fabimonTeam.length; i++){
+                    if(gameH.player.fabimonTeam[i] != null) {
+                        bw.write(gameH.player.fabimonTeam[i].name);
+                        bw.newLine();
+                        bw.write(gameH.player.fabimonTeam[i].item);
+                        bw.newLine();
+                        bw.write(gameH.player.fabimonTeam[i].gender);
+                        bw.newLine();
+                        bw.write(String.valueOf(gameH.player.fabimonTeam[i].level));
+                        bw.newLine();
+                        bw.write(String.valueOf(gameH.player.fabimonTeam[i].currentHp));
+                        bw.newLine();
+                        for (int j = 0; j < gameH.player.fabimonTeam[i].haveEV.length; j++) {
+                            bw.write(String.valueOf(gameH.player.fabimonTeam[i].haveEV[j]));
+                            bw.newLine();
+                        }
+                        for (int j = 0; j < gameH.player.fabimonTeam[i].iv.length; j++) {
+                            bw.write(String.valueOf(gameH.player.fabimonTeam[i].iv[j]));
+                            bw.newLine();
+                        }
+                        for (int j = 0; j < gameH.player.fabimonTeam[i].move.length; j++) {
+                            bw.write(gameH.player.fabimonTeam[i].move[j].name);
+                            bw.newLine();
+                        }
+                    }else{
+                        bw.write("nichts");
+                        bw.newLine();
+                        bw.write("nichts");
+                        bw.newLine();
+                        bw.write("nichts");
+                        bw.newLine();
+                        bw.write("1");
+                        bw.newLine();
+                        bw.write("1");
+                        bw.newLine();
+                        for (int j = 0; j < 6; j++) {
+                            bw.write("0");
+                            bw.newLine();
+                        }
+                        for (int j = 0; j < 6; j++) {
+                            bw.write("0");
+                            bw.newLine();
+                        }
+                        for (int j = 0; j < 4; j++) {
+                            bw.write("nichts");
+                            bw.newLine();
+                        }
+                    }
+                }
                 // ENTITY SHIT = FABIO SHIT
                 // NPC SHIT = FABIO SHIT
                 for (int i = 0; i < gameH.npc.length; i++) {
                     if (gameH.npc[i] != null) {
                         for (int j = 0; j < entitySavableINT; j++) {
                             //unsavedInt[i+1][j];
+                            bw.write(String.valueOf(unsavedInt[i+1][j]));
                         }
                         for (int j = 0; j < entitySavableBOOLEAN; j++) {
                             //unsavedBoolean[i+1][j];
+                            bw.write(String.valueOf(unsavedBoolean[i+1][j]));
                         }
                         for (int j = 0; j < entitySavableFLOAT; j++) {
                             //unsavedFloat[i+1][j];
+                            bw.write(String.valueOf(unsavedFloat[i+1][j]));
                         }
                         for (int j = 0; j < entitySavableSTRING; j++) {
                             //unsavedString[i+1][j];
+                            bw.write(String.valueOf(unsavedString[i+1][j]));
                         }
                     }
                 }
@@ -193,19 +246,15 @@ public class SaveCompiler extends Settings{
                     System.out.println("FileLocation: " + fileLocation);
                     System.out.println(">>> Data has been Written <<<");
                 }
-
             } else {
                 if (gameH.debugMode) {
                     System.out.println("Error-WriteFile: file does not exist");
                 }
             }
-
         } catch (Exception e) {
             if (gameH.debugMode) {
                 System.out.println("Error-WriteFile: " + e);
             }
         }
-
     }
-
 }

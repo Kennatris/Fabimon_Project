@@ -9,13 +9,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Player extends Entity{
-
     KeyHandler keyH;
     ImageHandler imageH = new ImageHandler();
     public BufferedImage image;
-
     public Boolean beingApproached = false;
-
     public int screenX;
     public int screenY;
     int standCounter = 0;
