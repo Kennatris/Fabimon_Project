@@ -40,6 +40,7 @@ public class Entity {
     int timer;
     int approachphase = 0;
     int innactiveTimer;
+    Boolean defeated = false;
 
     public Entity(GameHandler gameH) {
         this.gameH = gameH;

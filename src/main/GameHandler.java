@@ -211,23 +211,30 @@ public class GameHandler extends JPanel implements Runnable {
                     fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
                     enemy_Fabimon = fabimon.tempFabimon;
                     fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                    own_Fabimon = fabimon.tempFabimon;
+                    player.fabimonTeam[0] = fabimon.tempFabimon;
+                    own_Fabimon = player.fabimonTeam[0];
                 }else if(rand == 1){
                     fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
                     enemy_Fabimon = fabimon.tempFabimon;
                     fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                    own_Fabimon = fabimon.tempFabimon;
+                    player.fabimonTeam[0] = fabimon.tempFabimon;
+                    own_Fabimon = player.fabimonTeam[0];
                 }else if(rand == 2){
                     fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
                     enemy_Fabimon = fabimon.tempFabimon;
                     fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                    own_Fabimon = fabimon.tempFabimon;
+                    player.fabimonTeam[0] = fabimon.tempFabimon;
+                    own_Fabimon = player.fabimonTeam[0];
                 }else if(rand == 3){
                     fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
                     enemy_Fabimon = fabimon.tempFabimon;
                     fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                    own_Fabimon = fabimon.tempFabimon;
+                    player.fabimonTeam[0] = fabimon.tempFabimon;
+                    own_Fabimon = player.fabimonTeam[0];
                 }
+
+                    saveC.SaveWriter(this, save);
+
                }
             if (keyH.tPressed) {
                 timerMode = !timerMode;

@@ -42,14 +42,6 @@ public class Battle {
                 }
 
             } else if (phase == 2) {
-                for (int i = 0; i < gameH.own_Fabimon.haveEffect.length; i++) {
-                    System.out.print(gameH.own_Fabimon.haveEffect[i] + " ");
-                }
-                System.out.println();
-                for (int i = 0; i < gameH.enemy_Fabimon.haveEffect.length; i++) {
-                    System.out.print(gameH.enemy_Fabimon.haveEffect[i] + " ");
-                }
-                System.out.println();
                 gameH.battleSubState = gameH.mainMenu;
                 phase = -1;
                 gameH.ui.currentDialogue[0] = "Was willst du machen?";
@@ -145,14 +137,17 @@ public class Battle {
     }
 
     public int calculateOwnDamage() {
-
+        double typeBonus = 1;
+        if(gameH.own_Fabimon.type1.equals(gameH.own_Fabimon.move[gameH.ui.commandNum].type) || gameH.own_Fabimon.type2.equals(gameH.own_Fabimon.move[gameH.ui.commandNum].type)){
+            typeBonus = 1.5;
+        }
         if (gameH.own_Fabimon.move[gameH.ui.commandNum].category.equals("special")) {
             double basisschaden = gameH.own_Fabimon.move[gameH.ui.commandNum].power;
             int zr0 = ((gameH.own_Fabimon.level * 2) / 5) + 2;
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.own_Fabimon.sp_atk * getStep(gameH.own_Fabimon.haveEffect[4])) / (50 * gameH.enemy_Fabimon.sp_dev * getStep(gameH.enemy_Fabimon.haveEffect[5])) + 2;
-            double zr2 = (int) zr1 * z * volltreffer();
+            double zr2 = (int) zr1 * z * volltreffer()*typeBonus;
             gameH.ui.currentDialogue[0] = gameH.own_Fabimon.name + " nutzt " + gameH.own_Fabimon.move[gameH.ui.commandNum].name + ".";
             return (int) zr2;
         } else if (gameH.own_Fabimon.move[gameH.ui.commandNum].category.equals("physical")) {
@@ -161,7 +156,7 @@ public class Battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.own_Fabimon.atk * getStep(gameH.own_Fabimon.haveEffect[2])) / (50 * gameH.enemy_Fabimon.dev * getStep(gameH.enemy_Fabimon.haveEffect[3])) + 2;
-            double zr2 = (int) zr1 * z * volltreffer();
+            double zr2 = (int) zr1 * z * volltreffer()*typeBonus;
             gameH.ui.currentDialogue[0] = gameH.own_Fabimon.name + " nutzt " + gameH.own_Fabimon.move[gameH.ui.commandNum].name + ".";
             return (int) zr2;
         } else if (gameH.own_Fabimon.move[gameH.ui.commandNum].category.equals("status")) {
@@ -251,6 +246,10 @@ public class Battle {
         }
     }
     public int testCalculateEnemyDamage(int i){
+        double typeBonus = 1;
+        if(gameH.enemy_Fabimon.type1.equals(gameH.own_Fabimon.move[enemyattack].type) || gameH.enemy_Fabimon.type2.equals(gameH.own_Fabimon.move[enemyattack].type)){
+            typeBonus = 1.5;
+        }
         if (gameH.enemy_Fabimon.move[i].category.equals("special")) {
 
             double basisschaden = gameH.enemy_Fabimon.move[i].power;
@@ -258,7 +257,7 @@ public class Battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.enemy_Fabimon.sp_atk * getStep(gameH.enemy_Fabimon.haveEffect[4])) / (50 * gameH.own_Fabimon.sp_dev * getStep(gameH.own_Fabimon.haveEffect[5])) + 2;
-            double zr2 = (int) zr1 * z * volltreffer();
+            double zr2 = (int) zr1 * z * volltreffer()*typeBonus;
             gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon.name + " nutzt " + gameH.enemy_Fabimon.move[enemyattack].name + ".";
             return (int) zr2;
         } else if (gameH.enemy_Fabimon.move[i].category.equals("physical")) {
@@ -267,7 +266,7 @@ public class Battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.enemy_Fabimon.atk * getStep(gameH.enemy_Fabimon.haveEffect[2])) / (50 * gameH.own_Fabimon.dev * getStep(gameH.own_Fabimon.haveEffect[3])) + 2;
-            double zr2 = (int) zr1 * z * volltreffer();
+            double zr2 = (int) zr1 * z * volltreffer()*typeBonus;
             gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon.name + " nutzt " + gameH.enemy_Fabimon.move[enemyattack].name + ".";
             return (int) zr2;
         } else if (gameH.enemy_Fabimon.move[enemyattack].category.equals("status")) {

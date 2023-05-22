@@ -19,7 +19,7 @@ public class Fabimon extends Entity {
     public int baseStats[] = new int[6];
     public int giveEV[] = new int[6];
     public int haveEV[] = {0, 0, 0, 0, 0, 0};
-    public String sInfo[] = new String[2];
+    public String sInfo[] = new String[3];
     public String name;
     public int level;
     public int hp;
@@ -29,7 +29,8 @@ public class Fabimon extends Entity {
     public int dev;
     public int sp_dev;
     public int init;
-    public String type;
+    public String type1;
+    public String type2;
     public String nature;
     public int haveEffect[] = {0, 0, 0, 0, 0, 0, 0};
     public Attack move[] = new Attack[4];
@@ -75,9 +76,27 @@ public class Fabimon extends Entity {
         double berechnung = (int)statdurch100*nature;
         return (int)berechnung;
     }
+    private void setIv(){
+        for(int i = 0; i<iv.length; i++){
+            int temp = (int)(Math.random()*32);
+            tempFabimon.iv[i] = temp;
+        }
+        tempFabimon.move[3] = new Scratch(gameH);
+        tempFabimon.move[1] = new Ember(gameH);
+        tempFabimon.move[2] = new Scary_Face(gameH);
+        tempFabimon.move[0] = new Growl(gameH);
+    }
     void setFabimonInfo(int plevel) {
+        setIv();
+        double zahl = Math.random() * 2;
+        if(zahl < 0.5){
+            tempFabimon.gender = "Female";
+        }else{
+            tempFabimon.gender = "Male";
+        }
         tempFabimon.name = sInfo[0];
-        tempFabimon.type = sInfo[1];
+        tempFabimon.type1 = sInfo[1];
+        tempFabimon.type2 = sInfo[2];
         tempFabimon.level = plevel;
         tempFabimon.nature = nat.setNature();
         tempFabimon.hp = berechneHP();
@@ -88,20 +107,6 @@ public class Fabimon extends Entity {
         tempFabimon.init = berechneStat(5);;
         tempFabimon.item = "none";
         tempFabimon.currentHp = tempFabimon.hp;
-        double zahl = Math.random() * 2;
-        if(zahl < 0.5){
-            tempFabimon.gender = "Female";
-        }else{
-            tempFabimon.gender = "Male";
-        }
-        for(int i = 0; i<iv.length; i++){
-            int temp = (int)(Math.random()*32);
-            tempFabimon.iv[i] = temp;
-        }
-        tempFabimon.move[3] = new Scratch(gameH);
-        tempFabimon.move[1] = new Ember(gameH);
-        tempFabimon.move[2] = new Scary_Face(gameH);
-        tempFabimon.move[0] = new Growl(gameH);
     }
 
     public void getBaseInfo(String fileName, int evo) {
@@ -113,18 +118,18 @@ public class Fabimon extends Entity {
             BufferedReader br = new BufferedReader(fr);
 
             int statNum = 0;
-            while (statNum < 14) {
+            while (statNum < 15) {
 
                 String line = br.readLine();
 
                 String[] lineSplit = line.split(",");
 
-                if(statNum == 0 || statNum == 1){
+                if(statNum == 0 || statNum == 1 || statNum == 2){
                     sInfo[statNum] = lineSplit[0];
-                }else if(statNum > 1 && statNum < 8){
-                    baseStats[statNum - 2] = Integer.parseInt(lineSplit[evo]);
-                }else if(statNum > 7 && statNum < 14){
-                    giveEV[statNum - 8] = Integer.parseInt(lineSplit[evo]);
+                }else if(statNum > 2 && statNum < 9){
+                    baseStats[statNum - 3] = Integer.parseInt(lineSplit[evo]);
+                }else if(statNum > 8 && statNum < 15){
+                    giveEV[statNum - 9] = Integer.parseInt(lineSplit[evo]);
                 }
                 statNum++;
             }
