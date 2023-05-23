@@ -21,6 +21,8 @@ public class Fabimon extends Entity {
     public int haveEV[] = {0, 0, 0, 0, 0, 0};
     public String sInfo[] = new String[3];
     public String name;
+    public int baseEp;
+    public int currentEp;
     public int level;
     public int hp;
     public int currentHp;
@@ -46,18 +48,21 @@ public class Fabimon extends Entity {
     }
 
     public void createFabimon(String fabimonName, int fabimonEvo, int plevel) {
+
         if(fabimonName.equals("Feirir")){
             if(fabimonEvo == 0){
-                tempFabimon = new Feirir(gameH, fabimonName, fabimonEvo, plevel);
+                tempFabimon = new Feirir(gameH);
                 getBaseInfo(fabimonName, fabimonEvo);
                 setFabimonInfo(plevel);
+                setStats();
             }
 
         }else if(fabimonName.equals("cursed Shiggy")){
             if(fabimonEvo == 0){
-                tempFabimon = new CursedShiggy(gameH, fabimonName, fabimonEvo, plevel);
+                tempFabimon = new CursedShiggy(gameH);
                 getBaseInfo(fabimonName, fabimonEvo);
                 setFabimonInfo(plevel);
+                setStats();
             }
         }
     }
@@ -99,16 +104,53 @@ public class Fabimon extends Entity {
         tempFabimon.type2 = sInfo[2];
         tempFabimon.level = plevel;
         tempFabimon.nature = nat.setNature();
+
+    }
+    void setStats(){
         tempFabimon.hp = berechneHP();
         tempFabimon.atk = berechneStat(1);
-        tempFabimon.dev = berechneStat(2);;
-        tempFabimon.sp_atk = berechneStat(3);;
-        tempFabimon.sp_dev = berechneStat(4);;
-        tempFabimon.init = berechneStat(5);;
+        tempFabimon.dev = berechneStat(2);
+        tempFabimon.sp_atk = berechneStat(3);
+        tempFabimon.sp_dev = berechneStat(4);
+        tempFabimon.init = berechneStat(5);
         tempFabimon.item = "none";
         tempFabimon.currentHp = tempFabimon.hp;
     }
-
+    public void setPlayerFabimon(int index, String psinfo[], String pmove[], int pap[], int pev[], int piv[], int pinfo[]){
+        createFabimon(psinfo[0], 0, pinfo[0]);
+        for(int i = 0; i<pev.length; i++) {
+            tempFabimon.haveEV[i] = pev[i];
+            tempFabimon.iv[i] = piv[i];
+        }
+        for(int i = 0; i<pmove.length; i++){
+            setMove(pmove[i], i);
+            tempFabimon.move[i].ap = pap[i];
+        }
+        tempFabimon.nature = psinfo[3];
+        tempFabimon.item = psinfo[1];
+        tempFabimon.gender = psinfo[2];
+        tempFabimon.currentEp = pinfo[2];
+        tempFabimon.currentHp = pinfo[1];
+        recalculate();
+        gameH.player.fabimonTeam[index] = tempFabimon;
+    }
+    private void recalculate(){
+        tempFabimon.hp = berechneHP();
+        tempFabimon.atk = berechneStat(1);
+        tempFabimon.dev = berechneStat(2);
+        tempFabimon.sp_atk = berechneStat(3);
+        tempFabimon.sp_dev = berechneStat(4);
+        tempFabimon.init = berechneStat(5);
+    }
+    private void setMove(String pmove, int moveIndex){
+        switch(pmove){
+            case "Scratch": tempFabimon.move[moveIndex] = new Scratch(gameH); break;
+            case "Ember": tempFabimon.move[moveIndex]  = new Ember(gameH); break;
+            case "Scary_face": tempFabimon.move[moveIndex]  = new Scary_Face(gameH); break;
+            case "Growl": tempFabimon.move[moveIndex]  = new Growl(gameH); break;
+            default: break;
+        }
+    }
     public void getBaseInfo(String fileName, int evo) {
         try {
 
@@ -118,7 +160,7 @@ public class Fabimon extends Entity {
             BufferedReader br = new BufferedReader(fr);
 
             int statNum = 0;
-            while (statNum < 15) {
+            while (statNum < 16) {
 
                 String line = br.readLine();
 
@@ -129,7 +171,9 @@ public class Fabimon extends Entity {
                 }else if(statNum > 2 && statNum < 9){
                     baseStats[statNum - 3] = Integer.parseInt(lineSplit[evo]);
                 }else if(statNum > 8 && statNum < 15){
-                    giveEV[statNum - 9] = Integer.parseInt(lineSplit[evo]);
+                    tempFabimon.giveEV[statNum - 9] = Integer.parseInt(lineSplit[evo]);
+                }else if(statNum == 15){
+                    tempFabimon.baseEp = Integer.parseInt(lineSplit[evo]);
                 }
                 statNum++;
             }

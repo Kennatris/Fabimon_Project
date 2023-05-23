@@ -244,7 +244,7 @@ public class CollisionChecker {
 
         for(int i = 0; i < target.length; i++) {
 
-            if(target[i] != null && target[i].checkingVision && gameH.map == target[i].map && target[i].trainer) {
+            if(target[i] != null && target[i].checkingVision && gameH.map == target[i].map && target[i].trainer && !target[i].defeated) {
 
                 // Get entity's solid area position
                 entity.solidArea.x = entity.worldX + entity.solidArea.x;

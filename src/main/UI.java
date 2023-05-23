@@ -663,32 +663,32 @@ public class UI {
             x = gameH.myGUI.frame.getWidth() - buttonWidthScaling;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling;
             if (commandNum == 3) {
-                g2.drawImage(gameH.own_Fabimon.move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.own_Fabimon.move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
             //Fabimob button
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2;
             if (commandNum == 1) {
-                g2.drawImage(gameH.own_Fabimon.move[1].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[1].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.own_Fabimon.move[1].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[1].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
             //Run button
             x = gameH.myGUI.frame.getWidth() - (2 * buttonWidthScaling);
             y = gameH.myGUI.frame.getHeight() - buttonYScaling;
             if (commandNum == 2) {
-                g2.drawImage(gameH.own_Fabimon.move[2].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[2].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.own_Fabimon.move[2].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[2].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
             //Fight button
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2;
             if (commandNum == 0) {
-                g2.drawImage(gameH.own_Fabimon.move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.own_Fabimon.move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
         }
         if (!gameH.fullscreen) {
@@ -702,34 +702,34 @@ public class UI {
             x = gameH.myGUI.frame.getWidth() - buttonWidthScaling - minWidth;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling - minHeight;
             if (commandNum == 3) {
-                g2.drawImage(gameH.own_Fabimon.move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.own_Fabimon.move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
             //Fabimob button
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2 - minHeight;
             if (commandNum == 1) {
-                g2.drawImage(gameH.own_Fabimon.move[1].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[1].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.own_Fabimon.move[1].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[1].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
             //Run button
             x = gameH.myGUI.frame.getWidth() - (2 * buttonWidthScaling) - minWidth;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling - minHeight;
             if (commandNum == 2) {
-                g2.drawImage(gameH.own_Fabimon.move[2].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[2].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.own_Fabimon.move[2].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[2].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
             //Fight button
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2 - minHeight;
             if (commandNum == 0) {
-                g2.drawImage(gameH.own_Fabimon.move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.own_Fabimon.move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
         }
     }
@@ -757,39 +757,18 @@ public class UI {
         int fabimonWidth = gameH.myGUI.frame.getWidth() / 4;
         int fabimonHeight = gameH.myGUI.frame.getHeight() / 2;
         int fabimonX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 3);
-        int fabimonY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 12) * 11;// test
+        int fabimonY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 12) * 11;
 
-        if (spriteCounter <= 20) {
-            if (gameH.fullscreen) {
-                g2.drawImage(gameH.enemy_Fabimon.up1, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
-                fabimonX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 12) * 10;
-                fabimonY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 2);
-                g2.drawImage(gameH.own_Fabimon.up1, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
-            } else {
-                g2.drawImage(gameH.enemy_Fabimon.up1, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
-                fabimonX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 12) * 10;
-                fabimonY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 5) * 3;
-                g2.drawImage(gameH.own_Fabimon.up1, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
-            }
-            System.out.println("1");
-            spriteCounter++;
+        if (gameH.fullscreen) {
+            g2.drawImage(gameH.enemy_Fabimon[0].up1, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
+            fabimonX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 12) * 10;
+            fabimonY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 2);
+            g2.drawImage(gameH.player.fabimonTeam[0].up1, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
         } else {
-            if (gameH.fullscreen) {
-                g2.drawImage(gameH.enemy_Fabimon.up2, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
-                fabimonX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 12) * 10;
-                fabimonY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 2);
-                g2.drawImage(gameH.own_Fabimon.up2, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
-            } else {
-                g2.drawImage(gameH.enemy_Fabimon.up2, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
-                fabimonX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 12) * 10;
-                fabimonY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 5) * 3;
-                g2.drawImage(gameH.own_Fabimon.up2, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
-            }
-            System.out.println("2");
-            spriteCounter++;
-            if (spriteCounter == 40) {
-                spriteCounter = 0;
-            }
+            g2.drawImage(gameH.enemy_Fabimon[0].up1, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
+            fabimonX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 12) * 10;
+            fabimonY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 5) * 3;
+            g2.drawImage(gameH.player.fabimonTeam[0].up1, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
         }
     }
 
@@ -811,15 +790,15 @@ public class UI {
 
             g2.setColor(Color.BLACK);
             g2.setFont(arial_40);
-            g2.drawString(Integer.toString(gameH.enemy_Fabimon.level), levelX, levelY);
-            g2.drawString(gameH.enemy_Fabimon.name, nameX, levelY);
+            g2.drawString(Integer.toString(gameH.enemy_Fabimon[0].level), levelX, levelY);
+            g2.drawString(gameH.enemy_Fabimon[0].name, nameX, levelY);
 
             levelX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 11) * 3;
             levelY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 5) * 2;
             nameX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 15) * 3;
 
-            g2.drawString(Integer.toString(gameH.own_Fabimon.level), levelX, levelY);
-            g2.drawString(gameH.own_Fabimon.name, nameX, levelY);
+            g2.drawString(Integer.toString(gameH.player.fabimonTeam[0].level), levelX, levelY);
+            g2.drawString(gameH.player.fabimonTeam[0].name, nameX, levelY);
 
         } else {
             int levelX = gameH.myGUI.frame.getWidth() / 70;
@@ -834,14 +813,14 @@ public class UI {
             //enemy Fabimon
             g2.setColor(Color.BLACK);
             g2.setFont(arial_25);
-            g2.drawString(Integer.toString(gameH.enemy_Fabimon.level), levelX, levelY);
-            g2.drawString(gameH.enemy_Fabimon.name, nameX, levelY);
+            g2.drawString(Integer.toString(gameH.enemy_Fabimon[0].level), levelX, levelY);
+            g2.drawString(gameH.enemy_Fabimon[0].name, nameX, levelY);
 
             levelX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 11) * 3;
             levelY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 5) * 2;
             nameX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 15) * 3;
-            g2.drawString(Integer.toString(gameH.own_Fabimon.level), levelX, levelY);
-            g2.drawString(gameH.own_Fabimon.name, nameX, levelY);
+            g2.drawString(Integer.toString(gameH.player.fabimonTeam[0].level), levelX, levelY);
+            g2.drawString(gameH.player.fabimonTeam[0].name, nameX, levelY);
         }
     }
 
@@ -850,11 +829,16 @@ public class UI {
         double healthScalingWidth = ((gameH.myGUI.frame.getWidth() / 15) * 2);
         int healthScalingHeight = (gameH.myGUI.frame.getHeight() / 70);
         int y = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 8) * 3;
-        double enemyHealthWidthpart = (healthScalingWidth / gameH.enemy_Fabimon.hp);
-        double ownHealthWidthpart = (healthScalingWidth / gameH.own_Fabimon.hp);
-        double enemyCurrentHealthWidth = enemyHealthWidthpart * gameH.enemy_Fabimon.currentHp;
-        double ownCurrentHealthWidth = ownHealthWidthpart * gameH.own_Fabimon.currentHp;
-
+        double enemyHealthWidthpart = (healthScalingWidth / gameH.enemy_Fabimon[0].hp);
+        double ownHealthWidthpart = (healthScalingWidth / gameH.player.fabimonTeam[0].hp);
+        double enemyCurrentHealthWidth = enemyHealthWidthpart * gameH.enemy_Fabimon[0].currentHp;
+        double ownCurrentHealthWidth = ownHealthWidthpart * gameH.player.fabimonTeam[0].currentHp;
+        if(enemyCurrentHealthWidth <0){
+            enemyCurrentHealthWidth = 0;
+        }
+        if(ownCurrentHealthWidth <0 ){
+            ownCurrentHealthWidth = 0;
+        }
         if (gameH.fullscreen) {
             //Fabimon Healthbar
             int x = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 13) * 2;

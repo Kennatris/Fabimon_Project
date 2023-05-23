@@ -15,46 +15,75 @@ public class NPCTest extends Entity {
         getTestNPCImage();
         loadDialogue("NPCTestDialogues");
     }
-    public void dialogue(int npc){
-        if(npc == 0){
-            if(dialoguePhase == 0){
-                for(int i = 0; i<3; i++) {
+
+    public void dialogue(int npc) {
+        if (npc == 0) {
+            if (dialoguePhase == 0) {
+                for (int i = 0; i < 3; i++) {
                     gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[2][i];
                 }
                 dialoguePhase++;
-            }else if(dialoguePhase == 1){
-                for(int i = 0; i<3; i++) {
+            } else if (dialoguePhase == 1) {
+                for (int i = 0; i < 3; i++) {
                     gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[3][i];
                 }
                 dialoguePhase++;
-            }else if(dialoguePhase == 2){
-                for(int i = 0; i<3; i++) {
+            } else if (dialoguePhase == 2) {
+                for (int i = 0; i < 3; i++) {
                     gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[4][i];
                 }
                 dialoguePhase++;
-            }else if(dialoguePhase == 3){
-                for(int i = 0; i<3; i++) {
+            } else if (dialoguePhase == 3) {
+                for (int i = 0; i < 3; i++) {
                     gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[5][i];
                 }
                 dialoguePhase++;
-            }else if(dialoguePhase == 4){
-                for(int i = 0; i<3; i++) {
+            } else if (dialoguePhase == 4) {
+                for (int i = 0; i < 3; i++) {
                     gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[6][i];
                 }
                 dialoguePhase = 0;
                 gameH.npc[npc].endDialogue = true;
             }
-        }else if(npc == 1 || npc == 2){
-            for(int i = 0; i<3; i++) {
-                gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[0][i];
+        } else if (npc == 1 && dialogueSelect == 0 || npc == 2 && dialogueSelect == 0) {
+            if (gameH.npc[npc].defeated) {
+                for (int i = 0; i < 3; i++) {
+                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[11][i];
+                }
+                gameH.npc[npc].endDialogue = true;
+            }else {
+                for (int i = 0; i < 3; i++) {
+                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[0][i];
+                }
+                gameH.npc[npc].endDialogue = true;
+            }
+        } else if (npc == 1 && dialogueSelect == 1 || npc == 2 && dialogueSelect == 1) {
+            for (int i = 0; i < 3; i++) {
+                gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[9][i];
+                dialogueSelect = 0;
             }
             gameH.npc[npc].endDialogue = true;
-        }else if(npc == 3){
-            for(int i = 0; i<3; i++) {
+        } else if (npc == 3) {
+            for (int i = 0; i < 3; i++) {
                 gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[7][i];
             }
             gameH.npc[npc].endDialogue = true;
+        } else if (npc == 4) {
+            if (gameH.player.fabimonTeam[0] == null) {
+                for (int i = 0; i < 3; i++) {
+                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[8][i];
+                }
+                gameH.fabimon.createFabimon("Feirir", 0, 5);
+                gameH.player.fabimonTeam[0] = gameH.fabimon.tempFabimon;
+                gameH.npc[npc].endDialogue = true;
+            } else {
+                for (int i = 0; i < 3; i++) {
+                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[10][i];
+                }
+                gameH.npc[npc].endDialogue = true;
+            }
         }
+
     }
 
     public void getTestNPCImage() {

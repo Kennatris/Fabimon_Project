@@ -15,6 +15,7 @@ public class Entity {
     public int defaultspeed = 4;
     public Boolean isApproaching = false;
     public Boolean trainer;
+    public int dialogueSelect=0;
     public Fabimon fabimonTeam[] = new Fabimon[6];
     public int originalWorldX, originalWorldY;
     public Boolean endDialogue = false;
@@ -40,7 +41,7 @@ public class Entity {
     int timer;
     int approachphase = 0;
     int innactiveTimer;
-    Boolean defeated = false;
+    public Boolean defeated = false;
 
     public Entity(GameHandler gameH) {
         this.gameH = gameH;
@@ -121,10 +122,16 @@ public class Entity {
                     gameH.npc[i].worldX += gameH.npc[i].defaultspeed;
                 }
                 if (abstand <= 0 && !gameH.npc[i].approached) {
-                    gameH.gameState = gameH.dialogueState;
-                    gameH.npc[i].dialogue(i);
-                    gameH.npc[i].approached = true;
-
+                    if(gameH.player.fabimonTeam[0] == null){
+                        gameH.npc[i].dialogueSelect = 1;
+                        gameH.npc[i].dialogue(i);
+                        gameH.gameState = gameH.dialogueState;
+                        gameH.npc[i].approached = true;
+                    }else {
+                        gameH.gameState = gameH.dialogueState;
+                        gameH.npc[i].dialogue(i);
+                        gameH.npc[i].approached = true;
+                    }
                 }
             } else if (gameH.npc[i].direction.equals("left")) {
                 abstand = gameH.npc[i].worldX - gameH.tileSize - gameH.player.worldX;
@@ -133,9 +140,16 @@ public class Entity {
                 }
                 if (abstand <= 0&& !gameH.npc[i].approached) {
 
-                    gameH.gameState = gameH.dialogueState;
-                    gameH.npc[i].dialogue(i);
-                    gameH.npc[i].approached = true;
+                    if(gameH.player.fabimonTeam[0] == null){
+                        gameH.npc[i].dialogueSelect = 1;
+                        gameH.npc[i].dialogue(i);
+                        gameH.gameState = gameH.dialogueState;
+                        gameH.npc[i].approached = true;
+                    }else {
+                        gameH.gameState = gameH.dialogueState;
+                        gameH.npc[i].dialogue(i);
+                        gameH.npc[i].approached = true;
+                    }
                 }
 
             } else if (gameH.npc[i].direction.equals("up")) {
@@ -145,10 +159,16 @@ public class Entity {
                 }
                 if (abstand <= 0&& !gameH.npc[i].approached) {
 
-                    gameH.gameState = gameH.dialogueState;
-                    gameH.npc[i].dialogue(i);
-                    gameH.npc[i].approached = true;
-
+                    if(gameH.player.fabimonTeam[0] == null){
+                        gameH.npc[i].dialogueSelect = 1;
+                        gameH.npc[i].dialogue(i);
+                        gameH.gameState = gameH.dialogueState;
+                        gameH.npc[i].approached = true;
+                    }else {
+                        gameH.gameState = gameH.dialogueState;
+                        gameH.npc[i].dialogue(i);
+                        gameH.npc[i].approached = true;
+                    }
                 }
 
             } else if (gameH.npc[i].direction.equals("down")) {
@@ -157,9 +177,16 @@ public class Entity {
                     gameH.npc[i].worldY += gameH.npc[i].defaultspeed;
                 }
                 if (abstand <= 0 && !gameH.npc[i].approached) {
-                    gameH.gameState = gameH.dialogueState;
-                    gameH.npc[i].dialogue(i);
-                    gameH.npc[i].approached = true;
+                    if(gameH.player.fabimonTeam[0] == null){
+                        gameH.npc[i].dialogueSelect = 1;
+                        gameH.npc[i].dialogue(i);
+                        gameH.gameState = gameH.dialogueState;
+                        gameH.npc[i].approached = true;
+                    }else {
+                        gameH.gameState = gameH.dialogueState;
+                        gameH.npc[i].dialogue(i);
+                        gameH.npc[i].approached = true;
+                    }
                 }
             }
         }
@@ -168,7 +195,6 @@ public class Entity {
         if (!innactive) {
         } else {
             checkingVision = false;
-            updating = false;
             innactiveTimer++;
             if (innactiveTimer % 10 == 0) {
                 drawing = !drawing;

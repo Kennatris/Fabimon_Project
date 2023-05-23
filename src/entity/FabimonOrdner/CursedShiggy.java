@@ -6,7 +6,7 @@ import main.ImageHandler;
 
 public class CursedShiggy extends Fabimon {
     ImageHandler imageH = new ImageHandler();
-    public CursedShiggy(GameHandler gameH, String fabimonName, int fabimonEvo, int plevel){
+    public CursedShiggy(GameHandler gameH){
         super(gameH);
         getcursedShiggyimage();
 
