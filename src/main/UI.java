@@ -771,7 +771,6 @@ public class UI {
                 fabimonY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 5) * 3;
                 g2.drawImage(gameH.player.fabimonTeam[0].up1, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
             }
-            System.out.println("1");
             spriteCounter++;
         } else {
             if (gameH.fullscreen) {
@@ -785,7 +784,6 @@ public class UI {
                 fabimonY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 5) * 3;
                 g2.drawImage(gameH.player.fabimonTeam[0].up2, fabimonX, fabimonY, fabimonWidth, fabimonHeight, null);
             }
-            System.out.println("2");
             spriteCounter++;
             if (spriteCounter == 40) {
                 spriteCounter = 0;

@@ -199,13 +199,8 @@ public class GameHandler extends JPanel implements Runnable {
         }
         if (debugMode) {
             if (keyH.kPressed) {
-                gameState = battleState;
-                battleSubState = mainMenu;
-                enemy_Fabimon[0] = player.fabimonTeam[0];
+                player.fabimonTeam[0].currentHp = player.fabimonTeam[0].hp;
 
-                for(int i = 0; i<ui.currentDialogue.length; i++){
-                    ui.currentDialogue[i] = "";
-                }
                }
             if (keyH.tPressed) {
                 timerMode = !timerMode;
@@ -855,6 +850,10 @@ public class GameHandler extends JPanel implements Runnable {
                             gameState = cutsceneState;
                             fabimon.createFabimon("cursed Shiggy", 0, 5);
                             enemy_Fabimon[0] = fabimon.tempFabimon;
+                            fabimon.createFabimon("Feirir", 0, 2);
+                            enemy_Fabimon[2] = fabimon.tempFabimon;
+                            fabimon.createFabimon("Feirir", 0, 4);
+                            enemy_Fabimon[1] = fabimon.tempFabimon;
                             csManager.csNum = csManager.battleBegin;
                             battle.opponent = npcInteracted;
                             battleSubState = mainMenu;
