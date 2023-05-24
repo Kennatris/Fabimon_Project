@@ -15,7 +15,6 @@ public class Entity {
     public int defaultspeed = 4;
     public Boolean isApproaching = false;
     public Boolean trainer;
-    public int dialogueSelect=0;
     public Fabimon fabimonTeam[] = new Fabimon[6];
     public int originalWorldX, originalWorldY;
     public Boolean endDialogue = false;
@@ -42,6 +41,7 @@ public class Entity {
     int approachphase = 0;
     int innactiveTimer;
     public Boolean defeated = false;
+    public int dialogueSelect = 0;
 
     public Entity(GameHandler gameH) {
         this.gameH = gameH;
@@ -231,8 +231,6 @@ public class Entity {
                     case "right" -> worldX += speed;
                 }
             }
-
-
             spriteCounter++;
             if (spriteCounter > 10) {
                 if (spriteNum == 1) {

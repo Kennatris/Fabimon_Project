@@ -15,9 +15,8 @@ public class Player extends Entity{
     public Boolean beingApproached = false;
     public int screenX;
     public int screenY;
-    int standCounter = 0;
     int idleCounter = 0;
-    
+    int standCounter = 0;
     // DEBUG
     public boolean speedBoost;
 
@@ -86,19 +85,19 @@ public class Player extends Entity{
 
         if(!beingApproached) {
 
-            if (keyH.wPressed || keyH.sPressed || keyH.aPressed || keyH.dPressed) {
+            if (keyH.wPressed == true || keyH.sPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
 
-                if (keyH.wPressed) {
+                if (keyH.wPressed == true) {
                     direction = "up";
 
 //				playerY = playerY - playerSpeed;
-                } else if (keyH.sPressed) {
+                } else if (keyH.sPressed == true) {
                     direction = "down";
 
-                } else if (keyH.aPressed) {
+                } else if (keyH.aPressed == true) {
                     direction = "left";
 
-                } else if (keyH.dPressed) {
+                } else if (keyH.dPressed == true) {
                     direction = "right";
 
                 }
@@ -139,10 +138,6 @@ public class Player extends Entity{
                 }
 
                 spriteCounter++;
-                if (standCounter != 0) {
-                    standCounter = 0;
-                }
-
                 if (spriteCounter > 10) {
                     if (spriteNum == 1) {
                         spriteNum = 2;
@@ -153,10 +148,10 @@ public class Player extends Entity{
                 }
 
             } else {
-                if (standCounter != 20) {
+                if (standCounter != 60) {
                     standCounter++;
                 }
-                if (standCounter == 20) {
+                if (standCounter == 60) {
                     direction = "idle";
                     idleCounter++;
                     if (idleCounter == 10) {

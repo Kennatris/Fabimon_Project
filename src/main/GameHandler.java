@@ -201,7 +201,8 @@ public class GameHandler extends JPanel implements Runnable {
             if (keyH.kPressed) {
                 gameState = battleState;
                 battleSubState = mainMenu;
-                enemy_Fabimon[0] = player.fabimonTeam[1];
+                enemy_Fabimon[0] = player.fabimonTeam[0];
+
                 for(int i = 0; i<ui.currentDialogue.length; i++){
                     ui.currentDialogue[i] = "";
                 }
@@ -253,6 +254,12 @@ public class GameHandler extends JPanel implements Runnable {
             hour++;
         }
 
+        // RESET
+        if (keyH.rPressed) {
+            player.worldX = playerStandardValueX * tileSize;
+            player.worldY = playerStandardValueY * tileSize;
+        }
+
         // fullscreen
         if (keyH.f12Pressed) {
             fullscreen = !fullscreen;
@@ -301,13 +308,10 @@ public class GameHandler extends JPanel implements Runnable {
                     switch (ui.commandNum) {
 
                         case 0:
-                            ui.commandNum = 2;
+                            ui.commandNum = 1;
                             break;
                         case 1:
                             ui.commandNum = 0;
-                            break;
-                        case 2:
-                            ui.commandNum = 1;
                             break;
 
                     }
@@ -322,9 +326,6 @@ public class GameHandler extends JPanel implements Runnable {
                             ui.commandNum = 1;
                             break;
                         case 1:
-                            ui.commandNum = 2;
-                            break;
-                        case 2:
                             ui.commandNum = 0;
                             break;
 
@@ -339,13 +340,10 @@ public class GameHandler extends JPanel implements Runnable {
             if (keyH.spacePressed || keyH.enterPressed) {
                 if (ui.pauseScreenValue == 0) {
                     switch (ui.commandNum) {
-                        case 0: // SETTINGS
-                            ui.pauseScreenValue = 1;
-                            break;
-                        case 1: // BACK
+                        case 0: // BACK
                             gameState = playState;
                             break;
-                        case 2: // SAVE AND QUIT
+                        case 1: // SAVE AND QUIT
                             if (!Objects.equals(save, "save_Default")) {
                                 saveC.SaveWriter(this, save);
                             }
@@ -353,7 +351,7 @@ public class GameHandler extends JPanel implements Runnable {
                             break;
                     }
                 } else if (ui.pauseScreenValue == 1) {
-
+                    // DO NOTHING
                 }
 
                 ui.commandNum = 0;
