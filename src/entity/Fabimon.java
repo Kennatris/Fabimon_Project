@@ -48,11 +48,13 @@ public class Fabimon extends Entity {
     }
 
     public void createFabimon(String fabimonName, int fabimonEvo, int plevel) {
+
         if(fabimonName.equals("Feirir")){
             if(fabimonEvo == 0){
                 tempFabimon = new Feirir(gameH);
                 getBaseInfo(fabimonName, fabimonEvo);
                 setFabimonInfo(plevel);
+                setStats();
             }
 
         }else if(fabimonName.equals("cursed Shiggy")){
@@ -60,6 +62,7 @@ public class Fabimon extends Entity {
                 tempFabimon = new CursedShiggy(gameH);
                 getBaseInfo(fabimonName, fabimonEvo);
                 setFabimonInfo(plevel);
+                setStats();
             }
         }
     }
@@ -101,52 +104,50 @@ public class Fabimon extends Entity {
         tempFabimon.type2 = sInfo[2];
         tempFabimon.level = plevel;
         tempFabimon.nature = nat.setNature();
+
+    }
+    void setStats(){
         tempFabimon.hp = berechneHP();
         tempFabimon.atk = berechneStat(1);
-        tempFabimon.dev = berechneStat(2);;
-        tempFabimon.sp_atk = berechneStat(3);;
-        tempFabimon.sp_dev = berechneStat(4);;
-        tempFabimon.init = berechneStat(5);;
+        tempFabimon.dev = berechneStat(2);
+        tempFabimon.sp_atk = berechneStat(3);
+        tempFabimon.sp_dev = berechneStat(4);
+        tempFabimon.init = berechneStat(5);
         tempFabimon.item = "none";
         tempFabimon.currentHp = tempFabimon.hp;
     }
     public void setPlayerFabimon(int index, String psinfo[], String pmove[], int pap[], int pev[], int piv[], int pinfo[]){
-        createPlayerFabimon(psinfo[0], index);
-        gameH.player.fabimonTeam[index].name = psinfo[0];
-        gameH.player.fabimonTeam[index].item = psinfo[1];
-        gameH.player.fabimonTeam[index].gender = psinfo[2];
-        gameH.player.fabimonTeam[index].nature = psinfo[3];
-        gameH.player.fabimonTeam[index].currentEp = pinfo[2];
-        gameH.player.fabimonTeam[index].currentHp = pinfo[1];
-        gameH.player.fabimonTeam[index].level = pinfo[0];
+        createFabimon(psinfo[0], 0, pinfo[0]);
+        for(int i = 0; i<pev.length; i++) {
+            tempFabimon.haveEV[i] = pev[i];
+            tempFabimon.iv[i] = piv[i];
+        }
         for(int i = 0; i<pmove.length; i++){
-            setMove(index, pmove[i], i);
-            gameH.player.fabimonTeam[index].move[i].ap = pap[i];
-            System.out.println(gameH.player.fabimonTeam[index].move[i].ap);
+            setMove(pmove[i], i);
+            tempFabimon.move[i].currentap = pap[i];
         }
-        for(int i = 0; i<pev.length; i++){
-            gameH.player.fabimonTeam[index].haveEV[i] = pev[i];
-            gameH.player.fabimonTeam[index].iv[i] = piv[i];
-        }
+        tempFabimon.nature = psinfo[3];
+        tempFabimon.item = psinfo[1];
+        tempFabimon.gender = psinfo[2];
+        tempFabimon.currentEp = pinfo[2];
+        tempFabimon.currentHp = pinfo[1];
+        recalculate();
+        gameH.player.fabimonTeam[index] = tempFabimon;
+    }
+    private void recalculate(){
         tempFabimon.hp = berechneHP();
         tempFabimon.atk = berechneStat(1);
-        tempFabimon.dev = berechneStat(2);;
-        tempFabimon.sp_atk = berechneStat(3);;
-        tempFabimon.sp_dev = berechneStat(4);;
-        tempFabimon.init = berechneStat(5);;
+        tempFabimon.dev = berechneStat(2);
+        tempFabimon.sp_atk = berechneStat(3);
+        tempFabimon.sp_dev = berechneStat(4);
+        tempFabimon.init = berechneStat(5);
     }
-    private void createPlayerFabimon(String name, int index){
-        switch(name){
-            case "Feirir": gameH.player.fabimonTeam[index] = new Feirir(gameH); break;
-            case "cursed Shiggy": gameH.player.fabimonTeam[index] = new CursedShiggy(gameH); break;
-        }
-    }
-    private void setMove(int index, String pmove, int moveIndex){
+    private void setMove(String pmove, int moveIndex){
         switch(pmove){
-            case "Scratch": gameH.player.fabimonTeam[index].move[moveIndex] = new Scratch(gameH); break;
-            case "Ember": gameH.player.fabimonTeam[index].move[moveIndex] = new Ember(gameH); break;
-            case "Scary_face": gameH.player.fabimonTeam[index].move[moveIndex] = new Scary_Face(gameH); break;
-            case "Growl": gameH.player.fabimonTeam[index].move[moveIndex] = new Growl(gameH); break;
+            case "Scratch": tempFabimon.move[moveIndex] = new Scratch(gameH); break;
+            case "Ember": tempFabimon.move[moveIndex]  = new Ember(gameH); break;
+            case "Scary_face": tempFabimon.move[moveIndex]  = new Scary_Face(gameH); break;
+            case "Growl": tempFabimon.move[moveIndex]  = new Growl(gameH); break;
             default: break;
         }
     }

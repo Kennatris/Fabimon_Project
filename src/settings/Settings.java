@@ -20,7 +20,7 @@ public class Settings {
     public int entitySavableBOOLEAN = 0; // how many Vars are getting saved from each entity
     public int entitySavableSTRING = 0; // how many Vars are getting saved from each entity
     public int entitySavableFLOAT = 0; // how many Vars are getting saved from each entity
-    public int systemSavable = 170; // how many System Settings are getting saved
+    public int systemSavable = 9; // how many System Settings are getting saved
 
     public void installSettings(GameHandler gameH, boolean[][] unsavedBoolean, int[][] unsavedInt, float[][] unsavedFloat, String[][] unsavedString) {
         // CLASSES

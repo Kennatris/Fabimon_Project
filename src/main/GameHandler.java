@@ -84,7 +84,7 @@ public class GameHandler extends JPanel implements Runnable {
     public int npcInteracted;
     public Fabimon fabimon = new Fabimon(this);
     public Attack attack = new Attack(this);
-    public Fabimon enemy_Fabimon;
+    public Fabimon enemy_Fabimon[] = new Fabimon[6];
 
     // GAME STATE
     public int gameState;
@@ -199,38 +199,13 @@ public class GameHandler extends JPanel implements Runnable {
         }
         if (debugMode) {
             if (keyH.kPressed) {
+                //player.fabimonTeam[0].currentHp = player.fabimonTeam[0].hp;
                 gameState = battleState;
-                battleSubState = mainMenu;
-                for(int i = 0; i<ui.currentDialogue.length; i++){
-                    ui.currentDialogue[i] = "";
-                }
-
-                int rand = (int)(Math.random()*4);
-                if(rand == 0){
-                    fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                    enemy_Fabimon = fabimon.tempFabimon;
-                    fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                    player.fabimonTeam[0] = fabimon.tempFabimon;
-                }else if(rand == 1){
-                    fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                    enemy_Fabimon = fabimon.tempFabimon;
-                    fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                    player.fabimonTeam[0] = fabimon.tempFabimon;
-                }else if(rand == 2){
-                    fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                    enemy_Fabimon = fabimon.tempFabimon;
-                    fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                    player.fabimonTeam[0] = fabimon.tempFabimon;
-                }else if(rand == 3){
-                    fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                    enemy_Fabimon = fabimon.tempFabimon;
-                    fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                    player.fabimonTeam[0] = fabimon.tempFabimon;
-
-                }
-
-                    saveC.SaveWriter(this, save);
-
+                fabimon.createFabimon("Feirir", 0, 5);
+                enemy_Fabimon[0] = fabimon.tempFabimon;
+                fabimon.createFabimon("Feirir", 0, 5);
+                player.fabimonTeam[0] = fabimon.tempFabimon;
+                ui.clearTextfield();
                }
             if (keyH.tPressed) {
                 timerMode = !timerMode;
@@ -277,6 +252,12 @@ public class GameHandler extends JPanel implements Runnable {
         if (minutes == 60) {
             minutes = 0;
             hour++;
+        }
+
+        // RESET
+        if (keyH.rPressed) {
+            player.worldX = playerStandardValueX * tileSize;
+            player.worldY = playerStandardValueY * tileSize;
         }
 
         // fullscreen
@@ -327,13 +308,10 @@ public class GameHandler extends JPanel implements Runnable {
                     switch (ui.commandNum) {
 
                         case 0:
-                            ui.commandNum = 2;
+                            ui.commandNum = 1;
                             break;
                         case 1:
                             ui.commandNum = 0;
-                            break;
-                        case 2:
-                            ui.commandNum = 1;
                             break;
 
                     }
@@ -348,9 +326,6 @@ public class GameHandler extends JPanel implements Runnable {
                             ui.commandNum = 1;
                             break;
                         case 1:
-                            ui.commandNum = 2;
-                            break;
-                        case 2:
                             ui.commandNum = 0;
                             break;
 
@@ -365,13 +340,10 @@ public class GameHandler extends JPanel implements Runnable {
             if (keyH.spacePressed || keyH.enterPressed) {
                 if (ui.pauseScreenValue == 0) {
                     switch (ui.commandNum) {
-                        case 0: // SETTINGS
-                            ui.pauseScreenValue = 1;
-                            break;
-                        case 1: // BACK
+                        case 0: // BACK
                             gameState = playState;
                             break;
-                        case 2: // SAVE AND QUIT
+                        case 1: // SAVE AND QUIT
                             if (!Objects.equals(save, "save_Default")) {
                                 saveC.SaveWriter(this, save);
                             }
@@ -379,7 +351,7 @@ public class GameHandler extends JPanel implements Runnable {
                             break;
                     }
                 } else if (ui.pauseScreenValue == 1) {
-
+                    // DO NOTHING
                 }
 
                 ui.commandNum = 0;
@@ -456,6 +428,8 @@ public class GameHandler extends JPanel implements Runnable {
                         break;
                     case 1: // load game
                         gameState = playState;
+                        player.screenX = myGUI.frame.getWidth() / 2 - (tileSize / 2);
+                        player.screenY = myGUI.frame.getHeight() / 2 - (tileSize / 2);
                         break;
                     case 2: // menu
                         gameState = settingState;
@@ -849,6 +823,7 @@ public class GameHandler extends JPanel implements Runnable {
                 switch (ui.commandNum) {
                     case 0:
                         battleSubState = attackMenu;
+                        ui.currentDialogue[0]= "Mit was willst du Angreifen";
                         break;
                     case 1:
                         ui.battleText = "Fabimon";
@@ -857,7 +832,7 @@ public class GameHandler extends JPanel implements Runnable {
                         ui.battleText = "Bag";
                         break;
                     case 3:
-                        npc[npcInteracted].endBattle(npcInteracted);
+                        ui.currentDialogue[0] = "du kannst von einem Trainerkampf nicht fliehen";
                         break;
                 }
                 }else if(battleSubState == attackMenu){
@@ -876,10 +851,22 @@ public class GameHandler extends JPanel implements Runnable {
 
                 if (npc[npcInteracted].endDialogue) {
                     if(npc[npcInteracted].trainer){
-                        gameState = cutsceneState;
-                        fabimon.createFabimon("Feirir",0, 5);
-                        enemy_Fabimon = fabimon.tempFabimon;
-                        csManager.csNum = csManager.battleBegin;
+                        if(player.fabimonTeam[0] !=null && !npc[npcInteracted].defeated){
+                            gameState = cutsceneState;
+                            fabimon.createFabimon("cursed Shiggy", 0, 5);
+                            enemy_Fabimon[0] = fabimon.tempFabimon;
+                            fabimon.createFabimon("Feirir", 0, 2);
+                            enemy_Fabimon[2] = fabimon.tempFabimon;
+                            fabimon.createFabimon("Feirir", 0, 4);
+                            enemy_Fabimon[1] = fabimon.tempFabimon;
+                            csManager.csNum = csManager.battleBegin;
+                            battle.opponent = npcInteracted;
+                            battleSubState = mainMenu;
+                        }else{
+                            gameState = playState;
+                            npc[npcInteracted].endDialogue = false;
+                            npc[npcInteracted].endBattle(npcInteracted);
+                        }
                     }else {
                         gameState = playState;
                         npc[npcInteracted].endDialogue = false;

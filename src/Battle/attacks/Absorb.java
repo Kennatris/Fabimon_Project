@@ -3,21 +3,21 @@ package Battle.attacks;
 import Battle.Attack;
 import main.GameHandler;
 
-public class Ember extends Attack {
+public class Absorb extends Attack {
     GameHandler gameH;
 
-    public Ember(GameHandler gameH) {
+    public Absorb(GameHandler gameH) {
         super(gameH);
         this.gameH = gameH;
-        getButtonImage("Ember");
+        getButtonImage("Absorb");
         category = "special";
-        type = "Fire";
-        power = 40;
+        type = "Grass";
+        power = 20;
         accuracy = 100;
         ap = 25;
         currentap = ap;
         priority = 0;
-        name = "Ember";
+        name = "Absorb";
         trifftImmer = false;
         target = "enemy";
 

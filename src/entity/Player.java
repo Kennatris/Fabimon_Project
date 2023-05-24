@@ -15,6 +15,7 @@ public class Player extends Entity{
     public Boolean beingApproached = false;
     public int screenX;
     public int screenY;
+    int idleCounter = 0;
     int standCounter = 0;
     // DEBUG
     public boolean speedBoost;
@@ -65,6 +66,10 @@ public class Player extends Entity{
         right1 = imageH.image[6];
         imageH.ImageInitializer(7,"player","Skully_right_2","png", gameH.tileSize, gameH.tileSize);
         right2 = imageH.image[7];
+        imageH.ImageInitializer(8,"player","Skully_idle_1", "png",gameH.tileSize,gameH.tileSize);
+        idle1 = imageH.image[8];
+        imageH.ImageInitializer(9,"player","Skully_idle_1", "png",gameH.tileSize,gameH.tileSize);
+        idle2 = imageH.image[9];
 
     }
 
@@ -113,7 +118,7 @@ public class Player extends Entity{
 
 
                 // IF COLLISION IS FALSE, PLAYER CAN MOVE
-                if (collisionOn == false) {
+                if (!collisionOn) {
 
                     switch (direction) {
                         case "up":
@@ -143,10 +148,20 @@ public class Player extends Entity{
                 }
 
             } else {
-                standCounter++;
-                if (standCounter == 20) {
-                    spriteNum = 1;
-                    standCounter = 0;
+                if (standCounter != 60) {
+                    standCounter++;
+                }
+                if (standCounter == 60) {
+                    direction = "idle";
+                    idleCounter++;
+                    if (idleCounter == 10) {
+                        if (spriteNum == 2) {
+                            spriteNum = 1;
+                        } else if (spriteNum == 1){
+                            spriteNum = 2;
+                        }
+                        idleCounter = 0;
+                    }
                 }
             }
         }
@@ -213,6 +228,13 @@ public class Player extends Entity{
                     image = right2;
                 }
                 break;
+            case "idle":
+                if(spriteNum == 1) {
+                    image = idle1;
+                }
+                if(spriteNum == 2) {
+                    image = idle2;
+                }
         }
 
         g2.drawImage(image, screenX, screenY, null);

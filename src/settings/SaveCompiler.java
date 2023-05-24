@@ -92,7 +92,6 @@ public class SaveCompiler extends Settings{
                             break;
                         default:
                             for(int i = 1; i<gameH.player.fabimonTeam.length+1; i++){
-
                                     unsavedString[i][0] = line;
                                     line = br.readLine();
                                     unsavedString[i][1] = line;
@@ -146,8 +145,8 @@ public class SaveCompiler extends Settings{
                                     unsavedInt[i][17] = Integer.parseInt(line);
                                     line =  br.readLine();
                                     unsavedInt[i][18] = Integer.parseInt(line);
+                                    line = br.readLine();
                             }
-                            parameter +=26;
                     }
                 }
 
@@ -200,11 +199,12 @@ public class SaveCompiler extends Settings{
         int pinfo[] = new int[3];
         for(int i = 1; i< gameH.player.fabimonTeam.length+1; i++) {
 
-           if(unsavedString[i][0] != null) {
+           if(unsavedString[i][0].equals("nichts")) {
+
+           }else{
                for (int j = 0; j < 4; j++) {
                    psinfo[j] = unsavedString[i][j];
                    move[j] = unsavedString[i][4 + j];
-                   System.out.println(move[j]);
                    pap[j] = unsavedInt[i][15 + j];
                }
                for (int j = 0; j < 3; j++) {
@@ -214,7 +214,7 @@ public class SaveCompiler extends Settings{
                    pev[j] = unsavedInt[i][3 + j];
                    piv[j] = unsavedInt[i][9 + j];
                }
-               gameH.fabimon.setPlayerFabimon(i, psinfo, move, pap, pev, piv, pinfo);
+               gameH.fabimon.setPlayerFabimon(i-1, psinfo, move, pap, pev, piv, pinfo);
            }
         }
     }
@@ -278,7 +278,7 @@ public class SaveCompiler extends Settings{
                             bw.newLine();
                         }
                         for(int j = 0; j< gameH.player.fabimonTeam[i].move.length; j++){
-                            bw.write(String.valueOf(gameH.player.fabimonTeam[i].move[j].ap));
+                            bw.write(String.valueOf(gameH.player.fabimonTeam[i].move[j].currentap));
                             bw.newLine();
                         }
                     }else{

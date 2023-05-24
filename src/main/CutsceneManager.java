@@ -49,28 +49,7 @@ public class CutsceneManager {
         g2.fillRect(0, 0, width, height);
         g2.fillRect(x, 0, width, height);
         if (width > gameH.myGUI.frame.getWidth() / 2) {
-            int rand = (int)(Math.random()*4);
-            if(rand == 0){
-                gameH.fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.enemy_Fabimon = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.player.fabimonTeam[0] = gameH.fabimon.tempFabimon;
-            }else if(rand == 1){
-                gameH.fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.enemy_Fabimon = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.player.fabimonTeam[0] = gameH.fabimon.tempFabimon;
-            }else if(rand == 2){
-                gameH.fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.enemy_Fabimon = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.player.fabimonTeam[0] = gameH.fabimon.tempFabimon;
-            }else if(rand == 3){
-                gameH.fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.enemy_Fabimon = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.player.fabimonTeam[0] = gameH.fabimon.tempFabimon;
-            }
+
             gameH.gameState = gameH.battleState;
             csNum = 0;
             width = 0;

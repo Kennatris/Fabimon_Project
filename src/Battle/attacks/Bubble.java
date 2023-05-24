@@ -3,21 +3,21 @@ package Battle.attacks;
 import Battle.Attack;
 import main.GameHandler;
 
-public class Ember extends Attack {
+public class Bubble extends Attack {
     GameHandler gameH;
 
-    public Ember(GameHandler gameH) {
+    public Bubble(GameHandler gameH) {
         super(gameH);
         this.gameH = gameH;
-        getButtonImage("Ember");
+        getButtonImage("Bubble");
         category = "special";
-        type = "Fire";
+        type = "Water";
         power = 40;
         accuracy = 100;
-        ap = 25;
+        ap = 30;
         currentap = ap;
         priority = 0;
-        name = "Ember";
+        name = "Bubble";
         trifftImmer = false;
         target = "enemy";
 

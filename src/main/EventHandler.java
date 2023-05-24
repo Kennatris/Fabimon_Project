@@ -25,24 +25,28 @@ public class EventHandler {
         /* Example
         if(hit(INWICHCOLUMN_MAP, INWICHROW_MAP, requiredDIRECTION) == true) {Method();}
         */
-        if(hit(24, 18, "up") == true) {
-            if (gameH.mapType == 0) {
-                gameH.map = gameH.availableMaps[3];
-                gameH.mapType = 3;
-            } else if (gameH.mapType == 3) {
-                gameH.map = gameH.availableMaps[0];
-                gameH.mapType = 0;
+            if(hit(24, 18, "any") && gameH.keyH.enterPressed) {
+                if (gameH.mapType == 0) {
+                    gameH.map = gameH.availableMaps[3];
+                    gameH.mapType = 3;
+                } else if (gameH.mapType == 3) {
+                    gameH.map = gameH.availableMaps[0];
+                    gameH.mapType = 0;
+                }
+
+                gameH.gameState = gameH.playState;
+
+                gameH.tileM.loadMap(gameH.map);
+                // set Player
+                gameH.player.worldY = 19 * gameH.tileSize;
+                gameH.player.direction = "idle";
+                // reset Movement
+                gameH.keyH.wPressed = false;
+                gameH.keyH.sPressed = false;
+                gameH.keyH.aPressed = false;
+                gameH.keyH.dPressed = false;
             }
-            gameH.tileM.loadMap(gameH.map);
-            // set Player
-            gameH.player.worldY = 19 * gameH.tileSize;
-            gameH.player.direction = "down";
-            // reset Movement
-            gameH.keyH.wPressed = false;
-            gameH.keyH.sPressed = false;
-            gameH.keyH.aPressed = false;
-            gameH.keyH.dPressed = false;
-        }
+
 
     }
 
@@ -52,11 +56,11 @@ public class EventHandler {
 
         gameH.player.solidArea.x = gameH.player.worldX + gameH.player.solidArea.x;
         gameH.player.solidArea.y = gameH.player.worldY + gameH.player.solidArea.y;
-        eventRect.x = eventCol*gameH.tileSize + eventRect.x;
-        eventRect.y = eventRow*gameH.tileSize + eventRect.y;
+        eventRect.x = eventCol * gameH.tileSize + eventRect.x;
+        eventRect.y = eventRow * gameH.tileSize + eventRect.y;
 
-        if(gameH.player.solidArea.intersects(eventRect)) {
-            if(gameH.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
+        if (gameH.player.solidArea.intersects(eventRect)) {
+            if (gameH.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
                 hit = true;
             }
         }

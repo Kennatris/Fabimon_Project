@@ -12,9 +12,10 @@ public class Scary_Face extends Attack {
         category = "status";
         accuracy = 100;
         ap = 10;
+        currentap = ap;
         type = "Normal";
         priority = 0;
-        name = "Scary_face";
+        name = "Scary face";
         trifftImmer = false;
         target = "enemy";
         effect[6] = -2;
