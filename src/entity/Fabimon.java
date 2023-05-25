@@ -124,7 +124,7 @@ public class Fabimon extends Entity {
         }
         for(int i = 0; i<pmove.length; i++){
             setMove(pmove[i], i);
-            tempFabimon.move[i].ap = pap[i];
+            tempFabimon.move[i].currentap = pap[i];
         }
         tempFabimon.nature = psinfo[3];
         tempFabimon.item = psinfo[1];

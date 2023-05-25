@@ -199,8 +199,13 @@ public class GameHandler extends JPanel implements Runnable {
         }
         if (debugMode) {
             if (keyH.kPressed) {
-                player.fabimonTeam[0].currentHp = player.fabimonTeam[0].hp;
-
+                //player.fabimonTeam[0].currentHp = player.fabimonTeam[0].hp;
+                gameState = battleState;
+                fabimon.createFabimon("Feirir", 0, 5);
+                enemy_Fabimon[0] = fabimon.tempFabimon;
+                fabimon.createFabimon("Feirir", 0, 5);
+                player.fabimonTeam[0] = fabimon.tempFabimon;
+                ui.clearTextfield();
                }
             if (keyH.tPressed) {
                 timerMode = !timerMode;

@@ -278,7 +278,7 @@ public class SaveCompiler extends Settings{
                             bw.newLine();
                         }
                         for(int j = 0; j< gameH.player.fabimonTeam[i].move.length; j++){
-                            bw.write(String.valueOf(gameH.player.fabimonTeam[i].move[j].ap));
+                            bw.write(String.valueOf(gameH.player.fabimonTeam[i].move[j].currentap));
                             bw.newLine();
                         }
                     }else{

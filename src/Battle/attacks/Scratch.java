@@ -15,6 +15,7 @@ public class Scratch extends Attack {
         type = "Normal";
         priority = 0;
         ap = 35;
+        currentap = ap;
         name = "Scratch";
         trifftImmer = false;
         target = "enemy";
