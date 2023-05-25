@@ -31,7 +31,6 @@ public class GameHandler extends JPanel implements Runnable {
     public final int saveState = 4;
     public final int settingState = 5;
     public final int battleState = 6;
-    public int battleSubState = 0;
     public final int mainMenu = 0;
     public final int attackMenu = 1;
     public final int itemMenu = 2;
@@ -39,6 +38,7 @@ public class GameHandler extends JPanel implements Runnable {
     public final int cutsceneState = 7;
     // SCREEN SETTINGS
     final int originalTileSize = 96; // 96x96 tile
+    public int battleSubState = 0;
     public int scale = 1;
     public final int tileSize = originalTileSize * scale; // 96x96 tile scale (zoom)
     public int screenWidth = tileSize * maxScreenCol; // 96 x 20 = 1920
@@ -151,6 +151,9 @@ public class GameHandler extends JPanel implements Runnable {
         gameThread.start();
 
     }
+    public void reloadLastSave(){
+        saveC.SaveReader(this, save);
+    }
 
     @Override
     public void run() {
@@ -199,14 +202,8 @@ public class GameHandler extends JPanel implements Runnable {
         }
         if (debugMode) {
             if (keyH.kPressed) {
-                //player.fabimonTeam[0].currentHp = player.fabimonTeam[0].hp;
-                gameState = battleState;
-                fabimon.createFabimon("Feirir", 0, 5);
-                enemy_Fabimon[0] = fabimon.tempFabimon;
-                fabimon.createFabimon("Feirir", 0, 5);
-                player.fabimonTeam[0] = fabimon.tempFabimon;
-                ui.clearTextfield();
-               }
+                player.fabimonTeam[0].currentHp = player.fabimonTeam[0].hp;
+            }
             if (keyH.tPressed) {
                 timerMode = !timerMode;
                 keyH.tPressed = false;
@@ -765,93 +762,164 @@ public class GameHandler extends JPanel implements Runnable {
             if (keyH.upPressed || keyH.wPressed || keyH.downPressed || keyH.sPressed || keyH.rightPressed || keyH.dPressed || keyH.leftPressed || keyH.aPressed) {
 
                 if (keyH.upPressed || keyH.wPressed) {
-                    switch (ui.commandNum) {
-                        case 0:
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            ui.commandNum = 0;
-                            break;
-                        case 3:
-                            ui.commandNum = 1;
-                            break;
+                    if (battleSubState == mainMenu || battleSubState == attackMenu) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                ui.commandNum = 0;
+                                break;
+                            case 3:
+                                ui.commandNum = 1;
+                                break;
+                        }
+                    } else if (battleSubState == fabimonMenu && bumber == 0) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 5;
+                                break;
+                            case 1:
+                                ui.commandNum = 0;
+                                break;
+                            case 2:
+                                ui.commandNum = 1;
+                                break;
+                            case 3:
+                                ui.commandNum = 2;
+                                break;
+                            case 4:
+                                ui.commandNum = 3;
+                                break;
+                            case 5:
+                                ui.commandNum = 4;
+                                break;
+                        }
+                        bumber = 1;
+                        while(player.fabimonTeam[ui.commandNum] == null){
+                            ui.commandNum--;
+                            if(ui.commandNum == -1){
+                                ui.commandNum = 5;
+                            }
+                        }
                     }
                 } else if (keyH.downPressed || keyH.sPressed) {
-                    switch (ui.commandNum) {
-                        case 0:
-                            ui.commandNum = 2;
-                            break;
-                        case 1:
-                            ui.commandNum = 3;
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
+                    if (battleSubState == mainMenu || battleSubState == attackMenu) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 2;
+                                break;
+                            case 1:
+                                ui.commandNum = 3;
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }
+                    } else if (battleSubState == fabimonMenu && bumber == 0) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 1;
+                                break;
+                            case 1:
+                                ui.commandNum = 2;
+                                break;
+                            case 2:
+                                ui.commandNum = 3;
+                                break;
+                            case 3:
+                                ui.commandNum = 4;
+                                break;
+                            case 4:
+                                ui.commandNum = 5;
+                                break;
+                            case 5:
+                                ui.commandNum = 0;
+                                break;
+                        }
+                        bumber = 1;
+                        while(player.fabimonTeam[ui.commandNum] == null){
+                            ui.commandNum++;
+                            if(ui.commandNum == 6){
+                                ui.commandNum = 0;
+                            }
+                        }
                     }
                 } else if (keyH.rightPressed || keyH.dPressed) {
-                    switch (ui.commandNum) {
-                        case 0:
-                            ui.commandNum = 1;
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            ui.commandNum = 3;
-                            break;
-                        case 3:
-                            break;
+                    if (battleSubState == mainMenu || battleSubState == attackMenu) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 1;
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                ui.commandNum = 3;
+                                break;
+                            case 3:
+                                break;
+                        }
+                    } else if (battleSubState == fabimonMenu) {
+
                     }
                 } else if (keyH.leftPressed || keyH.aPressed) {
+                    if (battleSubState == mainMenu || battleSubState == attackMenu) {
+                        switch (ui.commandNum) {
+                            case 0:
+
+                                break;
+                            case 1:
+                                ui.commandNum = 0;
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                ui.commandNum = 2;
+                                break;
+                        }
+                    } else if (battleSubState == fabimonMenu) {
+
+                    }
+                }
+            } else if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0) {
+                if (battleSubState == mainMenu) {
                     switch (ui.commandNum) {
                         case 0:
-
+                            battleSubState = attackMenu;
+                            ui.currentDialogue[0] = "Mit was willst du Angreifen";
                             break;
                         case 1:
+                            battleSubState = fabimonMenu;
                             ui.commandNum = 0;
                             break;
                         case 2:
+                            ui.battleText = "Bag";
                             break;
                         case 3:
-                            ui.commandNum = 2;
+                            ui.currentDialogue[0] = "du kannst von einem Trainerkampf nicht fliehen";
                             break;
                     }
-                }
-            } else if(keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0){
-                if(battleSubState == mainMenu){
-                switch (ui.commandNum) {
-                    case 0:
-                        battleSubState = attackMenu;
-                        ui.currentDialogue[0]= "Mit was willst du Angreifen";
-                        break;
-                    case 1:
-                        ui.battleText = "Fabimon";
-                        break;
-                    case 2:
-                        ui.battleText = "Bag";
-                        break;
-                    case 3:
-                        ui.currentDialogue[0] = "du kannst von einem Trainerkampf nicht fliehen";
-                        break;
-                }
-                }else if(battleSubState == attackMenu){
+                } else if (battleSubState == attackMenu) {
                     battle.battleRound();
                     battle.phase++;
+                }else if(battleSubState == fabimonMenu){
+                    battle.changeOwnFabimon(ui.commandNum);
                 }
-                bumber=1;
+                bumber = 1;
             }
-            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1) {
+            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1 && !keyH.sPressed && !keyH.downPressed && !keyH.wPressed &&!keyH.upPressed) {
                 bumber = 0;
             }
         }// Bindings for battleState
         if (gameState == dialogueState) {
 
-            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0){
+            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0) {
 
                 if (npc[npcInteracted].endDialogue) {
-                    if(npc[npcInteracted].trainer){
-                        if(player.fabimonTeam[0] !=null && !npc[npcInteracted].defeated){
+                    if (npc[npcInteracted].trainer) {
+                        if (player.fabimonTeam[0] != null && !npc[npcInteracted].defeated) {
                             gameState = cutsceneState;
                             fabimon.createFabimon("cursed Shiggy", 0, 5);
                             enemy_Fabimon[0] = fabimon.tempFabimon;
@@ -862,12 +930,12 @@ public class GameHandler extends JPanel implements Runnable {
                             csManager.csNum = csManager.battleBegin;
                             battle.opponent = npcInteracted;
                             battleSubState = mainMenu;
-                        }else{
+                        } else {
                             gameState = playState;
                             npc[npcInteracted].endDialogue = false;
                             npc[npcInteracted].endBattle(npcInteracted);
                         }
-                    }else {
+                    } else {
                         gameState = playState;
                         npc[npcInteracted].endDialogue = false;
                     }
@@ -880,7 +948,7 @@ public class GameHandler extends JPanel implements Runnable {
                 bumber = 0;
             }
         }
-        if(gameState == cutsceneState){
+        if (gameState == cutsceneState) {
 
         }
     }

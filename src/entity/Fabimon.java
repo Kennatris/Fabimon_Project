@@ -1,12 +1,8 @@
 package entity;
 
 import Battle.Attack;
-import Battle.attacks.Ember;
-import Battle.attacks.Growl;
-import Battle.attacks.Scary_Face;
-import Battle.attacks.Scratch;
-import entity.FabimonOrdner.CursedShiggy;
-import entity.FabimonOrdner.Feirir;
+import Battle.attacks.*;
+import entity.FabimonOrdner.*;
 import main.GameHandler;
 
 import java.io.BufferedReader;
@@ -35,7 +31,7 @@ public class Fabimon extends Entity {
     public String type2;
     public String nature;
     public int haveEffect[] = {0, 0, 0, 0, 0, 0, 0};
-    public Attack move[] = new Attack[4];
+    public Attack move[] = new Attack[5];
     public String item;
     public String gender;
     public int iv[] = {0, 0, 0, 0, 0, 0};
@@ -60,6 +56,27 @@ public class Fabimon extends Entity {
         }else if(fabimonName.equals("cursed Shiggy")){
             if(fabimonEvo == 0){
                 tempFabimon = new CursedShiggy(gameH);
+                getBaseInfo(fabimonName, fabimonEvo);
+                setFabimonInfo(plevel);
+                setStats();
+            }
+        }else if(fabimonName.equals("electric type")){
+            if(fabimonEvo == 0){
+                tempFabimon = new ElectricType(gameH);
+                getBaseInfo(fabimonName, fabimonEvo);
+                setFabimonInfo(plevel);
+                setStats();
+            }
+        }else if(fabimonName.equals("grass type")){
+            if(fabimonEvo == 0){
+                tempFabimon = new GrassType(gameH);
+                getBaseInfo(fabimonName, fabimonEvo);
+                setFabimonInfo(plevel);
+                setStats();
+            }
+        }else if(fabimonName.equals("Jubby")){
+            if(fabimonEvo == 0){
+                tempFabimon = new Jubby(gameH);
                 getBaseInfo(fabimonName, fabimonEvo);
                 setFabimonInfo(plevel);
                 setStats();
@@ -104,6 +121,7 @@ public class Fabimon extends Entity {
         tempFabimon.type2 = sInfo[2];
         tempFabimon.level = plevel;
         tempFabimon.nature = nat.setNature();
+        tempFabimon.move[4] = new Struggle(gameH);
 
     }
     void setStats(){

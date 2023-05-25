@@ -69,12 +69,20 @@ public class NPCTest extends Entity {
             }
             gameH.npc[npc].endDialogue = true;
         } else if (npc == 4) {
-            if (gameH.player.fabimonTeam[0] == null) {
+            if (gameH.player.fabimonTeam[0] != null) {
                 for (int i = 0; i < 3; i++) {
                     gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[8][i];
                 }
                 gameH.fabimon.createFabimon("Feirir", 0, 5);
                 gameH.player.fabimonTeam[0] = gameH.fabimon.tempFabimon;
+                gameH.fabimon.createFabimon("cursed Shiggy", 0, 5);
+                gameH.player.fabimonTeam[1] = gameH.fabimon.tempFabimon;
+                gameH.fabimon.createFabimon("Jubby", 0, 5);
+                gameH.player.fabimonTeam[2] = gameH.fabimon.tempFabimon;
+                gameH.fabimon.createFabimon("grass type", 0, 5);
+                gameH.player.fabimonTeam[3] = gameH.fabimon.tempFabimon;
+                gameH.fabimon.createFabimon("electric type", 0, 5);
+                gameH.player.fabimonTeam[4] = gameH.fabimon.tempFabimon;
                 gameH.npc[npc].endDialogue = true;
             } else {
                 for (int i = 0; i < 3; i++) {

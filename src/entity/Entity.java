@@ -38,7 +38,7 @@ public class Entity {
     GameHandler gameH;
     int turnTimer;
     int timer;
-    int approachphase = 0;
+    public int approachphase = 0;
     int innactiveTimer;
     public Boolean defeated = false;
     public int dialogueSelect = 0;
