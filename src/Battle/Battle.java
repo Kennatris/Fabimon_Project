@@ -122,10 +122,12 @@ public class Battle {
                         gameH.ui.clearTextfield();
                         gameH.ui.currentDialogue[0] = "Du hast keine Fabimons mehr.";
                         gameH.ui.currentDialogue[1] = " Du hast Verloren!";
-                        phase = -1;
-                        winPhase = -1;
-                        lostBattle();
+                        phase = 2;
                     }
+                }else if(winPhase == 3){
+                    lostBattle();
+                    winPhase = -1;
+                    phase = -1;
                 }
             } else if (gameH.enemy_Fabimon[0].currentHp <= 0) {
                 if (winPhase == 0) {
@@ -193,7 +195,7 @@ public class Battle {
             gameH.ui.currentDialogue[0] = "Dieses Fabimon wurde schon besiegt.";
             gameH.ui.currentDialogue[1] = "Wähle ein anderes Fabimon.";
         } else {
-            if (gameH.player.fabimonTeam[0].currentHp == 0) {
+            if (gameH.player.fabimonTeam[0].currentHp == 0 || gameH.gameState == gameH.fabimonState) {
                 gameH.fabimon.tempFabimon = gameH.player.fabimonTeam[0];
                 gameH.player.fabimonTeam[0] = gameH.player.fabimonTeam[index];
                 gameH.player.fabimonTeam[index] = gameH.fabimon.tempFabimon;
@@ -213,6 +215,7 @@ public class Battle {
                 }
                 checkForWinner();
             }
+            gameH.ui.commandNum = 0;
         }
     }
 
@@ -417,6 +420,7 @@ public class Battle {
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.enemy_Fabimon[0].sp_atk * getStep(gameH.enemy_Fabimon[0].haveEffect[4])) / (50 * gameH.player.fabimonTeam[0].sp_dev * getStep(gameH.player.fabimonTeam[0].haveEffect[5])) + 2;
             double zr2 = (int) zr1 * z * volltreffer() * typeBonus;
+            gameH.ui.currentDialogue[1] = "";
             gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon[0].name + " nutzt " + gameH.enemy_Fabimon[0].move[enemyattack].name + ".";
             return (int) zr2;
         } else if (gameH.enemy_Fabimon[0].move[i].category.equals("physical")) {
@@ -426,6 +430,7 @@ public class Battle {
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.enemy_Fabimon[0].atk * getStep(gameH.enemy_Fabimon[0].haveEffect[2])) / (50 * gameH.player.fabimonTeam[0].dev * getStep(gameH.player.fabimonTeam[0].haveEffect[3])) + 2;
             double zr2 = (int) zr1 * z * volltreffer() * typeBonus;
+            gameH.ui.currentDialogue[1] = "";
             gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon[0].name + " nutzt " + gameH.enemy_Fabimon[0].move[enemyattack].name + ".";
             return (int) zr2;
         } else if (gameH.enemy_Fabimon[0].move[enemyattack].category.equals("status")) {

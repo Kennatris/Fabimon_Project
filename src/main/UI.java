@@ -70,6 +70,16 @@ public class UI {
         if (gameH.gameState == gameH.battleState) {
             drawBattleScreen();
         }
+        if(gameH.gameState == gameH.fabimonState){
+            g2.setColor(Color.BLACK);
+            g2.fillRect(0, 0, gameH.myGUI.frame.getWidth(), gameH.myGUI.frame.getHeight());
+            clearTextfield();
+            currentDialogue[0] = "Was willst du machen?";
+            drawFabimonMenu();
+            drawTextfield();
+            drawDialogue();
+            drawfabimonOverView();
+        }
     }
 
     public void drawTitleScreen() {
@@ -191,17 +201,51 @@ public class UI {
                 y = (int) ((15 * pauseBGHeight) / 16);
             } else {
                 pauseBGHeight = (double) gameH.myGUI.frame.getHeight() / 2 + (double) gameH.myGUI.frame.getHeight() / 4;
-                y = (int) ((11 * pauseBGHeight) / 12);
+                y = (int) ((9 * pauseBGHeight) / 12);
             }
             g2.drawString(text, x, y);
             if (commandNum == textPos) {
                 g2.drawString(">", x - gameH.tileSize, y);
             }
 
+            // Inventar
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
+            text = "INVENTORY";
+            textPos = 1;
+            x = getXforCenteredText(text);
+            if (gameH.fullscreen) {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() / 2 + (double) gameH.myGUI.frame.getHeight() / 4;
+                y = (int) (pauseBGHeight);
+            } else {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() / 2 + (double) gameH.myGUI.frame.getHeight() / 4;
+                y = (int) ((10 * pauseBGHeight)/12);
+            }
+            g2.drawString(text, x, y);
+            if (commandNum == textPos) {
+                g2.drawString(">", x - (gameH.tileSize / 3), y);
+            }
+
+            // Fabimon
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
+            text = "FABIMON";
+            textPos = 2;
+            x = getXforCenteredText(text);
+            if (gameH.fullscreen) {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() / 2 + (double) gameH.myGUI.frame.getHeight() / 4;
+                y = (int) (pauseBGHeight);
+            } else {
+                pauseBGHeight = (double) gameH.myGUI.frame.getHeight() / 2 + (double) gameH.myGUI.frame.getHeight() / 4;
+                y = (int) ((11 * pauseBGHeight)/12);
+            }
+            g2.drawString(text, x, y);
+            if (commandNum == textPos) {
+                g2.drawString(">", x - (gameH.tileSize / 3), y);
+            }
+
             // SAVE AND QUIT
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40));
             text = "SAVE AND QUIT";
-            textPos = 1;
+            textPos = 3;
             x = getXforCenteredText(text);
             if (gameH.fullscreen) {
                 pauseBGHeight = (double) gameH.myGUI.frame.getHeight() / 2 + (double) gameH.myGUI.frame.getHeight() / 4;
@@ -441,10 +485,20 @@ public class UI {
         drawTextfield();
         drawDialogue();
     }
-
+public void drawfabimonOverView(){
+        g2.setColor(Color.GRAY);
+        double overViewWidth = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth()/100)*28;
+        double overViewHeight = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight()/100)*29;
+        g2.fillRect(0, 0, (int)overViewWidth, (int)overViewHeight);
+    for(int i = 0; i<5; i++){
+        g2.setColor(Color.BLACK);
+        g2.drawRect((int)0+i, (int)0+i, (int)overViewWidth-i, (int)overViewHeight-i);
+    }
+    g2.drawImage(gameH.player.fabimonTeam[gameH.ui.commandNum].up1, 0, 0, gameH.myGUI.frame.getWidth()/4, gameH.myGUI.frame.getHeight()/3, null);
+}
     public void drawTextfield() {
 
-        if (gameH.gameState == gameH.battleState) {
+        if (gameH.gameState == gameH.battleState || gameH.gameState == gameH.fabimonState) {
 
             if (gameH.fullscreen) {
 
@@ -743,20 +797,28 @@ public class UI {
     private void drawFabimonMenu(){
         g2.setColor(Color.GRAY);
         double menuX = gameH.myGUI.frame.getWidth()-(gameH.myGUI.frame.getWidth()/100)*28;
-        double menuY = gameH.myGUI.frame.getHeight()-(gameH.myGUI.frame.getHeight()/100)*70;
+        double menuY = gameH.myGUI.frame.getHeight()-(gameH.myGUI.frame.getHeight()/100)*90;
         double menuWidth = (gameH.myGUI.frame.getWidth()/100)*28;
-        double menuHeight = (gameH.myGUI.frame.getHeight()/100)*70;
-        double nameX = gameH.myGUI.frame.getWidth()-(gameH.myGUI.frame.getWidth()/100)*25;
-        double nameY = gameH.myGUI.frame.getHeight()-(gameH.myGUI.frame.getHeight()/100)*62;
+        double menuHeight = (gameH.myGUI.frame.getHeight()/100)*90;
         g2.fillRect((int)menuX, (int)menuY, (int)menuWidth, (int)menuHeight);
+        for(int i = 0; i<5; i++){
+            g2.setColor(Color.BLACK);
+            g2.drawRect((int)menuX+i, (int)menuY+i, (int)menuWidth-i, (int)menuHeight-i);
+        }
+        double nameX = gameH.myGUI.frame.getWidth()-(gameH.myGUI.frame.getWidth()/100)*27;
+        double nameY = gameH.myGUI.frame.getHeight()-(gameH.myGUI.frame.getHeight()/100)*85;
+
         g2.setColor(Color.BLACK);
+        g2.setFont(arial_25);
         for(int i = 0; i<gameH.player.fabimonTeam.length; i++){
             g2.setColor(Color.BLACK);
             if(gameH.player.fabimonTeam[i] != null) {
                 if(gameH.ui.commandNum == i){
                     g2.setColor(Color.WHITE);
                 }
-                g2.drawString(gameH.player.fabimonTeam[i].name, (int)nameX, (int)nameY+45*i);
+                g2.drawString(gameH.player.fabimonTeam[i].name, (int)nameX, (int)nameY+60*i);
+                g2.drawString("Lv: " + gameH.player.fabimonTeam[i].level, (int)nameX + 20+(int) g2.getFontMetrics().getStringBounds(gameH.player.fabimonTeam[i].name, g2).getWidth(), (int)nameY+60*i);
+                g2.drawString(String.valueOf(gameH.player.fabimonTeam[i].currentHp) + "/" + String.valueOf(gameH.player.fabimonTeam[i].hp), (int)nameX, (int)nameY+60*i+30);
             }
         }
     }

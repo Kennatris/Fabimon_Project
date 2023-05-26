@@ -36,6 +36,8 @@ public class GameHandler extends JPanel implements Runnable {
     public final int itemMenu = 2;
     public final int fabimonMenu = 3;
     public final int cutsceneState = 7;
+    public final int inventoryState = 8;
+    public final int fabimonState = 9;
     // SCREEN SETTINGS
     final int originalTileSize = 96; // 96x96 tile
     public int battleSubState = 0;
@@ -305,11 +307,16 @@ public class GameHandler extends JPanel implements Runnable {
                     switch (ui.commandNum) {
 
                         case 0:
-                            ui.commandNum = 1;
+                            ui.commandNum = 3;
                             break;
                         case 1:
                             ui.commandNum = 0;
                             break;
+                        case 2:
+                            ui.commandNum = 1;
+                            break;
+                        case 3:
+                            ui.commandNum = 2;
 
                     }
 
@@ -323,8 +330,13 @@ public class GameHandler extends JPanel implements Runnable {
                             ui.commandNum = 1;
                             break;
                         case 1:
-                            ui.commandNum = 0;
+                            ui.commandNum = 2;
                             break;
+                        case 2:
+                            ui.commandNum = 3;
+                            break;
+                        case 3:
+                            ui.commandNum = 0;
 
                     }
 
@@ -340,12 +352,17 @@ public class GameHandler extends JPanel implements Runnable {
                         case 0: // BACK
                             gameState = playState;
                             break;
-                        case 1: // SAVE AND QUIT
+                        case 1: gameState = inventoryState;
+                        break;
+                        case 2: gameState = fabimonState;
+                            break;
+                        case 3:  // SAVE AND QUIT
                             if (!Objects.equals(save, "save_Default")) {
                                 saveC.SaveWriter(this, save);
                             }
                             gameState = titleState;
                             break;
+
                     }
                 } else if (ui.pauseScreenValue == 1) {
                     // DO NOTHING
@@ -879,8 +896,6 @@ public class GameHandler extends JPanel implements Runnable {
                                 ui.commandNum = 2;
                                 break;
                         }
-                    } else if (battleSubState == fabimonMenu) {
-
                     }
                 }
             } else if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0) {
@@ -908,8 +923,13 @@ public class GameHandler extends JPanel implements Runnable {
                     battle.changeOwnFabimon(ui.commandNum);
                 }
                 bumber = 1;
+            }else if (keyH.escPressed){
+                if(battleSubState == fabimonMenu || battleSubState == attackMenu && battle.phase == 0){
+                    battleSubState = mainMenu;
+                }
             }
-            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1 && !keyH.sPressed && !keyH.downPressed && !keyH.wPressed &&!keyH.upPressed) {
+            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1 && !keyH.sPressed && !keyH.downPressed &&
+                !keyH.wPressed &&!keyH.upPressed) {
                 bumber = 0;
             }
         }// Bindings for battleState
@@ -950,6 +970,76 @@ public class GameHandler extends JPanel implements Runnable {
         }
         if (gameState == cutsceneState) {
 
+        }
+        if(gameState == fabimonState){
+            if(keyH.sPressed || keyH.downPressed || keyH.wPressed || keyH.upPressed){
+                if(keyH.sPressed && bumber == 0|| keyH.downPressed && bumber == 0){
+                    switch (ui.commandNum) {
+                        case 0:
+                            ui.commandNum = 1;
+                            break;
+                        case 1:
+                            ui.commandNum = 2;
+                            break;
+                        case 2:
+                            ui.commandNum = 3;
+                            break;
+                        case 3:
+                            ui.commandNum = 4;
+                            break;
+                        case 4:
+                            ui.commandNum = 5;
+                            break;
+                        case 5:
+                            ui.commandNum = 0;
+                            break;
+                    }
+                    bumber = 1;
+                    while(player.fabimonTeam[ui.commandNum] == null){
+                        ui.commandNum++;
+                        if(ui.commandNum == 6){
+                            ui.commandNum = 0;
+                        }
+                    }
+                }if(keyH.wPressed && bumber == 0|| keyH.upPressed && bumber == 0){
+                    switch (ui.commandNum) {
+                        case 0:
+                            ui.commandNum = 5;
+                            break;
+                        case 1:
+                            ui.commandNum = 0;
+                            break;
+                        case 2:
+                            ui.commandNum = 1;
+                            break;
+                        case 3:
+                            ui.commandNum = 2;
+                            break;
+                        case 4:
+                            ui.commandNum = 3;
+                            break;
+                        case 5:
+                            ui.commandNum = 4;
+                            break;
+                    }
+                    bumber = 1;
+                    while(player.fabimonTeam[ui.commandNum] == null){
+                        ui.commandNum--;
+                        if(ui.commandNum == -1){
+                            ui.commandNum = 5;
+                        }
+                    }
+                }
+            }if(keyH.escPressed){
+                gameState = playState;
+                keyH.escPressed = false;
+            }if(keyH.spacePressed && bumber == 0|| keyH.enterPressed && bumber == 0){
+                battle.changeOwnFabimon(ui.commandNum);
+                bumber = 1;
+            }
+            if(!keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !keyH.spacePressed && !keyH.enterPressed && bumber == 1){
+                bumber = 0;
+            }
         }
     }
 
