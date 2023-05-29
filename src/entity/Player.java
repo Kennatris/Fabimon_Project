@@ -77,7 +77,7 @@ public class Player extends Entity{
 
         collisionOn = false;
         //CHECK NPC VISION
-        gameH.cChecker.checkVision(this, gameH.npc);
+        gameH.cChecker.checkVision(this, gameH.npc);// checkt ob der Player im Blick von einem NPC ist
 
         // CHECK NPC COLLISION
         int npcIndex = gameH.cChecker.checkEntity(this, gameH.npc);

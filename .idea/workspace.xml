@@ -12,10 +12,16 @@
     <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/saves/save_one.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_one.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Battle/Attack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Battle/Attack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Battle/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Battle/Battle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Fabimon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Fabimon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/NPCTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/NPCTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CutsceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CutsceneManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/control/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/control/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings/SaveCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/SaveCompiler.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -357,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685011207072</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="V0.9.7.2.2">
+      <created>1685103244792</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1685103244792</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,16 +444,5 @@
     <MESSAGE value="V0.9.7.2.2" />
     <option name="LAST_COMMIT_MESSAGE" value="V0.9.7.2.2" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/entity/Fabimon.java</url>
-          <line>93</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

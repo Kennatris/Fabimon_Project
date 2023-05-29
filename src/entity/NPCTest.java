@@ -83,6 +83,8 @@ public class NPCTest extends Entity {
                 gameH.player.fabimonTeam[3] = gameH.fabimon.tempFabimon;
                 gameH.fabimon.createFabimon("electric type", 0, 5);
                 gameH.player.fabimonTeam[4] = gameH.fabimon.tempFabimon;
+                gameH.fabimon.createFabimon("electric type", 0, 5);
+                gameH.player.fabimonTeam[5] = gameH.fabimon.tempFabimon;
                 gameH.npc[npc].endDialogue = true;
             } else {
                 for (int i = 0; i < 3; i++) {
@@ -113,7 +115,7 @@ public class NPCTest extends Entity {
         right2 = imageH.image[7];
     }
 
-    public void setAction() {
+    public void setAction() {// hier werden die Bewegungen der NPC festgelegt
         if (gameH.npc[1].worldX > gameH.tileSize * 24) {
             gameH.npc[1].direction = "left";
         } else if (gameH.npc[1].worldX < gameH.tileSize * 12) {

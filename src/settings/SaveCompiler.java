@@ -91,6 +91,7 @@ public class SaveCompiler extends Settings{
                             }
                             break;
                         default:
+                            // player Fabimons
                             for(int i = 1; i<gameH.player.fabimonTeam.length+1; i++){
                                     unsavedString[i][0] = line;
                                     line = br.readLine();
@@ -249,6 +250,7 @@ public class SaveCompiler extends Settings{
                 bw.newLine();
                 bw.write(String.valueOf(gameH.map));
                 bw.newLine();
+                //player Fabimons
                 for(int i = 0; i < gameH.player.fabimonTeam.length; i++){
                     if(gameH.player.fabimonTeam[i] != null) {
                         bw.write(gameH.player.fabimonTeam[i].name);
@@ -273,15 +275,16 @@ public class SaveCompiler extends Settings{
                             bw.write(String.valueOf(gameH.player.fabimonTeam[i].iv[j]));
                             bw.newLine();
                         }
-                        for (int j = 0; j < gameH.player.fabimonTeam[i].move.length; j++) {
+                        for (int j = 0; j < gameH.player.fabimonTeam[i].move.length-1; j++) {
                             bw.write(gameH.player.fabimonTeam[i].move[j].name);
                             bw.newLine();
                         }
-                        for(int j = 0; j< gameH.player.fabimonTeam[i].move.length; j++){
+                        for(int j = 0; j< gameH.player.fabimonTeam[i].move.length-1; j++){
                             bw.write(String.valueOf(gameH.player.fabimonTeam[i].move[j].currentap));
                             bw.newLine();
                         }
                     }else{
+                        // speichert dies wenn null
                         bw.write("nichts");
                         bw.newLine();
                         bw.write("nichts");

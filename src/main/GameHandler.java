@@ -31,16 +31,18 @@ public class GameHandler extends JPanel implements Runnable {
     public final int saveState = 4;
     public final int settingState = 5;
     public final int battleState = 6;
-    public final int mainMenu = 0;
+    public final int noSubState = 0;
     public final int attackMenu = 1;
     public final int itemMenu = 2;
     public final int fabimonMenu = 3;
+    public final int optionState = 4;
+    public final int fabimonOverviewState = 5;
     public final int cutsceneState = 7;
     public final int inventoryState = 8;
     public final int fabimonState = 9;
+
     // SCREEN SETTINGS
     final int originalTileSize = 96; // 96x96 tile
-    public int battleSubState = 0;
     public int scale = 1;
     public final int tileSize = originalTileSize * scale; // 96x96 tile scale (zoom)
     public int screenWidth = tileSize * maxScreenCol; // 96 x 20 = 1920
@@ -90,6 +92,7 @@ public class GameHandler extends JPanel implements Runnable {
 
     // GAME STATE
     public int gameState;
+    public int gameSubState = 0;
     // FPS
     int FPS = 60;
     Sound music = new Sound();
@@ -153,7 +156,8 @@ public class GameHandler extends JPanel implements Runnable {
         gameThread.start();
 
     }
-    public void reloadLastSave(){
+
+    public void reloadLastSave() {
         saveC.SaveReader(this, save);
     }
 
@@ -352,9 +356,11 @@ public class GameHandler extends JPanel implements Runnable {
                         case 0: // BACK
                             gameState = playState;
                             break;
-                        case 1: gameState = inventoryState;
-                        break;
-                        case 2: gameState = fabimonState;
+                        case 1:
+                            gameState = inventoryState;
+                            break;
+                        case 2:
+                            gameState = fabimonState;
                             break;
                         case 3:  // SAVE AND QUIT
                             if (!Objects.equals(save, "save_Default")) {
@@ -779,7 +785,7 @@ public class GameHandler extends JPanel implements Runnable {
             if (keyH.upPressed || keyH.wPressed || keyH.downPressed || keyH.sPressed || keyH.rightPressed || keyH.dPressed || keyH.leftPressed || keyH.aPressed) {
 
                 if (keyH.upPressed || keyH.wPressed) {
-                    if (battleSubState == mainMenu || battleSubState == attackMenu) {
+                    if (gameSubState == noSubState || gameSubState == attackMenu) {
                         switch (ui.commandNum) {
                             case 0:
                                 break;
@@ -792,7 +798,7 @@ public class GameHandler extends JPanel implements Runnable {
                                 ui.commandNum = 1;
                                 break;
                         }
-                    } else if (battleSubState == fabimonMenu && bumber == 0) {
+                    } else if (gameSubState == fabimonMenu && bumber == 0) {
                         switch (ui.commandNum) {
                             case 0:
                                 ui.commandNum = 5;
@@ -814,15 +820,15 @@ public class GameHandler extends JPanel implements Runnable {
                                 break;
                         }
                         bumber = 1;
-                        while(player.fabimonTeam[ui.commandNum] == null){
+                        while (player.fabimonTeam[ui.commandNum] == null) {
                             ui.commandNum--;
-                            if(ui.commandNum == -1){
+                            if (ui.commandNum == -1) {
                                 ui.commandNum = 5;
                             }
                         }
                     }
                 } else if (keyH.downPressed || keyH.sPressed) {
-                    if (battleSubState == mainMenu || battleSubState == attackMenu) {
+                    if (gameSubState == noSubState || gameSubState == attackMenu) {
                         switch (ui.commandNum) {
                             case 0:
                                 ui.commandNum = 2;
@@ -835,7 +841,7 @@ public class GameHandler extends JPanel implements Runnable {
                             case 3:
                                 break;
                         }
-                    } else if (battleSubState == fabimonMenu && bumber == 0) {
+                    } else if (gameSubState == fabimonMenu && bumber == 0) {
                         switch (ui.commandNum) {
                             case 0:
                                 ui.commandNum = 1;
@@ -857,15 +863,15 @@ public class GameHandler extends JPanel implements Runnable {
                                 break;
                         }
                         bumber = 1;
-                        while(player.fabimonTeam[ui.commandNum] == null){
+                        while (player.fabimonTeam[ui.commandNum] == null) {
                             ui.commandNum++;
-                            if(ui.commandNum == 6){
+                            if (ui.commandNum == 6) {
                                 ui.commandNum = 0;
                             }
                         }
                     }
                 } else if (keyH.rightPressed || keyH.dPressed) {
-                    if (battleSubState == mainMenu || battleSubState == attackMenu) {
+                    if (gameSubState == noSubState || gameSubState == attackMenu) {
                         switch (ui.commandNum) {
                             case 0:
                                 ui.commandNum = 1;
@@ -878,11 +884,11 @@ public class GameHandler extends JPanel implements Runnable {
                             case 3:
                                 break;
                         }
-                    } else if (battleSubState == fabimonMenu) {
+                    } else if (gameSubState == fabimonMenu) {
 
                     }
                 } else if (keyH.leftPressed || keyH.aPressed) {
-                    if (battleSubState == mainMenu || battleSubState == attackMenu) {
+                    if (gameSubState == noSubState || gameSubState == attackMenu) {
                         switch (ui.commandNum) {
                             case 0:
 
@@ -899,14 +905,14 @@ public class GameHandler extends JPanel implements Runnable {
                     }
                 }
             } else if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0) {
-                if (battleSubState == mainMenu) {
+                if (gameSubState == noSubState) {
                     switch (ui.commandNum) {
                         case 0:
-                            battleSubState = attackMenu;
+                            gameSubState = attackMenu;
                             ui.currentDialogue[0] = "Mit was willst du Angreifen";
                             break;
                         case 1:
-                            battleSubState = fabimonMenu;
+                            gameSubState = fabimonMenu;
                             ui.commandNum = 0;
                             break;
                         case 2:
@@ -916,20 +922,19 @@ public class GameHandler extends JPanel implements Runnable {
                             ui.currentDialogue[0] = "du kannst von einem Trainerkampf nicht fliehen";
                             break;
                     }
-                } else if (battleSubState == attackMenu) {
-                    battle.battleRound();
+                } else if (gameSubState == attackMenu) {
+                    battle.battleRound(); //durchläuft eine Phase einer Kampfrunde
                     battle.phase++;
-                }else if(battleSubState == fabimonMenu){
+                } else if (gameSubState == fabimonMenu) {
                     battle.changeOwnFabimon(ui.commandNum);
                 }
                 bumber = 1;
-            }else if (keyH.escPressed){
-                if(battleSubState == fabimonMenu || battleSubState == attackMenu && battle.phase == 0){
-                    battleSubState = mainMenu;
+            } else if (keyH.escPressed) {
+                if (gameSubState == fabimonMenu || gameSubState == attackMenu && battle.phase == 0) {
+                    gameSubState = noSubState;
                 }
             }
-            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1 && !keyH.sPressed && !keyH.downPressed &&
-                !keyH.wPressed &&!keyH.upPressed) {
+            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1 && !keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed) {
                 bumber = 0;
             }
         }// Bindings for battleState
@@ -941,15 +946,12 @@ public class GameHandler extends JPanel implements Runnable {
                     if (npc[npcInteracted].trainer) {
                         if (player.fabimonTeam[0] != null && !npc[npcInteracted].defeated) {
                             gameState = cutsceneState;
-                            fabimon.createFabimon("cursed Shiggy", 0, 5);
-                            enemy_Fabimon[0] = fabimon.tempFabimon;
-                            fabimon.createFabimon("Feirir", 0, 2);
-                            enemy_Fabimon[2] = fabimon.tempFabimon;
-                            fabimon.createFabimon("Feirir", 0, 4);
-                            enemy_Fabimon[1] = fabimon.tempFabimon;
+                            for(int i = 0; i<enemy_Fabimon.length; i++){
+                                enemy_Fabimon[i] = npc[npcInteracted].fabimonTeam[i];
+                            }
                             csManager.csNum = csManager.battleBegin;
                             battle.opponent = npcInteracted;
-                            battleSubState = mainMenu;
+                            gameSubState = noSubState;
                         } else {
                             gameState = playState;
                             npc[npcInteracted].endDialogue = false;
@@ -969,75 +971,136 @@ public class GameHandler extends JPanel implements Runnable {
             }
         }
         if (gameState == cutsceneState) {
-
+        //macht nichts
         }
-        if(gameState == fabimonState){
-            if(keyH.sPressed || keyH.downPressed || keyH.wPressed || keyH.upPressed){
-                if(keyH.sPressed && bumber == 0|| keyH.downPressed && bumber == 0){
-                    switch (ui.commandNum) {
-                        case 0:
-                            ui.commandNum = 1;
-                            break;
-                        case 1:
-                            ui.commandNum = 2;
-                            break;
-                        case 2:
-                            ui.commandNum = 3;
-                            break;
-                        case 3:
-                            ui.commandNum = 4;
-                            break;
-                        case 4:
-                            ui.commandNum = 5;
-                            break;
-                        case 5:
-                            ui.commandNum = 0;
-                            break;
-                    }
-                    bumber = 1;
-                    while(player.fabimonTeam[ui.commandNum] == null){
-                        ui.commandNum++;
-                        if(ui.commandNum == 6){
-                            ui.commandNum = 0;
+        if (gameState == fabimonState) {
+            if (keyH.sPressed || keyH.downPressed || keyH.wPressed || keyH.upPressed) {
+                if (keyH.sPressed && bumber == 0 || keyH.downPressed && bumber == 0) {
+                    if (gameSubState == noSubState) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 1;
+                                break;
+                            case 1:
+                                ui.commandNum = 2;
+                                break;
+                            case 2:
+                                ui.commandNum = 3;
+                                break;
+                            case 3:
+                                ui.commandNum = 4;
+                                break;
+                            case 4:
+                                ui.commandNum = 5;
+                                break;
+                            case 5:
+                                ui.commandNum = 0;
+                                break;
+                        }
+                        while (player.fabimonTeam[ui.commandNum] == null) {//erhöt solange bis es auf ein Feld trifft mit einem Fabimon
+                            ui.commandNum++;
+                            if (ui.commandNum == 6) {
+                                ui.commandNum = 0;
+                            }
+                        }
+                    } else if (gameSubState == optionState) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 2;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 0;
+                                break;
                         }
                     }
-                }if(keyH.wPressed && bumber == 0|| keyH.upPressed && bumber == 0){
-                    switch (ui.commandNum) {
-                        case 0:
-                            ui.commandNum = 5;
-                            break;
-                        case 1:
-                            ui.commandNum = 0;
-                            break;
-                        case 2:
-                            ui.commandNum = 1;
-                            break;
-                        case 3:
-                            ui.commandNum = 2;
-                            break;
-                        case 4:
-                            ui.commandNum = 3;
-                            break;
-                        case 5:
-                            ui.commandNum = 4;
-                            break;
-                    }
                     bumber = 1;
-                    while(player.fabimonTeam[ui.commandNum] == null){
-                        ui.commandNum--;
-                        if(ui.commandNum == -1){
-                            ui.commandNum = 5;
-                        }
-                    }
                 }
-            }if(keyH.escPressed){
-                gameState = playState;
-                keyH.escPressed = false;
-            }if(keyH.spacePressed && bumber == 0|| keyH.enterPressed && bumber == 0){
-                battle.changeOwnFabimon(ui.commandNum);
+                if (keyH.wPressed && bumber == 0 || keyH.upPressed && bumber == 0) {
+                    if (gameSubState == noSubState) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 5;
+                                break;
+                            case 1:
+                                ui.commandNum = 0;
+                                break;
+                            case 2:
+                                ui.commandNum = 1;
+                                break;
+                            case 3:
+                                ui.commandNum = 2;
+                                break;
+                            case 4:
+                                ui.commandNum = 3;
+                                break;
+                            case 5:
+                                ui.commandNum = 4;
+                                break;
+                        }
+
+
+                        while (player.fabimonTeam[ui.commandNum] == null) {
+                            ui.commandNum--;
+                            if (ui.commandNum == -1) {
+                                ui.commandNum = 5;
+                            }
+                        }
+                    } else if (gameSubState == optionState) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 0;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 2;
+                                break;
+                        }
+                    }
+                    bumber = 1;
+                }
+
+            }
+            if (keyH.escPressed && bumber == 0) {
+                if (gameSubState == noSubState) {
+                    gameState = playState;
+
+                    ui.commandNum = 0;
+                }else if(gameSubState == fabimonOverviewState){
+                    gameSubState = noSubState;
+                }
                 bumber = 1;
             }
-            if(!keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !keyH.spacePressed && !keyH.enterPressed && bumber == 1){
+            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0) {
+                if(gameSubState == noSubState) {
+                    gameSubState = optionState;
+                    ui.subCommandNum = 0;
+                }else if(gameSubState == optionState){
+                    switch(ui.subCommandNum){
+                        case 0: battle.changeOwnFabimon(ui.commandNum);
+                            break;
+                        case 1: gameSubState = fabimonOverviewState;
+                            break;
+                        case 2:
+                            break;
+                        case 3: gameSubState = noSubState;
+                            break;
+
+                    }
+                }
+                bumber = 1;
+            }
+            if (!keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !keyH.spacePressed && !keyH.enterPressed && !keyH.escPressed && bumber == 1) {
                 bumber = 0;
             }
         }

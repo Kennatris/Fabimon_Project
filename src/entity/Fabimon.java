@@ -13,14 +13,14 @@ public class Fabimon extends Entity {
     public Fabimon tempFabimon;
     Nature nat = new Nature();
     public int baseStats[] = new int[6];
-    public int giveEV[] = new int[6];
+    public int giveEV[] = new int[6]; // die Ev die ein Fabimon beim sieg übergibt.
     public int haveEV[] = {0, 0, 0, 0, 0, 0};
     public String sInfo[] = new String[3];
     public String name;
-    public int baseEp;
+    public int baseEp;// EXP die ein Fabimon beim sieg übergibt
     public int currentEp;
     public int level;
-    public int hp;
+    public int hp; // max HP
     public int currentHp;
     public int atk;
     public int sp_atk;
@@ -31,7 +31,7 @@ public class Fabimon extends Entity {
     public String type2;
     public String nature;
     public int haveEffect[] = {0, 0, 0, 0, 0, 0, 0};
-    public Attack move[] = new Attack[5];
+    public Attack move[] = new Attack[5]; // die Attacken die ein Fabimon hat der 5 Attacke ist immer Struggle
     public String item;
     public String gender;
     public int iv[] = {0, 0, 0, 0, 0, 0};
@@ -52,7 +52,6 @@ public class Fabimon extends Entity {
                 setFabimonInfo(plevel);
                 setStats();
             }
-
         }else if(fabimonName.equals("cursed Shiggy")){
             if(fabimonEvo == 0){
                 tempFabimon = new CursedShiggy(gameH);
@@ -84,21 +83,21 @@ public class Fabimon extends Entity {
         }
     }
     public int berechneHP(){
-        double ev = (haveEV[0]/4);
-        double stat = (2*baseStats[0]+iv[0]+ (int)ev);
+        double ev = (tempFabimon.haveEV[0]/4);
+        double stat = (2*baseStats[0]+tempFabimon.iv[0]+(int)ev);
         double statdurch100 = ((int)stat * tempFabimon.level)/100;
         double tempHP = (int)statdurch100+tempFabimon.level+10;
         return (int)tempHP;
     }
     public int berechneStat(int basestatIndex){
-        double ev = (haveEV[0]/4);
-        double stat = (2*baseStats[basestatIndex]+iv[basestatIndex]+ (int)ev);
+        double ev = (tempFabimon.haveEV[0]/4);
+        double stat = (2*baseStats[basestatIndex]+tempFabimon.iv[basestatIndex]+ (int)ev);
         double nature = nat.getmultiplikator(tempFabimon.nature, basestatIndex);
         double statdurch100 = ((stat * tempFabimon.level)/100)+5;
         double berechnung = (int)statdurch100*nature;
         return (int)berechnung;
     }
-    private void setIv(){
+    private void setIv(){ // setzt einen zufälligen wert zwischen 0 und 31
         for(int i = 0; i<iv.length; i++){
             int temp = (int)(Math.random()*32);
             tempFabimon.iv[i] = temp;
@@ -120,7 +119,7 @@ public class Fabimon extends Entity {
         tempFabimon.type1 = sInfo[1];
         tempFabimon.type2 = sInfo[2];
         tempFabimon.level = plevel;
-        tempFabimon.nature = nat.setNature();
+        tempFabimon.nature = nat.setNature(); //gibt eine zufällige Nature zurück
         tempFabimon.move[4] = new Struggle(gameH);
 
     }
@@ -152,13 +151,37 @@ public class Fabimon extends Entity {
         recalculate();
         gameH.player.fabimonTeam[index] = tempFabimon;
     }
-    private void recalculate(){
+    private void recalculate(){ // zum neuberechnen der Stats
         tempFabimon.hp = berechneHP();
         tempFabimon.atk = berechneStat(1);
         tempFabimon.dev = berechneStat(2);
         tempFabimon.sp_atk = berechneStat(3);
         tempFabimon.sp_dev = berechneStat(4);
         tempFabimon.init = berechneStat(5);
+    }
+    public void recalculatePlayerFabimon(int index){ // zum neuberechnen der Stats nach bestimmte konditionen
+        getBaseInfo(gameH.player.fabimonTeam[index].name, 0);
+        gameH.player.fabimonTeam[index].hp = berechnePlayerFabimonHp(index);
+        gameH.player.fabimonTeam[index].atk = berechnePlayerFabimonStats(index, 1);
+        gameH.player.fabimonTeam[index].dev = berechnePlayerFabimonStats(index, 2);
+        gameH.player.fabimonTeam[index].sp_atk = berechnePlayerFabimonStats(index, 3);
+        gameH.player.fabimonTeam[index].sp_dev = berechnePlayerFabimonStats(index, 4);
+        gameH.player.fabimonTeam[index].init = berechnePlayerFabimonStats(index, 5);
+    }
+    private int berechnePlayerFabimonStats(int index, int basestatIndex){
+        double ev = (gameH.player.fabimonTeam[index].haveEV[0]/4);
+        double stat = (2*baseStats[basestatIndex]+gameH.player.fabimonTeam[index].iv[basestatIndex]+ (int)ev);
+        double nature = nat.getmultiplikator(gameH.player.fabimonTeam[index].nature, basestatIndex);
+        double statdurch100 = ((stat * gameH.player.fabimonTeam[index].level)/100)+5;
+        double berechnung = (int)statdurch100*nature;
+        return (int)berechnung;
+    }
+    private int berechnePlayerFabimonHp(int index){
+        double ev = (gameH.player.fabimonTeam[index].haveEV[0]/4);
+        double stat = (2*baseStats[0]+gameH.player.fabimonTeam[index].iv[0]+(int)ev);
+        double statdurch100 = ((int)stat * gameH.player.fabimonTeam[index].level)/100;
+        double tempHP = (int)statdurch100+gameH.player.fabimonTeam[index].level+10;
+        return (int)tempHP;
     }
     private void setMove(String pmove, int moveIndex){
         switch(pmove){
@@ -169,7 +192,7 @@ public class Fabimon extends Entity {
             default: break;
         }
     }
-    public void getBaseInfo(String fileName, int evo) {
+    public void getBaseInfo(String fileName, int evo) {// lest die Daten aus BaseStats.txt aus
         try {
 
             String fileLocation = "res/Fabimon/" + fileName + "/BaseStats.txt";

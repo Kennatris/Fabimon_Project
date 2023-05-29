@@ -18,33 +18,33 @@ public class Battle {
     public void battleRound() {
 
         if (phase == 0) {
-            Boolean haveAp = false;
+            Boolean haveAp = false;     // checkt, ob noch ap vorhanden sind
             for(int i = 0; i<gameH.player.fabimonTeam[0].move.length-1; i++){
                 if(gameH.player.fabimonTeam[0].move[i].currentap != 0){
                     haveAp = true;
                 }
             }
             if(!haveAp){
-                gameH.ui.commandNum = 4;
+                gameH.ui.commandNum = 4;    //setzt commandNum auf 4 wenn nicht.
             }
-            if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].currentap == 0 && haveAp) {
+            if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].currentap == 0 && haveAp) { // Attacke nicht benutzbar wenn ap = 0
                 gameH.ui.clearTextfield();
                 gameH.ui.currentDialogue[0] = "Die ap dieser Attacke sind verbraucht";
                 phase = -1;
             } else{
-                enemyattack = getenemyattack();
-                prio = priority(enemyattack);
+                enemyattack = getenemyattack();     //wählt für gegner eine Attacke aus
+                prio = priority(enemyattack);       //checkt wer als erstes angreifen darf.
             }
         }
         if (prio.equals("own")) {
             if (phase == 0) {
-                if (checkOwnHit()) {
+                if (checkOwnHit()) { // checkt, ob der Angriff trifft
                     gameH.enemy_Fabimon[0].currentHp -= calculateOwnDamage();
                 } else {
                     gameH.ui.clearTextfield();
                     gameH.ui.currentDialogue[0] = gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].name + " hat nicht getroffen!";
                 }
-                checkForWinner();
+                checkForWinner(); // checkt für einen gewinner
             } else if (phase == 1) {
                 if (checkEnemyHit()) {
                     gameH.player.fabimonTeam[0].currentHp -= calculateEnemyDamage(enemyattack);
@@ -54,8 +54,8 @@ public class Battle {
                 }
                 checkForWinner();
 
-            } else if (phase == 2) {
-                gameH.battleSubState = gameH.mainMenu;
+            } else if (phase == 2) {    // battleround wird beendet
+                gameH.gameSubState = gameH.noSubState;
                 gameH.ui.commandNum = 0;
                 phase = -1;
                 gameH.ui.clearTextfield();
@@ -82,7 +82,7 @@ public class Battle {
                 checkForWinner();
 
             } else if (phase == 2) {
-                gameH.battleSubState = gameH.mainMenu;
+                gameH.gameSubState = gameH.noSubState;
                 gameH.ui.commandNum = 0;
                 phase = -1;
                 gameH.ui.clearTextfield();
@@ -104,7 +104,7 @@ public class Battle {
                     gameH.ui.currentDialogue[0] = "Dein Fabimon wurde besiegt";
                     phase = 2;
                 } else if (winPhase == 2) {
-                    Boolean haveFabimon = false;
+                    Boolean haveFabimon = false; // checkt, ob eine Fabimon noch kampffähig ist
                     for (int i = 0; i < gameH.player.fabimonTeam.length; i++) {
                         if (gameH.player.fabimonTeam[i] != null) {
                             if (gameH.player.fabimonTeam[i].currentHp > 0) {
@@ -115,7 +115,7 @@ public class Battle {
                     if (haveFabimon) {
                         gameH.ui.clearTextfield();
                         gameH.ui.currentDialogue[0] = "Welches Fabimon soll zum Kampf";
-                        gameH.battleSubState = gameH.fabimonMenu;
+                        gameH.gameSubState = gameH.fabimonMenu;
                         phase = -1;
                         winPhase = -1;
                     } else {
@@ -131,11 +131,13 @@ public class Battle {
                 }
             } else if (gameH.enemy_Fabimon[0].currentHp <= 0) {
                 if (winPhase == 0) {
+                    getEV();
                     phase = 2;
                     gameH.ui.currentDialogue[1] = "Das gegnerische Fabimon ist besiegt";
                     calculateExp();
                 } else if (winPhase == 1) {
                     checkLevelUp();
+                    gameH.fabimon.recalculatePlayerFabimon(0);
                     phase = 2;
                 }
                 if (winPhase == 2) {
@@ -168,8 +170,35 @@ public class Battle {
             winPhase++;
         }
     }
+    private void getEV(){
+        int temp = 0;
+        for(int i = 0; i<6; i++){
+            temp += gameH.player.fabimonTeam[0].haveEV[i];
+        }
+        if(temp < 510){
+            for(int i = 0; i<6; i++){
+                if(gameH.player.fabimonTeam[0].haveEV[i] < 255){
+                    gameH.player.fabimonTeam[0].haveEV[i] += gameH.enemy_Fabimon[0].giveEV[i];
+                    if(gameH.player.fabimonTeam[0].haveEV[i] > 255){
+                        gameH.player.fabimonTeam[0].haveEV[i] = 255;
+                    }
+                    temp = 0;
+                    for(int j = 0; j<6; j++){
+                        temp += gameH.player.fabimonTeam[0].haveEV[j];
+                    }
+                    if(temp > 510){
+                        while(temp != 510){
+                            gameH.player.fabimonTeam[0].haveEV[i]--;
+                            temp--;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
     private void lostBattle(){
-        gameH.reloadLastSave();
+        gameH.reloadLastSave(); // es wird der letzte save geladen
         gameH.gameState = gameH.playState;
         gameH.npc[opponent].isApproaching = false;
         gameH.player.beingApproached = false;
@@ -186,11 +215,11 @@ public class Battle {
     }
 
     public void changeOwnFabimon(int index) {
-        if (index == 0) {
+        if (index == 0) { // lässt einen nicht wechseln falls mit dem Fabimon das schon kämpft versucht wird zu wechseln
             gameH.ui.clearTextfield();
             gameH.ui.currentDialogue[0] = "Dieses Fabimon ist schon am kämpfen.";
             gameH.ui.currentDialogue[1] = "Wähle ein anderes Fabimon.";
-        } else if (gameH.player.fabimonTeam[index].currentHp == 0) {
+        } else if (gameH.player.fabimonTeam[index].currentHp == 0) { // lässt einen nicht wechseln falls das Fabimon schon besiegt ist
             gameH.ui.clearTextfield();
             gameH.ui.currentDialogue[0] = "Dieses Fabimon wurde schon besiegt.";
             gameH.ui.currentDialogue[1] = "Wähle ein anderes Fabimon.";
@@ -199,14 +228,14 @@ public class Battle {
                 gameH.fabimon.tempFabimon = gameH.player.fabimonTeam[0];
                 gameH.player.fabimonTeam[0] = gameH.player.fabimonTeam[index];
                 gameH.player.fabimonTeam[index] = gameH.fabimon.tempFabimon;
-                gameH.battleSubState = gameH.mainMenu;
+                gameH.gameSubState = gameH.noSubState;
                 gameH.ui.clearTextfield();
                 gameH.ui.currentDialogue[0] = "Was willst du machen?";
-            } else {
+            } else { // gegner darf noch angreifen falls wechsel freiwillig war
                 gameH.fabimon.tempFabimon = gameH.player.fabimonTeam[0];
                 gameH.player.fabimonTeam[0] = gameH.player.fabimonTeam[index];
                 gameH.player.fabimonTeam[index] = gameH.fabimon.tempFabimon;
-                gameH.battleSubState = gameH.mainMenu;
+                gameH.gameSubState = gameH.noSubState;
                 enemyattack = getenemyattack();
                 if (checkEnemyHit()) {
                     gameH.player.fabimonTeam[0].currentHp -= calculateEnemyDamage(enemyattack);
@@ -407,7 +436,7 @@ public class Battle {
         }
     }
 
-    public int testCalculateEnemyDamage(int i) {
+    public int testCalculateEnemyDamage(int i) {// berechnet den schaden den ein angriff machen würde.
         double typeBonus = 1;
         if (gameH.enemy_Fabimon[0].type1.equals(gameH.player.fabimonTeam[0].move[enemyattack].type) || gameH.enemy_Fabimon[0].type2.equals(gameH.player.fabimonTeam[0].move[enemyattack].type)) {
             typeBonus = 1.5;
@@ -499,7 +528,7 @@ public class Battle {
         }
     }
 
-    private double getaccStep(int i) {
+    private double getaccStep(int i) { // gibt den Multiplikator für die genauigkeit zurück
         switch (i) {
             case -6:
                 return 0.33;
@@ -531,7 +560,7 @@ public class Battle {
         return 1.0;
     }
 
-    private double getStep(int i) {
+    private double getStep(int i) { // gibt den multiplikator für die statuswerte zurück
         switch (i) {
             case -6:
                 return 0.25;

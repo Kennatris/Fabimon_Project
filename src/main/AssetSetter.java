@@ -22,7 +22,7 @@ public class AssetSetter {
         gameH.obj[0].worldY = gameH.tileSize * 17;
     }
 
-    public void setNPC(String fileName) {
+    public void setNPC(String fileName) {// lest die Daten aus createNPC.txt aus und kreiert ein NPC mit diesen Daten
 
         try {
 

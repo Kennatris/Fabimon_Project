@@ -37,7 +37,7 @@ public class CutsceneManager {
         }
     }
 
-    private void battleBegin() {
+    private void battleBegin() { //cutscene vor den begin eines Kampfes
         if (csPhase == 0) {
             width = 0;
             height = gameH.myGUI.frame.getHeight();
@@ -58,7 +58,7 @@ public class CutsceneManager {
         }
     }
 
-    private void ausrufezeichen() {
+    private void ausrufezeichen() { //zeichnet ein ausrufeZeichen über den Kopf eines NPCs
         int x = gameH.npc[gameH.npcInteracted].worldX - gameH.player.worldX + gameH.player.screenX;
         int y = gameH.npc[gameH.npcInteracted].worldY - gameH.player.worldY + gameH.player.screenY - gameH.tileSize;
         /*
