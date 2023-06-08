@@ -44,6 +44,8 @@ public class CutsceneManager {
             x = gameH.myGUI.frame.getWidth();
             g2.setColor(Color.black);
             csPhase++;
+            gameH.stopMusic();
+            gameH.playMusic(16);
         } else if (csPhase == 1) {
             width += 10;
             x -= 10;

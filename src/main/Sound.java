@@ -16,7 +16,12 @@ public class Sound {
         /* TEMPLATE
         soundURL[index] = getClass().getResource("NAME");
          */
-          soundURL[0] = new File("res/Sound Library/Sound.wav");
+          soundURL[0] = new File("res/Sound Library/Click.wav");
+
+          soundURL[15] = new File("res/Music Libray/Music.wav");
+          soundURL[16] = new File("res/Music Libray/BattleMusic.wav");
+          soundURL[17] = new File("res/Music Libray/ArenaMusic.wav");
+          soundURL[18] = new File("res/Music Libray/TitleMusic.wav");
 
     }
 

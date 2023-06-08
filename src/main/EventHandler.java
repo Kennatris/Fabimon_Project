@@ -25,18 +25,22 @@ public class EventHandler {
         /* Example
         if(hit(INWICHCOLUMN_MAP, INWICHROW_MAP, requiredDIRECTION) == true) {Method();}
         */
-            if(hit(24, 18, "any") && gameH.keyH.enterPressed) {
+            if(hit(24, 18, "any")) {
+                gameH.stopMusic();
                 if (gameH.mapType == 0) {
                     gameH.map = gameH.availableMaps[3];
                     gameH.mapType = 3;
+                    gameH.playMusic(17);
                 } else if (gameH.mapType == 3) {
                     gameH.map = gameH.availableMaps[0];
                     gameH.mapType = 0;
+                    gameH.playMusic(15);
                 }
 
                 gameH.gameState = gameH.playState;
 
                 gameH.tileM.loadMap(gameH.map);
+
                 // set Player
                 gameH.player.worldY = 19 * gameH.tileSize;
                 gameH.player.direction = "idle";

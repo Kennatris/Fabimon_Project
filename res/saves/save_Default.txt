@@ -3,9 +3,9 @@ false
 567
 25
 25
-false
-0.6999999
-1.5000001
+true
+1
+1
 map_test_1
 nichts
 nichts

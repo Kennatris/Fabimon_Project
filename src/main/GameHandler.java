@@ -9,7 +9,6 @@ import entity.PlayerDummy;
 import main.control.KeyHandler;
 import objects.SuperObject;
 import settings.SaveCompiler;
-import settings.Settings;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -100,7 +99,6 @@ public class GameHandler extends JPanel implements Runnable {
     Thread gameThread;
     GUI myGUI;
     SaveCompiler saveC = new SaveCompiler();
-    Settings settings = new Settings();
 
     public GameHandler() {
 
@@ -129,15 +127,12 @@ public class GameHandler extends JPanel implements Runnable {
         myGUI.frame.pack();
         myGUI.openWindow();
 
-
-
-
-        //playMusic(0);
+        playMusic(18);
 
         gameState = titleState;
     }
 
-    public void reStartWindow() {
+    public void reStartWindow(int screenWidth, int screenHeight) {
         // close old Window
         myGUI.closeWindow();
         myGUI = null;
@@ -268,7 +263,7 @@ public class GameHandler extends JPanel implements Runnable {
         // fullscreen
         if (keyH.f12Pressed) {
             fullscreen = !fullscreen;
-            reStartWindow();
+            reStartWindow(1152, 567);
             player.screenX = myGUI.frame.getWidth() / 2 - (tileSize / 2);
             player.screenY = myGUI.frame.getHeight() / 2 - (tileSize / 2);
 
@@ -396,7 +391,7 @@ public class GameHandler extends JPanel implements Runnable {
             // SELECTION
             // MOVE CURSOR
             if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed) {
-
+                playSE(0);
                 if (keyH.wPressed || keyH.upPressed) {
                     switch (ui.commandNum) {
 
@@ -450,6 +445,8 @@ public class GameHandler extends JPanel implements Runnable {
                         break;
                     case 1: // load game
                         gameState = playState;
+                        stopMusic();
+                        playMusic(15);
                         player.screenX = myGUI.frame.getWidth() / 2 - (tileSize / 2);
                         player.screenY = myGUI.frame.getHeight() / 2 - (tileSize / 2);
                         break;
@@ -640,7 +637,7 @@ public class GameHandler extends JPanel implements Runnable {
                         switch (ui.commandNum) {
                             case 0: // fullscreen
                                 fullscreen = !fullscreen;
-                                reStartWindow();
+                                reStartWindow(1152, 567);
                                 unsavedSetting = true;
                                 break;
                             case 1: // empty
@@ -682,6 +679,7 @@ public class GameHandler extends JPanel implements Runnable {
                                 } else if ((keyH.dPressed || keyH.rightPressed) && musicVolume < 2f) {
                                     musicVolume = musicVolume + 0.1f;
                                 }
+                                //music.setVolume(musicVolume);
                                 break;
                             case 1:
                                 if ((keyH.aPressed || keyH.leftPressed) && soundVolume > 0f) {
@@ -689,6 +687,7 @@ public class GameHandler extends JPanel implements Runnable {
                                 } else if ((keyH.dPressed || keyH.rightPressed) && soundVolume < 2f) {
                                     soundVolume = soundVolume + 0.1f;
                                 }
+                                //se.setVolume(soundVolume);
                                 break;
                         }
 
@@ -769,7 +768,7 @@ public class GameHandler extends JPanel implements Runnable {
                         if (unsavedSetting) {
                             unsavedSetting = false;
                             saveC.SaveReader(this, save);
-                            reStartWindow();
+                            reStartWindow(1152, 567);
                             player.screenX = myGUI.frame.getWidth() / 2 - (tileSize / 2);
                             player.screenY = myGUI.frame.getHeight() / 2 - (tileSize / 2);
                         }
@@ -784,6 +783,7 @@ public class GameHandler extends JPanel implements Runnable {
         }// Bindings for gameState
 
         if (gameState == battleState) {
+
             if (keyH.upPressed || keyH.wPressed || keyH.downPressed || keyH.sPressed || keyH.rightPressed || keyH.dPressed || keyH.leftPressed || keyH.aPressed) {
 
                 if (keyH.upPressed || keyH.wPressed) {
@@ -921,7 +921,7 @@ public class GameHandler extends JPanel implements Runnable {
                             ui.battleText = "Bag";
                             break;
                         case 3:
-                            ui.currentDialogue[0] = "du kannst von einem Trainerkampf nicht fliehen";
+                            ui.currentDialogue[0] = "Du kannst nicht fliehen!";
                             break;
                     }
                 } else if (gameSubState == attackMenu) {
