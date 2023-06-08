@@ -18,22 +18,26 @@ public class Battle {
     public void battleRound() {
 
         if (phase == 0) {
-            Boolean haveAp = false;     // checkt, ob noch ap vorhanden sind
-            for(int i = 0; i<gameH.player.fabimonTeam[0].move.length-1; i++){
-                if(gameH.player.fabimonTeam[0].move[i].currentap != 0){
-                    haveAp = true;
+            if(gameH.player.fabimonTeam[0].move[gameH.ui.commandNum] != null) {
+                Boolean haveAp = false;     // checkt, ob noch ap vorhanden sind
+                for (int i = 0; i < gameH.player.fabimonTeam[0].move.length - 1; i++) {
+                    if (gameH.player.fabimonTeam[0].move[i] != null && gameH.player.fabimonTeam[0].move[i].currentap != 0) {
+                        haveAp = true;
+                    }
                 }
-            }
-            if(!haveAp){
-                gameH.ui.commandNum = 4;    //setzt commandNum auf 4 wenn nicht.
-            }
-            if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].currentap == 0 && haveAp) { // Attacke nicht benutzbar wenn ap = 0
-                gameH.ui.clearTextfield();
-                gameH.ui.currentDialogue[0] = "Die ap dieser Attacke sind verbraucht";
+                if (!haveAp) {
+                    gameH.ui.commandNum = 4;    //setzt commandNum auf 4 wenn nicht.
+                }
+                if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].currentap == 0 && haveAp) { // Attacke nicht benutzbar wenn ap = 0
+                    gameH.ui.clearTextfield();
+                    gameH.ui.currentDialogue[0] = "Die ap dieser Attacke sind verbraucht";
+                    phase = -1;
+                } else {
+                    enemyattack = getenemyattack();     //wählt für gegner eine Attacke aus
+                    prio = priority(enemyattack);       //checkt wer als erstes angreifen darf.
+                }
+            }else{
                 phase = -1;
-            } else{
-                enemyattack = getenemyattack();     //wählt für gegner eine Attacke aus
-                prio = priority(enemyattack);       //checkt wer als erstes angreifen darf.
             }
         }
         if (prio.equals("own")) {
@@ -137,6 +141,7 @@ public class Battle {
                     calculateExp();
                 } else if (winPhase == 1) {
                     checkLevelUp();
+
                     gameH.fabimon.recalculatePlayerFabimon(0);
                     phase = 2;
                 }
@@ -163,6 +168,7 @@ public class Battle {
                     }
                 } else if (winPhase == 3) {
                     gameH.npc[opponent].endBattle(opponent);
+                    gameH.gameSubState = gameH.noSubState;
                     phase = -1;
                     winPhase = -1;
                 }
@@ -199,6 +205,7 @@ public class Battle {
     }
     private void lostBattle(){
         gameH.reloadLastSave(); // es wird der letzte save geladen
+        gameH.gameSubState = gameH.noSubState;
         gameH.gameState = gameH.playState;
         gameH.npc[opponent].isApproaching = false;
         gameH.player.beingApproached = false;
@@ -273,7 +280,7 @@ public class Battle {
     public int getenemyattack() {
         Boolean haveAP = false;
         for(int i = 0; i<4; i++){
-            if(gameH.enemy_Fabimon[0].move[i].currentap != 0){
+            if(gameH.enemy_Fabimon[0].move[i] != null && gameH.enemy_Fabimon[0].move[i].currentap != 0){
                 haveAP = true;
             }
         }
@@ -281,12 +288,17 @@ public class Battle {
             return 4;
         }
         for (int i = 0; i < 4; i++) {
-            int temp = gameH.player.fabimonTeam[0].currentHp - testCalculateEnemyDamage(i);
-            if (temp <= 0 && gameH.enemy_Fabimon[0].move[i].currentap != 0) {
-                return i;
+            if(gameH.enemy_Fabimon[0].move[i] != null) {
+                int temp = gameH.player.fabimonTeam[0].currentHp - testCalculateEnemyDamage(i);
+                if (temp <= 0 && gameH.enemy_Fabimon[0].move[i].currentap != 0) {
+                    return i;
+                }
             }
         }
-        int rand = (int) (Math.random() * 4);
+        int rand = 0;
+        do{
+           rand = (int) (Math.random() * 4);
+        }while(gameH.enemy_Fabimon[0].move[rand] == null);
         return rand;
     }
 
@@ -519,10 +531,10 @@ public class Battle {
         if (gameH.player.fabimonTeam[0].currentEp < neededExp) {
             winPhase++;
         }
-        while (gameH.player.fabimonTeam[0].currentEp >= neededExp) {
+        if(gameH.player.fabimonTeam[0].currentEp >= neededExp){
             gameH.player.fabimonTeam[0].level++;
+            gameH.fabimon.checkNewMove();
             gameH.player.fabimonTeam[0].currentEp -= neededExp;
-            neededExp = (gameH.player.fabimonTeam[0].level + 1) * (gameH.player.fabimonTeam[0].level + 1) * (gameH.player.fabimonTeam[0].level + 1);
             gameH.ui.clearTextfield();
             gameH.ui.currentDialogue[0] = "Dein Fabimon ist im Level aufgestiegen";
         }

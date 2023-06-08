@@ -754,8 +754,8 @@ public class UI {
     }
 
     private void drawMainMenu() {
-        int x = 0;
-        int y = 0;
+        int x;
+        int y;
         if (gameH.fullscreen) {
             g2.setFont(arial_40);
             int buttonHeightScaling = (gameH.myGUI.frame.getHeight() / 3);
@@ -848,33 +848,41 @@ public class UI {
             int buttonYScaling2 = buttonHeightScaling - ((buttonHeightScaling) / 15) + 2;
             int buttonWidthScaling = gameH.myGUI.frame.getWidth() / 6;
 
-            //Bag button
+
             x = gameH.myGUI.frame.getWidth() - buttonWidthScaling;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling;
-            if (commandNum == 3) {
+            if(gameH.player.fabimonTeam[0].move[0] == null){
+                g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else if (commandNum == 3) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
-            //Fabimob button
+
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2;
-            if (commandNum == 1) {
+            if(gameH.player.fabimonTeam[0].move[1] == null){
+                g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else if (commandNum == 1) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[1].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[1].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
-            //Run button
+
             x = gameH.myGUI.frame.getWidth() - (2 * buttonWidthScaling);
             y = gameH.myGUI.frame.getHeight() - buttonYScaling;
-            if (commandNum == 2) {
+            if(gameH.player.fabimonTeam[0].move[2] == null){
+                g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else if (commandNum == 2) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[2].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[2].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
-            //Fight button
+
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2;
-            if (commandNum == 0) {
+            if(gameH.player.fabimonTeam[0].move[3] == null){
+                g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else if (commandNum == 0) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -890,7 +898,9 @@ public class UI {
 
             x = gameH.myGUI.frame.getWidth() - buttonWidthScaling - minWidth;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling - minHeight;
-            if (commandNum == 3) {
+            if(gameH.player.fabimonTeam[0].move[3] == null){
+                g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else if (commandNum == 3) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -898,7 +908,9 @@ public class UI {
 
             //Fabimob button
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2 - minHeight;
-            if (commandNum == 1) {
+            if(gameH.player.fabimonTeam[0].move[1] == null){
+                g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else if (commandNum == 1) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[1].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[1].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -907,7 +919,9 @@ public class UI {
             //Run button
             x = gameH.myGUI.frame.getWidth() - (2 * buttonWidthScaling) - minWidth;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling - minHeight;
-            if (commandNum == 2) {
+            if(gameH.player.fabimonTeam[0].move[2] == null){
+                g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else if (commandNum == 2) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[2].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[2].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -915,7 +929,9 @@ public class UI {
 
             //Fight button
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2 - minHeight;
-            if (commandNum == 0) {
+            if(gameH.player.fabimonTeam[0].move[0] == null){
+                g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
+            }else if (commandNum == 0) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -1181,26 +1197,42 @@ public class UI {
             g2.setFont(arial_30);
             double apX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 100) * 21;
             double apY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 100) * 15;
-            g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[0].currentap), (int) apX, (int) apY);
+            if (gameH.player.fabimonTeam[0].move[0] != null) {
+                g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[0].currentap), (int) apX, (int) apY);
+            }
             apX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 100) * 4;
-            g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[1].currentap), (int) apX, (int) apY);
+            if (gameH.player.fabimonTeam[0].move[1] != null) {
+                g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[1].currentap), (int) apX, (int) apY);
+            }
             apX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 100) * 21;
             apY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 100) * 3;
-            g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[2].currentap), (int) apX, (int) apY);
+            if (gameH.player.fabimonTeam[0].move[2] != null) {
+                g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[2].currentap), (int) apX, (int) apY);
+            }
             apX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 100) * 4;
-            g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[3].currentap), (int) apX, (int) apY);
+            if (gameH.player.fabimonTeam[0].move[3] != null) {
+                g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[3].currentap), (int) apX, (int) apY);
+            }
         } else {
             g2.setFont(arial_15);
             double apX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 100) * 18;
             double apY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 100) * 22;
-            g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[0].currentap), (int) apX, (int) apY);
+            if (gameH.player.fabimonTeam[0].move[0] != null) {
+                g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[0].currentap), (int) apX, (int) apY);
+            }
             apX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 100) * 5;
-            g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[1].currentap), (int) apX, (int) apY);
+            if (gameH.player.fabimonTeam[0].move[1] != null) {
+                g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[1].currentap), (int) apX, (int) apY);
+            }
             apX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 100) * 18;
             apY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 100) * 10;
-            g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[2].currentap), (int) apX, (int) apY);
+            if (gameH.player.fabimonTeam[0].move[2] != null) {
+                g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[2].currentap), (int) apX, (int) apY);
+            }
             apX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 100) * 5;
-            g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[3].currentap), (int) apX, (int) apY);
+            if (gameH.player.fabimonTeam[0].move[3] != null) {
+                g2.drawString(String.valueOf(gameH.player.fabimonTeam[0].move[3].currentap), (int) apX, (int) apY);
+            }
         }
     }
 

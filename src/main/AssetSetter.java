@@ -59,6 +59,59 @@ public class AssetSetter {
             }
         }
     }
+    public void setFabimonTeam(String fileName){
+        try {
+
+            String fileLocation = "res/NPC/" + fileName + ".txt";
+
+            FileReader fr = new FileReader(fileLocation);
+            BufferedReader br = new BufferedReader(fr);
+            //InputStream mapFile = getClass().getResourceAsStream(fileLocation);
+            
+            int npc = 0;
+            int phase = 0;
+            String psinfo[] = new String[4];
+            int pev[] = new int[6];
+            int piv[] = new int[7];
+            int level;
+            int fabimon = 0;
+            Boolean lastLine = false;
+            while (!lastLine) {
+                String line = br.readLine();
+                String[] lineSplit = line.split("~");
+                for(int i = 0; i< lineSplit.length; i++){
+                    System.out.print(lineSplit[i] + " ");
+                }
+                System.out.println("");
+                if(line.equals("next")){
+                    phase = 0;
+                }else if(line == null){
+                    lastLine = true;
+                }else if(phase == 0){
+                    npc = Integer.parseInt(line);
+                    phase = 1;
+                    fabimon = 0;
+                }else if(phase == 1){
+                    for(int i =0; i<4; i++){
+                        psinfo[i] = lineSplit[i];
+                    }
+                    for(int i =0; i<6; i++){
+                       piv[i] = Integer.parseInt(lineSplit[i+5]);
+                       pev[i] = Integer.parseInt(lineSplit[i+11]);
+                    }
+                    level = Integer.parseInt(lineSplit[4]);
+                    gameH.fabimon.setNPCFabimon(npc, fabimon, psinfo, pev, piv, level);
+                    fabimon++;
+                }
+
+            }
+
+            br.close();
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }
 
     private void createTestNPC(int npcNum, int spawnX, int spawnY, int pMap, String pDirection, int pSpeed, int rangeL, int rangeR, int rangeU, int rangeD, int trainer) {
         gameH.npc[npcNum] = new NPCTest(gameH);

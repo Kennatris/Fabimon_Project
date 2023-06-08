@@ -44,10 +44,12 @@ public class CutsceneManager {
             x = gameH.myGUI.frame.getWidth();
             g2.setColor(Color.black);
             csPhase++;
-        } else if (csPhase == 1) width += 10;
-        x -= 10;
-        g2.fillRect(0, 0, width, height);
-        g2.fillRect(x, 0, width, height);
+        } else if (csPhase == 1) {
+            width += 10;
+            x -= 10;
+            g2.fillRect(0, 0, width, height);
+            g2.fillRect(x, 0, width, height);
+        }
         if (width > gameH.myGUI.frame.getWidth() / 2) {
 
             gameH.gameState = gameH.battleState;

@@ -114,6 +114,9 @@ public class GameHandler extends JPanel implements Runnable {
 
     public void setupGame() {
         player = new Player(this, keyH);
+        aSetter.setObject();
+        aSetter.setNPC("createNPC");
+        aSetter.setFabimonTeam("enemy_Fabimon_Teams");
         // initializer
         saveC.SaveReader(this, save);
         myGUI = new GUI(fullscreen, screenWidth, screenHeight);
@@ -127,8 +130,7 @@ public class GameHandler extends JPanel implements Runnable {
         myGUI.openWindow();
 
 
-        aSetter.setObject();
-        aSetter.setNPC("createNPC");
+
 
         //playMusic(0);
 

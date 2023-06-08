@@ -12,8 +12,8 @@ none
 Male
 frech
 5
-14
-106
+10000
+200
 0
 0
 0
@@ -28,7 +28,7 @@ frech
 8
 Growl
 Ember
-Scary face
+Scary_face
 Scratch
 38
 74
@@ -54,8 +54,8 @@ mäßig
 22
 8
 Growl
-Ember
-Scary face
+Growl
+Scary_face
 Scratch
 40
 25
@@ -82,7 +82,7 @@ hitzig
 26
 Growl
 Ember
-Scary face
+Scary_face
 Scratch
 40
 25
@@ -109,7 +109,7 @@ zart
 23
 Growl
 Ember
-Scary face
+Scary_face
 Scratch
 40
 25
@@ -136,7 +136,7 @@ zart
 23
 Growl
 Ember
-Scary face
+Scary_face
 Scratch
 40
 25
@@ -163,7 +163,7 @@ zart
 23
 Growl
 Ember
-Scary face
+Scary_face
 Scratch
 40
 25

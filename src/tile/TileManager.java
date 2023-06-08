@@ -76,6 +76,9 @@ public class TileManager {
         //Fabimon Info
         setup(26, "battleInfo","enemy_fabimon","png", gameH.tileSize, gameH.tileSize,false);
         setup(27, "battleInfo","own_fabimon","png", gameH.tileSize, gameH.tileSize,false);
+
+        // null Button
+        setup(28, "Buttons/AttackButtons","null","png", gameH.tileSize, gameH.tileSize,false);
         
     }
 
