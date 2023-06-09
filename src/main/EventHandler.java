@@ -64,6 +64,17 @@ public class EventHandler {
             gameH.keyH.aPressed = false;
             gameH.keyH.dPressed = false;
 
+            for(int i = 0; i<gameH.player.fabimonTeam.length; i++){
+                if(gameH.player.fabimonTeam[i] != null){
+                gameH.player.fabimonTeam[i].currentHp = gameH.player.fabimonTeam[i].hp;
+                for(int j = 0; j<4; j++){
+                    if(gameH.player.fabimonTeam[i].move[j] != null) {
+                        gameH.player.fabimonTeam[i].move[j].currentap = gameH.player.fabimonTeam[i].move[j].ap;
+                    }
+                }
+            }
+            }
+
             gameH.ui.drawFloatingText("Deine Fabimons wurde Geheilt w!");
 
         }

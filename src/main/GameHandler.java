@@ -39,6 +39,7 @@ public class GameHandler extends JPanel implements Runnable {
     public final int cutsceneState = 7;
     public final int inventoryState = 8;
     public final int fabimonState = 9;
+    public final int newMoveState = 10;
 
     // SCREEN SETTINGS
     final int originalTileSize = 96; // 96x96 tile
@@ -931,6 +932,8 @@ public class GameHandler extends JPanel implements Runnable {
                     battle.phase++;
                 } else if (gameSubState == fabimonMenu) {
                     battle.changeOwnFabimon(ui.commandNum);
+                }else if(gameSubState == newMoveState){
+                    fabimon.checkNewMove();
                 }
                 bumber = 1;
             } else if (keyH.escPressed) {

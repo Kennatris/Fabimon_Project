@@ -1038,6 +1038,9 @@ public class UI {
         } else if (gameH.gameSubState == gameH.fabimonMenu) {
             drawRestOfBattleScreen();
             drawFabimonMenu();
+        }else if(gameH.gameSubState == gameH.newMoveState){
+            drawAttackMenu();
+            drawRestOfBattleScreen();
         }
     }
 
