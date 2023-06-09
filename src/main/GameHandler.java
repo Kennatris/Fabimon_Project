@@ -363,6 +363,8 @@ public class GameHandler extends JPanel implements Runnable {
                             if (!Objects.equals(save, "save_Default")) {
                                 saveC.SaveWriter(this, save);
                             }
+                            stopMusic();
+                            playMusic(18);
                             gameState = titleState;
                             break;
 
