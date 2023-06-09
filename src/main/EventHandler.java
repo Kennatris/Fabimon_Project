@@ -57,6 +57,7 @@ public class EventHandler {
             // set Player
             gameH.player.direction = "down";
             gameH.player.worldY = 17 * gameH.tileSize;
+            gameH.player.worldX = 18 * gameH.tileSize;
             // reset Movement
             gameH.keyH.wPressed = false;
             gameH.keyH.sPressed = false;

@@ -22,7 +22,6 @@ public class AssetSetter {
         gameH.obj[0].worldX = gameH.tileSize * 24;
         gameH.obj[0].worldY = gameH.tileSize * 17;
 
-
         gameH.obj[1] = new Object_FabiCenter(gameH);
         gameH.obj[1].worldX = gameH.tileSize * 19;
         gameH.obj[1].worldY = gameH.tileSize * 16;

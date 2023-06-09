@@ -10,4 +10,5 @@ public class Object_FabiCenter  extends SuperObject{
         image = imageH.image[0];
         collision = true;
     }
+
 }
