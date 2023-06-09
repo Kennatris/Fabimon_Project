@@ -9,9 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="Music">
+    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/res/tiles/l0_grass1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/tiles/l0_strand1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/tiles/l0_strand2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/tiles/l0_water_middel_part1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/tiles/sprite_ground_mid0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -114,11 +119,11 @@
       <recent name="C:\Users\phili\IdeaProjects\Fabimon_Project\res\Fabimon\grass type" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\arrowe\IdeaProjects\Fabimon_Project\res\tiles" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Music Libray" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\BattleMusic" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Sound Library" />
       <recent name="C:\Users\phili\IdeaProjects\Fabimon_Project" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\NPC\SpeedyGonzales" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Battle" />
@@ -168,7 +173,6 @@
       <workItem from="1685893100079" duration="439000" />
       <workItem from="1685893641316" duration="171000" />
       <workItem from="1686241685936" duration="361000" />
-      <workItem from="1686310161231" duration="399000" />
     </task>
     <task id="LOCAL-00001" summary="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
       <created>1679533924557</created>
@@ -366,14 +370,7 @@
       <option name="project" value="LOCAL" />
       <updated>1685011207072</updated>
     </task>
-    <task id="LOCAL-00029" summary="Music">
-      <created>1686251497176</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1686251497176</updated>
-    </task>
-    <option name="localTasksCounter" value="30" />
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,21 +389,6 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="User">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="*" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -428,6 +410,21 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="V0.1" />
@@ -445,8 +442,7 @@
     <MESSAGE value="V0.9.7.2" />
     <MESSAGE value="V0.9.7.2.1&#10;// fileType änderbar, BugFixing, Saves durch Variable ins &quot;unendliche&quot; abänderbar" />
     <MESSAGE value="V0.9.7.2.2" />
-    <MESSAGE value="Music" />
-    <option name="LAST_COMMIT_MESSAGE" value="Music" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.9.7.2.2" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
