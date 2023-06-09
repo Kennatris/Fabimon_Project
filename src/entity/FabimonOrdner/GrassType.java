@@ -14,5 +14,9 @@ public class GrassType extends Fabimon {
     public void getGrassTypeimage(){
         imageH.ImageInitializer(0, "Fabimon/Grass Type", "GrassType", "png", gameH.tileSize, gameH.tileSize);
         up1 = imageH.image[0];
+        up2 = imageH.image[0];
+        down1 = imageH.image[0];
+        down2 = imageH.image[0];
+        left1 = imageH.image[0];
     }
 }

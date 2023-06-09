@@ -14,5 +14,9 @@ public class Jubby extends Fabimon {
     public void getJubbyimage(){
         imageH.ImageInitializer(0, "Fabimon/Jubby", "Jubby", "png", gameH.tileSize, gameH.tileSize);
         up1 = imageH.image[0];
+        up2 = imageH.image[0];
+        down1 = imageH.image[0];
+        down2 = imageH.image[0];
+        left1 = imageH.image[0];
     }
 }
