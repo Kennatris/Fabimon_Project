@@ -51,11 +51,11 @@ public class TileManager {
 
 
         //Tiles
-        setup(10, "tiles","grass","png", gameH.tileSize, gameH.tileSize,false);
-        setup(11, "tiles","gravel","png", gameH.tileSize, gameH.tileSize,false);
+        setup(10, "tiles","l0_grass1","png", gameH.tileSize, gameH.tileSize,false);
+        setup(11, "tiles","sprite_ground_mid0","png", gameH.tileSize, gameH.tileSize,false);
         setup(12, "tiles","grass_flowers","png", gameH.tileSize, gameH.tileSize,true);
-        setup(13, "tiles","water","png", gameH.tileSize, gameH.tileSize,true);
-        setup(14, "tiles","sand","png", gameH.tileSize, gameH.tileSize,true);
+        setup(13, "tiles","l0_water_middel_part1","png", gameH.tileSize, gameH.tileSize,true);
+        setup(14, "tiles","l0_strand1","png", gameH.tileSize, gameH.tileSize,true);
         setup(15, "tiles","wood","png",gameH.tileSize, gameH.tileSize, false);
         setup(16, "tiles","stone","png",gameH.tileSize, gameH.tileSize, false);
 
