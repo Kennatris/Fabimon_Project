@@ -31,10 +31,12 @@ public class EventHandler {
                     gameH.map = gameH.availableMaps[3];
                     gameH.mapType = 3;
                     gameH.playMusic(17);
+                    gameH.aSetter.setObject();
                 } else if (gameH.mapType == 3) {
                     gameH.map = gameH.availableMaps[0];
                     gameH.mapType = 0;
                     gameH.playMusic(15);
+                    gameH.aSetter.setObject();
                 }
 
                 gameH.gameState = gameH.playState;
