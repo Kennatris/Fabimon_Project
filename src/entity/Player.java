@@ -66,9 +66,9 @@ public class Player extends Entity{
         right1 = imageH.image[6];
         imageH.ImageInitializer(7,"player","Skully_right_2","png", gameH.tileSize, gameH.tileSize);
         right2 = imageH.image[7];
-        imageH.ImageInitializer(8,"player","Skully_idle_1", "png",gameH.tileSize,gameH.tileSize);
+        imageH.ImageInitializer(8,"player","Skully_idle", "png",gameH.tileSize,gameH.tileSize);
         idle1 = imageH.image[8];
-        imageH.ImageInitializer(9,"player","Skully_idle_2", "png",gameH.tileSize,gameH.tileSize);
+        imageH.ImageInitializer(9,"player","Skully_idle", "png",gameH.tileSize,gameH.tileSize);
         idle2 = imageH.image[9];
 
     }

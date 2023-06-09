@@ -16,7 +16,6 @@ public class SuperObject {
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
     ImageHandler imageH = new ImageHandler();
-
     public void draw(Graphics2D g2, GameHandler gameH) {
 
         int screenX = worldX - gameH.player.worldX + gameH.player.screenX;

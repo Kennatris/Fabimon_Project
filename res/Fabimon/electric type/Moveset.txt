@@ -1,6 +1,5 @@
-0~nichts
 1~Ember
-1~Scratch
+7~Scratch
 7~Growl
 8~Scary_face
 12~Dragon Breath
