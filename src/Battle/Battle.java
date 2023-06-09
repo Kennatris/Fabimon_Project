@@ -18,7 +18,7 @@ public class Battle {
     public void battleRound() {
 
         if (phase == 0) {
-            if(gameH.player.fabimonTeam[0].move[gameH.ui.commandNum] != null) {
+            if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum] != null) {
                 Boolean haveAp = false;     // checkt, ob noch ap vorhanden sind
                 for (int i = 0; i < gameH.player.fabimonTeam[0].move.length - 1; i++) {
                     if (gameH.player.fabimonTeam[0].move[i] != null && gameH.player.fabimonTeam[0].move[i].currentap != 0) {
@@ -36,7 +36,7 @@ public class Battle {
                     enemyattack = getenemyattack();     //wählt für gegner eine Attacke aus
                     prio = priority(enemyattack);       //checkt wer als erstes angreifen darf.
                 }
-            }else{
+            } else {
                 phase = -1;
             }
         }
@@ -128,7 +128,7 @@ public class Battle {
                         gameH.ui.currentDialogue[1] = " Du hast Verloren!";
                         phase = 2;
                     }
-                }else if(winPhase == 3){
+                } else if (winPhase == 3) {
                     lostBattle();
                     winPhase = -1;
                     phase = -1;
@@ -176,24 +176,25 @@ public class Battle {
             winPhase++;
         }
     }
-    private void getEV(){
+
+    private void getEV() {
         int temp = 0;
-        for(int i = 0; i<6; i++){
+        for (int i = 0; i < 6; i++) {
             temp += gameH.player.fabimonTeam[0].haveEV[i];
         }
-        if(temp < 510){
-            for(int i = 0; i<6; i++){
-                if(gameH.player.fabimonTeam[0].haveEV[i] < 255){
+        if (temp < 510) {
+            for (int i = 0; i < 6; i++) {
+                if (gameH.player.fabimonTeam[0].haveEV[i] < 255) {
                     gameH.player.fabimonTeam[0].haveEV[i] += gameH.enemy_Fabimon[0].giveEV[i];
-                    if(gameH.player.fabimonTeam[0].haveEV[i] > 255){
+                    if (gameH.player.fabimonTeam[0].haveEV[i] > 255) {
                         gameH.player.fabimonTeam[0].haveEV[i] = 255;
                     }
                     temp = 0;
-                    for(int j = 0; j<6; j++){
+                    for (int j = 0; j < 6; j++) {
                         temp += gameH.player.fabimonTeam[0].haveEV[j];
                     }
-                    if(temp > 510){
-                        while(temp != 510){
+                    if (temp > 510) {
+                        while (temp != 510) {
                             gameH.player.fabimonTeam[0].haveEV[i]--;
                             temp--;
                         }
@@ -203,7 +204,8 @@ public class Battle {
         }
 
     }
-    private void lostBattle(){
+
+    private void lostBattle() {
         gameH.reloadLastSave(); // es wird der letzte save geladen
         gameH.gameSubState = gameH.noSubState;
         gameH.gameState = gameH.playState;
@@ -279,16 +281,16 @@ public class Battle {
 
     public int getenemyattack() {
         Boolean haveAP = false;
-        for(int i = 0; i<4; i++){
-            if(gameH.enemy_Fabimon[0].move[i] != null && gameH.enemy_Fabimon[0].move[i].currentap != 0){
+        for (int i = 0; i < 4; i++) {
+            if (gameH.enemy_Fabimon[0].move[i] != null && gameH.enemy_Fabimon[0].move[i].currentap != 0) {
                 haveAP = true;
             }
         }
-        if(!haveAP){
+        if (!haveAP) {
             return 4;
         }
         for (int i = 0; i < 4; i++) {
-            if(gameH.enemy_Fabimon[0].move[i] != null) {
+            if (gameH.enemy_Fabimon[0].move[i] != null) {
                 int temp = gameH.player.fabimonTeam[0].currentHp - testCalculateEnemyDamage(i);
                 if (temp <= 0 && gameH.enemy_Fabimon[0].move[i].currentap != 0) {
                     return i;
@@ -296,9 +298,9 @@ public class Battle {
             }
         }
         int rand = 0;
-        do{
-           rand = (int) (Math.random() * 4);
-        }while(gameH.enemy_Fabimon[0].move[rand] == null);
+        do {
+            rand = (int) (Math.random() * 4);
+        } while (gameH.enemy_Fabimon[0].move[rand] == null);
         return rand;
     }
 
@@ -345,7 +347,8 @@ public class Battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.player.fabimonTeam[0].sp_atk * getStep(gameH.player.fabimonTeam[0].haveEffect[4])) / (50 * gameH.enemy_Fabimon[0].sp_dev * getStep(gameH.enemy_Fabimon[0].haveEffect[5])) + 2;
-            double zr2 = (int) zr1 * z * volltreffer() * typeBonus;
+            double zr2 = (int) zr1 * z * volltreffer() * typeBonus * typeVorteil(1) * typeVorteil(2);
+            System.out.println(zr2);
             gameH.ui.currentDialogue[0] = gameH.player.fabimonTeam[0].name + " nutzt " + gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].name + ".";
             return (int) zr2;
         } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].category.equals("physical")) {
@@ -354,11 +357,11 @@ public class Battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.player.fabimonTeam[0].atk * getStep(gameH.player.fabimonTeam[0].haveEffect[2])) / (50 * gameH.enemy_Fabimon[0].dev * getStep(gameH.enemy_Fabimon[0].haveEffect[3])) + 2;
-            double zr2 = (int) zr1 * z * volltreffer() * typeBonus;
+            double zr2 = (int) zr1 * z * volltreffer() * typeBonus * typeVorteil(1) * typeVorteil(2);
             gameH.ui.currentDialogue[0] = gameH.player.fabimonTeam[0].name + " nutzt " + gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].name + ".";
-            if(gameH.ui.commandNum == 4){
-                double temp = gameH.player.fabimonTeam[0].currentHp - ((int) zr2*0.25);
-                gameH.player.fabimonTeam[0].currentHp = (int)temp;
+            if (gameH.ui.commandNum == 4) {
+                double temp = gameH.player.fabimonTeam[0].currentHp - ((int) zr2 * 0.25);
+                gameH.player.fabimonTeam[0].currentHp = (int) temp;
             }
             return (int) zr2;
         } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].category.equals("status")) {
@@ -374,6 +377,234 @@ public class Battle {
         }
 
         return 0;
+    }
+
+    private double typeVorteil(int dingsbums) {
+        //(normal), fire, water, grass, water, elektro, dark
+        //gameh.enemy_atk
+        if (dingsbums == 1) {
+            if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("Fire")) {
+                switch (gameH.enemy_Fabimon[0].type1) {
+                    case "Water":
+                        return 0.5;
+                    case "Grass":
+                        return 2;
+                    case "Fire":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("water")) {
+                switch (gameH.enemy_Fabimon[0].type1) {
+                    case "Water":
+                        return 0.5;
+                    case "Grass":
+                        return 0.5;
+                    case "Fire":
+                        return 2;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("grass")) {
+                switch (gameH.enemy_Fabimon[0].type1) {
+                    case "Water":
+                        return 2;
+                    case "Grass":
+                        return 0.5;
+                    case "Fire":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+
+            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("electric")) {
+                switch (gameH.enemy_Fabimon[0].type1) {
+                    case "Water":
+                        return 2;
+                    case "Grass":
+                        return 0.5;
+                    case "Electric":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("dark")) {
+                switch (gameH.enemy_Fabimon[0].type1) {
+                    case "Dark":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            }
+        } else if (dingsbums == 2) {
+            if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("Fire")) {
+                switch (gameH.enemy_Fabimon[0].type2) {
+                    case "Water":
+                        return 0.5;
+                    case "Grass":
+                        return 2;
+                    case "Fire":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("water")) {
+                switch (gameH.enemy_Fabimon[0].type2) {
+                    case "Water":
+                        return 0.5;
+                    case "Grass":
+                        return 0.5;
+                    case "Fire":
+                        return 2;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("grass")) {
+                switch (gameH.enemy_Fabimon[0].type2) {
+                    case "Water":
+                        return 2;
+                    case "Grass":
+                        return 0.5;
+                    case "Fire":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+
+            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("electric")) {
+                switch (gameH.enemy_Fabimon[0].type2) {
+                    case "Water":
+                        return 2;
+                    case "Grass":
+                        return 0.5;
+                    case "Electric":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("dark")) {
+                switch (gameH.enemy_Fabimon[0].type2) {
+                    case "Dark":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            }
+        }
+        return 1;
+    }
+
+    private double typeVorteilEnemy(int enemyadvantage){
+        if (enemyadvantage == 1) {
+            if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("Fire")) {
+                switch (gameH.player.fabimonTeam[0].type1) {
+                    case "Water":
+                        return 0.5;
+                    case "Grass":
+                        return 2;
+                    case "Fire":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("water")) {
+                switch (gameH.player.fabimonTeam[0].type1) {
+                    case "Water":
+                        return 0.5;
+                    case "Grass":
+                        return 0.5;
+                    case "Fire":
+                        return 2;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("grass")) {
+                switch (gameH.player.fabimonTeam[0].type1) {
+                    case "Water":
+                        return 2;
+                    case "Grass":
+                        return 0.5;
+                    case "Fire":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+
+            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("electric")) {
+                switch (gameH.player.fabimonTeam[0].type1) {
+                    case "Water":
+                        return 2;
+                    case "Grass":
+                        return 0.5;
+                    case "Electric":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("dark")) {
+                switch (gameH.player.fabimonTeam[0].type1) {
+                    case "Dark":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            }
+        } else if (enemyadvantage == 2) {
+            if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("Fire")) {
+                switch (gameH.player.fabimonTeam[0].type2) {
+                    case "Water":
+                        return 0.5;
+                    case "Grass":
+                        return 2;
+                    case "Fire":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("water")) {
+                switch (gameH.player.fabimonTeam[0].type2) {
+                    case "Water":
+                        return 0.5;
+                    case "Grass":
+                        return 0.5;
+                    case "Fire":
+                        return 2;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("grass")) {
+                switch (gameH.player.fabimonTeam[0].type2) {
+                    case "Water":
+                        return 2;
+                    case "Grass":
+                        return 0.5;
+                    case "Fire":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+
+            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("electric")) {
+                switch (gameH.player.fabimonTeam[0].type2) {
+                    case "Water":
+                        return 2;
+                    case "Grass":
+                        return 0.5;
+                    case "Electric":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("dark")) {
+                switch (gameH.player.fabimonTeam[0].type2) {
+                    case "Dark":
+                        return 0.5;
+                    default:
+                        return 1;
+                }
+            }
+        }
+        return 1;
     }
 
     private void affectyourself(String attacker) {
@@ -460,7 +691,7 @@ public class Battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.enemy_Fabimon[0].sp_atk * getStep(gameH.enemy_Fabimon[0].haveEffect[4])) / (50 * gameH.player.fabimonTeam[0].sp_dev * getStep(gameH.player.fabimonTeam[0].haveEffect[5])) + 2;
-            double zr2 = (int) zr1 * z * volltreffer() * typeBonus;
+            double zr2 = (int) zr1 * z * volltreffer() * typeBonus * typeVorteilEnemy(1) * typeVorteilEnemy(2);
             gameH.ui.currentDialogue[1] = "";
             gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon[0].name + " nutzt " + gameH.enemy_Fabimon[0].move[enemyattack].name + ".";
             return (int) zr2;
@@ -470,7 +701,7 @@ public class Battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.enemy_Fabimon[0].atk * getStep(gameH.enemy_Fabimon[0].haveEffect[2])) / (50 * gameH.player.fabimonTeam[0].dev * getStep(gameH.player.fabimonTeam[0].haveEffect[3])) + 2;
-            double zr2 = (int) zr1 * z * volltreffer() * typeBonus;
+            double zr2 = (int) zr1 * z * volltreffer() * typeBonus * typeVorteilEnemy(1) * typeVorteilEnemy(2);
             gameH.ui.currentDialogue[1] = "";
             gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon[0].name + " nutzt " + gameH.enemy_Fabimon[0].move[enemyattack].name + ".";
             return (int) zr2;
@@ -487,7 +718,7 @@ public class Battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.enemy_Fabimon[0].sp_atk * getStep(gameH.enemy_Fabimon[0].haveEffect[4])) / (50 * gameH.player.fabimonTeam[0].sp_dev * getStep(gameH.player.fabimonTeam[0].haveEffect[5])) + 2;
-            double zr2 = (int) zr1 * z * volltreffer();
+            double zr2 = (int) zr1 * z * volltreffer() * typeVorteilEnemy(1) * typeVorteilEnemy(2);
             gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon[0].name + " nutzt " + gameH.enemy_Fabimon[0].move[enemyattack].name + ".";
             return (int) zr2;
         } else if (gameH.enemy_Fabimon[0].move[i].category.equals("physical")) {
@@ -496,11 +727,11 @@ public class Battle {
             zr0 = zr0 * (int) basisschaden;
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.enemy_Fabimon[0].atk * getStep(gameH.enemy_Fabimon[0].haveEffect[2])) / (50 * gameH.player.fabimonTeam[0].dev * getStep(gameH.player.fabimonTeam[0].haveEffect[3])) + 2;
-            double zr2 = (int) zr1 * z * volltreffer();
+            double zr2 = (int) zr1 * z * volltreffer() * typeVorteilEnemy(1) * typeVorteilEnemy(2);
             gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon[0].name + " nutzt " + gameH.enemy_Fabimon[0].move[enemyattack].name + ".";
-            if(enemyattack == 4){
-                double temp = gameH.enemy_Fabimon[0].currentHp - ((int) zr2*0.25);
-                gameH.enemy_Fabimon[0].currentHp = (int)temp;
+            if (enemyattack == 4) {
+                double temp = gameH.enemy_Fabimon[0].currentHp - ((int) zr2 * 0.25);
+                gameH.enemy_Fabimon[0].currentHp = (int) temp;
             }
             return (int) zr2;
         } else if (gameH.enemy_Fabimon[0].move[enemyattack].category.equals("status")) {
@@ -531,7 +762,7 @@ public class Battle {
         if (gameH.player.fabimonTeam[0].currentEp < neededExp) {
             winPhase++;
         }
-        if(gameH.player.fabimonTeam[0].currentEp >= neededExp){
+        if (gameH.player.fabimonTeam[0].currentEp >= neededExp) {
             gameH.player.fabimonTeam[0].level++;
             gameH.fabimon.checkNewMove();
             gameH.player.fabimonTeam[0].currentEp -= neededExp;
