@@ -51,6 +51,21 @@ public class EventHandler {
                 gameH.keyH.dPressed = false;
             }
 
+            if (hit(19,17,"any")) {
+                gameH.playSE(1);
+
+                // set Player
+                gameH.player.direction = "down";
+                gameH.player.worldY = 17 * gameH.tileSize;
+                // reset Movement
+                gameH.keyH.wPressed = false;
+                gameH.keyH.sPressed = false;
+                gameH.keyH.aPressed = false;
+                gameH.keyH.dPressed = false;
+
+                gameH.ui.drawFloatingText("Deine Fabimons wurde Geheilt w!");
+
+            }
 
     }
 

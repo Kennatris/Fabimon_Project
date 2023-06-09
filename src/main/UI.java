@@ -1236,6 +1236,27 @@ public class UI {
         }
     }
 
+    public void drawFloatingText(String text) {
+        int textYScaling;
+        int textXScaling;
+        g2.setColor(Color.BLACK);
+        if (gameH.fullscreen) {
+            g2.setFont(arial_40);
+            textXScaling = gameH.myGUI.frame.getWidth() / 30;
+            textYScaling = gameH.myGUI.frame.getHeight() - gameH.myGUI.frame.getHeight() / 6;
+            for (int i = 0; i < 3; i++) {
+                g2.drawString(text, textXScaling, textYScaling + i * 57);
+            }
+        } else {
+            g2.setFont(arial_25);
+            textXScaling = gameH.myGUI.frame.getWidth() / 30;
+            textYScaling = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 14) * 3;
+            for (int i = 0; i < 3; i++) {
+                g2.drawString(text, textXScaling, textYScaling + i * 37);
+            }
+        }
+    }
+
     public void drawDialogue() {
         int textYScaling = 0;
         int textXScaling = 0;

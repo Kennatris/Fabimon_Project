@@ -10,4 +10,5 @@ public class Object_arenaPortal extends SuperObject{
         image = imageH.image[0];
         collision = true;
     }
+
 }
