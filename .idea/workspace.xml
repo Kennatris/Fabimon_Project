@@ -10,12 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="FabiCenter">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/saves/save_four.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_four.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/FabimonOrdner/CursedShiggy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/FabimonOrdner/CursedShiggy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/FabimonOrdner/ElectricType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/FabimonOrdner/ElectricType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/FabimonOrdner/GrassType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/FabimonOrdner/GrassType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/FabimonOrdner/Jubby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/FabimonOrdner/Jubby.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Battle/attacks/Apple_Acid.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,11 +112,11 @@
       <recent name="C:\Users\phili\IdeaProjects\Fabimon_Project\res\Fabimon\electric type" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\arrowe\IdeaProjects\Fabimon_Project\src\Battle\attacks" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Music Libray" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\BattleMusic" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Sound Library" />
       <recent name="C:\Users\phili\IdeaProjects\Fabimon_Project" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\NPC\SpeedyGonzales" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Battle" />
@@ -423,21 +418,6 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="User">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="*" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -455,6 +435,21 @@
                 </map>
               </option>
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
