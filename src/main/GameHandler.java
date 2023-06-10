@@ -703,7 +703,7 @@ public class GameHandler extends JPanel implements Runnable {
                     break;
 
             }
-        }
+        } // Bindings for settingState
 
         if (gameState == saveState) {
             // SELECTION

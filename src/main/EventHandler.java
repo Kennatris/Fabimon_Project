@@ -8,6 +8,7 @@ public class EventHandler {
     Rectangle eventRect;
     int eventRectDefaultX, eventRectDefaultY;
 
+    // creates a "collision box"
     public EventHandler(GameHandler gameH) {
         this.gameH = gameH;
 
@@ -20,11 +21,10 @@ public class EventHandler {
         eventRectDefaultY = eventRect.y;
     }
 
+
+    // checks whether an event takes place
     public void checkEvent() {
-        
-        /* Example
-        if(hit(INWICHCOLUMN_MAP, INWICHROW_MAP, requiredDIRECTION) == true) {Method();}
-        */
+
             if(hit(24, 18, "any")) {
                 gameH.stopMusic();
                 if (gameH.mapType == 0) {
