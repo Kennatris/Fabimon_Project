@@ -2,6 +2,6 @@
 1~Scratch
 1~Growl
 6~Bubble
-8~Scary_face
+8~Scary Face
 12~Aqua_Tail
 32~Bouncy_Bubble
