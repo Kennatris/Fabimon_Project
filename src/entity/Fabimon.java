@@ -236,6 +236,67 @@ public class Fabimon extends Entity {
         double tempHP = (int) statdurch100 + gameH.player.fabimonTeam[index].level + 10;
         return (int) tempHP;
     }
+    private void useHealPotion(){
+        if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp != gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp && gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > 0 && Integer.parseInt(gameH.player.inventory[0][1]) > 0){
+            gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp += 20;
+            if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp){
+                gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp = gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp;
+            }
+           int temp =Integer.parseInt(gameH.player.inventory[0][1]);
+           temp--;
+            gameH.player.inventory[0][1] = String.valueOf(temp);
+        }
+    }
+    private void useSuperHealPotion(){
+        if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp != gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp && gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > 0&& Integer.parseInt(gameH.player.inventory[1][1]) > 0){
+            gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp += 50;
+            if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp){
+                gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp = gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp;
+            }
+            int temp =Integer.parseInt(gameH.player.inventory[1][1]);
+            temp--;
+            gameH.player.inventory[1][1] = String.valueOf(temp);
+        }
+    }
+    private void useRevive(){
+        if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp <= 0 && Integer.parseInt(gameH.player.inventory[2][1]) > 0){
+            double temphp = gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp*0.25;
+            gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp = (int)temphp;
+            int temp =Integer.parseInt(gameH.player.inventory[2][1]);
+            temp--;
+            gameH.player.inventory[2][1] = String.valueOf(temp);
+        }
+    }
+    private void equipLuckyEgg(){
+        if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].item.equals("none") && Integer.parseInt(gameH.player.inventory[3][1]) > 0){
+            gameH.player.fabimonTeam[gameH.ui.subCommandNum].item = "Lucky Egg";
+            int temp =Integer.parseInt(gameH.player.inventory[3][1]);
+            temp--;
+            gameH.player.inventory[3][1] = String.valueOf(temp);
+        }
+    }
+    private void equipXPShare(){
+        if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].item.equals("none")&& Integer.parseInt(gameH.player.inventory[4][1]) > 0){
+            gameH.player.fabimonTeam[gameH.ui.subCommandNum].item = "XPShare";
+            int temp =Integer.parseInt(gameH.player.inventory[4][1]);
+            temp--;
+            gameH.player.inventory[4][1] = String.valueOf(temp);
+        }
+    }
+    public void useItem(){
+        switch(gameH.ui.commandNum){
+            case 0: useHealPotion();
+                break;
+            case 1: useSuperHealPotion();
+                break;
+            case 2: useRevive();
+                break;
+            case 3: equipLuckyEgg();
+                break;
+            case 4: equipXPShare();
+                break;
+        }
+    }
 
     private void setMove(String pmove, int moveIndex) {
         switch (pmove) {

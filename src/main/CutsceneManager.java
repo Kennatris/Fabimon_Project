@@ -55,6 +55,9 @@ public class CutsceneManager {
         if (width > gameH.myGUI.frame.getWidth() / 2) {
 
             gameH.gameState = gameH.battleState;
+            if(gameH.player.fabimonTeam[0].currentHp <= 0){
+                gameH.battle.changeOwnFabimon(1);
+            }
             csNum = 0;
             width = 0;
             x = 0;

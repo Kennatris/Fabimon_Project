@@ -1,18 +1,18 @@
 false
 1152
 567
-26
-20
-false
+21
+17
+true
 0.6999999
 1.5000001
 map_test_1
 Feirir
-none
+Lucky Egg
 Male
 still
-5
-100000
+30
+69
 0
 0
 0
@@ -169,8 +169,8 @@ nichts
 0
 0
 0
-0
-0
+2
+3
 0
 0
 0

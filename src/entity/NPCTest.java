@@ -19,42 +19,28 @@ public class NPCTest extends Entity {
     public void dialogue(int npc) {
         if (npc == 0) {
             if (dialoguePhase == 0) {
-                for (int i = 0; i < 3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[2][i];
-                }
+                System.arraycopy(gameH.npc[npc].dialogues[2], 0, gameH.ui.currentDialogue, 0, 3);
                 dialoguePhase++;
             } else if (dialoguePhase == 1) {
-                for (int i = 0; i < 3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[3][i];
-                }
+                System.arraycopy(gameH.npc[npc].dialogues[3], 0, gameH.ui.currentDialogue, 0, 3);
                 dialoguePhase++;
             } else if (dialoguePhase == 2) {
-                for (int i = 0; i < 3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[4][i];
-                }
+                System.arraycopy(gameH.npc[npc].dialogues[4], 0, gameH.ui.currentDialogue, 0, 3);
                 dialoguePhase++;
             } else if (dialoguePhase == 3) {
-                for (int i = 0; i < 3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[5][i];
-                }
+                System.arraycopy(gameH.npc[npc].dialogues[5], 0, gameH.ui.currentDialogue, 0, 3);
                 dialoguePhase++;
             } else if (dialoguePhase == 4) {
-                for (int i = 0; i < 3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[6][i];
-                }
+                System.arraycopy(gameH.npc[npc].dialogues[6], 0, gameH.ui.currentDialogue, 0, 3);
                 dialoguePhase = 0;
                 gameH.npc[npc].endDialogue = true;
             }
         } else if (npc == 1 && dialogueSelect == 0 || npc == 2 && dialogueSelect == 0) {
             if (gameH.npc[npc].defeated) {
-                for (int i = 0; i < 3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[11][i];
-                }
+                System.arraycopy(gameH.npc[npc].dialogues[11], 0, gameH.ui.currentDialogue, 0, 3);
                 gameH.npc[npc].endDialogue = true;
-            }else {
-                for (int i = 0; i < 3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[0][i];
-                }
+            } else {
+                System.arraycopy(gameH.npc[npc].dialogues[0], 0, gameH.ui.currentDialogue, 0, 3);
                 gameH.npc[npc].endDialogue = true;
             }
         } else if (npc == 1 && dialogueSelect == 1 || npc == 2 && dialogueSelect == 1) {
@@ -64,19 +50,17 @@ public class NPCTest extends Entity {
             }
             gameH.npc[npc].endDialogue = true;
         } else if (npc == 3) {
-            for (int i = 0; i < 3; i++) {
-                gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[7][i];
-            }
+            System.arraycopy(gameH.npc[npc].dialogues[7], 0, gameH.ui.currentDialogue, 0, 3);
             gameH.npc[npc].endDialogue = true;
         } else if (npc == 4) {
-                for (int i = 0; i < 3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[8][i];
-                }
-                gameH.fabimon.createFabimon("Feirir", 0, 5);
-                gameH.player.fabimonTeam[0] = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("cursed Shiggy", 0, 5);
-                gameH.player.fabimonTeam[1] = gameH.fabimon.tempFabimon;
-                gameH.npc[npc].endDialogue = true;
+            System.arraycopy(gameH.npc[npc].dialogues[8], 0, gameH.ui.currentDialogue, 0, 3);
+            gameH.fabimon.createFabimon("Feirir", 0, 5);
+            gameH.player.fabimonTeam[0] = gameH.fabimon.tempFabimon;
+            gameH.fabimon.createFabimon("cursed Shiggy", 0, 5);
+            gameH.player.fabimonTeam[1] = gameH.fabimon.tempFabimon;
+            gameH.fabimon.createFabimon("cursed Shiggy", 0, 5);
+            gameH.player.fabimonTeam[2] = gameH.fabimon.tempFabimon;
+            gameH.npc[npc].endDialogue = true;
 
         }
 

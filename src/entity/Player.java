@@ -98,19 +98,19 @@ public class Player extends Entity{
 
         if(!beingApproached) {
 
-            if (keyH.wPressed == true || keyH.sPressed == true || keyH.aPressed == true || keyH.dPressed == true) {
+            if (keyH.wPressed|| keyH.sPressed || keyH.aPressed|| keyH.dPressed||gameH.kon.d_Pad[0]||gameH.kon.d_Pad[1]||gameH.kon.d_Pad[2]||gameH.kon.d_Pad[3]) {
 
-                if (keyH.wPressed == true) {
+                if (keyH.wPressed||gameH.kon.d_Pad[0]) {
                     direction = "up";
 
 //				playerY = playerY - playerSpeed;
-                } else if (keyH.sPressed == true) {
+                } else if (keyH.sPressed||gameH.kon.d_Pad[2]) {
                     direction = "down";
 
-                } else if (keyH.aPressed == true) {
+                } else if (keyH.aPressed||gameH.kon.d_Pad[3]) {
                     direction = "left";
 
-                } else if (keyH.dPressed == true) {
+                } else if (keyH.dPressed||gameH.kon.d_Pad[1]) {
                     direction = "right";
 
                 }
@@ -189,10 +189,10 @@ public class Player extends Entity{
     }
 
     public void interactNPC(int i) {
-        if(!gameH.keyH.spacePressed && !gameH.keyH.enterPressed){
+        if(!gameH.keyH.spacePressed && !gameH.keyH.enterPressed && !gameH.kon.kreuz){
             gameH.bumber=0;
         }
-        if(i != 999 && gameH.keyH.spacePressed && gameH.bumber == 0|| gameH.keyH.enterPressed && i != 999 && gameH.bumber == 0) {
+        if(i != 999 && gameH.keyH.spacePressed && gameH.bumber == 0|| gameH.keyH.enterPressed && i != 999 && gameH.bumber == 0||gameH.kon.kreuz && i != 999 && gameH.bumber == 0) {
 
             gameH.gameState = gameH.dialogueState;
             gameH.npcInteracted = i;
