@@ -288,7 +288,7 @@ public class Fabimon extends Entity {
                 break;
         }
     }
-    private void lernMove(String pmove, int moveIndex){
+    public void lernMove(String pmove, int moveIndex){
         switch (pmove) {
             case "Scratch":
                 gameH.player.fabimonTeam[0].move[moveIndex] = new Scratch(gameH);
@@ -366,8 +366,6 @@ public class Fabimon extends Entity {
                 gameH.gameSubState = gameH.attackMenu;
                 gameH.battle.battleRound();
                 gameH.battle.phase++;
-
-
             }else {
                 gameH.ui.currentDialogue[0] = gameH.player.fabimonTeam[0].name + " möchte " + gameH.player.fabimonTeam[0].moveSet[1][newmoves[0]] + " erlernen";
             }
@@ -384,10 +382,12 @@ public class Fabimon extends Entity {
                         }
                     }
                     if(!learned){
+                        gameH.ui.currentDialogue[0] = gameH.player.fabimonTeam[0].name + " versucht " + gameH.player.fabimonTeam[0].moveSet[1][newmoves[j]] + " zu lernen.";
+                        gameH.ui.currentDialogue[1] = gameH.player.fabimonTeam[0].name + " hat schon vier Attacken soll eine vergessen werden?";
+                        gameH.gameSubState = gameH.optionState;
                     }
                 }
             }
-
 
         }else if(phase == 2){
             phase = -1;
@@ -395,7 +395,12 @@ public class Fabimon extends Entity {
             gameH.battle.phase++;
             gameH.gameSubState = gameH.attackMenu;
 
-
+        }else if(phase == 3){
+            lernMove(gameH.player.fabimonTeam[0].moveSet[1][newmoves[0]], gameH.ui.subCommandNum);
+            phase = -1;
+            gameH.ui.optionType = 0;
+            gameH.gameSubState = gameH.attackMenu;
+            gameH.ui.currentDialogue[0] = gameH.player.fabimonTeam[0].name + " hat " + gameH.player.fabimonTeam[0].move[gameH.ui.subCommandNum].name + " gelernt.";
         }
         phase++;
     }

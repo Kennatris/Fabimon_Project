@@ -1,8 +1,8 @@
 false
 1152
 567
-32
-18
+16
+17
 false
 0.6999999
 1.5000001
@@ -27,12 +27,12 @@ frech
 18
 8
 Growl
-Ember
-Scary face
-Scratch
+nichts
+Growl
+Growl
 38
 67
-10
+0
 22
 cursed Shiggy
 XpShare
@@ -55,7 +55,7 @@ mäßig
 8
 Growl
 Growl
-Scary face
+Growl
 Scratch
 40
 25
@@ -82,11 +82,11 @@ hitzig
 26
 Growl
 Ember
-Scary face
+nichts
 Scratch
 40
 25
-10
+0
 35
 grass type
 none
@@ -109,11 +109,11 @@ zart
 23
 Growl
 Ember
-Scary face
+nichts
 Scratch
 40
 25
-10
+0
 35
 grass type
 none
@@ -136,11 +136,11 @@ zart
 23
 Growl
 Ember
-Scary face
+nichts
 Scratch
 40
 25
-10
+0
 35
 grass type
 none
@@ -163,9 +163,9 @@ zart
 23
 Growl
 Ember
-Scary face
+nichts
 Scratch
 40
 25
-10
+0
 35

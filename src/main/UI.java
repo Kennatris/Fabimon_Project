@@ -11,6 +11,7 @@ public class UI {
     public int subCommandNum = 0;
     public int settingScreenValue = 0;
     public int pauseScreenValue = 0;
+    public int optionType = 0;
     public Color backgroundColor = new Color(47, 45, 45);
     int spriteCounter = 0;
     GameHandler gameH;
@@ -83,74 +84,163 @@ public class UI {
         } else if (gameH.gameSubState == gameH.optionState) {
             drawFabimonMenu();
             drawOptionMenu();
-        }else if(gameH.gameSubState == gameH.fabimonOverviewState){
+        } else if (gameH.gameSubState == gameH.fabimonOverviewState) {
             drawfabimonOverView();
         }
     }
 
     private void drawOptionMenu() {
         if (gameH.gameState == gameH.fabimonState) {
-            if(gameH.fullscreen){
+            if (gameH.fullscreen) {
                 g2.setColor(Color.WHITE);
-                g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 20, gameH.myGUI.frame.getHeight() / 100*50, gameH.myGUI.frame.getWidth() / 4, gameH.myGUI.frame.getHeight() / 5);
+                g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 20, gameH.myGUI.frame.getHeight() / 100 * 50, gameH.myGUI.frame.getWidth() / 4, gameH.myGUI.frame.getHeight() / 5);
                 g2.setColor(Color.BLACK);
                 g2.setFont(arial_30);
 
                 // zeichnet eine optionbox
                 textPos = 0;
                 if (subCommandNum == textPos) {
-                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22+(int) g2.getFontMetrics().getStringBounds("Place as first", g2).getWidth()+20, gameH.myGUI.frame.getHeight() / 100*55);
+                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Place as first", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 55);
                 }
-                g2.drawString("Place as first", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100*55);
+                g2.drawString("Place as first", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 55);
 
                 textPos = 1;
                 if (subCommandNum == textPos) {
-                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22+(int) g2.getFontMetrics().getStringBounds("Status", g2).getWidth()+20, gameH.myGUI.frame.getHeight() / 100*60);
+                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Status", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 60);
                 }
-                g2.drawString("Status", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100*60);
+                g2.drawString("Status", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 60);
 
                 textPos = 2;
                 if (subCommandNum == textPos) {
-                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22+(int) g2.getFontMetrics().getStringBounds("Attacks", g2).getWidth()+20, gameH.myGUI.frame.getHeight() / 100*65);
+                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Attacks", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 65);
                 }
-                g2.drawString("Attacks", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100*65);
+                g2.drawString("Attacks", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 65);
 
                 textPos = 3;
                 if (subCommandNum == textPos) {
-                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22+(int) g2.getFontMetrics().getStringBounds("Back", g2).getWidth()+20 , gameH.myGUI.frame.getHeight() / 100*70);
+                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Back", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 70);
                 }
-                g2.drawString("Back", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100*70);
+                g2.drawString("Back", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 70);
 
-            }else {
+            } else {
                 g2.setColor(Color.WHITE);
-                g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 20, gameH.myGUI.frame.getHeight() / 100*50, gameH.myGUI.frame.getWidth() / 4, gameH.myGUI.frame.getHeight() / 5);
+                g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 20, gameH.myGUI.frame.getHeight() / 100 * 50, gameH.myGUI.frame.getWidth() / 4, gameH.myGUI.frame.getHeight() / 5);
                 g2.setColor(Color.BLACK);
                 g2.setFont(arial_30);
 
                 textPos = 0;
                 if (subCommandNum == textPos) {
-                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22+(int) g2.getFontMetrics().getStringBounds("Place as first", g2).getWidth()+20, gameH.myGUI.frame.getHeight() / 100*55);
+                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Place as first", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 55);
                 }
-                g2.drawString("Place as first", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100*55);
+                g2.drawString("Place as first", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 55);
 
                 textPos = 1;
                 if (subCommandNum == textPos) {
-                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22+(int) g2.getFontMetrics().getStringBounds("Status", g2).getWidth()+20, gameH.myGUI.frame.getHeight() / 100*60);
+                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Status", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 60);
                 }
-                g2.drawString("Status", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100*60);
+                g2.drawString("Status", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 60);
 
                 textPos = 2;
                 if (subCommandNum == textPos) {
-                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22+(int) g2.getFontMetrics().getStringBounds("Attacks", g2).getWidth()+20, gameH.myGUI.frame.getHeight() / 100*65);
+                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Attacks", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 65);
                 }
-                g2.drawString("Attacks", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100*65);
+                g2.drawString("Attacks", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 65);
 
                 textPos = 3;
                 if (subCommandNum == textPos) {
-                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22+(int) g2.getFontMetrics().getStringBounds("Back", g2).getWidth()+20 , gameH.myGUI.frame.getHeight() / 100*70);
+                    g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Back", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 70);
                 }
-                g2.drawString("Back", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100*70);
+                g2.drawString("Back", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 70);
 
+            }
+        }
+        if (gameH.gameState == gameH.battleState) {
+            if(optionType == 0) {
+                if (!gameH.fullscreen) {
+                    g2.setColor(Color.WHITE);
+                    g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 77, gameH.myGUI.frame.getHeight() / 100 * 83, gameH.myGUI.frame.getWidth() / 4, gameH.myGUI.frame.getHeight() / 5);
+                    g2.setColor(Color.BLACK);
+                    g2.setFont(arial_20);
+
+                    // zeichnet eine optionbox
+                    textPos = 0;
+                    if (subCommandNum == textPos) {
+                        g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 78 + (int) g2.getFontMetrics().getStringBounds("Eine Attacke vergessen", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 89);
+                    }
+                    g2.drawString("Eine Attacke vergessen", gameH.myGUI.frame.getWidth() / 100 * 78, gameH.myGUI.frame.getHeight() / 100 * 89);
+
+                    textPos = 1;
+                    if (subCommandNum == textPos) {
+                        g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 78 + (int) g2.getFontMetrics().getStringBounds("Attacke nicht lernen", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 97);
+                    }
+                    g2.drawString("Attacke nicht lernen", gameH.myGUI.frame.getWidth() / 100 * 78, gameH.myGUI.frame.getHeight() / 100 * 97);
+
+                } else {
+                    g2.setColor(Color.WHITE);
+                    g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 20, gameH.myGUI.frame.getHeight() / 100 * 50, gameH.myGUI.frame.getWidth() / 4, gameH.myGUI.frame.getHeight() / 5);
+                    g2.setColor(Color.BLACK);
+                    g2.setFont(arial_30);
+
+                    textPos = 0;
+                    if (subCommandNum == textPos) {
+                        g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Place as first", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 55);
+                    }
+                    g2.drawString("Place as first", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 55);
+
+                    textPos = 1;
+                    if (subCommandNum == textPos) {
+                        g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Status", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 60);
+                    }
+                    g2.drawString("Status", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 60);
+
+                    textPos = 2;
+                    if (subCommandNum == textPos) {
+                        g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Attacks", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 65);
+                    }
+                    g2.drawString("Attacks", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 65);
+
+                    textPos = 3;
+                    if (subCommandNum == textPos) {
+                        g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 22 + (int) g2.getFontMetrics().getStringBounds("Back", g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 70);
+                    }
+                    g2.drawString("Back", gameH.myGUI.frame.getWidth() / 100 * 22, gameH.myGUI.frame.getHeight() / 100 * 70);
+
+                }
+            }else if(optionType == 1){
+                if(gameH.fullscreen){
+
+                }else{
+                    g2.setColor(Color.WHITE);
+                    g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 77, gameH.myGUI.frame.getHeight() / 100 * 83, gameH.myGUI.frame.getWidth() / 4, gameH.myGUI.frame.getHeight() / 5);
+                    g2.setColor(Color.BLACK);
+                    g2.setFont(arial_20);
+
+                    // zeichnet eine optionbox
+                    textPos = 0;
+                    if (subCommandNum == textPos) {
+                        g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 78 + (int) g2.getFontMetrics().getStringBounds(gameH.player.fabimonTeam[0].move[0].name, g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 87);
+                    }
+                    g2.drawString(gameH.player.fabimonTeam[0].move[0].name, gameH.myGUI.frame.getWidth() / 100 * 78, gameH.myGUI.frame.getHeight() / 100 * 87);
+
+                    textPos = 1;
+                    if (subCommandNum == textPos) {
+                        g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 78 + (int) g2.getFontMetrics().getStringBounds(gameH.player.fabimonTeam[0].move[1].name, g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 92);
+                    }
+                    g2.drawString(gameH.player.fabimonTeam[0].move[1].name, gameH.myGUI.frame.getWidth() / 100 * 78, gameH.myGUI.frame.getHeight() / 100 * 92);
+
+                    textPos = 2;
+                    if (subCommandNum == textPos) {
+                        g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 78 + (int) g2.getFontMetrics().getStringBounds(gameH.player.fabimonTeam[0].move[2].name, g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 97);
+                    }
+                    g2.drawString(gameH.player.fabimonTeam[0].move[2].name, gameH.myGUI.frame.getWidth() / 100 * 78, gameH.myGUI.frame.getHeight() / 100 * 97);
+
+                    textPos = 3;
+                    if (subCommandNum == textPos) {
+                        g2.drawString("<", gameH.myGUI.frame.getWidth() / 100 * 78 + (int) g2.getFontMetrics().getStringBounds(gameH.player.fabimonTeam[0].move[2].name, g2).getWidth() + 20, gameH.myGUI.frame.getHeight() / 100 * 102);
+                    }
+                    g2.drawString(gameH.player.fabimonTeam[0].move[2].name, gameH.myGUI.frame.getWidth() / 100 * 78, gameH.myGUI.frame.getHeight() / 100 * 102);
+
+                }
             }
         }
     }
@@ -568,7 +658,7 @@ public class UI {
             g2.fillRect(0, 0, (int) overViewWidth, (int) overViewHeight);
             for (int i = 0; i < 5; i++) {
                 g2.setColor(Color.BLACK);
-                g2.drawRect(0 + i, 0 + i, (int) overViewWidth - i, (int) overViewHeight - i);
+                g2.drawRect(i, i, (int) overViewWidth - i, (int) overViewHeight - i);
             }
             g2.setColor(Color.ORANGE);
             g2.fillRect(5, 5, gameH.myGUI.frame.getWidth() / 6, gameH.myGUI.frame.getHeight() / 15);
@@ -595,17 +685,17 @@ public class UI {
             g2.setColor(Color.BLACK);
             g2.fillRect(0, 0, gameH.myGUI.frame.getWidth(), gameH.myGUI.frame.getHeight());
             g2.setColor(Color.BLUE);
-            g2.fillRect(0, 0, gameH.myGUI.frame.getWidth(), gameH.myGUI.frame.getHeight()/100*8);
+            g2.fillRect(0, 0, gameH.myGUI.frame.getWidth(), gameH.myGUI.frame.getHeight() / 100 * 8);
             g2.setColor(Color.BLACK);
-            g2.drawString("STATUS", gameH.myGUI.frame.getWidth()/100*2, gameH.myGUI.frame.getHeight()/100*7);
+            g2.drawString("STATUS", gameH.myGUI.frame.getWidth() / 100 * 2, gameH.myGUI.frame.getHeight() / 100 * 7);
             g2.setColor(Color.CYAN);
-            g2.fillRect(0, gameH.myGUI.frame.getHeight()/100*8, gameH.myGUI.frame.getWidth()/3, gameH.myGUI.frame.getHeight());
+            g2.fillRect(0, gameH.myGUI.frame.getHeight() / 100 * 8, gameH.myGUI.frame.getWidth() / 3, gameH.myGUI.frame.getHeight());
             g2.setColor(Color.BLACK);
-            g2.drawString(gameH.player.fabimonTeam[commandNum].name, gameH.myGUI.frame.getWidth()/100*5, gameH.myGUI.frame.getHeight()/100*17);
-            g2.fillRect(gameH.myGUI.frame.getWidth()/100*5, gameH.myGUI.frame.getHeight()/100*20, gameH.myGUI.frame.getWidth()/100*28, gameH.myGUI.frame.getHeight()/100*36);
+            g2.drawString(gameH.player.fabimonTeam[commandNum].name, gameH.myGUI.frame.getWidth() / 100 * 5, gameH.myGUI.frame.getHeight() / 100 * 17);
+            g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 5, gameH.myGUI.frame.getHeight() / 100 * 20, gameH.myGUI.frame.getWidth() / 100 * 28, gameH.myGUI.frame.getHeight() / 100 * 36);
             g2.setColor(Color.WHITE);
-            g2.fillRect(gameH.myGUI.frame.getWidth()/100*6, gameH.myGUI.frame.getHeight()/100*21, gameH.myGUI.frame.getWidth()/100*26, gameH.myGUI.frame.getHeight()/100*34);
-            g2.drawImage(gameH.player.fabimonTeam[commandNum].up1,gameH.myGUI.frame.getWidth()/100*7, gameH.myGUI.frame.getHeight()/100*22, gameH.myGUI.frame.getWidth()/5, gameH.myGUI.frame.getHeight()/4, null);
+            g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 6, gameH.myGUI.frame.getHeight() / 100 * 21, gameH.myGUI.frame.getWidth() / 100 * 26, gameH.myGUI.frame.getHeight() / 100 * 34);
+            g2.drawImage(gameH.player.fabimonTeam[commandNum].up1, gameH.myGUI.frame.getWidth() / 100 * 7, gameH.myGUI.frame.getHeight() / 100 * 22, gameH.myGUI.frame.getWidth() / 5, gameH.myGUI.frame.getHeight() / 4, null);
             if (gameH.player.fabimonTeam[commandNum].gender.equals("Male")) {
                 g2.setColor(Color.BLUE);
                 g2.fillOval(gameH.myGUI.frame.getWidth() / 100 * 29, gameH.myGUI.frame.getHeight() / 100 * 10, 45, 45);
@@ -619,7 +709,7 @@ public class UI {
                 g2.setFont(arial_30);
                 g2.drawString("\u2640", gameH.myGUI.frame.getWidth() / 1000 * 330, gameH.myGUI.frame.getHeight() / 100 * 16);
             }
-            g2.drawString("Item: " + gameH.player.fabimonTeam[commandNum].item, gameH.myGUI.frame.getWidth()/100*2, gameH.myGUI.frame.getHeight() / 100 * 70);
+            g2.drawString("Item: " + gameH.player.fabimonTeam[commandNum].item, gameH.myGUI.frame.getWidth() / 100 * 2, gameH.myGUI.frame.getHeight() / 100 * 70);
         }
     }
 
@@ -851,18 +941,18 @@ public class UI {
 
             x = gameH.myGUI.frame.getWidth() - buttonWidthScaling;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling;
-            if(gameH.player.fabimonTeam[0].move[0] == null){
+            if (gameH.player.fabimonTeam[0].move[0] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
-            }else if (commandNum == 3) {
+            } else if (commandNum == 3) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2;
-            if(gameH.player.fabimonTeam[0].move[1] == null){
+            if (gameH.player.fabimonTeam[0].move[1] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
-            }else if (commandNum == 1) {
+            } else if (commandNum == 1) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[1].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[1].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -871,18 +961,18 @@ public class UI {
 
             x = gameH.myGUI.frame.getWidth() - (2 * buttonWidthScaling);
             y = gameH.myGUI.frame.getHeight() - buttonYScaling;
-            if(gameH.player.fabimonTeam[0].move[2] == null){
+            if (gameH.player.fabimonTeam[0].move[2] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
-            }else if (commandNum == 2) {
+            } else if (commandNum == 2) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[2].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[2].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2;
-            if(gameH.player.fabimonTeam[0].move[3] == null){
+            if (gameH.player.fabimonTeam[0].move[3] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
-            }else if (commandNum == 0) {
+            } else if (commandNum == 0) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -898,9 +988,9 @@ public class UI {
 
             x = gameH.myGUI.frame.getWidth() - buttonWidthScaling - minWidth;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling - minHeight;
-            if(gameH.player.fabimonTeam[0].move[3] == null){
+            if (gameH.player.fabimonTeam[0].move[3] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
-            }else if (commandNum == 3) {
+            } else if (commandNum == 3) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -908,9 +998,9 @@ public class UI {
 
             //Fabimob button
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2 - minHeight;
-            if(gameH.player.fabimonTeam[0].move[1] == null){
+            if (gameH.player.fabimonTeam[0].move[1] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
-            }else if (commandNum == 1) {
+            } else if (commandNum == 1) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[1].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[1].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -919,9 +1009,9 @@ public class UI {
             //Run button
             x = gameH.myGUI.frame.getWidth() - (2 * buttonWidthScaling) - minWidth;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling - minHeight;
-            if(gameH.player.fabimonTeam[0].move[2] == null){
+            if (gameH.player.fabimonTeam[0].move[2] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
-            }else if (commandNum == 2) {
+            } else if (commandNum == 2) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[2].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[2].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -929,9 +1019,9 @@ public class UI {
 
             //Fight button
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2 - minHeight;
-            if(gameH.player.fabimonTeam[0].move[0] == null){
+            if (gameH.player.fabimonTeam[0].move[0] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
-            }else if (commandNum == 0) {
+            } else if (commandNum == 0) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -1038,9 +1128,14 @@ public class UI {
         } else if (gameH.gameSubState == gameH.fabimonMenu) {
             drawRestOfBattleScreen();
             drawFabimonMenu();
-        }else if(gameH.gameSubState == gameH.newMoveState){
+        } else if (gameH.gameSubState == gameH.newMoveState) {
             drawAttackMenu();
             drawRestOfBattleScreen();
+        } else if (gameH.gameSubState == gameH.optionState) {
+            drawMainMenu();
+            drawRestOfBattleScreen();
+            drawOptionMenu();
+
         }
     }
 
