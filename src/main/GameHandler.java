@@ -30,6 +30,7 @@ public class GameHandler extends JPanel implements Runnable {
     public final int saveState = 4;
     public final int settingState = 5;
     public final int battleState = 6;
+    public final int healState =  7;
     public final int noSubState = 0;
     public final int attackMenu = 1;
     public final int itemMenu = 2;
@@ -68,7 +69,7 @@ public class GameHandler extends JPanel implements Runnable {
     public boolean timerMode = false;
     public boolean unsavedSetting;
     public int bumber = 0;
-    public int time, seconds, minutes, hour, tmpTime, tmpWaited;
+    public int time, seconds, minutes, hour, tmpTime, tmpWaited, tmpGameState;
     public int speed_increased = 0;
     // SYSTEM
     public TileManager tileM = new TileManager(this, map);
@@ -293,6 +294,7 @@ public class GameHandler extends JPanel implements Runnable {
 
             // pause Screen
             if (keyH.escPressed) {
+                tmpGameState = gameState;
                 gameState = pauseState;
                 tmpTime = 30;
                 tmpWaited = 0;
@@ -352,7 +354,7 @@ public class GameHandler extends JPanel implements Runnable {
                 if (ui.pauseScreenValue == 0) {
                     switch (ui.commandNum) {
                         case 0: // BACK
-                            gameState = playState;
+                            gameState = tmpGameState;
                             break;
                         case 1:
                             gameState = inventoryState;
@@ -381,7 +383,7 @@ public class GameHandler extends JPanel implements Runnable {
 
             // ESC
             if (keyH.escPressed && tmpWaited == tmpTime) {
-                gameState = playState;
+                gameState = tmpGameState;
 
                 ui.commandNum = 0;
                 tmpWaited = 0;
@@ -1020,6 +1022,18 @@ public class GameHandler extends JPanel implements Runnable {
                 bumber = 0;
             }
         }// Bindings for battleState
+
+        if (gameState == healState) {
+            if (keyH.enterPressed || keyH.spacePressed) {
+                gameState = playState;
+            }
+            if (keyH.escPressed) {
+                tmpGameState = gameState;
+                gameState = pauseState;
+                tmpTime = 30;
+                tmpWaited = 0;
+            }
+        } // Bindings for healState
 
 
         if (gameState == dialogueState) {

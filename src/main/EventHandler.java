@@ -77,7 +77,7 @@ public class EventHandler {
             }
             }
 
-            gameH.ui.drawFloatingText("Deine Fabimons wurde Geheilt w!");
+            gameH.gameState = gameH.healState;
 
         }
 
