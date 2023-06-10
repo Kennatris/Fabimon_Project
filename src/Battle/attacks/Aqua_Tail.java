@@ -8,7 +8,7 @@ public class Aqua_Tail extends Attack {
     public Aqua_Tail(GameHandler gameH) {
         super(gameH);
         this.gameH = gameH;
-        getButtonImage("Aqua Tail");
+        getButtonImage("Aqua_Tail");
         power = 90;
         accuracy = 90;
         category = "physical";

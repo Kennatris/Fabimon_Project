@@ -8,7 +8,7 @@ public class Baddy_Bad extends Attack {
     public Baddy_Bad(GameHandler gameH) {
         super(gameH);
         this.gameH = gameH;
-        getButtonImage("Baddy Bad");
+        getButtonImage("Baddy_Bad");
         power = 90;
         accuracy = 100;
         category = "special";

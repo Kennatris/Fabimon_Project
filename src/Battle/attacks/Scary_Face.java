@@ -8,7 +8,7 @@ public class Scary_Face extends Attack {
     public Scary_Face(GameHandler gameH) {
         super(gameH);
         this.gameH = gameH;
-        getButtonImage("Scary Face");
+        getButtonImage("Scary_Face");
         category = "status";
         accuracy = 100;
         ap = 10;
