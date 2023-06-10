@@ -8,7 +8,7 @@ public class Armor_Cannon extends Attack {
     public Armor_Cannon(GameHandler gameH) {
         super(gameH);
         this.gameH = gameH;
-        getButtonImage("Armor Cannon");
+        getButtonImage("Armor_Cannon");
         power = 120;
         accuracy = 100;
         category = "special";

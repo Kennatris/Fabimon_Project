@@ -12,9 +12,10 @@ public class CursedShiggy extends Fabimon {
 
     }
     public void getcursedShiggyimage(){
-        imageH.ImageInitializer(0, "Fabimon/cursed Shiggy", "cursed Shiggy", "png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(0, "Fabimon/cursed Shiggy", "l0_water_starter1", "png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(1, "Fabimon/cursed Shiggy", "l0_water_starter2", "png", gameH.tileSize, gameH.tileSize);
         up1 = imageH.image[0];
-        up2 = imageH.image[0];
+        up2 = imageH.image[1];
         down1 = imageH.image[0];
         down2 = imageH.image[0];
         left1 = imageH.image[0];
