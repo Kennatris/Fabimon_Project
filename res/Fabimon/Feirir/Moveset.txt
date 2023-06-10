@@ -2,5 +2,5 @@
 1~Scratch
 1~Growl
 6~Ember
-90~Smokescreen
-90~Dragon Breath
+17~Armor Cannon
+34~Blast Burn
