@@ -9,15 +9,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="FabiCenter">
+    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="idle_animation">
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Absorb1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Absorb2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Apple_Acid1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Apple_Acid2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Aqua_Tail1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Aqua_Tail2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Armor_Cannon1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Armor_Cannon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Assurance1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Assurance2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Baddy_Bad1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Baddy_Bad2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Bite1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Bite2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Blast_Burn1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Blast_Burn2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Bouncy-Bubble2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Bouncy_Bubble1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Bubble1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Bubble2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Drum_Beating.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Drum_Beating1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Fabimon/Feirir/Moveset.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/Fabimon/Feirir/Moveset.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Buttons/AttackButtons/Ember1.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Ember1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Buttons/AttackButtons/Ember2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Buttons/AttackButtons/Ember2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Buttons/AttackButtons/Scratch1.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/res/NPC/enemy_Fabimon_Teams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/NPC/enemy_Fabimon_Teams.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/saves/save_one.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_one.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Battle/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Battle/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Fabimon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Fabimon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,11 +139,11 @@
       <recent name="C:\Users\phili\IdeaProjects\Fabimon_Project\res\Fabimon\electric type" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\arrowe\IdeaProjects\Fabimon_Project\res\Buttons\AttackButtons" />
+      <recent name="C:\Users\arrowe\IdeaProjects\Fabimon_Project\res\player" />
+      <recent name="C:\Users\arrowe\IdeaProjects\Fabimon_Project\src\Items" />
       <recent name="C:\Users\arrowe\IdeaProjects\Fabimon_Project\src\Battle\attacks" />
       <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Music Libray" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\BattleMusic" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Sound Library" />
-      <recent name="C:\Users\phili\IdeaProjects\Fabimon_Project" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Battle" />
@@ -174,6 +194,7 @@
       <workItem from="1685893641316" duration="171000" />
       <workItem from="1686241685936" duration="361000" />
       <workItem from="1686310161231" duration="4071000" />
+      <workItem from="1686320094134" duration="10187000" />
     </task>
     <task id="LOCAL-00001" summary="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
       <created>1679533924557</created>
@@ -406,7 +427,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686314097626</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Atk_moves">
+      <created>1686317988680</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1686317988680</updated>
+    </task>
+    <task id="LOCAL-00035" summary="idle_animation">
+      <created>1686339001076</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1686339001076</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,21 +460,6 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="User">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="*" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -457,6 +477,21 @@
                 </map>
               </option>
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
@@ -480,7 +515,9 @@
     <MESSAGE value="V0.9.7.2.2" />
     <MESSAGE value="Music" />
     <MESSAGE value="FabiCenter" />
-    <option name="LAST_COMMIT_MESSAGE" value="FabiCenter" />
+    <MESSAGE value="Atk_moves" />
+    <MESSAGE value="idle_animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="idle_animation" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
