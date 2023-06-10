@@ -1,5 +1,6 @@
+0~nichts
 1~Scratch
 1~Growl
 6~Ember
-8~Smokescreen
-12~Dragon Breath
+90~Smokescreen
+90~Dragon Breath

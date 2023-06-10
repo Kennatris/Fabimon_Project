@@ -69,7 +69,6 @@ public class NPCTest extends Entity {
             }
             gameH.npc[npc].endDialogue = true;
         } else if (npc == 4) {
-            if (gameH.player.fabimonTeam[0] != null) {
                 for (int i = 0; i < 3; i++) {
                     gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[8][i];
                 }
@@ -86,12 +85,7 @@ public class NPCTest extends Entity {
                 gameH.fabimon.createFabimon("electric type", 0, 5);
                 gameH.player.fabimonTeam[5] = gameH.fabimon.tempFabimon;
                 gameH.npc[npc].endDialogue = true;
-            } else {
-                for (int i = 0; i < 3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[10][i];
-                }
-                gameH.npc[npc].endDialogue = true;
-            }
+
         }
 
     }

@@ -2,5 +2,5 @@
 Feirir~Male~none~locker~5~4~22~31~31~12~3~0~6~3~0~2~7
 next
 2
-Jubby~Female~none~hitzig~4~22~27~18~11~0~4~6~5~7~1~4~7
+Feirir~Female~none~hitzig~4~22~27~18~11~0~4~6~5~7~1~4~7
 electric type~Male~none~mäßig~4~11~30~31~4~6~3~9~6~7~2~10~2

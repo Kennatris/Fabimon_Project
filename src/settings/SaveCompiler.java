@@ -275,13 +275,23 @@ public class SaveCompiler extends Settings{
                             bw.write(String.valueOf(gameH.player.fabimonTeam[i].iv[j]));
                             bw.newLine();
                         }
-                        for (int j = 0; j < gameH.player.fabimonTeam[i].move.length-1; j++) {
-                            bw.write(gameH.player.fabimonTeam[i].move[j].name);
-                            bw.newLine();
+                        for (int j = 0; j < 4; j++) {
+                            if(gameH.player.fabimonTeam[i].move[j] == null){
+                                bw.write("nichts");
+                                bw.newLine();
+                            }else {
+                                bw.write(gameH.player.fabimonTeam[i].move[j].name);
+                                bw.newLine();
+                            }
                         }
-                        for(int j = 0; j< gameH.player.fabimonTeam[i].move.length-1; j++){
-                            bw.write(String.valueOf(gameH.player.fabimonTeam[i].move[j].currentap));
-                            bw.newLine();
+                        for(int j = 0; j< 4; j++){
+                            if(gameH.player.fabimonTeam[i].move[j] == null){
+                                bw.write("0");
+                                bw.newLine();
+                            }else {
+                                bw.write(String.valueOf(gameH.player.fabimonTeam[i].move[j].currentap));
+                                bw.newLine();
+                            }
                         }
                     }else{
                         // speichert dies wenn null
