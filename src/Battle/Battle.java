@@ -23,6 +23,7 @@ public class Battle {
                 for (int i = 0; i < gameH.player.fabimonTeam[0].move.length - 1; i++) {
                     if (gameH.player.fabimonTeam[0].move[i] != null && gameH.player.fabimonTeam[0].move[i].currentap != 0) {
                         haveAp = true;
+                        break;
                     }
                 }
                 if (!haveAp) {
@@ -141,7 +142,6 @@ public class Battle {
                     calculateExp();
                 } else if (winPhase == 1) {
                     checkLevelUp();
-
                     gameH.fabimon.recalculatePlayerFabimon(0);
                     phase = 2;
                 }
@@ -284,6 +284,7 @@ public class Battle {
         for (int i = 0; i < 4; i++) {
             if (gameH.enemy_Fabimon[0].move[i] != null && gameH.enemy_Fabimon[0].move[i].currentap != 0) {
                 haveAP = true;
+                break;
             }
         }
         if (!haveAP) {
@@ -382,225 +383,221 @@ public class Battle {
     private double typeVorteil(int dingsbums) {
         //(normal), fire, water, grass, water, elektro, dark
         //gameh.enemy_atk
-        if (dingsbums == 1) {
-            if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("Fire")) {
-                switch (gameH.enemy_Fabimon[0].type1) {
-                    case "Water":
-                        return 0.5;
-                    case "Grass":
-                        return 2;
-                    case "Fire":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
-            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("water")) {
-                switch (gameH.enemy_Fabimon[0].type1) {
-                    case "Water":
-                        return 0.5;
-                    case "Grass":
-                        return 0.5;
-                    case "Fire":
-                        return 2;
-                    default:
-                        return 1;
-                }
-            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("grass")) {
-                switch (gameH.enemy_Fabimon[0].type1) {
-                    case "Water":
-                        return 2;
-                    case "Grass":
-                        return 0.5;
-                    case "Fire":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
+        if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum] != null) {
+            if (dingsbums == 1) {
+                if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("Fire")) {
+                    switch (gameH.enemy_Fabimon[0].type1) {
+                        case "Water":
+                            return 0.5;
+                        case "Grass":
+                            return 2;
+                        case "Fire":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("water")) {
+                    switch (gameH.enemy_Fabimon[0].type1) {
+                        case "Water":
+                            return 0.5;
+                        case "Grass":
+                            return 0.5;
+                        case "Fire":
+                            return 2;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("grass")) {
+                    switch (gameH.enemy_Fabimon[0].type1) {
+                        case "Water":
+                            return 2;
+                        case "Grass":
+                            return 0.5;
+                        case "Fire":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
 
-            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("electric")) {
-                switch (gameH.enemy_Fabimon[0].type1) {
-                    case "Water":
-                        return 2;
-                    case "Grass":
+                } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("electric")) {
+                    switch (gameH.enemy_Fabimon[0].type1) {
+                        case "Water":
+                            return 2;
+                        case "Grass":
+                            return 0.5;
+                        case "Electric":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("dark")) {
+                    if (gameH.enemy_Fabimon[0].type1.equals("Dark")) {
                         return 0.5;
-                    case "Electric":
-                        return 0.5;
-                    default:
-                        return 1;
+                    }
+                    return 1;
                 }
-            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("dark")) {
-                switch (gameH.enemy_Fabimon[0].type1) {
-                    case "Dark":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
-            }
-        } else if (dingsbums == 2) {
-            if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("Fire")) {
-                switch (gameH.enemy_Fabimon[0].type2) {
-                    case "Water":
-                        return 0.5;
-                    case "Grass":
-                        return 2;
-                    case "Fire":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
-            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("water")) {
-                switch (gameH.enemy_Fabimon[0].type2) {
-                    case "Water":
-                        return 0.5;
-                    case "Grass":
-                        return 0.5;
-                    case "Fire":
-                        return 2;
-                    default:
-                        return 1;
-                }
-            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("grass")) {
-                switch (gameH.enemy_Fabimon[0].type2) {
-                    case "Water":
-                        return 2;
-                    case "Grass":
-                        return 0.5;
-                    case "Fire":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
+            } else if (dingsbums == 2) {
+                if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("Fire")) {
+                    switch (gameH.enemy_Fabimon[0].type2) {
+                        case "Water":
+                            return 0.5;
+                        case "Grass":
+                            return 2;
+                        case "Fire":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("water")) {
+                    switch (gameH.enemy_Fabimon[0].type2) {
+                        case "Water":
+                            return 0.5;
+                        case "Grass":
+                            return 0.5;
+                        case "Fire":
+                            return 2;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("grass")) {
+                    switch (gameH.enemy_Fabimon[0].type2) {
+                        case "Water":
+                            return 2;
+                        case "Grass":
+                            return 0.5;
+                        case "Fire":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
 
-            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("electric")) {
-                switch (gameH.enemy_Fabimon[0].type2) {
-                    case "Water":
-                        return 2;
-                    case "Grass":
+                } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("electric")) {
+                    switch (gameH.enemy_Fabimon[0].type2) {
+                        case "Water":
+                            return 2;
+                        case "Grass":
+                            return 0.5;
+                        case "Electric":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("dark")) {
+                    if (gameH.enemy_Fabimon[0].type2.equals("Dark")) {
                         return 0.5;
-                    case "Electric":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
-            } else if (gameH.player.fabimonTeam[0].move[gameH.ui.commandNum].type.equals("dark")) {
-                switch (gameH.enemy_Fabimon[0].type2) {
-                    case "Dark":
-                        return 0.5;
-                    default:
-                        return 1;
+                    }
+                    return 1;
                 }
             }
         }
         return 1;
     }
 
-    private double typeVorteilEnemy(int enemyadvantage){
-        if (enemyadvantage == 1) {
-            if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("Fire")) {
-                switch (gameH.player.fabimonTeam[0].type1) {
-                    case "Water":
-                        return 0.5;
-                    case "Grass":
-                        return 2;
-                    case "Fire":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
-            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("water")) {
-                switch (gameH.player.fabimonTeam[0].type1) {
-                    case "Water":
-                        return 0.5;
-                    case "Grass":
-                        return 0.5;
-                    case "Fire":
-                        return 2;
-                    default:
-                        return 1;
-                }
-            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("grass")) {
-                switch (gameH.player.fabimonTeam[0].type1) {
-                    case "Water":
-                        return 2;
-                    case "Grass":
-                        return 0.5;
-                    case "Fire":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
+    private double typeVorteilEnemy(int enemyadvantage) {
+        if (gameH.enemy_Fabimon[0].move[enemyattack] != null) {
+            if (enemyadvantage == 1) {
+                if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("Fire")) {
+                    switch (gameH.player.fabimonTeam[0].type1) {
+                        case "Water":
+                            return 0.5;
+                        case "Grass":
+                            return 2;
+                        case "Fire":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("water")) {
+                    switch (gameH.player.fabimonTeam[0].type1) {
+                        case "Water":
+                            return 0.5;
+                        case "Grass":
+                            return 0.5;
+                        case "Fire":
+                            return 2;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("grass")) {
+                    switch (gameH.player.fabimonTeam[0].type1) {
+                        case "Water":
+                            return 2;
+                        case "Grass":
+                            return 0.5;
+                        case "Fire":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
 
-            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("electric")) {
-                switch (gameH.player.fabimonTeam[0].type1) {
-                    case "Water":
-                        return 2;
-                    case "Grass":
+                } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("electric")) {
+                    switch (gameH.player.fabimonTeam[0].type1) {
+                        case "Water":
+                            return 2;
+                        case "Grass":
+                            return 0.5;
+                        case "Electric":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("dark")) {
+                    if (gameH.player.fabimonTeam[0].type1.equals("Dark")) {
                         return 0.5;
-                    case "Electric":
-                        return 0.5;
-                    default:
-                        return 1;
+                    }
+                    return 1;
                 }
-            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("dark")) {
-                switch (gameH.player.fabimonTeam[0].type1) {
-                    case "Dark":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
-            }
-        } else if (enemyadvantage == 2) {
-            if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("Fire")) {
-                switch (gameH.player.fabimonTeam[0].type2) {
-                    case "Water":
-                        return 0.5;
-                    case "Grass":
-                        return 2;
-                    case "Fire":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
-            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("water")) {
-                switch (gameH.player.fabimonTeam[0].type2) {
-                    case "Water":
-                        return 0.5;
-                    case "Grass":
-                        return 0.5;
-                    case "Fire":
-                        return 2;
-                    default:
-                        return 1;
-                }
-            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("grass")) {
-                switch (gameH.player.fabimonTeam[0].type2) {
-                    case "Water":
-                        return 2;
-                    case "Grass":
-                        return 0.5;
-                    case "Fire":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
+            } else if (enemyadvantage == 2) {
+                if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("Fire")) {
+                    switch (gameH.player.fabimonTeam[0].type2) {
+                        case "Water":
+                            return 0.5;
+                        case "Grass":
+                            return 2;
+                        case "Fire":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("water")) {
+                    switch (gameH.player.fabimonTeam[0].type2) {
+                        case "Water":
+                            return 0.5;
+                        case "Grass":
+                            return 0.5;
+                        case "Fire":
+                            return 2;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("grass")) {
+                    switch (gameH.player.fabimonTeam[0].type2) {
+                        case "Water":
+                            return 2;
+                        case "Grass":
+                            return 0.5;
+                        case "Fire":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
 
-            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("electric")) {
-                switch (gameH.player.fabimonTeam[0].type2) {
-                    case "Water":
-                        return 2;
-                    case "Grass":
+                } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("electric")) {
+                    switch (gameH.player.fabimonTeam[0].type2) {
+                        case "Water":
+                            return 2;
+                        case "Grass":
+                            return 0.5;
+                        case "Electric":
+                            return 0.5;
+                        default:
+                            return 1;
+                    }
+                } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("dark")) {
+                    if (gameH.player.fabimonTeam[0].type2.equals("Dark")) {
                         return 0.5;
-                    case "Electric":
-                        return 0.5;
-                    default:
-                        return 1;
-                }
-            } else if (gameH.enemy_Fabimon[0].move[enemyattack].type.equals("dark")) {
-                switch (gameH.player.fabimonTeam[0].type2) {
-                    case "Dark":
-                        return 0.5;
-                    default:
-                        return 1;
+                    }
+                    return 1;
                 }
             }
         }
@@ -681,7 +678,7 @@ public class Battle {
 
     public int testCalculateEnemyDamage(int i) {// berechnet den schaden den ein angriff machen würde.
         double typeBonus = 1;
-        if (gameH.enemy_Fabimon[0].type1.equals(gameH.player.fabimonTeam[0].move[enemyattack].type) || gameH.enemy_Fabimon[0].type2.equals(gameH.player.fabimonTeam[0].move[enemyattack].type)) {
+        if (gameH.enemy_Fabimon[0].type1.equals(gameH.player.fabimonTeam[0].move[i].type) || gameH.enemy_Fabimon[0].type2.equals(gameH.player.fabimonTeam[0].move[i].type)) {
             typeBonus = 1.5;
         }
         if (gameH.enemy_Fabimon[0].move[i].category.equals("special")) {
@@ -692,8 +689,6 @@ public class Battle {
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.enemy_Fabimon[0].sp_atk * getStep(gameH.enemy_Fabimon[0].haveEffect[4])) / (50 * gameH.player.fabimonTeam[0].sp_dev * getStep(gameH.player.fabimonTeam[0].haveEffect[5])) + 2;
             double zr2 = (int) zr1 * z * volltreffer() * typeBonus * typeVorteilEnemy(1) * typeVorteilEnemy(2);
-            gameH.ui.currentDialogue[1] = "";
-            gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon[0].name + " nutzt " + gameH.enemy_Fabimon[0].move[enemyattack].name + ".";
             return (int) zr2;
         } else if (gameH.enemy_Fabimon[0].move[i].category.equals("physical")) {
             double basisschaden = gameH.enemy_Fabimon[0].move[i].power;
@@ -702,8 +697,6 @@ public class Battle {
             double z = (100 - (Math.random() * 16)) / 100;
             double zr1 = (zr0 * gameH.enemy_Fabimon[0].atk * getStep(gameH.enemy_Fabimon[0].haveEffect[2])) / (50 * gameH.player.fabimonTeam[0].dev * getStep(gameH.player.fabimonTeam[0].haveEffect[3])) + 2;
             double zr2 = (int) zr1 * z * volltreffer() * typeBonus * typeVorteilEnemy(1) * typeVorteilEnemy(2);
-            gameH.ui.currentDialogue[1] = "";
-            gameH.ui.currentDialogue[0] = "Der gegnerische " + gameH.enemy_Fabimon[0].name + " nutzt " + gameH.enemy_Fabimon[0].move[enemyattack].name + ".";
             return (int) zr2;
         } else if (gameH.enemy_Fabimon[0].move[enemyattack].category.equals("status")) {
         }
@@ -764,8 +757,9 @@ public class Battle {
         }
         if (gameH.player.fabimonTeam[0].currentEp >= neededExp) {
             gameH.player.fabimonTeam[0].level++;
-            gameH.fabimon.checkNewMove();
+            gameH.gameSubState = gameH.newMoveState;
             gameH.player.fabimonTeam[0].currentEp -= neededExp;
+            winPhase--;
             gameH.ui.clearTextfield();
             gameH.ui.currentDialogue[0] = "Dein Fabimon ist im Level aufgestiegen";
         }

@@ -88,7 +88,7 @@ public class GameHandler extends JPanel implements Runnable {
     public int npcInteracted;
     public Fabimon fabimon = new Fabimon(this);
     public Attack attack = new Attack(this);
-    public Fabimon enemy_Fabimon[] = new Fabimon[6];
+    public Fabimon[] enemy_Fabimon = new Fabimon[6];
 
     // GAME STATE
     public int gameState;
@@ -831,6 +831,34 @@ public class GameHandler extends JPanel implements Runnable {
                                 ui.commandNum = 5;
                             }
                         }
+                    } else if (gameSubState == optionState && bumber == 0) {
+                        if(ui.optionType == 0){
+                            switch (ui.subCommandNum) {
+                                case 0:
+                                    ui.subCommandNum = 1;
+                                    break;
+                                case 1:
+                                    ui.subCommandNum = 0;
+                                    break;
+                            }
+                        }else if(ui.optionType == 1){
+                            switch (ui.subCommandNum) {
+                                case 0:
+                                    ui.subCommandNum = 3;
+                                    break;
+                                case 1:
+                                    ui.subCommandNum = 0;
+                                    break;
+                                case 2:
+                                    ui.subCommandNum = 1;
+                                    break;
+                                case 3:
+                                    ui.subCommandNum = 2;
+                                    break;
+                            }
+                        }
+
+                        bumber = 1;
                     }
                 } else if (keyH.downPressed || keyH.sPressed) {
                     if (gameSubState == noSubState || gameSubState == attackMenu) {
@@ -873,6 +901,33 @@ public class GameHandler extends JPanel implements Runnable {
                             if (ui.commandNum == 6) {
                                 ui.commandNum = 0;
                             }
+                        }
+                    } else if (gameSubState == optionState && bumber == 0) {
+                        if (ui.optionType == 0) {
+                            switch (ui.subCommandNum) {
+                                case 0:
+                                    ui.subCommandNum = 1;
+                                    break;
+                                case 1:
+                                    ui.subCommandNum = 0;
+                                    break;
+                            }
+                        } else if (ui.optionType == 1) {
+                            switch (ui.subCommandNum) {
+                                case 0:
+                                    ui.subCommandNum = 1;
+                                    break;
+                                case 1:
+                                    ui.subCommandNum = 2;
+                                    break;
+                                case 2:
+                                    ui.subCommandNum = 3;
+                                    break;
+                                case 3:
+                                    ui.subCommandNum = 0;
+                                    break;
+                            }
+                            bumber = 1;
                         }
                     }
                 } else if (keyH.rightPressed || keyH.dPressed) {
@@ -932,9 +987,29 @@ public class GameHandler extends JPanel implements Runnable {
                     battle.phase++;
                 } else if (gameSubState == fabimonMenu) {
                     battle.changeOwnFabimon(ui.commandNum);
-                }else if(gameSubState == newMoveState){
+                } else if (gameSubState == newMoveState) {
                     fabimon.checkNewMove();
+                } else if (gameSubState == optionState) {
+                    if(ui.optionType == 0){
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.optionType = 1;
+                                ui.clearTextfield();
+                                ui.currentDialogue[0] = "Welche Attacke soll vergessen werden?";
+                                break;
+                            case 1:
+                                gameSubState = attackMenu;
+                                ui.clearTextfield();
+                                ui.currentDialogue[0] = player.fabimonTeam[0].name + " hat die Attacke nicht erlernt.";
+                                break;
+                        }
+                    }else if(ui.optionType == 1){
+                        fabimon.phase = 3;
+                        fabimon.checkNewMove();
+                    }
+
                 }
+
                 bumber = 1;
             } else if (keyH.escPressed) {
                 if (gameSubState == fabimonMenu || gameSubState == attackMenu && battle.phase == 0) {
@@ -945,6 +1020,8 @@ public class GameHandler extends JPanel implements Runnable {
                 bumber = 0;
             }
         }// Bindings for battleState
+
+
         if (gameState == dialogueState) {
 
             if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0) {
@@ -953,9 +1030,7 @@ public class GameHandler extends JPanel implements Runnable {
                     if (npc[npcInteracted].trainer) {
                         if (player.fabimonTeam[0] != null && !npc[npcInteracted].defeated) {
                             gameState = cutsceneState;
-                            for(int i = 0; i<enemy_Fabimon.length; i++){
-                                enemy_Fabimon[i] = npc[npcInteracted].fabimonTeam[i];
-                            }
+                            System.arraycopy(npc[npcInteracted].fabimonTeam, 0, enemy_Fabimon, 0, enemy_Fabimon.length);
                             csManager.csNum = csManager.battleBegin;
                             battle.opponent = npcInteracted;
                             gameSubState = noSubState;
@@ -978,7 +1053,7 @@ public class GameHandler extends JPanel implements Runnable {
             }
         }
         if (gameState == cutsceneState) {
-        //macht nichts
+            //macht nichts
         }
         if (gameState == fabimonState) {
             if (keyH.sPressed || keyH.downPressed || keyH.wPressed || keyH.upPressed) {
@@ -1083,24 +1158,27 @@ public class GameHandler extends JPanel implements Runnable {
                     gameState = playState;
 
                     ui.commandNum = 0;
-                }else if(gameSubState == fabimonOverviewState){
+                } else if (gameSubState == fabimonOverviewState) {
                     gameSubState = noSubState;
                 }
                 bumber = 1;
             }
             if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0) {
-                if(gameSubState == noSubState) {
+                if (gameSubState == noSubState) {
                     gameSubState = optionState;
                     ui.subCommandNum = 0;
-                }else if(gameSubState == optionState){
-                    switch(ui.subCommandNum){
-                        case 0: battle.changeOwnFabimon(ui.commandNum);
+                } else if (gameSubState == optionState) {
+                    switch (ui.subCommandNum) {
+                        case 0:
+                            battle.changeOwnFabimon(ui.commandNum);
                             break;
-                        case 1: gameSubState = fabimonOverviewState;
+                        case 1:
+                            gameSubState = fabimonOverviewState;
                             break;
                         case 2:
                             break;
-                        case 3: gameSubState = noSubState;
+                        case 3:
+                            gameSubState = noSubState;
                             break;
 
                     }

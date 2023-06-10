@@ -1,5 +1,5 @@
 1
-grass type~Male~none~locker~5~4~22~31~31~12~3~0~6~3~0~2~7
+Feirir~Male~none~locker~5~4~22~31~31~12~3~0~6~3~0~2~7
 next
 2
 Feirir~Female~none~hitzig~4~22~27~18~11~0~4~6~5~7~1~4~7
