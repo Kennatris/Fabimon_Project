@@ -1035,7 +1035,6 @@ public class GameHandler extends JPanel implements Runnable {
             }
         } // Bindings for healState
 
-
         if (gameState == dialogueState) {
 
             if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0) {
@@ -1065,7 +1064,8 @@ public class GameHandler extends JPanel implements Runnable {
             if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1) {
                 bumber = 0;
             }
-        }
+        } // Bindings for dialogueState
+
         if (gameState == cutsceneState) {
             //macht nichts
         }
@@ -1202,7 +1202,7 @@ public class GameHandler extends JPanel implements Runnable {
             if (!keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !keyH.spacePressed && !keyH.enterPressed && !keyH.escPressed && bumber == 1) {
                 bumber = 0;
             }
-        }
+        } // Bindings for fabimonState
     }
 
     public void paintComponent(Graphics g) {

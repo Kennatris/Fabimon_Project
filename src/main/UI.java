@@ -249,6 +249,7 @@ public class UI {
         }
     }
 
+    // draws Title Screen
     public void drawTitleScreen() {
 
         g2.setColor(backgroundColor);

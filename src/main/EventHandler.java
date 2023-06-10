@@ -84,6 +84,7 @@ public class EventHandler {
 
     }
 
+    // checks for collision with the rect
     public boolean hit(int eventCol, int eventRow, String reqDirection) {
 
         boolean hit = false;
