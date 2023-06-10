@@ -23,6 +23,8 @@ public class GameHandler extends JPanel implements Runnable {
     // WORLD SETTINGS
     public final int worldColumns = 50;
     public final int worldRows = 50;
+
+    // States
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
@@ -30,17 +32,19 @@ public class GameHandler extends JPanel implements Runnable {
     public final int saveState = 4;
     public final int settingState = 5;
     public final int battleState = 6;
-    public final int healState =  7;
+    public final int cutsceneState = 7;
+    public final int inventoryState = 8;
+    public final int fabimonState = 9;
+    public final int newMoveState = 10;
+    public final int healState =  8;
+
+    // lower State
     public final int noSubState = 0;
     public final int attackMenu = 1;
     public final int itemMenu = 2;
     public final int fabimonMenu = 3;
     public final int optionState = 4;
     public final int fabimonOverviewState = 5;
-    public final int cutsceneState = 7;
-    public final int inventoryState = 8;
-    public final int fabimonState = 9;
-    public final int newMoveState = 10;
 
     // SCREEN SETTINGS
     final int originalTileSize = 96; // 96x96 tile

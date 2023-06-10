@@ -10,11 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="Fix">
-      <change afterPath="$PROJECT_DIR$/res/Fabimon/cursed Shiggy/l0_water_starter1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/Fabimon/cursed Shiggy/l0_water_starter2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Battle/attacks/Armor_Cannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Battle/attacks/Armor_Cannon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/FabimonOrdner/CursedShiggy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/FabimonOrdner/CursedShiggy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/BattleMusic/8-bit-RPG-Music-Boss-Battle.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +169,7 @@
       <workItem from="1685893641316" duration="171000" />
       <workItem from="1686241685936" duration="361000" />
       <workItem from="1686310161231" duration="4071000" />
-      <workItem from="1686400839157" duration="3388000" />
+      <workItem from="1686400839157" duration="4033000" />
     </task>
     <task id="LOCAL-00001" summary="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
       <created>1679533924557</created>
@@ -432,7 +430,28 @@
       <option name="project" value="LOCAL" />
       <updated>1686403609647</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Fix">
+      <created>1686404280608</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1686404280608</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Fix">
+      <created>1686404395840</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1686404395840</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Fix">
+      <created>1686404560557</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1686404560557</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
