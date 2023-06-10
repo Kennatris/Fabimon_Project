@@ -76,14 +76,6 @@ public class NPCTest extends Entity {
                 gameH.player.fabimonTeam[0] = gameH.fabimon.tempFabimon;
                 gameH.fabimon.createFabimon("cursed Shiggy", 0, 5);
                 gameH.player.fabimonTeam[1] = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("Jubby", 0, 5);
-                gameH.player.fabimonTeam[2] = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("grass type", 0, 5);
-                gameH.player.fabimonTeam[3] = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("electric type", 0, 5);
-                gameH.player.fabimonTeam[4] = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("electric type", 0, 5);
-                gameH.player.fabimonTeam[5] = gameH.fabimon.tempFabimon;
                 gameH.npc[npc].endDialogue = true;
 
         }

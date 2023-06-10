@@ -17,6 +17,13 @@ public class Player extends Entity{
     public int screenY;
     int idleCounter = 0;
     int standCounter = 0;
+    public String inventory[][] = {
+            {"Heal Potion", "0"},
+            {"Super Heal Potion", "0"},
+            {"Revive", "0"},
+            {"Lucky Egg", "0"},
+            {"XPShare", "0"},
+            {"Fabiball", "0"}};
     // DEBUG
     public boolean speedBoost;
 
@@ -45,6 +52,12 @@ public class Player extends Entity{
         worldY = gameH.playerStandardValueY;
         speed = 4;
         direction = "down";
+
+    }
+    public void setInventory(String pINV[]){
+        for(int i = 0; i<6; i++){
+            inventory[i][1] = pINV[i];
+        }
 
     }
 

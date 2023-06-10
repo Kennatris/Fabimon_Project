@@ -148,6 +148,11 @@ public class SaveCompiler extends Settings{
                                     unsavedInt[i][18] = Integer.parseInt(line);
                                     line = br.readLine();
                             }
+                            // Player Inventory
+                            for(int i = 0; i<6; i++){
+                                unsavedString[i+7][0] = line;
+                                line = br.readLine();
+                            }
                     }
                 }
 
@@ -198,6 +203,7 @@ public class SaveCompiler extends Settings{
         int pev[] = new int[6];
         int piv[] = new int[6];
         int pinfo[] = new int[3];
+        String pInv[] = new String[6];
         for(int i = 1; i< gameH.player.fabimonTeam.length+1; i++) {
 
            if(unsavedString[i][0].equals("nichts")) {
@@ -214,10 +220,16 @@ public class SaveCompiler extends Settings{
                for (int j = 0; j < 6; j++) {
                    pev[j] = unsavedInt[i][3 + j];
                    piv[j] = unsavedInt[i][9 + j];
+
                }
                gameH.fabimon.setPlayerFabimon(i-1, psinfo, move, pap, pev, piv, pinfo);
            }
         }
+        for(int i = 0; i<6; i++){
+            pInv[i] = unsavedString[i+7][0];
+            System.out.println(pInv[i]);
+        }
+        gameH.player.setInventory(pInv);
     }
 
     public void SaveWriter(GameHandler gameH, String fileName) {
@@ -326,6 +338,10 @@ public class SaveCompiler extends Settings{
                             bw.newLine();
                         }
                     }
+                }
+                for(int i = 0; i<gameH.player.inventory.length; i++) {
+                    bw.write(gameH.player.inventory[i][1]);
+                    bw.newLine();
                 }
                 // ENTITY SHIT = FABIO SHIT
                 // NPC SHIT = FABIO SHIT
