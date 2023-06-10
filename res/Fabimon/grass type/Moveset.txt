@@ -2,6 +2,6 @@
 1~Scratch
 1~Growl
 6~Absorb
-8~Scary_face
+8~Scary Face
 15~Apple_Acid
 22~Drum_Beating

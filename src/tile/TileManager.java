@@ -66,7 +66,7 @@ public class TileManager {
         setup(34, "tiles","water_corners_right_bottom1","png",gameH.tileSize, gameH.tileSize, true);
         setup(35, "tiles","water_right_mid1","png",gameH.tileSize, gameH.tileSize, true);
         setup(36, "tiles","water_corner_left_bottom1","png",gameH.tileSize, gameH.tileSize, true);
-        setup(37, "tiles","stone","png",gameH.tileSize, gameH.tileSize, false);
+        setup(37, "tiles","grass_ground_corner_left_top0","png",gameH.tileSize, gameH.tileSize, false);
         setup(38, "tiles","stone","png",gameH.tileSize, gameH.tileSize, false);
 
 
