@@ -11,8 +11,8 @@ Feirir
 Lucky Egg
 Male
 still
-30
-69
+5
+19
 0
 0
 0
@@ -28,8 +28,8 @@ still
 25
 Growl
 Scratch
-Growl
-Growl
+nichts
+nichts
 40
 35
 0

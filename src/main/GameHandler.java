@@ -31,7 +31,7 @@ public class GameHandler extends JPanel implements Runnable {
     public final int saveState = 4;
     public final int settingState = 5;
     public final int battleState = 6;
-    public final int healState =  7;
+    public final int healState = 7;
     public final int cutsceneState = 8;
     public final int inventoryState = 9;
     public final int newMoveState = 10;
@@ -44,9 +44,7 @@ public class GameHandler extends JPanel implements Runnable {
     public final int fabimonMenu = 3;
     public final int optionState = 4;
     public final int fabimonOverviewState = 5;
-
-
-
+    public final int bag = 6;
 
 
     // SCREEN SETTINGS
@@ -73,6 +71,7 @@ public class GameHandler extends JPanel implements Runnable {
     public float soundVolume;
     // random Vars
     public boolean debugMode = true;
+    public int type = 0;
     public boolean timerMode = false;
     public boolean unsavedSetting;
     public int bumber = 0;
@@ -125,7 +124,7 @@ public class GameHandler extends JPanel implements Runnable {
         aSetter.setObject();
         aSetter.setNPC("createNPC");
         aSetter.setFabimonTeam("enemy_Fabimon_Teams");
-        if(!keyboard) {
+        if (!keyboard) {
             kon.verbindeKontroller();
         }
         // initializer
@@ -209,8 +208,10 @@ public class GameHandler extends JPanel implements Runnable {
     }
 
     public void update() {
-        if(!keyboard) {
-            kon.gamepad();
+        if (kon.controllers != null) {
+            if (!keyboard) {
+                kon.gamepad();
+            }
         }
         // DEBUG MODE
         if (keyH.hPressed) {
@@ -234,9 +235,7 @@ public class GameHandler extends JPanel implements Runnable {
                     System.out.println("Speed set: " + player.speed);
                 }
                 speed_increased = 1;
-            }
-
-            else if (!keyH.shiftPressed || !kon.viereck) {
+            } else if (!keyH.shiftPressed || !kon.viereck) {
                 if (speed_increased == 1) {
                     player.speed = 4;
                     System.out.println("Speed set: " + player.speed);
@@ -319,9 +318,9 @@ public class GameHandler extends JPanel implements Runnable {
                 tmpWaited++;
             }
             // do-nothing
-            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed ||kon.d_Pad[0]||kon.d_Pad[2]) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
 
-                if (keyH.wPressed || keyH.upPressed||kon.d_Pad[0]) {
+                if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -342,7 +341,7 @@ public class GameHandler extends JPanel implements Runnable {
                     keyH.upPressed = false;
                     kon.d_Pad[0] = false;
 
-                } else if (keyH.sPressed || keyH.downPressed||kon.d_Pad[2]) {
+                } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -366,7 +365,7 @@ public class GameHandler extends JPanel implements Runnable {
             }
 
             // SELECT
-            if (keyH.spacePressed || keyH.enterPressed||kon.kreuz) {
+            if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
                 if (ui.pauseScreenValue == 0) {
                     switch (ui.commandNum) {
                         case 0: // BACK
@@ -399,7 +398,7 @@ public class GameHandler extends JPanel implements Runnable {
             }
 
             // ESC
-            if (keyH.escPressed && tmpWaited == tmpTime||kon.kreis && tmpWaited == tmpTime) {
+            if (keyH.escPressed && tmpWaited == tmpTime || kon.kreis && tmpWaited == tmpTime) {
                 gameState = tmpGameState;
 
                 ui.commandNum = 0;
@@ -413,9 +412,9 @@ public class GameHandler extends JPanel implements Runnable {
 
             // SELECTION
             // MOVE CURSOR
-            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed||kon.d_Pad[0]||kon.d_Pad[2]) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
                 playSE(0);
-                if (keyH.wPressed || keyH.upPressed||kon.d_Pad[0]) {
+                if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -437,7 +436,7 @@ public class GameHandler extends JPanel implements Runnable {
                     keyH.upPressed = false;
                     kon.d_Pad[0] = false;
 
-                } else if (keyH.sPressed || keyH.downPressed||kon.d_Pad[2]) {
+                } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -461,7 +460,7 @@ public class GameHandler extends JPanel implements Runnable {
                 }
             }
             // SELECT
-            if (keyH.spacePressed || keyH.enterPressed||kon.kreuz) {
+            if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
 
                 switch (ui.commandNum) {
 
@@ -493,11 +492,11 @@ public class GameHandler extends JPanel implements Runnable {
         if (gameState == settingState) {
             // SELECTION
             // MOVE CURSOR
-            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed||kon.d_Pad[0]||kon.d_Pad[2]) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
                 playSE(0);
                 switch (ui.settingScreenValue) {
                     case 0:
-                        if (keyH.wPressed || keyH.upPressed||kon.d_Pad[0]) {
+                        if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -519,7 +518,7 @@ public class GameHandler extends JPanel implements Runnable {
                             keyH.upPressed = false;
                             kon.d_Pad[0] = false;
 
-                        } else if (keyH.sPressed || keyH.downPressed||kon.d_Pad[2]) {
+                        } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -543,7 +542,7 @@ public class GameHandler extends JPanel implements Runnable {
                         }
                         break;
                     case 1:
-                        if (keyH.wPressed || keyH.upPressed||kon.d_Pad[0]) {
+                        if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -559,7 +558,7 @@ public class GameHandler extends JPanel implements Runnable {
                             keyH.upPressed = false;
                             kon.d_Pad[0] = false;
 
-                        } else if (keyH.sPressed || keyH.downPressed||kon.d_Pad[2]) {
+                        } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -577,7 +576,7 @@ public class GameHandler extends JPanel implements Runnable {
                         }
                         break;
                     case 2:
-                        if (keyH.wPressed || keyH.upPressed||kon.d_Pad[0]) {
+                        if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -596,7 +595,7 @@ public class GameHandler extends JPanel implements Runnable {
                             keyH.upPressed = false;
                             kon.d_Pad[0] = false;
 
-                        } else if (keyH.sPressed || keyH.downPressed||kon.d_Pad[2]) {
+                        } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -623,7 +622,7 @@ public class GameHandler extends JPanel implements Runnable {
             switch (ui.settingScreenValue) {
                 case 0:
                     // SELECT
-                    if (keyH.spacePressed || keyH.enterPressed||kon.kreuz) {
+                    if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
                         switch (ui.commandNum) {
                             case 0: // Video
                                 ui.settingScreenValue = 1;
@@ -653,7 +652,7 @@ public class GameHandler extends JPanel implements Runnable {
                         kon.kreuz = false;
                     }
 
-                    if (keyH.leftPressed || keyH.rightPressed || keyH.aPressed || keyH.dPressed||kon.d_Pad[1]||kon.d_Pad[3]) {
+                    if (keyH.leftPressed || keyH.rightPressed || keyH.aPressed || keyH.dPressed || kon.d_Pad[1] || kon.d_Pad[3]) {
                         if (ui.commandNum == 2) {
                             unsavedSetting = true;
                             keyboard = !keyboard;
@@ -668,7 +667,7 @@ public class GameHandler extends JPanel implements Runnable {
                     }
                     break;
                 case 1: // Video
-                    if (keyH.spacePressed || keyH.enterPressed||kon.kreuz) {
+                    if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
                         switch (ui.commandNum) {
                             case 0: // fullscreen
                                 fullscreen = !fullscreen;
@@ -691,7 +690,7 @@ public class GameHandler extends JPanel implements Runnable {
                     }
                     break;
                 case 2: // Sound
-                    if (keyH.spacePressed || keyH.enterPressed||kon.kreuz) {
+                    if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
                         switch (ui.commandNum) {
                             case 0: // musicVolume
                                 break;
@@ -708,20 +707,20 @@ public class GameHandler extends JPanel implements Runnable {
                         kon.kreuz = false;
                     }
 
-                    if (keyH.leftPressed || keyH.rightPressed || keyH.aPressed || keyH.dPressed||kon.d_Pad[1]||kon.d_Pad[3]) {
+                    if (keyH.leftPressed || keyH.rightPressed || keyH.aPressed || keyH.dPressed || kon.d_Pad[1] || kon.d_Pad[3]) {
                         switch (ui.commandNum) {
                             case 0:
-                                if ((keyH.aPressed || keyH.leftPressed||kon.d_Pad[3]) && musicVolume > 0f) {
+                                if ((keyH.aPressed || keyH.leftPressed || kon.d_Pad[3]) && musicVolume > 0f) {
                                     musicVolume = musicVolume - 0.1f;
-                                } else if ((keyH.dPressed || keyH.rightPressed||kon.d_Pad[1]) && musicVolume < 2f) {
+                                } else if ((keyH.dPressed || keyH.rightPressed || kon.d_Pad[1]) && musicVolume < 2f) {
                                     musicVolume = musicVolume + 0.1f;
                                 }
                                 //music.setVolume(musicVolume);
                                 break;
                             case 1:
-                                if ((keyH.aPressed || keyH.leftPressed||kon.d_Pad[3]) && soundVolume > 0f) {
+                                if ((keyH.aPressed || keyH.leftPressed || kon.d_Pad[3]) && soundVolume > 0f) {
                                     soundVolume = soundVolume - 0.1f;
-                                } else if ((keyH.dPressed || keyH.rightPressed||kon.d_Pad[1]) && soundVolume < 2f) {
+                                } else if ((keyH.dPressed || keyH.rightPressed || kon.d_Pad[1]) && soundVolume < 2f) {
                                     soundVolume = soundVolume + 0.1f;
                                 }
                                 //se.setVolume(soundVolume);
@@ -742,9 +741,9 @@ public class GameHandler extends JPanel implements Runnable {
         if (gameState == saveState) {
             // SELECTION
             // MOVE CURSOR
-            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed||kon.d_Pad[0]||kon.d_Pad[2]) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
 
-                if (keyH.wPressed || keyH.upPressed||kon.d_Pad[0]) {
+                if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -766,7 +765,7 @@ public class GameHandler extends JPanel implements Runnable {
                     keyH.upPressed = false;
                     kon.d_Pad[0] = false;
 
-                } else if (keyH.sPressed || keyH.downPressed||kon.d_Pad[2]) {
+                } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -789,7 +788,7 @@ public class GameHandler extends JPanel implements Runnable {
                 }
             }
             // SELECT
-            if (keyH.spacePressed || keyH.enterPressed||kon.kreuz) {
+            if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
 
                 switch (ui.commandNum) {
 
@@ -826,9 +825,9 @@ public class GameHandler extends JPanel implements Runnable {
 
         if (gameState == battleState) {
 
-            if (keyH.upPressed || keyH.wPressed || keyH.downPressed || keyH.sPressed || keyH.rightPressed || keyH.dPressed || keyH.leftPressed || keyH.aPressed||kon.d_Pad[0]||kon.d_Pad[1]||kon.d_Pad[2]||kon.d_Pad[3]) {
+            if (keyH.upPressed || keyH.wPressed || keyH.downPressed || keyH.sPressed || keyH.rightPressed || keyH.dPressed || keyH.leftPressed || keyH.aPressed || kon.d_Pad[0] || kon.d_Pad[1] || kon.d_Pad[2] || kon.d_Pad[3]) {
 
-                if (keyH.upPressed || keyH.wPressed||kon.d_Pad[0]) {
+                if (keyH.upPressed || keyH.wPressed || kon.d_Pad[0]) {
                     if (gameSubState == noSubState || gameSubState == attackMenu) {
                         switch (ui.commandNum) {
                             case 0:
@@ -842,7 +841,7 @@ public class GameHandler extends JPanel implements Runnable {
                                 ui.commandNum = 1;
                                 break;
                         }
-                    } else if (gameSubState == fabimonMenu && bumber == 0) {
+                    } else if (gameSubState == fabimonMenu && type == 0 && bumber == 0) {
                         switch (ui.commandNum) {
                             case 0:
                                 ui.commandNum = 5;
@@ -870,8 +869,36 @@ public class GameHandler extends JPanel implements Runnable {
                                 ui.commandNum = 5;
                             }
                         }
+                    } else if (gameSubState == fabimonMenu && type == 1 && bumber == 0) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 5;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 0;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 2;
+                                break;
+                            case 4:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 5:
+                                ui.subCommandNum = 4;
+                                break;
+                        }
+                        bumber = 1;
+                        while (player.fabimonTeam[ui.subCommandNum] == null) {
+                            ui.subCommandNum--;
+                            if (ui.subCommandNum == -1) {
+                                ui.subCommandNum = 5;
+                            }
+                        }
                     } else if (gameSubState == optionState && bumber == 0) {
-                        if(ui.optionType == 0){
+                        if (ui.optionType == 0) {
                             switch (ui.subCommandNum) {
                                 case 0:
                                     ui.subCommandNum = 1;
@@ -880,7 +907,7 @@ public class GameHandler extends JPanel implements Runnable {
                                     ui.subCommandNum = 0;
                                     break;
                             }
-                        }else if(ui.optionType == 1){
+                        } else if (ui.optionType == 1) {
                             switch (ui.subCommandNum) {
                                 case 0:
                                     ui.subCommandNum = 3;
@@ -895,11 +922,25 @@ public class GameHandler extends JPanel implements Runnable {
                                     ui.subCommandNum = 2;
                                     break;
                             }
+                            bumber = 1;
                         }
+                    } else if (gameSubState == bag && bumber == 0) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 2;
+                                break;
+                            case 1:
+                                ui.commandNum = 0;
+                                break;
+                            case 2:
+                                ui.commandNum = 1;
+                                break;
 
+                        }
                         bumber = 1;
                     }
-                } else if (keyH.downPressed || keyH.sPressed||kon.d_Pad[2]) {
+
+                } else if (keyH.downPressed || keyH.sPressed || kon.d_Pad[2]) {
                     if (gameSubState == noSubState || gameSubState == attackMenu) {
                         switch (ui.commandNum) {
                             case 0:
@@ -908,12 +949,8 @@ public class GameHandler extends JPanel implements Runnable {
                             case 1:
                                 ui.commandNum = 3;
                                 break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
                         }
-                    } else if (gameSubState == fabimonMenu && bumber == 0) {
+                    } else if (gameSubState == fabimonMenu && type == 0 && bumber == 0) {
                         switch (ui.commandNum) {
                             case 0:
                                 ui.commandNum = 1;
@@ -941,6 +978,34 @@ public class GameHandler extends JPanel implements Runnable {
                                 ui.commandNum = 0;
                             }
                         }
+                    } else if (gameSubState == fabimonMenu && type == 1 && bumber == 0) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 2;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 4;
+                                break;
+                            case 4:
+                                ui.subCommandNum = 5;
+                                break;
+                            case 5:
+                                ui.subCommandNum = 0;
+                                break;
+                        }
+                        bumber = 1;
+                        while (player.fabimonTeam[ui.subCommandNum] == null) {
+                            ui.subCommandNum++;
+                            if (ui.subCommandNum == 6) {
+                                ui.subCommandNum = 0;
+                            }
+                        }
                     } else if (gameSubState == optionState && bumber == 0) {
                         if (ui.optionType == 0) {
                             switch (ui.subCommandNum) {
@@ -951,25 +1016,39 @@ public class GameHandler extends JPanel implements Runnable {
                                     ui.subCommandNum = 0;
                                     break;
                             }
-                        } else if (ui.optionType == 1) {
-                            switch (ui.subCommandNum) {
-                                case 0:
-                                    ui.subCommandNum = 1;
-                                    break;
-                                case 1:
-                                    ui.subCommandNum = 2;
-                                    break;
-                                case 2:
-                                    ui.subCommandNum = 3;
-                                    break;
-                                case 3:
-                                    ui.subCommandNum = 0;
-                                    break;
-                            }
-                            bumber = 1;
                         }
+                    } else if (ui.optionType == 1) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 2;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 0;
+                                break;
+                        }
+                        bumber = 1;
+                    } else if (gameSubState == bag && bumber == 0) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 1;
+                                break;
+                            case 1:
+                                ui.commandNum = 2;
+                                break;
+                            case 2:
+                                ui.commandNum = 0;
+                                break;
+                        }
+                        bumber = 1;
                     }
-                } else if (keyH.rightPressed || keyH.dPressed||kon.d_Pad[1]) {
+
+                } else if (keyH.rightPressed || keyH.dPressed || kon.d_Pad[1]) {
                     if (gameSubState == noSubState || gameSubState == attackMenu) {
                         switch (ui.commandNum) {
                             case 0:
@@ -986,7 +1065,7 @@ public class GameHandler extends JPanel implements Runnable {
                     } else if (gameSubState == fabimonMenu) {
 
                     }
-                } else if (keyH.leftPressed || keyH.aPressed||kon.d_Pad[3]) {
+                } else if (keyH.leftPressed || keyH.aPressed || kon.d_Pad[3]) {
                     if (gameSubState == noSubState || gameSubState == attackMenu) {
                         switch (ui.commandNum) {
                             case 0:
@@ -1003,7 +1082,7 @@ public class GameHandler extends JPanel implements Runnable {
                         }
                     }
                 }
-            } else if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0||kon.kreuz && bumber == 0) {
+            } else if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0 || kon.kreuz && bumber == 0) {
                 if (gameSubState == noSubState) {
                     switch (ui.commandNum) {
                         case 0:
@@ -1015,22 +1094,24 @@ public class GameHandler extends JPanel implements Runnable {
                             ui.commandNum = 0;
                             break;
                         case 2:
-                            ui.battleText = "Bag";
+                            gameSubState = bag;
                             break;
                         case 3:
                             ui.currentDialogue[0] = "Du kannst nicht fliehen!";
                             break;
                     }
                 } else if (gameSubState == attackMenu) {
-
                     battle.battleRound(); //durchläuft eine Phase einer Kampfrunde
                     battle.phase++;
-                } else if (gameSubState == fabimonMenu) {
+                } else if (gameSubState == fabimonMenu && type == 0) {
                     battle.changeOwnFabimon(ui.commandNum);
+                } else if (gameSubState == fabimonMenu && type == 1) {
+                    fabimon.useItem();
+
                 } else if (gameSubState == newMoveState) {
                     fabimon.checkNewMove();
                 } else if (gameSubState == optionState) {
-                    if(ui.optionType == 0){
+                    if (ui.optionType == 0) {
                         switch (ui.subCommandNum) {
                             case 0:
                                 ui.optionType = 1;
@@ -1043,29 +1124,32 @@ public class GameHandler extends JPanel implements Runnable {
                                 ui.currentDialogue[0] = player.fabimonTeam[0].name + " hat die Attacke nicht erlernt.";
                                 break;
                         }
-                    }else if(ui.optionType == 1){
+                    } else if (ui.optionType == 1) {
                         fabimon.phase = 3;
                         fabimon.checkNewMove();
                     }
-
+                } else if (gameSubState == bag) {
+                    gameSubState = fabimonMenu;
+                    type = 1;
                 }
 
                 bumber = 1;
-            } else if (keyH.escPressed||kon.kreis) {
-                if (gameSubState == fabimonMenu || gameSubState == attackMenu && battle.phase == 0) {
+            } else if (keyH.escPressed || kon.kreis) {
+                if (gameSubState == fabimonMenu || gameSubState == attackMenu && battle.phase == 0 || gameSubState == bag) {
                     gameSubState = noSubState;
+                    type = 0;
                 }
             }
-            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1 && !keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed&&!kon.kreuz&&!kon.d_Pad[0]&&!kon.d_Pad[1]&&!kon.d_Pad[2]&&!kon.d_Pad[3]) {
+            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1 && !keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !kon.kreuz && !kon.d_Pad[0] && !kon.d_Pad[1] && !kon.d_Pad[2] && !kon.d_Pad[3]) {
                 bumber = 0;
             }
         }// Bindings for battleState
 
         if (gameState == healState) {
-            if (keyH.enterPressed || keyH.spacePressed||kon.kreuz) {
+            if (keyH.enterPressed || keyH.spacePressed || kon.kreuz) {
                 gameState = playState;
             }
-            if (keyH.escPressed||kon.kreis) {
+            if (keyH.escPressed || kon.kreis) {
                 tmpGameState = gameState;
                 gameState = pauseState;
                 tmpTime = 30;
@@ -1075,7 +1159,7 @@ public class GameHandler extends JPanel implements Runnable {
 
         if (gameState == dialogueState) {
 
-            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0||kon.kreuz && bumber == 0) {
+            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0 || kon.kreuz && bumber == 0) {
 
                 if (npc[npcInteracted].endDialogue) {
                     if (npc[npcInteracted].trainer) {
@@ -1108,8 +1192,8 @@ public class GameHandler extends JPanel implements Runnable {
             //macht nichts
         }
         if (gameState == fabimonState) {
-            if (keyH.sPressed || keyH.downPressed || keyH.wPressed || keyH.upPressed||kon.d_Pad[0]||kon.d_Pad[2]) {
-                if (keyH.sPressed && bumber == 0 || keyH.downPressed && bumber == 0||kon.d_Pad[2] && bumber == 0) {
+            if (keyH.sPressed || keyH.downPressed || keyH.wPressed || keyH.upPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
+                if (keyH.sPressed && bumber == 0 || keyH.downPressed && bumber == 0 || kon.d_Pad[2] && bumber == 0) {
                     if (gameSubState == noSubState) {
                         switch (ui.commandNum) {
                             case 0:
@@ -1155,7 +1239,7 @@ public class GameHandler extends JPanel implements Runnable {
                     }
                     bumber = 1;
                 }
-                if (keyH.wPressed && bumber == 0 || keyH.upPressed && bumber == 0||kon.d_Pad[0] && bumber == 0)  {
+                if (keyH.wPressed && bumber == 0 || keyH.upPressed && bumber == 0 || kon.d_Pad[0] && bumber == 0) {
                     if (gameSubState == noSubState) {
                         switch (ui.commandNum) {
                             case 0:
@@ -1205,7 +1289,7 @@ public class GameHandler extends JPanel implements Runnable {
                 }
 
             }
-            if (keyH.escPressed && bumber == 0||kon.kreis && bumber == 0) {
+            if (keyH.escPressed && bumber == 0 || kon.kreis && bumber == 0) {
                 if (gameSubState == noSubState) {
                     gameState = playState;
 
@@ -1215,7 +1299,7 @@ public class GameHandler extends JPanel implements Runnable {
                 }
                 bumber = 1;
             }
-            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0||kon.kreuz && bumber == 0) {
+            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0 || kon.kreuz && bumber == 0) {
                 if (gameSubState == noSubState) {
                     gameSubState = optionState;
                     ui.subCommandNum = 0;
@@ -1237,15 +1321,15 @@ public class GameHandler extends JPanel implements Runnable {
                 }
                 bumber = 1;
             }
-            if (!keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !keyH.spacePressed && !keyH.enterPressed && !keyH.escPressed && bumber == 1 && !kon.d_Pad[0]&& !kon.d_Pad[2]&& !kon.kreuz&& !kon.kreis) {
+            if (!keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !keyH.spacePressed && !keyH.enterPressed && !keyH.escPressed && bumber == 1 && !kon.d_Pad[0] && !kon.d_Pad[2] && !kon.kreuz && !kon.kreis) {
                 bumber = 0;
             }
         }// Bindings for fabimonState
 
 
-        if(gameState == inventoryState){
-            if (keyH.sPressed || keyH.downPressed || keyH.wPressed || keyH.upPressed|| kon.d_Pad[0]|| kon.d_Pad[2]) {
-                if (keyH.sPressed && bumber == 0 || keyH.downPressed && bumber == 0|| kon.d_Pad[2] && bumber == 0) {
+        if (gameState == inventoryState) {
+            if (keyH.sPressed || keyH.downPressed || keyH.wPressed || keyH.upPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
+                if (keyH.sPressed && bumber == 0 || keyH.downPressed && bumber == 0 || kon.d_Pad[2] && bumber == 0) {
                     if (gameSubState == noSubState) {
                         switch (ui.commandNum) {
                             case 0:
@@ -1297,7 +1381,7 @@ public class GameHandler extends JPanel implements Runnable {
                     }
                     bumber = 1;
                 }
-                if (keyH.wPressed && bumber == 0 || keyH.upPressed && bumber == 0|| kon.d_Pad[0] && bumber == 0) {
+                if (keyH.wPressed && bumber == 0 || keyH.upPressed && bumber == 0 || kon.d_Pad[0] && bumber == 0) {
                     if (gameSubState == noSubState) {
                         switch (ui.commandNum) {
                             case 0:
@@ -1357,24 +1441,23 @@ public class GameHandler extends JPanel implements Runnable {
                 if (gameSubState == noSubState) {
                     gameState = playState;
                     ui.commandNum = 0;
-                }else if(gameSubState == fabimonMenu){
+                } else if (gameSubState == fabimonMenu) {
                     gameSubState = noSubState;
                 }
                 bumber = 1;
             }
-            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0|| kon.kreuz && bumber == 0) {
+            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0 || kon.kreuz && bumber == 0) {
                 if (gameSubState == noSubState) {
-                    switch(ui.commandNum){
-                        case 5:
-                            break;
-                        default: gameSubState = fabimonMenu;
+                    if (ui.commandNum == 5) {
+                    } else {
+                        gameSubState = fabimonMenu;
                     }
                 } else if (gameSubState == fabimonMenu) {
-                   fabimon.useItem();
+                    fabimon.useItem();
                 }
                 bumber = 1;
             }
-            if (!keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !keyH.spacePressed && !keyH.enterPressed && !keyH.escPressed && bumber == 1 && !kon.d_Pad[0]&& !kon.d_Pad[2]&& !kon.kreuz&& !kon.kreis) {
+            if (!keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !keyH.spacePressed && !keyH.enterPressed && !keyH.escPressed && bumber == 1 && !kon.d_Pad[0] && !kon.d_Pad[2] && !kon.kreuz && !kon.kreis) {
                 bumber = 0;
             }
 

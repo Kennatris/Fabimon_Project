@@ -1065,12 +1065,12 @@ public class UI {
 
             x = gameH.myGUI.frame.getWidth() - buttonWidthScaling;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling;
-            if (gameH.player.fabimonTeam[0].move[0] == null) {
+            if (gameH.player.fabimonTeam[0].move[3] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else if (commandNum == 3) {
-                g2.drawImage(gameH.player.fabimonTeam[0].move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.player.fabimonTeam[0].move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2;
@@ -1094,12 +1094,12 @@ public class UI {
             }
 
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2;
-            if (gameH.player.fabimonTeam[0].move[3] == null) {
+            if (gameH.player.fabimonTeam[0].move[0] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else if (commandNum == 0) {
-                g2.drawImage(gameH.player.fabimonTeam[0].move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[0].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
-                g2.drawImage(gameH.player.fabimonTeam[0].move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
+                g2.drawImage(gameH.player.fabimonTeam[0].move[0].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
         }
         if (!gameH.fullscreen) {
@@ -1114,13 +1114,13 @@ public class UI {
             y = gameH.myGUI.frame.getHeight() - buttonYScaling - minHeight;
             if (gameH.player.fabimonTeam[0].move[3] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
-            } else if (commandNum == 3) {
+            } else if (commandNum == 0) {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[3].ausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             } else {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[3].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
-            //Fabimob button
+
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2 - minHeight;
             if (gameH.player.fabimonTeam[0].move[1] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -1130,7 +1130,7 @@ public class UI {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[1].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
-            //Run button
+
             x = gameH.myGUI.frame.getWidth() - (2 * buttonWidthScaling) - minWidth;
             y = gameH.myGUI.frame.getHeight() - buttonYScaling - minHeight;
             if (gameH.player.fabimonTeam[0].move[2] == null) {
@@ -1141,7 +1141,7 @@ public class UI {
                 g2.drawImage(gameH.player.fabimonTeam[0].move[2].nausgewählt, x, y, buttonWidthScaling, buttonHeightScaling, null);
             }
 
-            //Fight button
+
             y = gameH.myGUI.frame.getHeight() - buttonYScaling2 - minHeight;
             if (gameH.player.fabimonTeam[0].move[0] == null) {
                 g2.drawImage(gameH.tileM.tile[28].image, x, y, buttonWidthScaling, buttonHeightScaling, null);
@@ -1155,7 +1155,7 @@ public class UI {
     }
 
     private void drawFabimonMenu() {
-        if (gameH.gameState == gameH.battleState || gameH.gameState == gameH.fabimonState) {
+        if (gameH.gameState == gameH.battleState && gameH.type == 0|| gameH.gameState == gameH.fabimonState) {
             if (gameH.fullscreen) {
                 double menuX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 100) * 35;
                 double menuY = gameH.myGUI.frame.getHeight() - (gameH.myGUI.frame.getHeight() / 100) * 82;
@@ -1237,7 +1237,7 @@ public class UI {
                     }
                 }
             }
-        }else if(gameH.gameState == gameH.inventoryState) {
+        } else if (gameH.gameState == gameH.inventoryState || gameH.gameState == gameH.battleState && gameH.type == 1) {
 
             if (gameH.fullscreen) {
                 double menuX = gameH.myGUI.frame.getWidth() - (gameH.myGUI.frame.getWidth() / 100) * 35;
@@ -1343,7 +1343,57 @@ public class UI {
             drawMainMenu();
             drawRestOfBattleScreen();
             drawOptionMenu();
+        } else if (gameH.gameSubState == gameH.bag) {
+            drawRestOfBattleScreen();
+            drawBag();
+        }
+    }
 
+    private void drawBag() {
+        if (!gameH.fullscreen) {
+            g2.setColor(Color.WHITE);
+            g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 77, gameH.myGUI.frame.getHeight() / 100 * 83, gameH.myGUI.frame.getWidth() / 4, gameH.myGUI.frame.getHeight() / 5);
+            g2.setColor(Color.BLACK);
+            g2.setFont(arial_20);
+
+            int x, y;
+            double inventoryHeight;
+            x = gameH.myGUI.frame.getWidth() / 100 * 79;
+            for (int i = 0; i < 3; i++) {
+                String text = gameH.player.inventory[i][0];
+                textPos = i;
+
+                inventoryHeight = (double) gameH.myGUI.frame.getHeight() / 100 * 79;
+                y = i * gameH.myGUI.frame.getHeight() / 100 * 4 + (int) inventoryHeight;
+
+                g2.drawString(text, x, y);
+                g2.drawString(gameH.player.inventory[i][1], x + (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() + 20, y);
+                if (commandNum == textPos) {
+                    g2.drawString("<", x + (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() + 40 + (int) g2.getFontMetrics().getStringBounds(gameH.player.inventory[i][1], g2).getWidth(), y);
+                }
+            }
+        } else {
+            g2.setColor(Color.WHITE);
+            g2.fillRect(gameH.myGUI.frame.getWidth() / 100 * 67, gameH.myGUI.frame.getHeight() / 100 * 84, gameH.myGUI.frame.getWidth() / 100*50, gameH.myGUI.frame.getHeight() / 100*30);
+            g2.setColor(Color.BLACK);
+            g2.setFont(arial_40);
+
+            int x, y;
+            double inventoryHeight;
+            x = gameH.myGUI.frame.getWidth() / 100 * 69;
+            for (int i = 0; i < 3; i++) {
+                String text = gameH.player.inventory[i][0];
+                textPos = i;
+
+                inventoryHeight = (double) gameH.myGUI.frame.getHeight() / 100 * 84;
+                y = i * gameH.myGUI.frame.getHeight() / 100 * 6 + (int) inventoryHeight;
+
+                g2.drawString(text, x, y);
+                g2.drawString(gameH.player.inventory[i][1], x + (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() + 20, y);
+                if (commandNum == textPos) {
+                    g2.drawString("<", x + (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() + 40 + (int) g2.getFontMetrics().getStringBounds(gameH.player.inventory[i][1], g2).getWidth(), y);
+                }
+            }
         }
     }
 

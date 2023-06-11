@@ -236,65 +236,97 @@ public class Fabimon extends Entity {
         double tempHP = (int) statdurch100 + gameH.player.fabimonTeam[index].level + 10;
         return (int) tempHP;
     }
-    private void useHealPotion(){
-        if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp != gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp && gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > 0 && Integer.parseInt(gameH.player.inventory[0][1]) > 0){
+
+    private void useHealPotion() {
+        if (gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp != gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp && gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > 0 && Integer.parseInt(gameH.player.inventory[0][1]) > 0) {
             gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp += 20;
-            if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp){
+            if (gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp) {
                 gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp = gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp;
             }
-           int temp =Integer.parseInt(gameH.player.inventory[0][1]);
-           temp--;
+            int temp = Integer.parseInt(gameH.player.inventory[0][1]);
+            temp--;
             gameH.player.inventory[0][1] = String.valueOf(temp);
         }
     }
-    private void useSuperHealPotion(){
-        if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp != gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp && gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > 0&& Integer.parseInt(gameH.player.inventory[1][1]) > 0){
+
+    private void useSuperHealPotion() {
+        if (gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp != gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp && gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > 0 && Integer.parseInt(gameH.player.inventory[1][1]) > 0) {
             gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp += 50;
-            if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp){
+            if (gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp > gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp) {
                 gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp = gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp;
             }
-            int temp =Integer.parseInt(gameH.player.inventory[1][1]);
+            int temp = Integer.parseInt(gameH.player.inventory[1][1]);
             temp--;
             gameH.player.inventory[1][1] = String.valueOf(temp);
         }
     }
-    private void useRevive(){
-        if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp <= 0 && Integer.parseInt(gameH.player.inventory[2][1]) > 0){
-            double temphp = gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp*0.25;
-            gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp = (int)temphp;
-            int temp =Integer.parseInt(gameH.player.inventory[2][1]);
+
+    private void useRevive() {
+        if (gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp <= 0 && Integer.parseInt(gameH.player.inventory[2][1]) > 0) {
+            double temphp = gameH.player.fabimonTeam[gameH.ui.subCommandNum].hp * 0.25;
+            gameH.player.fabimonTeam[gameH.ui.subCommandNum].currentHp = (int) temphp;
+            int temp = Integer.parseInt(gameH.player.inventory[2][1]);
             temp--;
             gameH.player.inventory[2][1] = String.valueOf(temp);
         }
     }
-    private void equipLuckyEgg(){
-        if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].item.equals("none") && Integer.parseInt(gameH.player.inventory[3][1]) > 0){
+
+    private void equipLuckyEgg() {
+        if (gameH.player.fabimonTeam[gameH.ui.subCommandNum].item.equals("none") && Integer.parseInt(gameH.player.inventory[3][1]) > 0) {
             gameH.player.fabimonTeam[gameH.ui.subCommandNum].item = "Lucky Egg";
-            int temp =Integer.parseInt(gameH.player.inventory[3][1]);
+            int temp = Integer.parseInt(gameH.player.inventory[3][1]);
             temp--;
             gameH.player.inventory[3][1] = String.valueOf(temp);
         }
     }
-    private void equipXPShare(){
-        if(gameH.player.fabimonTeam[gameH.ui.subCommandNum].item.equals("none")&& Integer.parseInt(gameH.player.inventory[4][1]) > 0){
+
+    private void equipXPShare() {
+        if (gameH.player.fabimonTeam[gameH.ui.subCommandNum].item.equals("none") && Integer.parseInt(gameH.player.inventory[4][1]) > 0) {
             gameH.player.fabimonTeam[gameH.ui.subCommandNum].item = "XPShare";
-            int temp =Integer.parseInt(gameH.player.inventory[4][1]);
+            int temp = Integer.parseInt(gameH.player.inventory[4][1]);
             temp--;
             gameH.player.inventory[4][1] = String.valueOf(temp);
         }
     }
-    public void useItem(){
-        switch(gameH.ui.commandNum){
-            case 0: useHealPotion();
-                break;
-            case 1: useSuperHealPotion();
-                break;
-            case 2: useRevive();
-                break;
-            case 3: equipLuckyEgg();
-                break;
-            case 4: equipXPShare();
-                break;
+
+    public void useItem() {
+        if (gameH.gameState == gameH.inventoryState) {
+            switch (gameH.ui.commandNum) {
+                case 0:
+                    useHealPotion();
+                    break;
+                case 1:
+                    useSuperHealPotion();
+                    break;
+                case 2:
+                    useRevive();
+                    break;
+                case 3:
+                    equipLuckyEgg();
+                    break;
+                case 4:
+                    equipXPShare();
+                    break;
+            }
+        } else if (gameH.gameState == gameH.battleState) {
+            if (Integer.parseInt(gameH.player.inventory[gameH.ui.commandNum][1]) <= 0) {
+                gameH.ui.clearTextfield();
+                gameH.ui.currentDialogue[0] = "Deine " + gameH.player.inventory[gameH.ui.commandNum][0] + "s sind aufgebraucht";
+            } else {
+                switch (gameH.ui.commandNum) {
+                    case 0:
+                        useHealPotion();
+                        break;
+                    case 1:
+                        useSuperHealPotion();
+                        break;
+                    case 2:
+                        useRevive();
+                        break;
+                }
+                gameH.gameSubState = gameH.noSubState;
+                gameH.battle.enemyturn();
+            }
         }
     }
 
@@ -349,7 +381,8 @@ public class Fabimon extends Entity {
                 break;
         }
     }
-    public void lernMove(String pmove, int moveIndex){
+
+    public void lernMove(String pmove, int moveIndex) {
         switch (pmove) {
             case "Scratch":
                 gameH.player.fabimonTeam[0].move[moveIndex] = new Scratch(gameH);
@@ -422,12 +455,12 @@ public class Fabimon extends Entity {
                     }
                 }
             }
-            if(anzahl == 0){
+            if (anzahl == 0) {
                 phase = -1;
                 gameH.gameSubState = gameH.attackMenu;
                 gameH.battle.battleRound();
                 gameH.battle.phase++;
-            }else {
+            } else {
                 gameH.ui.currentDialogue[0] = gameH.player.fabimonTeam[0].name + " möchte " + gameH.player.fabimonTeam[0].moveSet[1][newmoves[0]] + " erlernen";
             }
 
@@ -442,7 +475,7 @@ public class Fabimon extends Entity {
                             learned = true;
                         }
                     }
-                    if(!learned){
+                    if (!learned) {
                         gameH.ui.currentDialogue[0] = gameH.player.fabimonTeam[0].name + " versucht " + gameH.player.fabimonTeam[0].moveSet[1][newmoves[j]] + " zu lernen.";
                         gameH.ui.currentDialogue[1] = gameH.player.fabimonTeam[0].name + " hat schon vier Attacken soll eine vergessen werden?";
                         gameH.gameSubState = gameH.optionState;
@@ -450,13 +483,13 @@ public class Fabimon extends Entity {
                 }
             }
 
-        }else if(phase == 2){
+        } else if (phase == 2) {
             phase = -1;
             gameH.battle.battleRound();
             gameH.battle.phase++;
             gameH.gameSubState = gameH.attackMenu;
 
-        }else if(phase == 3){
+        } else if (phase == 3) {
             lernMove(gameH.player.fabimonTeam[0].moveSet[1][newmoves[0]], gameH.ui.subCommandNum);
             phase = -1;
             gameH.ui.optionType = 0;

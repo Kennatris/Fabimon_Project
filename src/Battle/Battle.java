@@ -98,7 +98,16 @@ public class Battle {
         }
     }
 
-
+    public void enemyturn(){
+        enemyattack = getenemyattack();
+        if (checkEnemyHit()) {
+            gameH.player.fabimonTeam[0].currentHp -= calculateEnemyDamage(enemyattack);
+        } else {
+            gameH.ui.clearTextfield();
+            gameH.ui.currentDialogue[0] = "Die gegnerische Attacke hat nicht getroffen.";
+        }
+        checkForWinner();
+    }
     private void checkForWinner() {
         if (gameH.enemy_Fabimon[0].currentHp <= 0 || gameH.player.fabimonTeam[0].currentHp <= 0) {
             if (gameH.player.fabimonTeam[0].currentHp <= 0) {

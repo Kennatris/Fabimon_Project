@@ -16,7 +16,7 @@ public class Kontroller {
     public Boolean start = false;
     public Boolean select = false;
     public Boolean[] d_Pad = new Boolean[8];
-    Controller[] controllers;
+    public Controller[] controllers;
     Controller controller;
     EventQueue eventQueue;
     Event event;
