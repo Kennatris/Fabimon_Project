@@ -11,7 +11,10 @@ public class NPCTest extends Entity {
 
     public NPCTest(GameHandler gameH) {
         super(gameH);
-
+        solidArea.width = gameH.tileSize-10;
+        solidArea.height = gameH.tileSize-10;
+        visionArea.x = 20;
+        visionArea.width = 60;
         getTestNPCImage();
         loadDialogue("NPCTestDialogues");
     }

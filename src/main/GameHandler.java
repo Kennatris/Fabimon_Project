@@ -1097,6 +1097,7 @@ public class GameHandler extends JPanel implements Runnable {
                             gameSubState = bag;
                             break;
                         case 3:
+                            ui.clearTextfield();
                             ui.currentDialogue[0] = "Du kannst nicht fliehen!";
                             break;
                     }
