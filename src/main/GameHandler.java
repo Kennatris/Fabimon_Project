@@ -124,12 +124,14 @@ public class GameHandler extends JPanel implements Runnable {
         aSetter.setObject();
         aSetter.setNPC("createNPC");
         aSetter.setFabimonTeam("enemy_Fabimon_Teams");
-        if (!keyboard) {
-            kon.verbindeKontroller();
-        }
+
         // initializer
         saveC.SaveReader(this, save);
         myGUI = new GUI(fullscreen, screenWidth, screenHeight);
+
+        if (!keyboard) {
+            //kon.verbindeKontroller();
+        }
 
         // open and config GUI
         if (fullscreen) {
