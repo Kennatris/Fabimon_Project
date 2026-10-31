@@ -13,7 +13,8 @@ public class Attack{
     public int accuracy;
     public String type;
     public String category;
-    public int ap;
+    public int ap; // max ap
+    public int currentap;
     public int priority;
     public int effect[] = {0, 0, 0, 0, 0, 0, 0};
     //{dodge, acc, atk, dev, sp_atk, sp_dev, init};

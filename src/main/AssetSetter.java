@@ -1,6 +1,7 @@
 package main;
 
 import entity.NPCTest;
+import objects.Object_FabiCenter;
 import objects.Object_arenaPortal;
 
 import java.io.BufferedReader;
@@ -20,9 +21,22 @@ public class AssetSetter {
         gameH.obj[0] = new Object_arenaPortal(gameH);
         gameH.obj[0].worldX = gameH.tileSize * 24;
         gameH.obj[0].worldY = gameH.tileSize * 17;
+
+        if (gameH.mapType == 0) {
+            gameH.obj[1] = new Object_FabiCenter(gameH);
+            gameH.obj[1].worldX = gameH.tileSize * 19;
+            gameH.obj[1].worldY = gameH.tileSize * 16;
+        } else {
+
+            gameH.obj[1] = new Object_FabiCenter(gameH);
+            gameH.obj[1].worldX = gameH.tileSize * 48;
+            gameH.obj[1].worldY = gameH.tileSize * 16;
+
+        }
+
     }
 
-    public void setNPC(String fileName) {
+    public void setNPC(String fileName) {// lest die Daten aus createNPC.txt aus und kreiert ein NPC mit diesen Daten
 
         try {
 
@@ -57,6 +71,59 @@ public class AssetSetter {
                                   Integer.parseInt(info[i][11]));
                 }
             }
+        }
+    }
+    public void setFabimonTeam(String fileName){
+        try {
+
+            String fileLocation = "res/NPC/" + fileName + ".txt";
+
+            FileReader fr = new FileReader(fileLocation);
+            BufferedReader br = new BufferedReader(fr);
+            //InputStream mapFile = getClass().getResourceAsStream(fileLocation);
+            
+            int npc = 0;
+            int phase = 0;
+            String psinfo[] = new String[4];
+            int pev[] = new int[6];
+            int piv[] = new int[7];
+            int level;
+            int fabimon = 0;
+            Boolean lastLine = false;
+            while (!lastLine) {
+                String line = br.readLine();
+                String[] lineSplit = line.split("~");
+                for(int i = 0; i< lineSplit.length; i++){
+                    System.out.print(lineSplit[i] + " ");
+                }
+                System.out.println("");
+                if(line.equals("next")){
+                    phase = 0;
+                }else if(line == null){
+                    lastLine = true;
+                }else if(phase == 0){
+                    npc = Integer.parseInt(line);
+                    phase = 1;
+                    fabimon = 0;
+                }else if(phase == 1){
+                    for(int i =0; i<4; i++){
+                        psinfo[i] = lineSplit[i];
+                    }
+                    for(int i =0; i<6; i++){
+                       piv[i] = Integer.parseInt(lineSplit[i+5]);
+                       pev[i] = Integer.parseInt(lineSplit[i+11]);
+                    }
+                    level = Integer.parseInt(lineSplit[4]);
+                    gameH.fabimon.setNPCFabimon(npc, fabimon, psinfo, pev, piv, level);
+                    fabimon++;
+                }
+
+            }
+
+            br.close();
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
         }
     }
 

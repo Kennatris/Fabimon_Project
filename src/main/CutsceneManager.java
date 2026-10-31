@@ -37,41 +37,27 @@ public class CutsceneManager {
         }
     }
 
-    private void battleBegin() {
+    private void battleBegin() { //cutscene vor den begin eines Kampfes
         if (csPhase == 0) {
             width = 0;
             height = gameH.myGUI.frame.getHeight();
             x = gameH.myGUI.frame.getWidth();
             g2.setColor(Color.black);
             csPhase++;
-        } else if (csPhase == 1) width += 10;
-        x -= 10;
-        g2.fillRect(0, 0, width, height);
-        g2.fillRect(x, 0, width, height);
+            gameH.stopMusic();
+            gameH.playMusic(16);
+        } else if (csPhase == 1) {
+            width += 10;
+            x -= 10;
+            g2.fillRect(0, 0, width, height);
+            g2.fillRect(x, 0, width, height);
+        }
         if (width > gameH.myGUI.frame.getWidth() / 2) {
-            int rand = (int)(Math.random()*4);
-            if(rand == 0){
-                gameH.fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.enemy_Fabimon = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.own_Fabimon = gameH.fabimon.tempFabimon;
-            }else if(rand == 1){
-                gameH.fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.enemy_Fabimon = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.own_Fabimon = gameH.fabimon.tempFabimon;
-            }else if(rand == 2){
-                gameH.fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.enemy_Fabimon = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.own_Fabimon = gameH.fabimon.tempFabimon;
-            }else if(rand == 3){
-                gameH.fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.enemy_Fabimon = gameH.fabimon.tempFabimon;
-                gameH.fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                gameH.own_Fabimon = gameH.fabimon.tempFabimon;
-            }
+
             gameH.gameState = gameH.battleState;
+            if(gameH.player.fabimonTeam[0].currentHp <= 0){
+                gameH.battle.changeOwnFabimon(1);
+            }
             csNum = 0;
             width = 0;
             x = 0;
@@ -79,7 +65,7 @@ public class CutsceneManager {
         }
     }
 
-    private void ausrufezeichen() {
+    private void ausrufezeichen() { //zeichnet ein ausrufeZeichen über den Kopf eines NPCs
         int x = gameH.npc[gameH.npcInteracted].worldX - gameH.player.worldX + gameH.player.screenX;
         int y = gameH.npc[gameH.npcInteracted].worldY - gameH.player.worldY + gameH.player.screenY - gameH.tileSize;
         /*

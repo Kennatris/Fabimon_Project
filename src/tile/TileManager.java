@@ -51,13 +51,23 @@ public class TileManager {
 
 
         //Tiles
-        setup(10, "tiles","grass","png", gameH.tileSize, gameH.tileSize,false);
-        setup(11, "tiles","gravel","png", gameH.tileSize, gameH.tileSize,false);
+        setup(10, "tiles","l0_grass1","png", gameH.tileSize, gameH.tileSize,false);
+        setup(11, "tiles","sprite_ground_mid0","png", gameH.tileSize, gameH.tileSize,false);
         setup(12, "tiles","grass_flowers","png", gameH.tileSize, gameH.tileSize,true);
-        setup(13, "tiles","water","png", gameH.tileSize, gameH.tileSize,true);
-        setup(14, "tiles","sand","png", gameH.tileSize, gameH.tileSize,true);
+        setup(13, "tiles","l0_water_middel_part1","png", gameH.tileSize, gameH.tileSize,true);
+        setup(14, "tiles","l0_strand1","png", gameH.tileSize, gameH.tileSize,false);
         setup(15, "tiles","wood","png",gameH.tileSize, gameH.tileSize, false);
         setup(16, "tiles","stone","png",gameH.tileSize, gameH.tileSize, false);
+        setup(29, "tiles","water_top_mid1","png",gameH.tileSize, gameH.tileSize, true);
+        setup(30, "tiles","water_corner_left_top1","png",gameH.tileSize, gameH.tileSize, true);
+        setup(31, "tiles","water_corner_right_top1","png",gameH.tileSize, gameH.tileSize, true);
+        setup(32, "tiles","water_left_mid1","png",gameH.tileSize, gameH.tileSize, true);
+        setup(33, "tiles","wasser_strand_übergang1","png",gameH.tileSize, gameH.tileSize, true);
+        setup(34, "tiles","water_corners_right_bottom1","png",gameH.tileSize, gameH.tileSize, true);
+        setup(35, "tiles","water_right_mid1","png",gameH.tileSize, gameH.tileSize, true);
+        setup(36, "tiles","water_corner_left_bottom1","png",gameH.tileSize, gameH.tileSize, true);
+        setup(38, "tiles","stone","png",gameH.tileSize, gameH.tileSize, false);
+
 
         //Main Buttons
         setup(17, "Buttons/MainButtons","Fight","png",96, 96,false);
@@ -76,6 +86,9 @@ public class TileManager {
         //Fabimon Info
         setup(26, "battleInfo","enemy_fabimon","png", gameH.tileSize, gameH.tileSize,false);
         setup(27, "battleInfo","own_fabimon","png", gameH.tileSize, gameH.tileSize,false);
+
+        // null Button
+        setup(28, "Buttons/AttackButtons","null","png", gameH.tileSize, gameH.tileSize,false);
         
     }
 

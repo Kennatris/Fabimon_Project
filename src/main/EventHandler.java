@@ -8,6 +8,7 @@ public class EventHandler {
     Rectangle eventRect;
     int eventRectDefaultX, eventRectDefaultY;
 
+    // creates a "collision box"
     public EventHandler(GameHandler gameH) {
         this.gameH = gameH;
 
@@ -20,23 +21,28 @@ public class EventHandler {
         eventRectDefaultY = eventRect.y;
     }
 
+
+    // checks whether an event takes place
     public void checkEvent() {
-        
-        /* Example
-        if(hit(INWICHCOLUMN_MAP, INWICHROW_MAP, requiredDIRECTION) == true) {Method();}
-        */
-            if(hit(24, 18, "any") && gameH.keyH.enterPressed) {
+
+            if(hit(24, 18, "any")) {
+                gameH.stopMusic();
                 if (gameH.mapType == 0) {
                     gameH.map = gameH.availableMaps[3];
                     gameH.mapType = 3;
+                    gameH.playMusic(17);
+                    gameH.aSetter.setObject();
                 } else if (gameH.mapType == 3) {
                     gameH.map = gameH.availableMaps[0];
                     gameH.mapType = 0;
+                    gameH.playMusic(15);
+                    gameH.aSetter.setObject();
                 }
 
                 gameH.gameState = gameH.playState;
 
                 gameH.tileM.loadMap(gameH.map);
+
                 // set Player
                 gameH.player.worldY = 19 * gameH.tileSize;
                 gameH.player.direction = "idle";
@@ -47,9 +53,38 @@ public class EventHandler {
                 gameH.keyH.dPressed = false;
             }
 
+        if (hit(19,17,"any")) {
+            gameH.playSE(1);
+
+            // set Player
+            gameH.player.direction = "down";
+            gameH.player.worldY = 17 * gameH.tileSize;
+            gameH.player.worldX = 18 * gameH.tileSize;
+            // reset Movement
+            gameH.keyH.wPressed = false;
+            gameH.keyH.sPressed = false;
+            gameH.keyH.aPressed = false;
+            gameH.keyH.dPressed = false;
+
+            for(int i = 0; i<gameH.player.fabimonTeam.length; i++){
+                if(gameH.player.fabimonTeam[i] != null){
+                gameH.player.fabimonTeam[i].currentHp = gameH.player.fabimonTeam[i].hp;
+                for(int j = 0; j<4; j++){
+                    if(gameH.player.fabimonTeam[i].move[j] != null) {
+                        gameH.player.fabimonTeam[i].move[j].currentap = gameH.player.fabimonTeam[i].move[j].ap;
+                    }
+                }
+            }
+            }
+
+            gameH.gameState = gameH.healState;
+
+        }
+
 
     }
 
+    // checks for collision with the rect
     public boolean hit(int eventCol, int eventRow, String reqDirection) {
 
         boolean hit = false;

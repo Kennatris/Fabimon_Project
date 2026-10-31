@@ -8,7 +8,7 @@ public class Drum_Beating extends Attack {
     public Drum_Beating(GameHandler gameH) {
         super(gameH);
         this.gameH = gameH;
-        getButtonImage("Drum Beating");
+        getButtonImage("Drum_Beating");
         power = 80;
         accuracy = 100;
         category = "physical";

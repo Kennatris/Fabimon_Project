@@ -15,9 +15,15 @@ public class Player extends Entity{
     public Boolean beingApproached = false;
     public int screenX;
     public int screenY;
-    int standCounter = 0;
     int idleCounter = 0;
-    
+    int standCounter = 0;
+    public String inventory[][] = {
+            {"Heal Potion", "0"},
+            {"Super Heal Potion", "0"},
+            {"Revive", "0"},
+            {"Lucky Egg", "0"},
+            {"XPShare", "0"},
+            {"Fabiball", "0"}};
     // DEBUG
     public boolean speedBoost;
 
@@ -48,6 +54,12 @@ public class Player extends Entity{
         direction = "down";
 
     }
+    public void setInventory(String pINV[]){
+        for(int i = 0; i<6; i++){
+            inventory[i][1] = pINV[i];
+        }
+
+    }
 
     public void getPlayerImage() {
 
@@ -67,9 +79,9 @@ public class Player extends Entity{
         right1 = imageH.image[6];
         imageH.ImageInitializer(7,"player","Skully_right_2","png", gameH.tileSize, gameH.tileSize);
         right2 = imageH.image[7];
-        imageH.ImageInitializer(8,"player","Skully_idle_1", "png",gameH.tileSize,gameH.tileSize);
+        imageH.ImageInitializer(8,"player","Skully_idle", "png",gameH.tileSize,gameH.tileSize);
         idle1 = imageH.image[8];
-        imageH.ImageInitializer(9,"player","Skully_idle_1", "png",gameH.tileSize,gameH.tileSize);
+        imageH.ImageInitializer(9,"player","Skully_idle", "png",gameH.tileSize,gameH.tileSize);
         idle2 = imageH.image[9];
 
     }
@@ -78,7 +90,7 @@ public class Player extends Entity{
 
         collisionOn = false;
         //CHECK NPC VISION
-        gameH.cChecker.checkVision(this, gameH.npc);
+        gameH.cChecker.checkVision(this, gameH.npc);// checkt ob der Player im Blick von einem NPC ist
 
         // CHECK NPC COLLISION
         int npcIndex = gameH.cChecker.checkEntity(this, gameH.npc);
@@ -86,19 +98,19 @@ public class Player extends Entity{
 
         if(!beingApproached) {
 
-            if (keyH.wPressed || keyH.sPressed || keyH.aPressed || keyH.dPressed) {
+            if (keyH.wPressed|| keyH.sPressed || keyH.aPressed|| keyH.dPressed||gameH.kon.d_Pad[0]||gameH.kon.d_Pad[1]||gameH.kon.d_Pad[2]||gameH.kon.d_Pad[3]) {
 
-                if (keyH.wPressed) {
+                if (keyH.wPressed||gameH.kon.d_Pad[0]) {
                     direction = "up";
 
 //				playerY = playerY - playerSpeed;
-                } else if (keyH.sPressed) {
+                } else if (keyH.sPressed||gameH.kon.d_Pad[2]) {
                     direction = "down";
 
-                } else if (keyH.aPressed) {
+                } else if (keyH.aPressed||gameH.kon.d_Pad[3]) {
                     direction = "left";
 
-                } else if (keyH.dPressed) {
+                } else if (keyH.dPressed||gameH.kon.d_Pad[1]) {
                     direction = "right";
 
                 }
@@ -139,10 +151,6 @@ public class Player extends Entity{
                 }
 
                 spriteCounter++;
-                if (standCounter != 0) {
-                    standCounter = 0;
-                }
-
                 if (spriteCounter > 10) {
                     if (spriteNum == 1) {
                         spriteNum = 2;
@@ -153,10 +161,10 @@ public class Player extends Entity{
                 }
 
             } else {
-                if (standCounter != 20) {
+                if (standCounter != 60) {
                     standCounter++;
                 }
-                if (standCounter == 20) {
+                if (standCounter == 60) {
                     direction = "idle";
                     idleCounter++;
                     if (idleCounter == 10) {
@@ -181,10 +189,10 @@ public class Player extends Entity{
     }
 
     public void interactNPC(int i) {
-        if(!gameH.keyH.spacePressed && !gameH.keyH.enterPressed){
+        if(!gameH.keyH.spacePressed && !gameH.keyH.enterPressed && !gameH.kon.kreuz){
             gameH.bumber=0;
         }
-        if(i != 999 && gameH.keyH.spacePressed && gameH.bumber == 0|| gameH.keyH.enterPressed && i != 999 && gameH.bumber == 0) {
+        if(i != 999 && gameH.keyH.spacePressed && gameH.bumber == 0|| gameH.keyH.enterPressed && i != 999 && gameH.bumber == 0||gameH.kon.kreuz && i != 999 && gameH.bumber == 0) {
 
             gameH.gameState = gameH.dialogueState;
             gameH.npcInteracted = i;

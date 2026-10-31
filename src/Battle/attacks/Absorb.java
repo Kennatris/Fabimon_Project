@@ -15,6 +15,7 @@ public class Absorb extends Attack {
         power = 20;
         accuracy = 100;
         ap = 25;
+        currentap = ap;
         priority = 0;
         name = "Absorb";
         trifftImmer = false;

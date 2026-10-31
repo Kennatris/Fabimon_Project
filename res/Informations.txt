@@ -1,0 +1,16 @@
+Steuerung:
+// Tino
+
+w - forward
+s - backward
+a - left
+d - right
+esc - pause
+h - DebugMode (On/Off)
+r - reset Player Position
+F12 - Fullscreen (On/Off)
+
+DebugMode:
+
+shift - Sprint
+t - timerMode (On/Off)

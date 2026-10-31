@@ -13,8 +13,9 @@ public class Growl extends Attack {
         type = "Normal";
         accuracy = 100;
         ap = 40;
+        currentap = ap;
         priority = 0;
-        name = "growl";
+        name = "Growl";
         trifftImmer = false;
         target = "enemy";
         effect[6] = 0;

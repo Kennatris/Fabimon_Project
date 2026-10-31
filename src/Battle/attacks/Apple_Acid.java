@@ -8,7 +8,7 @@ public class Apple_Acid extends Attack {
     public Apple_Acid(GameHandler gameH) {
         super(gameH);
         this.gameH = gameH;
-        getButtonImage("Apple Acid");
+        getButtonImage("Apple_Acid");
         power = 80;
         accuracy = 100;
         category = "special";

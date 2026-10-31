@@ -1,0 +1,9 @@
+0~nichts
+1~Scratch
+1~Growl
+6~Bite
+8~Scary_face
+12~Assurance
+23~Baddy_Bad
+25~struggle
+34~Blast_Burn

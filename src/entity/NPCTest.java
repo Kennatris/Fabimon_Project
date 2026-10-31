@@ -11,50 +11,62 @@ public class NPCTest extends Entity {
 
     public NPCTest(GameHandler gameH) {
         super(gameH);
-
+        solidArea.width = gameH.tileSize-10;
+        solidArea.height = gameH.tileSize-10;
+        visionArea.x = 20;
+        visionArea.width = 60;
         getTestNPCImage();
         loadDialogue("NPCTestDialogues");
     }
-    public void dialogue(int npc){
-        if(npc == 0){
-            if(dialoguePhase == 0){
-                for(int i = 0; i<3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[2][i];
-                }
+
+    public void dialogue(int npc) {
+        if (npc == 0) {
+            if (dialoguePhase == 0) {
+                System.arraycopy(gameH.npc[npc].dialogues[2], 0, gameH.ui.currentDialogue, 0, 3);
                 dialoguePhase++;
-            }else if(dialoguePhase == 1){
-                for(int i = 0; i<3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[3][i];
-                }
+            } else if (dialoguePhase == 1) {
+                System.arraycopy(gameH.npc[npc].dialogues[3], 0, gameH.ui.currentDialogue, 0, 3);
                 dialoguePhase++;
-            }else if(dialoguePhase == 2){
-                for(int i = 0; i<3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[4][i];
-                }
+            } else if (dialoguePhase == 2) {
+                System.arraycopy(gameH.npc[npc].dialogues[4], 0, gameH.ui.currentDialogue, 0, 3);
                 dialoguePhase++;
-            }else if(dialoguePhase == 3){
-                for(int i = 0; i<3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[5][i];
-                }
+            } else if (dialoguePhase == 3) {
+                System.arraycopy(gameH.npc[npc].dialogues[5], 0, gameH.ui.currentDialogue, 0, 3);
                 dialoguePhase++;
-            }else if(dialoguePhase == 4){
-                for(int i = 0; i<3; i++) {
-                    gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[6][i];
-                }
+            } else if (dialoguePhase == 4) {
+                System.arraycopy(gameH.npc[npc].dialogues[6], 0, gameH.ui.currentDialogue, 0, 3);
                 dialoguePhase = 0;
                 gameH.npc[npc].endDialogue = true;
             }
-        }else if(npc == 1 || npc == 2){
-            for(int i = 0; i<3; i++) {
-                gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[0][i];
+        } else if (npc == 1 && dialogueSelect == 0 || npc == 2 && dialogueSelect == 0) {
+            if (gameH.npc[npc].defeated) {
+                System.arraycopy(gameH.npc[npc].dialogues[11], 0, gameH.ui.currentDialogue, 0, 3);
+                gameH.npc[npc].endDialogue = true;
+            } else {
+                System.arraycopy(gameH.npc[npc].dialogues[0], 0, gameH.ui.currentDialogue, 0, 3);
+                gameH.npc[npc].endDialogue = true;
+            }
+        } else if (npc == 1 && dialogueSelect == 1 || npc == 2 && dialogueSelect == 1) {
+            for (int i = 0; i < 3; i++) {
+                gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[9][i];
+                dialogueSelect = 0;
             }
             gameH.npc[npc].endDialogue = true;
-        }else if(npc == 3){
-            for(int i = 0; i<3; i++) {
-                gameH.ui.currentDialogue[i] = gameH.npc[npc].dialogues[7][i];
-            }
+        } else if (npc == 3) {
+            System.arraycopy(gameH.npc[npc].dialogues[7], 0, gameH.ui.currentDialogue, 0, 3);
             gameH.npc[npc].endDialogue = true;
+        } else if (npc == 4) {
+            System.arraycopy(gameH.npc[npc].dialogues[8], 0, gameH.ui.currentDialogue, 0, 3);
+            gameH.fabimon.createFabimon("Feirir", 0, 5);
+            gameH.player.fabimonTeam[0] = gameH.fabimon.tempFabimon;
+            gameH.fabimon.createFabimon("cursed Shiggy", 0, 5);
+            gameH.player.fabimonTeam[1] = gameH.fabimon.tempFabimon;
+            gameH.fabimon.createFabimon("cursed Shiggy", 0, 5);
+            gameH.player.fabimonTeam[2] = gameH.fabimon.tempFabimon;
+            gameH.npc[npc].endDialogue = true;
+
         }
+
     }
 
     public void getTestNPCImage() {
@@ -76,7 +88,7 @@ public class NPCTest extends Entity {
         right2 = imageH.image[7];
     }
 
-    public void setAction() {
+    public void setAction() {// hier werden die Bewegungen der NPC festgelegt
         if (gameH.npc[1].worldX > gameH.tileSize * 24) {
             gameH.npc[1].direction = "left";
         } else if (gameH.npc[1].worldX < gameH.tileSize * 12) {

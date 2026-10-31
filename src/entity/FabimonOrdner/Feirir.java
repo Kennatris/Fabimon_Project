@@ -7,7 +7,7 @@ import main.ImageHandler;
 
 public class Feirir extends Fabimon {
     ImageHandler imageH = new ImageHandler();
-    public Feirir(GameHandler gameH, String fabimonName, int fabimonEvo, int plevel) {
+    public Feirir(GameHandler gameH) {
         super(gameH);
         getFeirirImage();
     }

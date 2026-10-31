@@ -12,7 +12,11 @@ public class ElectricType extends Fabimon {
 
     }
     public void getElectricTypeimage(){
-        imageH.ImageInitializer(0, "Fabimon/Electric Type", "ElectricType", "png", gameH.tileSize, gameH.tileSize);
+        imageH.ImageInitializer(0, "Fabimon/electric type", "ElectroType (1)", "png", gameH.tileSize, gameH.tileSize);
         up1 = imageH.image[0];
+        up2 = imageH.image[0];
+        down1 = imageH.image[0];
+        down2 = imageH.image[0];
+        left1 = imageH.image[0];
     }
 }

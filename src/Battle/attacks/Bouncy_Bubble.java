@@ -8,7 +8,7 @@ public class Bouncy_Bubble extends Attack {
     public Bouncy_Bubble(GameHandler gameH) {
         super(gameH);
         this.gameH = gameH;
-        getButtonImage("Bouncy Bubble");
+        getButtonImage("Bouncy_Bubble");
         power = 90;
         accuracy = 100;
         category = "special";

@@ -7,9 +7,9 @@ import entity.Fabimon;
 import entity.Player;
 import entity.PlayerDummy;
 import main.control.KeyHandler;
+import main.control.Kontroller;
 import objects.SuperObject;
 import settings.SaveCompiler;
-import settings.Settings;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -31,12 +31,22 @@ public class GameHandler extends JPanel implements Runnable {
     public final int saveState = 4;
     public final int settingState = 5;
     public final int battleState = 6;
-    public int battleSubState = 0;
-    public final int mainMenu = 0;
+    public final int healState = 7;
+    public final int cutsceneState = 8;
+    public final int inventoryState = 9;
+    public final int newMoveState = 10;
+    public final int fabimonState = 11;
+
+    //SubStates
+    public final int noSubState = 0;
     public final int attackMenu = 1;
     public final int itemMenu = 2;
     public final int fabimonMenu = 3;
-    public final int cutsceneState = 7;
+    public final int optionState = 4;
+    public final int fabimonOverviewState = 5;
+    public final int bag = 6;
+
+
     // SCREEN SETTINGS
     final int originalTileSize = 96; // 96x96 tile
     public int scale = 1;
@@ -61,15 +71,17 @@ public class GameHandler extends JPanel implements Runnable {
     public float soundVolume;
     // random Vars
     public boolean debugMode = true;
+    public int type = 0;
     public boolean timerMode = false;
     public boolean unsavedSetting;
     public int bumber = 0;
-    public int time, seconds, minutes, hour, tmpTime, tmpWaited;
+    public int time, seconds, minutes, hour, tmpTime, tmpWaited, tmpGameState;
     public int speed_increased = 0;
     // SYSTEM
     public TileManager tileM = new TileManager(this, map);
     public CutsceneManager csManager = new CutsceneManager(this);
     public KeyHandler keyH = new KeyHandler();
+    public Kontroller kon = new Kontroller();
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
@@ -84,11 +96,11 @@ public class GameHandler extends JPanel implements Runnable {
     public int npcInteracted;
     public Fabimon fabimon = new Fabimon(this);
     public Attack attack = new Attack(this);
-    public Fabimon own_Fabimon;
-    public Fabimon enemy_Fabimon;
+    public Fabimon[] enemy_Fabimon = new Fabimon[6];
 
     // GAME STATE
     public int gameState;
+    public int gameSubState = 0;
     // FPS
     int FPS = 60;
     Sound music = new Sound();
@@ -96,7 +108,6 @@ public class GameHandler extends JPanel implements Runnable {
     Thread gameThread;
     GUI myGUI;
     SaveCompiler saveC = new SaveCompiler();
-    Settings settings = new Settings();
 
     public GameHandler() {
 
@@ -109,9 +120,18 @@ public class GameHandler extends JPanel implements Runnable {
     }
 
     public void setupGame() {
+        player = new Player(this, keyH);
+        aSetter.setObject();
+        aSetter.setNPC("createNPC");
+        aSetter.setFabimonTeam("enemy_Fabimon_Teams");
+
         // initializer
         saveC.SaveReader(this, save);
         myGUI = new GUI(fullscreen, screenWidth, screenHeight);
+
+        if (!keyboard) {
+            //kon.verbindeKontroller();
+        }
 
         // open and config GUI
         if (fullscreen) {
@@ -121,17 +141,12 @@ public class GameHandler extends JPanel implements Runnable {
         myGUI.frame.pack();
         myGUI.openWindow();
 
-        player = new Player(this, keyH);
-
-        aSetter.setObject();
-        aSetter.setNPC("createNPC");
-
-        //playMusic(0);
+        playMusic(18);
 
         gameState = titleState;
     }
 
-    public void reStartWindow() {
+    public void reStartWindow(int screenWidth, int screenHeight) {
         // close old Window
         myGUI.closeWindow();
         myGUI = null;
@@ -151,6 +166,10 @@ public class GameHandler extends JPanel implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
 
+    }
+
+    public void reloadLastSave() {
+        saveC.SaveReader(this, save);
     }
 
     @Override
@@ -191,6 +210,11 @@ public class GameHandler extends JPanel implements Runnable {
     }
 
     public void update() {
+        if (kon.controllers != null) {
+            if (!keyboard) {
+                kon.gamepad();
+            }
+        }
         // DEBUG MODE
         if (keyH.hPressed) {
             debugMode = !debugMode;
@@ -200,56 +224,20 @@ public class GameHandler extends JPanel implements Runnable {
         }
         if (debugMode) {
             if (keyH.kPressed) {
-                gameState = battleState;
-                battleSubState = mainMenu;
-                for(int i = 0; i<ui.currentDialogue.length; i++){
-                    ui.currentDialogue[i] = "";
-                }
-
-                int rand = (int)(Math.random()*4);
-                if(rand == 0){
-                    fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                    enemy_Fabimon = fabimon.tempFabimon;
-                    fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                    player.fabimonTeam[0] = fabimon.tempFabimon;
-                    own_Fabimon = player.fabimonTeam[0];
-                }else if(rand == 1){
-                    fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                    enemy_Fabimon = fabimon.tempFabimon;
-                    fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                    player.fabimonTeam[0] = fabimon.tempFabimon;
-                    own_Fabimon = player.fabimonTeam[0];
-                }else if(rand == 2){
-                    fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                    enemy_Fabimon = fabimon.tempFabimon;
-                    fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                    player.fabimonTeam[0] = fabimon.tempFabimon;
-                    own_Fabimon = player.fabimonTeam[0];
-                }else if(rand == 3){
-                    fabimon.createFabimon("cursed Shiggy", 0, (int)(Math.random() * (101 - 1) + 1));
-                    enemy_Fabimon = fabimon.tempFabimon;
-                    fabimon.createFabimon("Feirir", 0, (int)(Math.random() * (101 - 1) + 1));
-                    player.fabimonTeam[0] = fabimon.tempFabimon;
-                    own_Fabimon = player.fabimonTeam[0];
-                }
-
-                    saveC.SaveWriter(this, save);
-
-               }
+                player.fabimonTeam[0].currentHp = player.fabimonTeam[0].hp;
+            }
             if (keyH.tPressed) {
                 timerMode = !timerMode;
                 keyH.tPressed = false;
                 System.out.println("Timer Mode set: " + timerMode);
             }
-            if (keyH.shiftPressed) {
+            if (keyH.shiftPressed || kon.viereck) {
                 if (speed_increased == 0) {
                     player.speed = 8;
                     System.out.println("Speed set: " + player.speed);
                 }
                 speed_increased = 1;
-            }
-
-            if (!keyH.shiftPressed) {
+            } else if (!keyH.shiftPressed || !kon.viereck) {
                 if (speed_increased == 1) {
                     player.speed = 4;
                     System.out.println("Speed set: " + player.speed);
@@ -283,10 +271,16 @@ public class GameHandler extends JPanel implements Runnable {
             hour++;
         }
 
+        // RESET
+        if (keyH.rPressed) {
+            player.worldX = playerStandardValueX * tileSize;
+            player.worldY = playerStandardValueY * tileSize;
+        }
+
         // fullscreen
         if (keyH.f12Pressed) {
             fullscreen = !fullscreen;
-            reStartWindow();
+            reStartWindow(1152, 567);
             player.screenX = myGUI.frame.getWidth() / 2 - (tileSize / 2);
             player.screenY = myGUI.frame.getHeight() / 2 - (tileSize / 2);
 
@@ -314,7 +308,8 @@ public class GameHandler extends JPanel implements Runnable {
             screenHeight = myGUI.frame.getHeight();
 
             // pause Screen
-            if (keyH.escPressed) {
+            if (keyH.escPressed || kon.start) {
+                tmpGameState = gameState;
                 gameState = pauseState;
                 tmpTime = 30;
                 tmpWaited = 0;
@@ -325,13 +320,13 @@ public class GameHandler extends JPanel implements Runnable {
                 tmpWaited++;
             }
             // do-nothing
-            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
 
-                if (keyH.wPressed || keyH.upPressed) {
+                if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                     switch (ui.commandNum) {
 
                         case 0:
-                            ui.commandNum = 2;
+                            ui.commandNum = 3;
                             break;
                         case 1:
                             ui.commandNum = 0;
@@ -339,13 +334,16 @@ public class GameHandler extends JPanel implements Runnable {
                         case 2:
                             ui.commandNum = 1;
                             break;
+                        case 3:
+                            ui.commandNum = 2;
 
                     }
 
                     keyH.wPressed = false;
                     keyH.upPressed = false;
+                    kon.d_Pad[0] = false;
 
-                } else if (keyH.sPressed || keyH.downPressed) {
+                } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -355,59 +353,70 @@ public class GameHandler extends JPanel implements Runnable {
                             ui.commandNum = 2;
                             break;
                         case 2:
-                            ui.commandNum = 0;
+                            ui.commandNum = 3;
                             break;
+                        case 3:
+                            ui.commandNum = 0;
 
                     }
 
                     keyH.sPressed = false;
                     keyH.downPressed = false;
+                    kon.d_Pad[2] = false;
                 }
             }
 
             // SELECT
-            if (keyH.spacePressed || keyH.enterPressed) {
+            if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
                 if (ui.pauseScreenValue == 0) {
                     switch (ui.commandNum) {
-                        case 0: // SETTINGS
-                            ui.pauseScreenValue = 1;
+                        case 0: // BACK
+                            gameState = tmpGameState;
                             break;
-                        case 1: // BACK
-                            gameState = playState;
+                        case 1:
+                            gameState = inventoryState;
                             break;
-                        case 2: // SAVE AND QUIT
+                        case 2:
+                            gameState = fabimonState;
+                            break;
+                        case 3:  // SAVE AND QUIT
                             if (!Objects.equals(save, "save_Default")) {
                                 saveC.SaveWriter(this, save);
                             }
+                            stopMusic();
+                            playMusic(18);
                             gameState = titleState;
                             break;
+
                     }
                 } else if (ui.pauseScreenValue == 1) {
-
+                    // DO NOTHING
                 }
 
                 ui.commandNum = 0;
+                kon.kreuz = false;
                 keyH.spacePressed = false;
                 keyH.enterPressed = false;
             }
 
             // ESC
-            if (keyH.escPressed && tmpWaited == tmpTime) {
-                gameState = playState;
+            if (keyH.escPressed && tmpWaited == tmpTime || kon.kreis && tmpWaited == tmpTime) {
+                gameState = tmpGameState;
 
                 ui.commandNum = 0;
                 tmpWaited = 0;
                 tmpTime = 0;
                 keyH.escPressed = false;
+                kon.kreis = false;
             }
         }
         if (gameState == titleState) {
 
             // SELECTION
             // MOVE CURSOR
-            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed) {
-
-                if (keyH.wPressed || keyH.upPressed) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
+                playSE(0);
+                if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -427,8 +436,9 @@ public class GameHandler extends JPanel implements Runnable {
 
                     keyH.wPressed = false;
                     keyH.upPressed = false;
+                    kon.d_Pad[0] = false;
 
-                } else if (keyH.sPressed || keyH.downPressed) {
+                } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -448,10 +458,11 @@ public class GameHandler extends JPanel implements Runnable {
 
                     keyH.sPressed = false;
                     keyH.downPressed = false;
+                    kon.d_Pad[2] = false;
                 }
             }
             // SELECT
-            if (keyH.spacePressed || keyH.enterPressed) {
+            if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
 
                 switch (ui.commandNum) {
 
@@ -460,6 +471,10 @@ public class GameHandler extends JPanel implements Runnable {
                         break;
                     case 1: // load game
                         gameState = playState;
+                        stopMusic();
+                        playMusic(15);
+                        player.screenX = myGUI.frame.getWidth() / 2 - (tileSize / 2);
+                        player.screenY = myGUI.frame.getHeight() / 2 - (tileSize / 2);
                         break;
                     case 2: // menu
                         gameState = settingState;
@@ -472,17 +487,18 @@ public class GameHandler extends JPanel implements Runnable {
                 ui.commandNum = 0;
                 keyH.spacePressed = false;
                 keyH.enterPressed = false;
+                kon.kreuz = false;
             }
         } // Bindings for gameState
 
         if (gameState == settingState) {
             // SELECTION
             // MOVE CURSOR
-            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
                 playSE(0);
                 switch (ui.settingScreenValue) {
                     case 0:
-                        if (keyH.wPressed || keyH.upPressed) {
+                        if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -502,8 +518,9 @@ public class GameHandler extends JPanel implements Runnable {
 
                             keyH.wPressed = false;
                             keyH.upPressed = false;
+                            kon.d_Pad[0] = false;
 
-                        } else if (keyH.sPressed || keyH.downPressed) {
+                        } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -523,10 +540,11 @@ public class GameHandler extends JPanel implements Runnable {
 
                             keyH.sPressed = false;
                             keyH.downPressed = false;
+                            kon.d_Pad[2] = false;
                         }
                         break;
                     case 1:
-                        if (keyH.wPressed || keyH.upPressed) {
+                        if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -540,8 +558,9 @@ public class GameHandler extends JPanel implements Runnable {
 
                             keyH.wPressed = false;
                             keyH.upPressed = false;
+                            kon.d_Pad[0] = false;
 
-                        } else if (keyH.sPressed || keyH.downPressed) {
+                        } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -555,10 +574,11 @@ public class GameHandler extends JPanel implements Runnable {
 
                             keyH.sPressed = false;
                             keyH.downPressed = false;
+                            kon.d_Pad[2] = false;
                         }
                         break;
                     case 2:
-                        if (keyH.wPressed || keyH.upPressed) {
+                        if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -575,8 +595,9 @@ public class GameHandler extends JPanel implements Runnable {
 
                             keyH.wPressed = false;
                             keyH.upPressed = false;
+                            kon.d_Pad[0] = false;
 
-                        } else if (keyH.sPressed || keyH.downPressed) {
+                        } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                             switch (ui.commandNum) {
 
                                 case 0:
@@ -593,6 +614,7 @@ public class GameHandler extends JPanel implements Runnable {
 
                             keyH.sPressed = false;
                             keyH.downPressed = false;
+                            kon.d_Pad[2] = false;
                         }
                         break;
                 }
@@ -602,7 +624,7 @@ public class GameHandler extends JPanel implements Runnable {
             switch (ui.settingScreenValue) {
                 case 0:
                     // SELECT
-                    if (keyH.spacePressed || keyH.enterPressed) {
+                    if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
                         switch (ui.commandNum) {
                             case 0: // Video
                                 ui.settingScreenValue = 1;
@@ -629,9 +651,10 @@ public class GameHandler extends JPanel implements Runnable {
 
                         keyH.spacePressed = false;
                         keyH.enterPressed = false;
+                        kon.kreuz = false;
                     }
 
-                    if (keyH.leftPressed || keyH.rightPressed || keyH.aPressed || keyH.dPressed) {
+                    if (keyH.leftPressed || keyH.rightPressed || keyH.aPressed || keyH.dPressed || kon.d_Pad[1] || kon.d_Pad[3]) {
                         if (ui.commandNum == 2) {
                             unsavedSetting = true;
                             keyboard = !keyboard;
@@ -641,14 +664,16 @@ public class GameHandler extends JPanel implements Runnable {
                         keyH.dPressed = false;
                         keyH.leftPressed = false;
                         keyH.rightPressed = false;
+                        kon.d_Pad[1] = false;
+                        kon.d_Pad[3] = false;
                     }
                     break;
                 case 1: // Video
-                    if (keyH.spacePressed || keyH.enterPressed) {
+                    if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
                         switch (ui.commandNum) {
                             case 0: // fullscreen
                                 fullscreen = !fullscreen;
-                                reStartWindow();
+                                reStartWindow(1152, 567);
                                 unsavedSetting = true;
                                 break;
                             case 1: // empty
@@ -663,10 +688,11 @@ public class GameHandler extends JPanel implements Runnable {
                         ui.commandNum = 0;
                         keyH.spacePressed = false;
                         keyH.enterPressed = false;
+                        kon.kreuz = false;
                     }
                     break;
                 case 2: // Sound
-                    if (keyH.spacePressed || keyH.enterPressed) {
+                    if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
                         switch (ui.commandNum) {
                             case 0: // musicVolume
                                 break;
@@ -680,41 +706,46 @@ public class GameHandler extends JPanel implements Runnable {
                         ui.commandNum = 0;
                         keyH.spacePressed = false;
                         keyH.enterPressed = false;
+                        kon.kreuz = false;
                     }
 
-                    if (keyH.leftPressed || keyH.rightPressed || keyH.aPressed || keyH.dPressed) {
+                    if (keyH.leftPressed || keyH.rightPressed || keyH.aPressed || keyH.dPressed || kon.d_Pad[1] || kon.d_Pad[3]) {
                         switch (ui.commandNum) {
                             case 0:
-                                if ((keyH.aPressed || keyH.leftPressed) && musicVolume > 0f) {
+                                if ((keyH.aPressed || keyH.leftPressed || kon.d_Pad[3]) && musicVolume > 0f) {
                                     musicVolume = musicVolume - 0.1f;
-                                } else if ((keyH.dPressed || keyH.rightPressed) && musicVolume < 2f) {
+                                } else if ((keyH.dPressed || keyH.rightPressed || kon.d_Pad[1]) && musicVolume < 2f) {
                                     musicVolume = musicVolume + 0.1f;
                                 }
+                                //music.setVolume(musicVolume);
                                 break;
                             case 1:
-                                if ((keyH.aPressed || keyH.leftPressed) && soundVolume > 0f) {
+                                if ((keyH.aPressed || keyH.leftPressed || kon.d_Pad[3]) && soundVolume > 0f) {
                                     soundVolume = soundVolume - 0.1f;
-                                } else if ((keyH.dPressed || keyH.rightPressed) && soundVolume < 2f) {
+                                } else if ((keyH.dPressed || keyH.rightPressed || kon.d_Pad[1]) && soundVolume < 2f) {
                                     soundVolume = soundVolume + 0.1f;
                                 }
+                                //se.setVolume(soundVolume);
                                 break;
                         }
 
                         unsavedSetting = true;
                         keyH.leftPressed = false;
                         keyH.rightPressed = false;
+                        kon.d_Pad[1] = false;
+                        kon.d_Pad[3] = false;
                     }
                     break;
 
             }
-        }
+        } // Bindings for settingState
 
         if (gameState == saveState) {
             // SELECTION
             // MOVE CURSOR
-            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed) {
+            if (keyH.wPressed || keyH.sPressed || keyH.upPressed || keyH.downPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
 
-                if (keyH.wPressed || keyH.upPressed) {
+                if (keyH.wPressed || keyH.upPressed || kon.d_Pad[0]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -734,8 +765,9 @@ public class GameHandler extends JPanel implements Runnable {
 
                     keyH.wPressed = false;
                     keyH.upPressed = false;
+                    kon.d_Pad[0] = false;
 
-                } else if (keyH.sPressed || keyH.downPressed) {
+                } else if (keyH.sPressed || keyH.downPressed || kon.d_Pad[2]) {
                     switch (ui.commandNum) {
 
                         case 0:
@@ -754,10 +786,11 @@ public class GameHandler extends JPanel implements Runnable {
 
                     keyH.sPressed = false;
                     keyH.downPressed = false;
+                    kon.d_Pad[2] = false;
                 }
             }
             // SELECT
-            if (keyH.spacePressed || keyH.enterPressed) {
+            if (keyH.spacePressed || keyH.enterPressed || kon.kreuz) {
 
                 switch (ui.commandNum) {
 
@@ -777,7 +810,7 @@ public class GameHandler extends JPanel implements Runnable {
                         if (unsavedSetting) {
                             unsavedSetting = false;
                             saveC.SaveReader(this, save);
-                            reStartWindow();
+                            reStartWindow(1152, 567);
                             player.screenX = myGUI.frame.getWidth() / 2 - (tileSize / 2);
                             player.screenY = myGUI.frame.getHeight() / 2 - (tileSize / 2);
                         }
@@ -788,103 +821,363 @@ public class GameHandler extends JPanel implements Runnable {
 
                 keyH.spacePressed = false;
                 keyH.enterPressed = false;
+                kon.kreuz = false;
             }
         }// Bindings for gameState
 
         if (gameState == battleState) {
-            if (keyH.upPressed || keyH.wPressed || keyH.downPressed || keyH.sPressed || keyH.rightPressed || keyH.dPressed || keyH.leftPressed || keyH.aPressed) {
 
-                if (keyH.upPressed || keyH.wPressed) {
-                    switch (ui.commandNum) {
-                        case 0:
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            ui.commandNum = 0;
-                            break;
-                        case 3:
-                            ui.commandNum = 1;
-                            break;
-                    }
-                } else if (keyH.downPressed || keyH.sPressed) {
-                    switch (ui.commandNum) {
-                        case 0:
-                            ui.commandNum = 2;
-                            break;
-                        case 1:
-                            ui.commandNum = 3;
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                    }
-                } else if (keyH.rightPressed || keyH.dPressed) {
-                    switch (ui.commandNum) {
-                        case 0:
-                            ui.commandNum = 1;
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            ui.commandNum = 3;
-                            break;
-                        case 3:
-                            break;
-                    }
-                } else if (keyH.leftPressed || keyH.aPressed) {
-                    switch (ui.commandNum) {
-                        case 0:
+            if (keyH.upPressed || keyH.wPressed || keyH.downPressed || keyH.sPressed || keyH.rightPressed || keyH.dPressed || keyH.leftPressed || keyH.aPressed || kon.d_Pad[0] || kon.d_Pad[1] || kon.d_Pad[2] || kon.d_Pad[3]) {
 
-                            break;
-                        case 1:
-                            ui.commandNum = 0;
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            ui.commandNum = 2;
-                            break;
+                if (keyH.upPressed || keyH.wPressed || kon.d_Pad[0]) {
+                    if (gameSubState == noSubState || gameSubState == attackMenu) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                ui.commandNum = 0;
+                                break;
+                            case 3:
+                                ui.commandNum = 1;
+                                break;
+                        }
+                    } else if (gameSubState == fabimonMenu && type == 0 && bumber == 0) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 5;
+                                break;
+                            case 1:
+                                ui.commandNum = 0;
+                                break;
+                            case 2:
+                                ui.commandNum = 1;
+                                break;
+                            case 3:
+                                ui.commandNum = 2;
+                                break;
+                            case 4:
+                                ui.commandNum = 3;
+                                break;
+                            case 5:
+                                ui.commandNum = 4;
+                                break;
+                        }
+                        bumber = 1;
+                        while (player.fabimonTeam[ui.commandNum] == null) {
+                            ui.commandNum--;
+                            if (ui.commandNum == -1) {
+                                ui.commandNum = 5;
+                            }
+                        }
+                    } else if (gameSubState == fabimonMenu && type == 1 && bumber == 0) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 5;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 0;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 2;
+                                break;
+                            case 4:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 5:
+                                ui.subCommandNum = 4;
+                                break;
+                        }
+                        bumber = 1;
+                        while (player.fabimonTeam[ui.subCommandNum] == null) {
+                            ui.subCommandNum--;
+                            if (ui.subCommandNum == -1) {
+                                ui.subCommandNum = 5;
+                            }
+                        }
+                    } else if (gameSubState == optionState && bumber == 0) {
+                        if (ui.optionType == 0) {
+                            switch (ui.subCommandNum) {
+                                case 0:
+                                    ui.subCommandNum = 1;
+                                    break;
+                                case 1:
+                                    ui.subCommandNum = 0;
+                                    break;
+                            }
+                        } else if (ui.optionType == 1) {
+                            switch (ui.subCommandNum) {
+                                case 0:
+                                    ui.subCommandNum = 3;
+                                    break;
+                                case 1:
+                                    ui.subCommandNum = 0;
+                                    break;
+                                case 2:
+                                    ui.subCommandNum = 1;
+                                    break;
+                                case 3:
+                                    ui.subCommandNum = 2;
+                                    break;
+                            }
+                            bumber = 1;
+                        }
+                    } else if (gameSubState == bag && bumber == 0) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 2;
+                                break;
+                            case 1:
+                                ui.commandNum = 0;
+                                break;
+                            case 2:
+                                ui.commandNum = 1;
+                                break;
+
+                        }
+                        bumber = 1;
+                    }
+
+                } else if (keyH.downPressed || keyH.sPressed || kon.d_Pad[2]) {
+                    if (gameSubState == noSubState || gameSubState == attackMenu) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 2;
+                                break;
+                            case 1:
+                                ui.commandNum = 3;
+                                break;
+                        }
+                    } else if (gameSubState == fabimonMenu && type == 0 && bumber == 0) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 1;
+                                break;
+                            case 1:
+                                ui.commandNum = 2;
+                                break;
+                            case 2:
+                                ui.commandNum = 3;
+                                break;
+                            case 3:
+                                ui.commandNum = 4;
+                                break;
+                            case 4:
+                                ui.commandNum = 5;
+                                break;
+                            case 5:
+                                ui.commandNum = 0;
+                                break;
+                        }
+                        bumber = 1;
+                        while (player.fabimonTeam[ui.commandNum] == null) {
+                            ui.commandNum++;
+                            if (ui.commandNum == 6) {
+                                ui.commandNum = 0;
+                            }
+                        }
+                    } else if (gameSubState == fabimonMenu && type == 1 && bumber == 0) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 2;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 4;
+                                break;
+                            case 4:
+                                ui.subCommandNum = 5;
+                                break;
+                            case 5:
+                                ui.subCommandNum = 0;
+                                break;
+                        }
+                        bumber = 1;
+                        while (player.fabimonTeam[ui.subCommandNum] == null) {
+                            ui.subCommandNum++;
+                            if (ui.subCommandNum == 6) {
+                                ui.subCommandNum = 0;
+                            }
+                        }
+                    } else if (gameSubState == optionState && bumber == 0) {
+                        if (ui.optionType == 0) {
+                            switch (ui.subCommandNum) {
+                                case 0:
+                                    ui.subCommandNum = 1;
+                                    break;
+                                case 1:
+                                    ui.subCommandNum = 0;
+                                    break;
+                            }
+                        }
+                    } else if (ui.optionType == 1) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 2;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 0;
+                                break;
+                        }
+                        bumber = 1;
+                    } else if (gameSubState == bag && bumber == 0) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 1;
+                                break;
+                            case 1:
+                                ui.commandNum = 2;
+                                break;
+                            case 2:
+                                ui.commandNum = 0;
+                                break;
+                        }
+                        bumber = 1;
+                    }
+
+                } else if (keyH.rightPressed || keyH.dPressed || kon.d_Pad[1]) {
+                    if (gameSubState == noSubState || gameSubState == attackMenu) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 1;
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                ui.commandNum = 3;
+                                break;
+                            case 3:
+                                break;
+                        }
+                    } else if (gameSubState == fabimonMenu) {
+
+                    }
+                } else if (keyH.leftPressed || keyH.aPressed || kon.d_Pad[3]) {
+                    if (gameSubState == noSubState || gameSubState == attackMenu) {
+                        switch (ui.commandNum) {
+                            case 0:
+
+                                break;
+                            case 1:
+                                ui.commandNum = 0;
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                ui.commandNum = 2;
+                                break;
+                        }
                     }
                 }
-            } else if(keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0){
-                if(battleSubState == mainMenu){
-                switch (ui.commandNum) {
-                    case 0:
-                        battleSubState = attackMenu;
-                        break;
-                    case 1:
-                        ui.battleText = "Fabimon";
-                        break;
-                    case 2:
-                        ui.battleText = "Bag";
-                        break;
-                    case 3:
-                        npc[npcInteracted].endBattle(npcInteracted);
-                        break;
-                }
-                }else if(battleSubState == attackMenu){
-                    battle.battleRound();
+            } else if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0 || kon.kreuz && bumber == 0) {
+                if (gameSubState == noSubState) {
+                    switch (ui.commandNum) {
+                        case 0:
+                            gameSubState = attackMenu;
+                            ui.currentDialogue[0] = "Mit was willst du Angreifen";
+                            break;
+                        case 1:
+                            gameSubState = fabimonMenu;
+                            ui.commandNum = 0;
+                            break;
+                        case 2:
+                            gameSubState = bag;
+                            break;
+                        case 3:
+                            ui.clearTextfield();
+                            ui.currentDialogue[0] = "Du kannst nicht fliehen!";
+                            break;
+                    }
+                } else if (gameSubState == attackMenu) {
+                    battle.battleRound(); //durchläuft eine Phase einer Kampfrunde
                     battle.phase++;
+                } else if (gameSubState == fabimonMenu && type == 0) {
+                    battle.changeOwnFabimon(ui.commandNum);
+                } else if (gameSubState == fabimonMenu && type == 1) {
+                    fabimon.useItem();
+
+                } else if (gameSubState == newMoveState) {
+                    fabimon.checkNewMove();
+                } else if (gameSubState == optionState) {
+                    if (ui.optionType == 0) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.optionType = 1;
+                                ui.clearTextfield();
+                                ui.currentDialogue[0] = "Welche Attacke soll vergessen werden?";
+                                break;
+                            case 1:
+                                gameSubState = attackMenu;
+                                ui.clearTextfield();
+                                ui.currentDialogue[0] = player.fabimonTeam[0].name + " hat die Attacke nicht erlernt.";
+                                break;
+                        }
+                    } else if (ui.optionType == 1) {
+                        fabimon.phase = 3;
+                        fabimon.checkNewMove();
+                    }
+                } else if (gameSubState == bag) {
+                    gameSubState = fabimonMenu;
+                    type = 1;
                 }
-                bumber=1;
+
+                bumber = 1;
+            } else if (keyH.escPressed || kon.kreis) {
+                if (gameSubState == fabimonMenu || gameSubState == attackMenu && battle.phase == 0 || gameSubState == bag) {
+                    gameSubState = noSubState;
+                    type = 0;
+                }
             }
-            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1) {
+            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1 && !keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !kon.kreuz && !kon.d_Pad[0] && !kon.d_Pad[1] && !kon.d_Pad[2] && !kon.d_Pad[3]) {
                 bumber = 0;
             }
         }// Bindings for battleState
+
+        if (gameState == healState) {
+            if (keyH.enterPressed || keyH.spacePressed || kon.kreuz) {
+                gameState = playState;
+            }
+            if (keyH.escPressed || kon.kreis) {
+                tmpGameState = gameState;
+                gameState = pauseState;
+                tmpTime = 30;
+                tmpWaited = 0;
+            }
+        } // Bindings for healState
+
         if (gameState == dialogueState) {
 
-            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0){
+            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0 || kon.kreuz && bumber == 0) {
 
                 if (npc[npcInteracted].endDialogue) {
-                    if(npc[npcInteracted].trainer){
-                        gameState = cutsceneState;
-                        fabimon.createFabimon("Feirir",0, 5);
-                        enemy_Fabimon = fabimon.tempFabimon;
-                        csManager.csNum = csManager.battleBegin;
-                    }else {
+                    if (npc[npcInteracted].trainer) {
+                        if (player.fabimonTeam[0] != null && !npc[npcInteracted].defeated) {
+                            gameState = cutsceneState;
+                            System.arraycopy(npc[npcInteracted].fabimonTeam, 0, enemy_Fabimon, 0, enemy_Fabimon.length);
+                            csManager.csNum = csManager.battleBegin;
+                            battle.opponent = npcInteracted;
+                            gameSubState = noSubState;
+                        } else {
+                            gameState = playState;
+                            npc[npcInteracted].endDialogue = false;
+                            npc[npcInteracted].endBattle(npcInteracted);
+                        }
+                    } else {
                         gameState = playState;
                         npc[npcInteracted].endDialogue = false;
                     }
@@ -893,11 +1186,283 @@ public class GameHandler extends JPanel implements Runnable {
                 }
                 bumber = 1;
             }
-            if (!keyH.spacePressed && !keyH.enterPressed && bumber == 1) {
+            if (!keyH.spacePressed && !keyH.enterPressed && !kon.kreuz && bumber == 1) {
                 bumber = 0;
             }
+        } // Bindings for dialogueState
+
+        if (gameState == cutsceneState) {
+            //macht nichts
         }
-        if(gameState == cutsceneState){
+        if (gameState == fabimonState) {
+            if (keyH.sPressed || keyH.downPressed || keyH.wPressed || keyH.upPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
+                if (keyH.sPressed && bumber == 0 || keyH.downPressed && bumber == 0 || kon.d_Pad[2] && bumber == 0) {
+                    if (gameSubState == noSubState) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 1;
+                                break;
+                            case 1:
+                                ui.commandNum = 2;
+                                break;
+                            case 2:
+                                ui.commandNum = 3;
+                                break;
+                            case 3:
+                                ui.commandNum = 4;
+                                break;
+                            case 4:
+                                ui.commandNum = 5;
+                                break;
+                            case 5:
+                                ui.commandNum = 0;
+                                break;
+                        }
+                        while (player.fabimonTeam[ui.commandNum] == null) {//erhöt solange bis es auf ein Feld trifft mit einem Fabimon
+                            ui.commandNum++;
+                            if (ui.commandNum == 6) {
+                                ui.commandNum = 0;
+                            }
+                        }
+                    } else if (gameSubState == optionState) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 2;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 0;
+                                break;
+                        }
+                    }
+                    bumber = 1;
+                }
+                if (keyH.wPressed && bumber == 0 || keyH.upPressed && bumber == 0 || kon.d_Pad[0] && bumber == 0) {
+                    if (gameSubState == noSubState) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 5;
+                                break;
+                            case 1:
+                                ui.commandNum = 0;
+                                break;
+                            case 2:
+                                ui.commandNum = 1;
+                                break;
+                            case 3:
+                                ui.commandNum = 2;
+                                break;
+                            case 4:
+                                ui.commandNum = 3;
+                                break;
+                            case 5:
+                                ui.commandNum = 4;
+                                break;
+                        }
+
+
+                        while (player.fabimonTeam[ui.commandNum] == null) {
+                            ui.commandNum--;
+                            if (ui.commandNum == -1) {
+                                ui.commandNum = 5;
+                            }
+                        }
+                    } else if (gameSubState == optionState) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 0;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 2;
+                                break;
+                        }
+                    }
+                    bumber = 1;
+                }
+
+            }
+            if (keyH.escPressed && bumber == 0 || kon.kreis && bumber == 0) {
+                if (gameSubState == noSubState) {
+                    gameState = playState;
+
+                    ui.commandNum = 0;
+                } else if (gameSubState == fabimonOverviewState) {
+                    gameSubState = noSubState;
+                }
+                bumber = 1;
+            }
+            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0 || kon.kreuz && bumber == 0) {
+                if (gameSubState == noSubState) {
+                    gameSubState = optionState;
+                    ui.subCommandNum = 0;
+                } else if (gameSubState == optionState) {
+                    switch (ui.subCommandNum) {
+                        case 0:
+                            battle.changeOwnFabimon(ui.commandNum);
+                            break;
+                        case 1:
+                            gameSubState = fabimonOverviewState;
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            gameSubState = noSubState;
+                            break;
+
+                    }
+                }
+                bumber = 1;
+            }
+            if (!keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !keyH.spacePressed && !keyH.enterPressed && !keyH.escPressed && bumber == 1 && !kon.d_Pad[0] && !kon.d_Pad[2] && !kon.kreuz && !kon.kreis) {
+                bumber = 0;
+            }
+        }// Bindings for fabimonState
+
+
+        if (gameState == inventoryState) {
+            if (keyH.sPressed || keyH.downPressed || keyH.wPressed || keyH.upPressed || kon.d_Pad[0] || kon.d_Pad[2]) {
+                if (keyH.sPressed && bumber == 0 || keyH.downPressed && bumber == 0 || kon.d_Pad[2] && bumber == 0) {
+                    if (gameSubState == noSubState) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 1;
+                                break;
+                            case 1:
+                                ui.commandNum = 2;
+                                break;
+                            case 2:
+                                ui.commandNum = 3;
+                                break;
+                            case 3:
+                                ui.commandNum = 4;
+                                break;
+                            case 4:
+                                ui.commandNum = 5;
+                                break;
+                            case 5:
+                                ui.commandNum = 0;
+                                break;
+                        }
+                    } else if (gameSubState == fabimonMenu) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 2;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 4;
+                                break;
+                            case 4:
+                                ui.subCommandNum = 5;
+                                break;
+                            case 5:
+                                ui.subCommandNum = 0;
+                                break;
+                        }
+                        while (player.fabimonTeam[ui.subCommandNum] == null) {
+                            ui.subCommandNum++;
+                            if (ui.subCommandNum == 6) {
+                                ui.subCommandNum = 0;
+                            }
+                        }
+                    }
+                    bumber = 1;
+                }
+                if (keyH.wPressed && bumber == 0 || keyH.upPressed && bumber == 0 || kon.d_Pad[0] && bumber == 0) {
+                    if (gameSubState == noSubState) {
+                        switch (ui.commandNum) {
+                            case 0:
+                                ui.commandNum = 5;
+                                break;
+                            case 1:
+                                ui.commandNum = 0;
+                                break;
+                            case 2:
+                                ui.commandNum = 1;
+                                break;
+                            case 3:
+                                ui.commandNum = 2;
+                                break;
+                            case 4:
+                                ui.commandNum = 3;
+                                break;
+                            case 5:
+                                ui.commandNum = 4;
+                                break;
+                        }
+
+
+                    } else if (gameSubState == fabimonMenu) {
+                        switch (ui.subCommandNum) {
+                            case 0:
+                                ui.subCommandNum = 5;
+                                break;
+                            case 1:
+                                ui.subCommandNum = 0;
+                                break;
+                            case 2:
+                                ui.subCommandNum = 1;
+                                break;
+                            case 3:
+                                ui.subCommandNum = 2;
+                                break;
+                            case 4:
+                                ui.subCommandNum = 3;
+                                break;
+                            case 5:
+                                ui.subCommandNum = 4;
+                                break;
+                        }
+                        while (player.fabimonTeam[ui.subCommandNum] == null) {
+                            ui.subCommandNum--;
+                            if (ui.subCommandNum == -1) {
+                                ui.subCommandNum = 5;
+                            }
+                        }
+                    }
+                    bumber = 1;
+                }
+
+            }
+            if (keyH.escPressed && bumber == 0 || kon.kreis && bumber == 0) {
+                if (gameSubState == noSubState) {
+                    gameState = playState;
+                    ui.commandNum = 0;
+                } else if (gameSubState == fabimonMenu) {
+                    gameSubState = noSubState;
+                }
+                bumber = 1;
+            }
+            if (keyH.spacePressed && bumber == 0 || keyH.enterPressed && bumber == 0 || kon.kreuz && bumber == 0) {
+                if (gameSubState == noSubState) {
+                    if (ui.commandNum == 5) {
+                    } else {
+                        gameSubState = fabimonMenu;
+                    }
+                } else if (gameSubState == fabimonMenu) {
+                    fabimon.useItem();
+                }
+                bumber = 1;
+            }
+            if (!keyH.sPressed && !keyH.downPressed && !keyH.wPressed && !keyH.upPressed && !keyH.spacePressed && !keyH.enterPressed && !keyH.escPressed && bumber == 1 && !kon.d_Pad[0] && !kon.d_Pad[2] && !kon.kreuz && !kon.kreis) {
+                bumber = 0;
+            }
 
         }
     }

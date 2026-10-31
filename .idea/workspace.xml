@@ -9,12 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/res/player/Skully_idle_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/player/Skully_idle_2.png" afterDir="false" />
+    <list default="true" id="db0494c6-0a68-42cf-972d-c5e59f1f09f2" name="Changes" comment="fertig">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_four.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_four.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_one.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_one.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_three.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_three.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/saves/save_two.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/saves/save_two.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameHandler.java" afterDir="false" />
     </list>
     <list id="6b9de9cb-74b3-4289-a992-6da309b33e84" name="Changes by arrowe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,9 +49,13 @@
         <option value="Kennatris &lt;tino.st.2004@gmail.com&gt;" />
       </list>
     </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -91,30 +96,33 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "19",
-    "last_opened_file_path": "C:/Users/tinos/IdeaProjects/Fabimon_Project/res/player",
+    "last_opened_file_path": "C:/Users/tinos/IdeaProjects/Fabimon_Project/res/Sound Library",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "reference.settings.project.statistic.project.settings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\player" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\saves" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project" />
+      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Sound Library" />
+      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\objects" />
+      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Music Libray" />
+      <recent name="C:\Users\phili\IdeaProjects\Fabimon_Project\res\Fabimon\cursed Shiggy" />
+      <recent name="C:\Users\phili\IdeaProjects\Fabimon_Project\res\Fabimon\electric type" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Fabimon\cursed Shiggy" />
+      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Music Libray" />
+      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\BattleMusic" />
+      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\Sound Library" />
       <recent name="C:\Users\phili\IdeaProjects\Fabimon_Project" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\NPC\SpeedyGonzales" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\NPC\NPCTest" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\objects" />
-      <recent name="C:\Users\tinos\IdeaProjects\Fabimon_Project\res\maps" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Battle" />
@@ -128,26 +136,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="DjangoTestsConfigurationType">
-      <module name="Fabimon_Project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -158,66 +146,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
-      <module name="Fabimon_Project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="Fabimon_Project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <module name="Fabimon_Project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="Fabimon_Project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -235,6 +163,19 @@
       <workItem from="1684306525036" duration="41000" />
       <workItem from="1684306573480" duration="30000" />
       <workItem from="1684306607146" duration="25372000" />
+      <workItem from="1685463514890" duration="5750000" />
+      <workItem from="1685529508299" duration="8350000" />
+      <workItem from="1685882351753" duration="3338000" />
+      <workItem from="1685885864256" duration="440000" />
+      <workItem from="1685890773540" duration="1560000" />
+      <workItem from="1685892458800" duration="561000" />
+      <workItem from="1685893100079" duration="439000" />
+      <workItem from="1685893641316" duration="171000" />
+      <workItem from="1686241685936" duration="361000" />
+      <workItem from="1686310161231" duration="4071000" />
+      <workItem from="1686400839157" duration="4033000" />
+      <workItem from="1686483925590" duration="8112000" />
+      <workItem from="1686558334994" duration="2572000" />
     </task>
     <task id="LOCAL-00001" summary="V0.9.1&#10;&#10;// großes Update, vollständige Überarbeitung des Kerns&#10;// auslassung der Kontroller aufgrund von Fehlern&#10;// veraltete Verson von der Klasse &quot;Stats&quot;">
       <created>1679533924557</created>
@@ -425,7 +366,112 @@
       <option name="project" value="LOCAL" />
       <updated>1684586780821</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="V0.9.7.2.2">
+      <created>1685011207072</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1685011207072</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Music">
+      <created>1686251497176</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1686251497176</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Music">
+      <created>1686310589338</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1686310589338</updated>
+    </task>
+    <task id="LOCAL-00031" summary="FabiCenter">
+      <created>1686313703075</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1686313703075</updated>
+    </task>
+    <task id="LOCAL-00032" summary="FabiCenter">
+      <created>1686313966387</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1686313966387</updated>
+    </task>
+    <task id="LOCAL-00033" summary="FabiCenter">
+      <created>1686314097626</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1686314097626</updated>
+    </task>
+    <task id="LOCAL-00034" summary="FabiCenter">
+      <created>1686402950782</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1686402950782</updated>
+    </task>
+    <task id="LOCAL-00035" summary="FabiCenter">
+      <created>1686403216564</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1686403216564</updated>
+    </task>
+    <task id="LOCAL-00036" summary="FabiCenter">
+      <created>1686403571974</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1686403571974</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Fix">
+      <created>1686403609647</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1686403609647</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Fix">
+      <created>1686404280608</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1686404280608</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Fix">
+      <created>1686404395840</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1686404395840</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Fix">
+      <created>1686404560557</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1686404560557</updated>
+    </task>
+    <task id="LOCAL-00041" summary="kontroller">
+      <created>1686416835134</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1686416835134</updated>
+    </task>
+    <task id="LOCAL-00042" summary="fertig">
+      <created>1686494577840</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1686494577841</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +543,17 @@
     <MESSAGE value="V0.9.7.2" />
     <MESSAGE value="V0.9.7.2.1&#10;// fileType änderbar, BugFixing, Saves durch Variable ins &quot;unendliche&quot; abänderbar" />
     <MESSAGE value="V0.9.7.2.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.9.7.2.2" />
+    <MESSAGE value="Music" />
+    <MESSAGE value="FabiCenter" />
+    <MESSAGE value="Fix" />
+    <MESSAGE value="abc" />
+    <MESSAGE value="kontroller" />
+    <MESSAGE value="fertig" />
+    <option name="LAST_COMMIT_MESSAGE" value="fertig" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

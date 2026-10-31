@@ -15,6 +15,7 @@ public class Ember extends Attack {
         power = 40;
         accuracy = 100;
         ap = 25;
+        currentap = ap;
         priority = 0;
         name = "Ember";
         trifftImmer = false;

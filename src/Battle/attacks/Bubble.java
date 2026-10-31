@@ -15,6 +15,7 @@ public class Bubble extends Attack {
         power = 40;
         accuracy = 100;
         ap = 30;
+        currentap = ap;
         priority = 0;
         name = "Bubble";
         trifftImmer = false;

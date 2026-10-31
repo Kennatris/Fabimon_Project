@@ -8,7 +8,7 @@ public class Blast_Burn extends Attack {
     public Blast_Burn(GameHandler gameH) {
         super(gameH);
         this.gameH = gameH;
-        getButtonImage("Blast Burn");
+        getButtonImage("Blast_Burn");
         power = 150;
         accuracy = 90;
         category = "special";
