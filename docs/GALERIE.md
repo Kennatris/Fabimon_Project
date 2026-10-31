@@ -1,97 +1,93 @@
-# Fabimon – Bildergalerie
+# Fabimon – Galerie
 
-Alle Aufnahmen basieren auf dem historischen Abschlussstand `8703abca4265e0d199b90ff5955b4c0d100a4ee2`. Die Bilder sind echte Fensteraufnahmen; Grafiken und Spieloberflächen wurden nicht nachgebaut.
-
-## Aufnahmeverfahren
-
-Die Kampf-, Cutscene- und Weltansichten **12–23** wurden in einer getrennten lokalen Aufnahmeversion erstellt: Zeit und Animationen lassen sich anhalten, Figuren teleportieren und vorhandene Zustände gezielt auswählen. Die originale Darstellungs- und Kampflogik sowie Ressourcen werden dabei verwendet. Teams, Level, Gegenstandsmengen und Positionen sind für die Veranschaulichung gesetzt; dies dokumentiert keinen regulär erspielten Fortschritt. Die lokalen Aufnahmewerkzeuge gehören nicht zum veröffentlichten Spielquellcode.
-
-Die Ansichten **01–11** stammen aus dem regulär laufenden, unveränderten Spiel mit einem mitgelieferten Speicherstand. Laufdaten wurden getrennt vom Quellbestand gehalten.
+Kämpfe, Trainerbegegnungen, Arena und Spielwelt. Für die folgenden Aufnahmen wurden Figuren positioniert und Animationen angehalten.
 
 ## Kampfsystem
 
-Originale Kampfoberfläche mit Feirir und Jubby. Figuren und Teamwerte wurden für die Aufnahme gesetzt.
+Im Kampf stehen Attacken, Teamwechsel und Items zur Auswahl.
 
 ![Kampfsystem](media/12-kampf-aufnahmeversion.jpg)
 
 ## Attackenauswahl
 
-Vier Attackenfelder mit den im Original vorhandenen Namen, Typen und AP.
+Attacken mit Typ und verfügbaren AP.
 
 ![Attackenauswahl](media/13-attackenauswahl-aufnahmeversion.jpg)
 
-## Teamwechsel im Kampf
+## Teamwechsel
 
-Auswahl zwischen den fünf im Original vorhandenen Fabimon-Arten.
+Auswahl eines Fabimon aus dem eigenen Team.
 
-![Teamwechsel im Kampf](media/14-teamwechsel-aufnahmeversion.jpg)
+![Teamwechsel](media/14-teamwechsel-aufnahmeversion.jpg)
 
-## Kampfübergang
+## Kampfbeginn
 
-Eingefrorener Frame der originalen Übergangs-Cutscene mit seitlich schließenden Flächen.
+Der Übergang von der Spielwelt in den Kampf.
 
-![Kampfübergang](media/15-kampfuebergang-aufnahmeversion.jpg)
+![Kampfbeginn](media/15-kampfuebergang-aufnahmeversion.jpg)
 
 ## Trainerbegegnung
 
-Originales Ausrufezeichen der Begegnungs-Cutscene; Figurenpositionen für die Ansicht gesetzt.
+Ein Trainer bemerkt die Spielfigur.
 
 ![Trainerbegegnung](media/16-trainerbegegnung-aufnahmeversion.jpg)
 
 ## Arena
 
-Die zweite belegte Spielkarte arenaWorld mit Wasser-, Strand- und Wegkacheln.
+Wege, Strand und Wasser auf der Arenakarte.
 
 ![Arena](media/17-arena-aufnahmeversion.jpg)
 
-## Schritt einer Kampfrunde
+## Kampfrunde
 
-Einzelschritt der originalen Kampflogik mit ihrem tatsächlich ausgegebenen Kampftext.
+Kampftext nach einer Aktion.
 
-![Schritt einer Kampfrunde](media/18-kampfrunde-aufnahmeversion.jpg)
+![Kampfrunde](media/18-kampfrunde-aufnahmeversion.jpg)
 
-## Zweiter Animationsframe
+## Figurenanimation
 
-Zweiter Frame der vorhandenen Fabimon-Standanimation im Kampf.
+Die Fabimon sind im Kampf animiert.
 
-![Zweiter Animationsframe](media/19-kampf-animation-frame-2-aufnahmeversion.jpg)
+![Figurenanimation](media/19-kampf-animation-frame-2-aufnahmeversion.jpg)
 
-## Gegenstände im Kampf
+## Items im Kampf
 
-Originale Itemauswahl während des Kampfes.
+Gegenstände lassen sich über den Beutel auswählen.
 
-![Gegenstände im Kampf](media/20-kampfbeutel-aufnahmeversion.jpg)
+![Items im Kampf](media/20-kampfbeutel-aufnahmeversion.jpg)
 
 ## Heilzentrum
 
-Originale Darstellung des Heilzustands in der Spielwelt.
+Heilung der eigenen Fabimon in der Spielwelt.
 
 ![Heilzentrum](media/21-heilzentrum-aufnahmeversion.jpg)
 
-## NPC-Dialog
+## NPC-Gespräch
 
-Originaler Text eines NPCs vor der Spielwelt.
+Textdialoge mit Figuren in der Welt.
 
-![NPC-Dialog](media/22-npc-dialog-aufnahmeversion.jpg)
+![NPC-Gespräch](media/22-npc-dialog-aufnahmeversion.jpg)
 
 ## Spielwelt mit Portal
 
-Übersicht mit Portal, NPCs und Spielfigur bei eingefrorener Zeit.
+Die Spielfigur zwischen NPCs, Wegen und einem Portal.
 
 ![Spielwelt mit Portal](media/23-spielwelt-aufnahmeversion.jpg)
 
 <details>
-<summary>Titel, Menüs, Inventar und Statusansichten aus dem regulären Spiel</summary>
+<summary>Titelbildschirm, Menüs, Inventar und Team</summary>
+
+Diese Bilder zeigen das normal laufende Spiel.
 
 ## Titelbildschirm
 
-Auswahl von Spielstand, Spielstart und Einstellungen.
+Das Hauptmenü mit Spielstandauswahl, Spielstart und Einstellungen.
 
 ![Titelbildschirm](media/01-titel.jpg)
 
 ## Spielstandauswahl
 
-Drei vorhandene Speicherplätze.
+Drei Speicherplätze stehen zur Auswahl.
 
 ![Spielstandauswahl](media/02-spielstandauswahl.jpg)
 
@@ -101,39 +97,39 @@ Video, Sound und Eingabemodus.
 
 ![Einstellungen](media/03-einstellungen.jpg)
 
-## Videoeinstellungen
+## Video
 
-Vollbildoption im Originalmenü.
+Die Vollbildoption im Einstellungsmenü.
 
-![Videoeinstellungen](media/04-video.jpg)
+![Video](media/04-video.jpg)
 
-## Soundeinstellungen
+## Sound
 
-Musik- und Effektlautstärke. Die Originaloberfläche trägt hier die Überschrift VIDEO.
+Musik- und Effektlautstärke.
 
-![Soundeinstellungen](media/05-sound.jpg)
+![Sound](media/05-sound.jpg)
 
 ## Spielwelt
 
-Tile-Welt und Spielfigur im geladenen Originalspielstand.
+Die Spielfigur auf einem Weg durch die Tile-Welt.
 
 ![Spielwelt](media/06-spielwelt.jpg)
 
-## Pausenmenü
+## Pause
 
-Rückkehr, Inventar, Fabimon und Speichern.
+Zugriff auf Inventar, Team und Speichern.
 
-![Pausenmenü](media/07-pause.jpg)
+![Pause](media/07-pause.jpg)
 
 ## Inventar
 
-Vorhandene Itemtypen und ihre Mengen.
+Items und ihre Mengen.
 
 ![Inventar](media/08-inventar.jpg)
 
 ## Fabimon-Team
 
-Teamplätze, Level und Lebenspunkte.
+Teamplätze mit Level und Lebenspunkten.
 
 ![Fabimon-Team](media/09-team.jpg)
 
@@ -145,10 +141,10 @@ Aktionen für das ausgewählte Fabimon.
 
 ## Statusansicht
 
-Originale Statusseite des ausgewählten Fabimon.
+Die Detailansicht eines Fabimon.
 
 ![Statusansicht](media/11-status.jpg)
 
 </details>
 
-Aufgenommen am 31. Oktober 2026. [Projekt und Technik](PROJEKT.md) · [Zur Übersicht](../README.md). Alle Angaben ohne Gewähr.
+[Projekt und Technik](PROJEKT.md) · [Zur Übersicht](../README.md). Alle Angaben und Downloads ohne Gewähr.

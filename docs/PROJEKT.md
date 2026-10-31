@@ -2,11 +2,11 @@
 
 ## Entstehung
 
-Fabimon entstand 2023 als Teamprojekt im Abitur (TGI12). Die erhaltenen Arbeitsbranches tragen die Namen der beteiligten Teammitglieder. Dieses Porträt beschreibt den gemeinsamen Projektumfang; es ordnet keine Funktionen ohne Beleg einzelnen Personen zu.
+Fabimon entstand 2023 als gemeinsame Projektarbeit im Abitur (TGI12). Ziel war ein eigenes 2D-Rollenspiel mit einer begehbaren Welt und rundenbasierten Kämpfen.
 
 ## Spielidee und Umfang
 
-Die Spielfigur bewegt sich durch eine Tile-Welt und begegnet NPCs und Trainern. Ein Team aus Fabimon besitzt Lebenspunkte, Level, Werte und Attacken. Das Kampfsystem verwaltet eigene und gegnerische Aktionen, Teamwechsel und Items. Spielwelt, Kampf, Dialog, Heilung, Pause, Inventar und Teamansicht werden als unterschiedliche Zustände dargestellt.
+Die Spielfigur bewegt sich durch eine Tile-Welt und begegnet NPCs und Trainern. Jedes Fabimon besitzt Lebenspunkte, ein Level, Werte und Attacken. Das Kampfsystem verwaltet eigene und gegnerische Aktionen, Teamwechsel und Items. Spielwelt, Kampf, Dialog, Heilung, Pause, Inventar und Teamansicht werden als unterschiedliche Zustände dargestellt.
 
 Die Bildauswahl in der [README](../README.md) zeigt einen kurzen Einblick. Die [Galerie](GALERIE.md) enthält die aufgenommenen Ansichten einschließlich Menüs und Teamdetails.
 
@@ -23,17 +23,15 @@ Die Bildauswahl in der [README](../README.md) zeigt einen kurzen Einblick. Die [
 | Fabimon und Kämpfe | `entity/Fabimon`, `Battle/Battle`, einzelne Attackenklassen |
 | Gegenstände | `src/Items` mit verschiedenen Heilitem-Klassen |
 | Spielstände | `settings/SaveCompiler`, Textdateien unter `res/saves` |
-| Eingaben und Audio | Tastatur, vorhandene JInput-Anbindung, Java Sound/WAV |
+| Eingaben und Audio | Tastatur, JInput, Java Sound/WAV |
 
 ## Dateien und Ressourcen
 
-Der Abschlussstand enthält **60 Java-Quelldateien**. Grafiken, Musik, Karten, Dialoge, Werte, Attackenlisten und Speicherstände liegen unter `res`. Die eingebundenen JInput-/JUtils-JARs liegen im Projektroot. `Documentation` bewahrt zusätzliche historische Unterlagen; `docs` enthält dieses nachträgliche Projektporträt.
-
-Die Anwendung liest viele Dateien über relative Pfade. Deshalb ist das Arbeitsverzeichnis beim Start der Projektroot. Während des Spiels können Einstellungen und Speicherstände unter `res/saves` geschrieben werden; für eine unveränderte Archivkopie empfiehlt sich eine getrennte Laufkopie.
+Das Spiel umfasst **60 Java-Dateien**. Unter `res` liegen Grafiken, Musik, Karten, Dialoge, Charakterwerte, Attackenlisten und Spielstände. Die JInput- und JUtils-Bibliotheken befinden sich im Projektordner. `Documentation` enthält die damaligen Projektunterlagen.
 
 ## Kompilieren und starten
 
-Die unveränderten Quellen wurden für diese Aufbereitung unter Windows mit **Temurin JDK 21.0.13+9** kompiliert und gestartet. Die folgenden PowerShell-Befehle werden im Projektroot ausgeführt; `javac` und `java` müssen aus einem JDK erreichbar sein. Die kompilierten Klassen werden im temporären Verzeichnis abgelegt.
+Das Spiel wurde unter Windows mit **Temurin JDK 21.0.13+9** kompiliert und gestartet. Die folgenden PowerShell-Befehle werden im Projektordner ausgeführt; `javac` und `java` müssen erreichbar sein. Die kompilierten Klassen werden im temporären Verzeichnis abgelegt.
 
 ```powershell
 $classes = Join-Path ([IO.Path]::GetTempPath()) 'fabimon-classes'
@@ -44,22 +42,16 @@ javac -proc:none -encoding UTF-8 -cp $libs -d $classes @sources
 java -cp "$classes;res;$libs;jinput-platform-2.0.7-natives-windows.jar" main.Main
 ```
 
-Im Titelbildschirm zuerst unter **SELECT SAVE** einen vorhandenen Speicherplatz auswählen, über **BACK** zurückkehren und anschließend **LOAD GAME** wählen. Die Aufnahmen verwenden einen mitgelieferten Originalspielstand. Bewegung und Menüauswahl erfolgen mit W/A/S/D oder den Pfeiltasten, Bestätigen und NPC-Interaktion mit Enter oder Leertaste. Escape öffnet die Pause bzw. führt zurück. Das Pausenmenü bietet Inventar und Teamansicht.
+Im Titelbildschirm zuerst unter **SELECT SAVE** einen vorhandenen Speicherplatz auswählen, über **BACK** zurückkehren und anschließend **LOAD GAME** wählen. Bewegung und Menüauswahl erfolgen mit W/A/S/D oder den Pfeiltasten, Bestätigen und NPC-Interaktion mit Enter oder Leertaste. Escape öffnet die Pause bzw. führt zurück. Das Pausenmenü bietet Inventar und Teamansicht.
 
-## Historie und Versionsauswahl
+## Spielstände und Einstellungen
 
-| Erhaltener Stand | Einordnung |
-| --- | --- |
-| `old/master` · `330a6df` | Bisheriger Hauptstand; bewahrt die frühere Hauptbranch-Version. |
-| `PhilippKamerlocher` · `8703abc` | Abschlusscommit „fertig“ vom 21.06.2023; Grundlage dieser Darstellung. |
-| `Kennatris` und `FabioEinhauser` | Frühere Team-Arbeitsstände, weiterhin unverändert erhalten. |
+Die Anwendung liest Karten, Dialoge und Spielstände über relative Dateipfade. Beim Start muss deshalb der Projektordner das Arbeitsverzeichnis sein. Einstellungen und Spielfortschritt werden unter `res/saves` gespeichert. Für einen eigenen Durchlauf lässt sich der gesamte Projektordner kopieren.
 
-Der Abschlussstand besitzt gegenüber dem früheren Hauptstand unter anderem zusätzliche Itemklassen, Attacken, Bilder und Musik sowie eine erweiterte Team-/Kampfverwaltung. Für die Aufbereitung werden seine historischen Quell- und Ressourcendateien unverändert übernommen. Die neue Dokumentation ist davon getrennt.
+Die Bedienung ist auf Tastatur ausgelegt. Eine Controller-Anbindung über JInput ist ebenfalls im Code enthalten.
 
-## Prüfung und Einordnung
+## Bilder
 
-Nachgewiesen sind die Kompilierung aller 60 Quellen und der Start der dokumentierten Oberflächen unter Windows. Die Galerie unterscheidet regulär erreichte Ansichten von gezielt gestellten Aufnahmen mit eingefrorener Zeit; sie ist kein Nachweis für fehlerfreie Funktion sämtlicher Spielabläufe. Die vorhandene Controller-Anbindung wird als historischer Bestandteil beschrieben, ohne eine aktuelle Hardware-Abnahme zu behaupten.
+Die [Galerie](GALERIE.md) zeigt Kämpfe, Arena, Trainerbegegnungen und Menüs. Für die Kampf- und Weltaufnahmen wurden Figuren positioniert und Animationen angehalten. Die Darstellung stammt aus dem Spiel.
 
-Die ursprünglichen Grafiken, Musikdateien, Bibliotheken und historischen Hinweise bleiben erhalten. Diese Aufbereitung vergibt keine neue pauschale Lizenz für fremde Bestandteile.
-
-> Automatisiert durch einen Agenten erstellte rückblickende Dokumentation. Der historische Spielquellcode wurde für die Veranschaulichung unverändert übernommen. Alle Angaben und Downloads ohne Gewähr.
+[Zur Projektübersicht](../README.md). Alle Angaben und Downloads ohne Gewähr.

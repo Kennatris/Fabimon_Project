@@ -18,7 +18,7 @@ Ein Java-Spiel mit eigener Tile-Welt, Fabimon-Team und rundenbasierten Kämpfen.
 | --- | --- |
 | ![Trainer-Cutscene](docs/media/16-trainerbegegnung-aufnahmeversion.jpg) | ![Teamwechsel im Kampf](docs/media/14-teamwechsel-aufnahmeversion.jpg) |
 
-Die ausgewählten Spielszenen wurden mit eingefrorener Zeit und gezielt gesetzten Positionen in einer getrennten lokalen Aufnahmeversion festgehalten. Darstellung und Grafiken stammen aus dem historischen Spiel. [Weitere Aufnahmen und Herkunft](docs/GALERIE.md).
+Für die Aufnahmen wurden Figuren positioniert und Animationen angehalten. [Weitere Bilder](docs/GALERIE.md).
 
 ## Was umgesetzt wurde
 
@@ -39,8 +39,4 @@ Die Anleitung zum Kompilieren und Starten steht in der [Projektdokumentation](do
 | Enter oder Leertaste | Bestätigen und NPC-Interaktion |
 | Escape | Pause bzw. zurück |
 
-## Historischer Stand
-
-Die Darstellung basiert auf dem umfangreichsten erhaltenen Abschlussstand vom 21. Juni 2023, Commit `8703abc` aus `PhilippKamerlocher`. Die historischen Teambranches bleiben erhalten; `old/master` bewahrt den bisherigen Hauptstand. [Versionsvergleich und Projektaufbau](docs/PROJEKT.md#historie-und-versionsauswahl).
-
-> Diese rückblickende Dokumentation wurde automatisiert durch einen Agenten erstellt. Der historische Spielquellcode wurde für die Aufbereitung unverändert übernommen. Texte, Technikübersicht und echte Aufnahmen dienen der Veranschaulichung des damaligen Teamprojekts. Alle Angaben und Downloads ohne Gewähr.
+> **Hinweis:** Dokumentation und Zusammenfassung wurden automatisiert durch einen Agenten erstellt und dienen der Veranschaulichung. Der Spielcode ist unverändert. Alle Angaben und Downloads ohne Gewähr.
