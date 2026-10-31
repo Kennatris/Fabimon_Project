@@ -31,7 +31,7 @@ Das Spiel umfasst **60 Java-Dateien**. Unter `res` liegen Grafiken, Musik, Karte
 
 ## Kompilieren und starten
 
-Das Spiel wurde unter Windows mit **Temurin JDK 21.0.13+9** kompiliert und gestartet. Die folgenden PowerShell-Befehle werden im Projektordner ausgeführt; `javac` und `java` müssen erreichbar sein. Die kompilierten Klassen werden im temporären Verzeichnis abgelegt.
+Das Spiel wurde unter Windows mit **Temurin JDK 21.0.13+9** kompiliert und gestartet. Die folgenden PowerShell-Befehle werden im Projektordner ausgeführt. `javac` und `java` müssen erreichbar sein. Die kompilierten Klassen werden im temporären Verzeichnis abgelegt.
 
 ```powershell
 $classes = Join-Path ([IO.Path]::GetTempPath()) 'fabimon-classes'
@@ -52,6 +52,6 @@ Die Bedienung ist auf Tastatur ausgelegt. Eine Controller-Anbindung über JInput
 
 ## Bilder
 
-Die [Galerie](GALERIE.md) zeigt Kämpfe, Arena, Trainerbegegnungen und Menüs. Für die Kampf- und Weltaufnahmen wurden Figuren positioniert und Animationen angehalten. Die Darstellung stammt aus dem Spiel.
+Die [Galerie](GALERIE.md) zeigt Kämpfe, Arena, Trainerbegegnungen und Menüs. Für die Kampf- und Weltaufnahmen wurden Figuren positioniert und Abläufe gezielt ausgelöst. Zwei Animationen zeigen eine Kampfrunde mit AP-Verbrauch und Lebenspunktänderungen sowie die Blende beim Kampfbeginn. Standbilder ergänzen die Menüs, NPC-Begegnungen und die Arena. Die Darstellung stammt aus dem Spiel.
 
 [Zur Projektübersicht](../README.md). Alle Angaben und Downloads ohne Gewähr.

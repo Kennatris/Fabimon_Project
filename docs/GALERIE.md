@@ -1,6 +1,18 @@
 # Fabimon – Galerie
 
-Kämpfe, Trainerbegegnungen, Arena und Spielwelt. Für die folgenden Aufnahmen wurden Figuren positioniert und Animationen angehalten.
+Kämpfe, Trainerbegegnungen, Arena und Spielwelt. Für die Aufnahmen wurden Figuren positioniert und Abläufe gezielt ausgelöst. Die Animationen stammen aus dem Spielrenderer, die Standbilder zeigen angehaltene Szenen.
+
+## Kampfrunde in Bewegung
+
+Attackenauswahl, eigene und gegnerische Aktion sowie veränderte Lebenspunkte. Die Fabimon wechseln dabei zwischen ihren vorhandenen Animationsbildern.
+
+![Kampfablauf](media/24-kampfablauf.gif)
+
+## Übergang in den Kampf
+
+Die seitlichen Blenden schließen die Weltansicht und geben den Kampfbildschirm frei.
+
+![Kampf-Cutscene](media/25-kampfuebergang.gif)
 
 ## Kampfsystem
 

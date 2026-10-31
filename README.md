@@ -4,7 +4,7 @@
 
 Ein Java-Spiel mit eigener Tile-Welt, Fabimon-Team und rundenbasierten Kämpfen. Das Projekt verbindet Bewegung und NPC-Begegnungen mit Attacken, Charakterwerten, Items und Spielständen.
 
-![Fabimon – rundenbasierter Kampf](docs/media/12-kampf-aufnahmeversion.jpg)
+![Fabimon – rundenbasierter Kampf](docs/media/24-kampfablauf.gif)
 
 [Projekt und Technik](docs/PROJEKT.md) · [Bildergalerie](docs/GALERIE.md) · [Quellcode herunterladen](https://github.com/Kennatris/Fabimon_Project/archive/refs/heads/master.zip)
 
@@ -18,12 +18,17 @@ Ein Java-Spiel mit eigener Tile-Welt, Fabimon-Team und rundenbasierten Kämpfen.
 | --- | --- |
 | ![Trainer-Cutscene](docs/media/16-trainerbegegnung-aufnahmeversion.jpg) | ![Teamwechsel im Kampf](docs/media/14-teamwechsel-aufnahmeversion.jpg) |
 
-Für die Aufnahmen wurden Figuren positioniert und Animationen angehalten. [Weitere Bilder](docs/GALERIE.md).
+### Vom Trainer zum Kampf
 
-## Was umgesetzt wurde
+![Übergang von der Spielwelt in den Kampf](docs/media/25-kampfuebergang.gif)
+
+Für die Aufnahmen wurden Figuren positioniert und Kampfabläufe gezielt ausgelöst. Die Animationen zeigen die Darstellung des Spiels. [Weitere Bilder](docs/GALERIE.md).
+
+## Spielumfang
 
 - Tile-basierte Welt mit Kamera, Kollisionen, NPCs und Kartenwechseln.
-- Rundenbasiertes Kampfsystem mit Attacken, Werten und Teamwechsel.
+- Rundenbasiertes Kampfsystem mit Attacken, Werten, AP, Teamwechsel und Erfahrungspunkten.
+- Trainerbegegnungen und animierter Übergang von der Welt in den Kampf.
 - Teamübersicht, Statusseite und Inventar mit Heilitems.
 - Drei auswählbare Spielstände sowie Video- und Soundeinstellungen.
 
@@ -31,7 +36,7 @@ Für die Aufnahmen wurden Figuren positioniert und Animationen angehalten. [Weit
 
 ## Start und Bedienung
 
-Die Anleitung zum Kompilieren und Starten steht in der [Projektdokumentation](docs/PROJEKT.md#kompilieren-und-starten). Java-Klassen und Ressourcen müssen gemeinsam verfügbar sein; das Arbeitsverzeichnis ist der Projektordner.
+Die Anleitung zum Kompilieren und Starten steht in der [Projektdokumentation](docs/PROJEKT.md#kompilieren-und-starten). Java-Klassen und Ressourcen müssen gemeinsam verfügbar sein. Das Arbeitsverzeichnis ist der Projektordner.
 
 | Eingabe | Aktion |
 | --- | --- |
